@@ -12,7 +12,7 @@ Setting up the project on Windows
 4. Install node.js (Current Version: v0.10.20)
 5. Run node index
 6. Once the server is running visit localhost:8088/initSampleData
-7. Browser to localhost:8088 to see the data or localhost:8088/slug
+7. Browser to localhost:8088 to see all of the data or localhost:8088/slug to see a specific video
 
 Versions:
 =========
