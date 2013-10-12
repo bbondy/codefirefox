@@ -8,9 +8,9 @@ client.on("error", function (err) {
   console.log("Error " + err);
 });
 
-function Video(slug, url, title, description, priority) {
+function Video(slug, youtubeid, title, description, priority) {
   this.slug = slug;
-  this.url = url;
+  this.youtubeid= youtubeid;
   this.title = title;
   this.description = description;
   this.priority = priority;
@@ -28,11 +28,11 @@ Videos = {
       }
 
       var obj = JSON.parse(reply.toString());
-      this.url = obj.url;
+      this.youtubeid = obj.youtubeid;
       this.title = obj.title;
       this.description = obj.description;
       this.priority = obj.priority;
-      callback(null, new Video(slug, obj.url, obj.title, obj.description, obj.priority));
+      callback(null, new Video(slug, obj.youtubeid, obj.title, obj.description, obj.priority));
     });
   },
 
@@ -57,10 +57,10 @@ Videos = {
   },
 
   initSampleData: function() {
-    Videos.set(new Video('kamiljozwiak', 'http://kamiljozwiak.com/', 'kamil title', 'kamil description here', 2));
-    Videos.set(new Video('brianbondy', 'http://www.brianbondy.com/', 'brian title here', 'brian description here', 1));
-    Videos.set(new Video('slashdot', 'http://www.slashdot.org/', 'slashdot title', 'slashdot description here', 3));
-    Videos.set(new Video('slug', 'http://www.codefirefox.com/', 'code firefox title', 'code firefox description here', 4));
+    Videos.set(new Video('basic_addition', 'AuX7nPBqDts', 'Basic Addition', 'Description of Basic Addition here', 1));
+    Videos.set(new Video('level_2_addition', '27Kp7HJYj2c', 'Level 2 Addition', 'Say something about level 2 addition here', 2));
+    Videos.set(new Video('basic_subtraction', 'aNqG4ChKShI', 'Basic Subtraction', 'Subtraction description', 3));
+    Videos.set(new Video('addition_2', 't2L3JFOqTEk', 'Addition 2', 'Description for the 2nd addition', 4));
   },
 
   sortByPriority: function(a, b) {
@@ -77,14 +77,14 @@ app.use(express.limit('1mb'));
 // URL: codefirefox.com/initSampleData
 app.get('/initSampleData', function(req, res) {
   Videos.initSampleData();
-  res.render('index', { pageTitle: 'Sample data initialized', id: "Sample Data initialized", bodyID: 'body_index'});
+  res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index'});
 });
 
 // URL: codefirefox.com/
 app.get('/', function(req, res) {
   Videos.getAll(function(err, videos) {
     if (err) {
-      res.render('index', { pageTitle: 'Code Firefox Videos', id: "Couldn't find any", bodyID: 'body_index'});
+      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
       return;
     }
 
@@ -94,7 +94,7 @@ app.get('/', function(req, res) {
       return video.url;
     });
 
-    res.render('index', { pageTitle: 'Code Firefox Videos', id: videoURLs.join(" "), bodyID: 'body_index'});
+    res.render('index', { pageTitle: 'Code Firefox Videos', videos: videos, bodyID: 'body_index'});
   });
 });
 
@@ -107,10 +107,11 @@ app.get('/:slug', function(req, res, next) {
 
   Videos.get(req.params.slug, function(err, video) {
     if (err) {
-      res.render('index', { pageTitle: 'Code Firefox Videos', id: "Not Found", bodyID: 'body_index'});
-    } else {
-      res.render('index', { pageTitle: 'Code Firefox Videos', id: video.url, bodyID: 'body_index'});
+      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
+      return;
     }
+
+    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_index'});
   });
 });
 
