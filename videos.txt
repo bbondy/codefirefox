@@ -1,0 +1,86 @@
+All videos show screen with a small vm that has a smaller resolution, verify
+everyting is really visible and easy to read. Will proably use camtasia.
+
+Goal: Have a single unified place that teaches others how to contribute to
+Firefox from knowing nothing, step by step, in great detail.
+
+0. Getting the source code
+  0.0 One line, explain what source control is
+  0.1 One line, explain what Mercurial (hg) is
+  0.2 Downloading and installing tortoise hg walkthrough
+  0.3 Explaining what mozilla-central is
+  0.4 Show opening hg.mozilla.org/mozilla-central in a browser
+  0.5 Initiating an hg clone
+  0.6 Looking at the files on disk
+
+1. Setting up a build environment from a brand new Win7 installation
+  1.0 Downloading VS 2012 Express
+  1.1 Installing Visual Studio 2012 Express
+  1.2 Installing DirectX 2012 SDK
+  1.3 Installing MozillaBuild
+
+2. Building Desktop Firefox from the source code
+  2.0 Running mach build >out.txt 2>&1
+  2.1 Checking the output of out.txt
+  2.2 Running objdir_debug/dist/bin/firefox.exe
+
+3. Making and building changes
+  3.0 Make a trivial change to something visible, like a string
+  3.1 Explain the difference between incremental and full builds
+
+4. Making a patch
+  4.0 Setting up a mercurial patch queue
+  4.1 Setting up mercurial.ini info for patch options and author name
+  4.2 Creating a new patch with hg qnew
+  4.3 Showing where that patch gets created (.hg/patches)
+  4.4 Showing that patch opened, explaining the patch format
+
+5. Working on more than one patch
+  5.0 Walkthrough of hg qseries, hg applied, hg qpop, hg qpush
+
+6. Updating source code changes from others into your tree
+  6.0 Pop your patch queue hg qpop -a
+  6.1 hg pull / hg update
+  6.2 Push your patch queue
+
+7. Getting a patch accepted into mozilla-central and landed
+  7.0 Filing a bug
+  7.1 Attaching your patch to a bug
+  7.2 Requesting review
+  7.3 Getting a negative review
+  7.4 Getting a positive review
+
+8. Finding things in the tree fast
+  8.0 Show dxr.mozilla.org
+
+9. Reviewing a patch
+  9.0 What it looks like when you get a review request
+  9.1 What you do when you get a review request
+  9.2 Importing a patch into your patch queue
+  9.3 How to review
+  9.4 Giving an r-, reviewee sensitivity and feedback
+  9.5 Alternatives to an r-
+  9.6 nits
+  9.7 Giving an r+
+
+10. The different types of repositories for Firefox
+  10.0 Explanation of the different update channels (Nightly, Aurora, Beta, Firefox)
+  10.1 Explaination of the release cycle
+  10.2 What happens every 6 weeks
+
+12. Explanation of the source tree
+  12.0 Look at the source tree and explain which things are where
+
+13. Finding bugs to work on
+  13.0 Showing jdm's site
+  13.1 Find a component you like to work on
+
+14. Rebasing a bitrotted patch
+  14.0 What it looks like when you qpush a patch that has conflics
+  14.1 Open a rej file
+  14.2 Apply the change to the file
+
+15. Staying up to date on Mozilla happenings
+  15.0 Planet mozilla
+  15.1 Discussion groups
+  15.2 Google news search feed
