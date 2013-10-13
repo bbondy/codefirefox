@@ -1,9 +1,11 @@
+var fs = require('fs');
 var express = require('express');
 var app = express();
 var dump = console.log;
 var redis = require("redis");
 var async = require("async");
 var client = redis.createClient();
+
 client.on("error", function (err) {
   console.log("Error " + err);
 });
@@ -56,11 +58,22 @@ Videos = {
     client.set(video.slug, JSON.stringify(video), redis.print);
   },
 
-  initSampleData: function() {
-    Videos.set(new Video('basic_addition', 'AuX7nPBqDts', 'Basic Addition', 'Description of Basic Addition here', 1));
-    Videos.set(new Video('level_2_addition', '27Kp7HJYj2c', 'Level 2 Addition', 'Say something about level 2 addition here', 2));
-    Videos.set(new Video('basic_subtraction', 'aNqG4ChKShI', 'Basic Subtraction', 'Subtraction description', 3));
-    Videos.set(new Video('addition_2', 't2L3JFOqTEk', 'Addition 2', 'Description for the 2nd addition', 4));
+  initData: function() {
+    fs.readFile('data/videos.json', 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+
+      var arr = JSON.parse(data);
+      if (!arr) {
+        return console.log(err);
+      }
+
+      arr.forEach(function(video) {
+        Videos.set(video);
+      });
+    });
+
   },
 
   sortByPriority: function(a, b) {
@@ -74,9 +87,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 app.use(express.limit('1mb'));
 
-// URL: codefirefox.com/initSampleData
-app.get('/initSampleData', function(req, res) {
-  Videos.initSampleData();
+// URL: codefirefox.com/initData
+app.get('/initData', function(req, res) {
+  Videos.initData();
   res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index'});
 });
 

@@ -11,7 +11,7 @@ Setting up the project on Windows
 3. Run redis-server passing in the command line: redis.conf
 4. Install node.js (Current Version: v0.10.20)
 5. Run node index
-6. Once the server is running visit localhost:8088/initSampleData
+6. Once the server is running visit localhost:8088/initData
 7. Browser to localhost:8088 to see all of the data or localhost:8088/slug to see a specific video
 
 Versions:

@@ -80,7 +80,12 @@ Firefox from knowing nothing, step by step, in great detail.
   14.1 Open a rej file
   14.2 Apply the change to the file
 
-15. Staying up to date on Mozilla happenings
-  15.0 Planet mozilla
-  15.1 Discussion groups
-  15.2 Google news search feed
+15. Viewing history
+  15.0 Viewing hg annotate
+  15.1Finding regression ranges
+
+16. Staying up to date on Mozilla happenings
+  16.0 Planet mozilla
+  16.1 Discussion groups
+  16.2 Google news search feed
+
