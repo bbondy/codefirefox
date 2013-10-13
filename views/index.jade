@@ -1,8 +1,9 @@
 extends layout
 
 block mainContent
-  each video in videos
-    a(href= '/' + video.slug)
-      h1= video.title
-     p= video.description
+  ul
+    each video in videos
+      li
+        a(href= '/' + video.slug)
+          span= video.title
 

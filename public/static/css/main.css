@@ -1,0 +1,34 @@
+/*Royal blue of play icons: color: #4168e0;*/
+
+body {
+  font-family: Roboto, Arial;
+}
+
+a {
+  text-decoration: none !important;
+  color: #0f1936;
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("//ssl.gstatic.com/fonts/roboto/v9/vxNK-E6B13CyehuDCmvQvw.woff") format("woff");
+}
+
+li {
+  background: url("/static/img/video-play-middle.png") no-repeat top left;
+  padding: 0px 0 0 52px;
+  line-height: 48px;
+  vertical-align: middle;
+  list-style-type: none;
+}
+
+li:first-child {
+  background: url("/static/img/video-play-top.png") no-repeat top left;
+}
+
+li:last-child {
+  background: url("/static/img/video-play-bottom.png") no-repeat top left;
+}
+
