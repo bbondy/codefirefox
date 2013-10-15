@@ -1,154 +1,253 @@
 [
   {
-    "title": "Getting the source code",
-    "description": "",
-    "slug": "get-source-code",
-    "youtubeid": "",
+    "title": "Getting ready for development",
+    "slug": "getting-setup",
     "priority": 1,
-    "category": 1
+    "videos": [
+      {
+        "title": "Getting the source code",
+        "description": "",
+        "slug": "get-source-code",
+        "youtubeid": "",
+        "priority": 1
+      },
+      {
+        "title": "The different types of repositories for Firefox",
+        "description": "",
+        "slug": "firefox-repositories",
+        "youtubeid": "",
+        "priority": 12,
+        "category": 1
+      },
+      {
+        "title": "Setting up a Windows build enviornment",
+        "description": "",
+        "slug": "windows-build-environment",
+        "youtubeid": "",
+        "priority": 2
+      },
+      {
+        "title": "Getting on help on IRC",
+        "description": "",
+        "slug": "irc",
+        "youtubeid": "",
+        "priority": 17,
+        "category": 1
+      }
+    ]
   },
 
   {
-    "title": "Setting up a Windows build enviornment",
-    "description": "",
-    "slug": "windows-build-environment",
-    "youtubeid": "",
-    "priority": 2,
-    "category": 1
-  },
-
-  {
-    "title": "Building Desktop Firefox from the source code",
-    "description": "",
+    "title": "Building Firefox",
     "slug": "building-firefox",
-    "youtubeid": "",
+    "priority": 2,
+    "videos": [
+      {
+        "title": "Building Desktop Firefox from the source code",
+        "description": "",
+        "slug": "building-firefox",
+        "youtubeid": "",
+        "priority": 1
+      },
+      {
+        "title": "Incremental builds and making changes",
+        "description": "",
+        "slug": "making-changes",
+        "youtubeid": "",
+        "priority": 2
+      }
+    ]
+  },
+
+  {
+    "title": "Getting ready to work on your first bug",
+    "slug": "first-bug",
     "priority": 3,
-    "category": 1
+    "videos": [
+      {
+        "title": "Finding a bug to work on",
+        "description": "",
+        "slug": "finding-bug",
+        "youtubeid": "",
+        "priority": 15,
+        "category": 1
+      },
+      {
+        "title": "Creating a Bugzilla account",
+        "description": "",
+        "slug": "assigned-first-bug",
+        "youtubeid": "",
+        "priority": 15,
+        "category": 1
+      },
+      {
+        "title": "Get assigned to your first (mentored) bug",
+        "description": "",
+        "slug": "assigned-first-bug",
+        "youtubeid": "",
+        "priority": 15,
+        "category": 1
+      }
+    ]
   },
 
   {
-    "title": "Making and building changes",
-    "description": "",
-    "slug": "making-changes",
-    "youtubeid": "",
+    "title": "Working on your first bug",
+    "slug": "first-bug",
     "priority": 4,
-    "category": 1
+    "videos": [
+      {
+        "title": "Explanation of the source tree",
+        "description": "",
+        "slug": "source-tree-explanation",
+        "youtubeid": "",
+        "priority": 14,
+        "category": 1
+      },
+      {
+        "title": "Setting up patch headers",
+        "description": "",
+        "slug": "patch-headers",
+        "youtubeid": "",
+        "priority": 5,
+        "category": 2
+      },
+      {
+        "title": "Making a patch",
+        "description": "",
+        "slug": "making-patch",
+        "youtubeid": "",
+        "priority": 5,
+        "category": 2
+      },
+      {
+        "title": "Making changes to that patch",
+        "description": "",
+        "slug": "making-patch-changes",
+        "youtubeid": "",
+        "priority": 5,
+        "category": 2
+      }
+    ]
   },
 
   {
-    "title": "Making a patch",
-    "description": "",
-    "slug": "making-patch",
-    "youtubeid": "",
+    "title": "Landing your first patch",
+    "slug": "first-patch-landed",
     "priority": 5,
-    "category": 1
+    "videos": [
+      {
+        "title": "Attaching a patch to Bugzilla and getting your first review",
+        "description": "",
+        "slug": "landing-patch",
+        "youtubeid": "",
+        "priority": 9,
+        "category": 2
+      },
+      {
+        "title": "Running tests through try",
+        "description": "",
+        "slug": "running-tests",
+        "youtubeid": "",
+        "priority": 9,
+        "category": 2
+      },
+      {
+        "title": "Landing the patch after r+",
+        "description": "",
+        "slug": "landing-reviewed",
+        "youtubeid": "",
+        "priority": 9,
+        "category": 2
+      }
+    ]
   },
 
   {
-    "title": "Working on more than one patch",
-    "description": "",
-    "slug": "patch-queues",
-    "youtubeid": "",
+    "title": "Working on more patches",
+    "slug": "more-patches",
     "priority": 6,
-    "category": 1
+    "videos": [
+      {
+        "title": "Patch queue introduction",
+        "description": "",
+        "slug": "patch-queues",
+        "youtubeid": "",
+        "priority": 6,
+        "category": 2
+      },
+      {
+        "title": "Pulling down remote changes",
+        "description": "",
+        "slug": "remote-changes",
+        "youtubeid": "",
+        "priority": 8,
+        "category": 2
+      },
+      {
+        "title": "Rebasing a bitrotted patch",
+        "description": "",
+        "slug": "bitrotted-patches",
+        "youtubeid": "",
+        "priority": 16,
+        "category": 1
+      }
+    ]
   },
 
   {
-    "title": "Updating source code changes from others into your tree",
-    "description": "",
-    "slug": "patch-queues",
-    "youtubeid": "",
+    "title": "Becoming more efficient",
+    "slug": "more-efficient",
     "priority": 7,
-    "category": 1
+    "videos": [
+      {
+        "title": "Finding things in the tree fast",
+        "description": "",
+        "slug": "dxr",
+        "youtubeid": "",
+        "priority": 10,
+        "category": 1
+      }
+    ]
   },
 
   {
-    "title": "Pulling down remote changes",
-    "description": "",
-    "slug": "remote-changes",
-    "youtubeid": "",
+    "title": "Reviewing code",
+    "slug": "reviewing-code",
     "priority": 8,
-    "category": 1
+    "videos": [
+      {
+        "title": "Becoming a reviewer",
+        "description": "",
+        "slug": "becoming-reviewer",
+        "youtubeid": "",
+        "priority": 11,
+        "category": 1
+      },
+      {
+        "title": "Reviewing a patch",
+        "description": "",
+        "slug": "reviewing-patch",
+        "youtubeid": "",
+        "priority": 11,
+        "category": 1
+      }
+    ]
   },
 
   {
-    "title": "Landing a patch into Firefox",
-    "description": "",
-    "slug": "landing-patch",
-    "youtubeid": "",
+    "title": "Staying up to date",
+    "slug": "staying-up-to-date",
     "priority": 9,
-    "category": 1
-  },
-
-  {
-    "title": "Finding things in the tree fast",
-    "description": "",
-    "slug": "landing-patch",
-    "youtubeid": "",
-    "priority": 10,
-    "category": 1
-  },
-
-  {
-    "title": "Reviewing a patch",
-    "description": "",
-    "slug": "reviewing-patch",
-    "youtubeid": "",
-    "priority": 11,
-    "category": 1
-  },
-
-  {
-    "title": "The different types of repositories for Firefox",
-    "description": "",
-    "slug": "firefox-repositories",
-    "youtubeid": "",
-    "priority": 12,
-    "category": 1
-  },
-
-  {
-    "title": "The different types of repositories for Firefox",
-    "description": "",
-    "slug": "firefox-repositories",
-    "youtubeid": "",
-    "priority": 13,
-    "category": 1
-  },
-
-  {
-    "title": "Explanation of the source tree",
-    "description": "",
-    "slug": "source-tree-explanation",
-    "youtubeid": "",
-    "priority": 14,
-    "category": 1
-  },
-
-  {
-    "title": "Finding bugs to work on",
-    "description": "",
-    "slug": "finding-bugs",
-    "youtubeid": "",
-    "priority": 15,
-    "category": 1
-  },
-
-  {
-    "title": "Rebasing a bitrotted patch",
-    "description": "",
-    "slug": "bitrotted-patches",
-    "youtubeid": "",
-    "priority": 16,
-    "category": 1
-  },
-
-  {
-    "title": "Staying up to date on Mozilla happenings",
-    "description": "",
-    "slug": "bitrotted-patches",
-    "youtubeid": "",
-    "priority": 17,
-    "category": 1
+    "videos": [
+      {
+        "title": "Staying up to date on Mozilla happenings",
+        "description": "",
+        "slug": "mozilla-news",
+        "youtubeid": "",
+        "priority": 17,
+        "category": 1
+      }
+    ]
   }
 ]

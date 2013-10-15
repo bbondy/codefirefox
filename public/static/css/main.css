@@ -12,7 +12,7 @@ a {
 @font-face {
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 100;
   src: url("//ssl.gstatic.com/fonts/roboto/v9/vxNK-E6B13CyehuDCmvQvw.woff") format("woff");
 }
 
@@ -24,6 +24,10 @@ li {
   list-style-type: none;
 }
 
+li:first-child:last-child {
+  background: url("/static/img/video-play.png") no-repeat top left;
+}
+
 li:first-child {
   background: url("/static/img/video-play-top.png") no-repeat top left;
 }
@@ -31,4 +35,3 @@ li:first-child {
 li:last-child {
   background: url("/static/img/video-play-bottom.png") no-repeat top left;
 }
-
