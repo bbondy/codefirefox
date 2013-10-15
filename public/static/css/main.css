@@ -24,14 +24,18 @@ li {
   list-style-type: none;
 }
 
-li:first-child:last-child {
+li a {
+  display: inline-block;
+}
+
+ul a:first-child:last-child li {
   background: url("/static/img/video-play.png") no-repeat top left;
 }
 
-li:first-child {
+ul a:first-child li {
   background: url("/static/img/video-play-top.png") no-repeat top left;
 }
 
-li:last-child {
+ul a:last-child li {
   background: url("/static/img/video-play-bottom.png") no-repeat top left;
 }

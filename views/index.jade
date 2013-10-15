@@ -5,7 +5,7 @@ block mainContent
     h1= category.title
     ul
       each video in category.videos
-        li
-          a(href= '/' + category.slug + '/' + video.slug)
+        a(href= '/' + category.slug + '/' + video.slug)
+          li
             span= video.title
 
