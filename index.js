@@ -4,7 +4,7 @@ var app = express();
 var dump = console.log;
 var redis = require("redis");
 var async = require("async");
-var client = redis.createClient();
+var client = redis.createClient(10226);
 
 client.on("error", function (err) {
   console.log("Error " + err);
@@ -84,6 +84,11 @@ app.get('/initData', function(req, res) {
 
 // URL: codefirefox.com/
 app.get('/', function(req, res) {
+    res.render('inDevelopment', { pageTitle: 'In Development', id: "in-dev", bodyID: 'in_dev'});
+});
+
+// URL: codefirefox.com/videos
+app.get('/videos', function(req, res) {
   DB.getAll("category", function(err, categories) {
     if (err) {
       res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
@@ -112,4 +117,4 @@ app.get('/:category/:video', function(req, res, next) {
   });
 });
 
-app.listen(8088);
+app.listen(22935);
