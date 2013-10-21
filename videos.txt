@@ -4,20 +4,19 @@ everyting is really visible and easy to read. Will proably use camtasia.
 Goal: Have a single unified place that teaches others how to contribute to
 Firefox from knowing nothing, step by step, in great detail.
 
-0. Getting the source code
-  0.0 One line, explain what source control is
-  0.1 One line, explain what Mercurial (hg) is
-  0.2 Downloading and installing tortoise hg walkthrough
-  0.3 Explaining what mozilla-central is
-  0.4 Show opening hg.mozilla.org/mozilla-central in a browser
-  0.5 Initiating an hg clone
-  0.6 Looking at the files on disk
+0. Setting up a build environment from a brand new Win7 installation
+  0.0 Downloading VS 2012 Express
+  0.1 Installing Visual Studio 2012 Express
+  0.2 Installing DirectX 2012 SDK
+  0.3 Installing MozillaBuild
 
-1. Setting up a build environment from a brand new Win7 installation
-  1.0 Downloading VS 2012 Express
-  1.1 Installing Visual Studio 2012 Express
-  1.2 Installing DirectX 2012 SDK
-  1.3 Installing MozillaBuild
+1. Getting the source code
+  1.0 One line, explain what source control is
+  1.1 One line, explain what Mercurial (hg) is
+  1.2 Explaining what mozilla-central is
+  1.3 Show opening hg.mozilla.org/mozilla-central in a browser
+  1.4 Initiating an hg clone
+  1.5 Looking at the files on disk
 
 2. Building Desktop Firefox from the source code
   2.0 Running mach build >out.txt 2>&1
