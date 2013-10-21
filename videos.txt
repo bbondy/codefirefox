@@ -42,6 +42,7 @@ Firefox from knowing nothing, step by step, in great detail.
   6.0 Pop your patch queue hg qpop -a
   6.1 hg pull / hg update
   6.2 Push your patch queue
+  6.3 Clobber vs not clobber
 
 7. Getting a patch accepted into mozilla-central and landed
   7.0 Filing a bug
@@ -89,3 +90,8 @@ Firefox from knowing nothing, step by step, in great detail.
   16.1 Discussion groups
   16.2 Google news search feed
 
+
+17. Running tests
+  17.0 Getting the build from tests, take link from
+  https://tbpl.mozilla.org/?tree=Try&rev=c6b67e2a81b2 and  go here
+  http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds/ and search for c6b67e2a81b2
