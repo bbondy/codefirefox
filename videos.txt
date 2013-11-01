@@ -4,10 +4,10 @@ everyting is really visible and easy to read. Will proably use camtasia.
 Goal: Have a single unified place that teaches others how to contribute to
 Firefox from knowing nothing, step by step, in great detail.
 
-0. Setting up a build environment from a brand new Win7 installation
+0. Setting up a build environment from a brand new Windows installation
   0.0 Downloading VS 2012 Express
   0.1 Installing Visual Studio 2012 Express
-  0.2 Installing DirectX 2012 SDK
+  0.2 Installing DirectX 2010 SDK
   0.3 Installing MozillaBuild
 
 1. Getting the source code
@@ -19,9 +19,11 @@ Firefox from knowing nothing, step by step, in great detail.
   1.5 Looking at the files on disk
 
 2. Building Desktop Firefox from the source code
-  2.0 Running mach build >out.txt 2>&1
-  2.1 Checking the output of out.txt
-  2.2 Running objdir_debug/dist/bin/firefox.exe
+  2.0 Creating a .mozconfig file
+  2.1 Running mach build >out.txt 2>&1
+  2.2 The first time you run this it will create some needed config in c:\users\<username>\.mozbuild, you can ignore it. Simply re-run.
+  2.2 Checking the output of out.txt
+  2.3 Running objdir_debug/dist/bin/firefox.exe
 
 3. Making and building changes
   3.0 Make a trivial change to something visible, like a string
@@ -88,9 +90,25 @@ Firefox from knowing nothing, step by step, in great detail.
   16.0 Planet mozilla
   16.1 Discussion groups
   16.2 Google news search feed
-
+  16.3 Other resources: 
+    https://wiki.mozilla.org/Main_Page
+    https://developer.mozilla.org/en-US/
+    https://quality.mozilla.org/
 
 17. Running tests
   17.0 Getting the build from tests, take link from
   https://tbpl.mozilla.org/?tree=Try&rev=c6b67e2a81b2 and  go here
   http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds/ and search for c6b67e2a81b2
+
+18. Debugging in Visual studio
+  18.0 Setting breakpoints
+  18.1 Watch window
+  18.2 Callstack
+
+19. More advanced debugging in Visual studio
+  19.0 Conditional breakpoints
+  19.1 Hit count
+
+20. Getting commit access
+  20.0 ssh-keygen to generate keys for commit access, it is part of the mozilla-build package.
+
