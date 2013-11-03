@@ -10,7 +10,7 @@ Setting up this project on Windows
 2. Copy `third_party/redis-win/redis.conf` to that same folder on your Desktop
 3. Run redis-server passing in the command line: redis.conf (listens on port 10226)
 4. Install node.js (Current Version: v0.10.20)
-5. Run node index
+5. Run node app
 6. Once the server is running visit localhost:22935/initData
 7. Browser to localhost:22935/videos to see all of the data or localhost:22935/slug to see a specific video
 
