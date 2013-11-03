@@ -5,9 +5,12 @@ var dump = console.log;
 var redis = require("redis");
 var async = require("async");
 var client = redis.createClient(10226);
+var port = 22935;
+
+dump("Starting server on port: " + port);
 
 client.on("error", function (err) {
-  console.log("Error " + err);
+  dump("Error " + err);
 });
 
 DB = {
@@ -47,12 +50,12 @@ DB = {
   initData: function(filePath) {
     fs.readFile(filePath, 'utf8', function (err,data) {
       if (err) {
-        return console.log(err);
+        return dump(err);
       }
 
       var categories = JSON.parse(data);
       if (!categories) {
-        return console.log(err);
+        return dump(err);
       }
 
       categories.forEach(function(category) {
@@ -118,4 +121,4 @@ app.get('/:category/:video', function(req, res, next) {
   });
 });
 
-app.listen(22935);
+app.listen(port);
