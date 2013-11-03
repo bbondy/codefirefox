@@ -17,25 +17,27 @@ a {
 }
 
 li {
-  background: url("/static/img/video-play-middle.png") no-repeat top left;
-  padding: 0px 0 0 52px;
-  line-height: 48px;
-  vertical-align: middle;
+  /*padding: 0px 0 0 52px;*/
   list-style-type: none;
 }
 
-li a {
-  display: inline-block;
+li span {
+  background: url("/static/img/video-play-middle.png") no-repeat top left;
+  line-height: 48px;
+  height: 48px;
+  vertical-align: middle;
+  padding: 0px 0 0 52px;
+  display: inline-block
 }
 
-ul a:first-child:last-child li {
+ul li:first-child:last-child span {
   background: url("/static/img/video-play.png") no-repeat top left;
 }
 
-ul a:first-child li {
+ul li:first-child span {
   background: url("/static/img/video-play-top.png") no-repeat top left;
 }
 
-ul a:last-child li {
+ul li:last-child span {
   background: url("/static/img/video-play-bottom.png") no-repeat top left;
 }
