@@ -1,8 +1,8 @@
-All videos show screen with a small vm that has a smaller resolution, verify
-everyting is really visible and easy to read. Will proably use camtasia.
+All videos show screen with a small vm that has a smaller resolution
+i will ensure everyting is really visible and easy to read.
 
 Goal: Have a single unified place that teaches others how to contribute to
-Firefox from knowing nothing, step by step, in great detail.
+Firefox from knowing nothing, step by step, in great detail, with videos.
 
 0. Setting up a build environment from a brand new Windows installation
   0.0 Downloading VS 2012 Express
@@ -101,14 +101,19 @@ Firefox from knowing nothing, step by step, in great detail.
   http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds/ and search for c6b67e2a81b2
 
 18. Debugging in Visual studio
-  18.0 Setting breakpoints
-  18.1 Watch window
-  18.2 Callstack
+  18.0 Setting up your project for debugging
+  18.1 Attaching to an already running program to debug it
+  18.2 Setting breakpoints
+  18.3 Watch window
+  18.4 Callstack
+  18.5 Build symbols server for release builds
 
 19. More advanced debugging in Visual studio
   19.0 Conditional breakpoints
   19.1 Hit count
+  19.2 Memory change breakpoints
 
 20. Getting commit access
-  20.0 ssh-keygen to generate keys for commit access, it is part of the mozilla-build package.
+  20.0 File for level 1 access - try server
+  20.1 ssh-keygen to generate keys for commit access, it is part of the mozilla-build package.
 

@@ -236,9 +236,89 @@
   },
 
   {
+    "title": "Troubleshooting code without debugging",
+    "slug": "troubleshooting-code-no-debugging",
+    "priority": 9,
+    "videos": [
+      {
+        "title": "Using hg annotate",
+        "description": "",
+        "slug": "hg-annotate",
+        "youtubeid": "",
+        "priority": 1,
+        "category": 1
+      },
+      {
+        "title": "Finding regression ranges",
+        "description": "",
+        "slug": "regression-range",
+        "youtubeid": "",
+        "priority": 2,
+        "category": 1
+      }
+    ]
+  },
+
+  {
+    "title": "Debugging code with Visual Studio",
+    "slug": "debugging-with-visual-studio",
+    "priority": 10,
+    "videos": [
+      {
+        "title": "Debugging your local build",
+        "description": "",
+        "slug": "debug-local-builds",
+        "youtubeid": "",
+        "priority": 1,
+        "category": 1
+      },
+      {
+        "title": "Introduction to different debugger windows",
+        "description": "",
+        "slug": "debugger-windows",
+        "youtubeid": "",
+        "priority": 2,
+        "category": 1
+      },
+      {
+        "title": "More advanced debugging tricks",
+        "description": "",
+        "slug": "advanced-debugging",
+        "youtubeid": "",
+        "priority": 3,
+        "category": 1
+      }
+    ]
+  },
+
+  {
+    "title": "Getting commit access",
+    "slug": "commit-access",
+    "priority": 11,
+    "videos": [
+      {
+        "title": "Getting commit access level 1",
+        "description": "",
+        "slug": "commit-access-level-1",
+        "youtubeid": "",
+        "priority": 1,
+        "category": 1
+      },
+      {
+        "title": "Getting commit access level 3",
+        "description": "",
+        "slug": "commit-acccess-level-3",
+        "youtubeid": "",
+        "priority": 2,
+        "category": 1
+      }
+    ]
+  },
+
+  {
     "title": "Staying up to date",
     "slug": "staying-up-to-date",
-    "priority": 9,
+    "priority": 12,
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",
