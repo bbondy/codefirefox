@@ -121,4 +121,9 @@ app.get('/:category/:video', function(req, res, next) {
   });
 });
 
+// URL: codefirefox.com/cheatsheet
+app.get('/cheatsheet', function(req, res, next) {
+  res.render('cheatsheet', { pageTitle: 'Code Firefox Cheatsheet', bodyID: 'body_cheatsheet'});
+});
+
 app.listen(port);

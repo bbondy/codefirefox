@@ -1,9 +1,10 @@
 extends layout
 
 block mainContent
+  a(href='/cheatsheet') Cheatsheet
   each category in categories
     h1= category.title
-    ul
+    ul.videos
       each video in category.videos
           li
             a(href= '/' + category.slug + '/' + video.slug)
