@@ -16,10 +16,11 @@ Firefox from knowing nothing, step by step, in great detail, with videos.
   1.2 Explaining what mozilla-central is
   1.3 Show opening hg.mozilla.org/mozilla-central in a browser
   1.4 Initiating an hg clone
-  1.5 Looking at the files on disk
+  1.5 If you have problem getting hg clone to work, get a bundle
+  1.6 Looking at the files on disk
 
 2. Building Desktop Firefox from the source code
-  2.0 Creating a .mozconfig file
+  2.0 Creating a .mozconfig file (Not necessary but explain it)
   2.1 Running mach build >out.txt 2>&1
   2.2 The first time you run this it will create some needed config in c:\users\<username>\.mozbuild, you can ignore it. Simply re-run.
   2.2 Checking the output of out.txt
@@ -31,7 +32,7 @@ Firefox from knowing nothing, step by step, in great detail, with videos.
 
 4. Making a patch
   4.0 Setting up a mercurial patch queue
-  4.1 Setting up mercurial.ini info for patch options and author name
+  4.1 Setting up mercurial.ini info for patch options and author name (or using mach command)
   4.2 Creating a new patch with hg qnew
   4.3 Showing where that patch gets created (.hg/patches)
   4.4 Showing that patch opened, explaining the patch format
@@ -44,13 +45,15 @@ Firefox from knowing nothing, step by step, in great detail, with videos.
   6.1 hg pull / hg update
   6.2 Push your patch queue
   6.3 Clobber vs not clobber
-
+  6.4 Using hg pull --rebase
+ 
 7. Getting a patch accepted into mozilla-central and landed
   7.0 Filing a bug
   7.1 Attaching your patch to a bug
   7.2 Requesting review
   7.3 Getting a negative review
   7.4 Getting a positive review
+  7.5 Not getting a review you requested
 
 8. Finding things in the tree fast
   8.0 Show dxr.mozilla.org
