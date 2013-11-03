@@ -8,7 +8,7 @@ a {
   text-decoration: none !important;
 }
 
-#body_index a {
+#body_index ul.videos a {
   color: #0f1936;
 }
 
