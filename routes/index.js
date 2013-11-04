@@ -1,9 +1,11 @@
+var db = require('../db');
+
 exports.cheatsheet = function(req, res, next) {
   res.render('cheatsheet', { pageTitle: 'Code Firefox Cheatsheet', bodyID: 'body_cheatsheet'});
 };
 
 exports.initData = function(req, res) {
-DB.initData('data/videos.json');
+db.initData('data/videos.json');
   res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index'});
 };
 
@@ -51,7 +53,7 @@ exports.video = function(req, res, next) {
     return;
   }
 
-  DB.get(req.params.category + ":" + req.params.video, function(err, video) {
+  db.get(req.params.category + ":" + req.params.video, function(err, video) {
     if (err) {
       res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
       return;
@@ -62,13 +64,13 @@ exports.video = function(req, res, next) {
 };
 
 exports.videos = function(req, res) {
-  DB.getAll("category", function(err, categories) {
+  db.getAll("category", function(err, categories) {
     if (err) {
       res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
       return;
     }
 
-    categories.sort(DB.sortByPriority);
+    categories.sort(db.sortByPriority);
     res.render('index', { pageTitle: 'Code Firefox Videos', categories: categories, bodyID: 'body_index'});
   });
 };
