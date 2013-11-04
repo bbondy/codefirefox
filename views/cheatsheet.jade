@@ -476,17 +476,16 @@ block mainContent
 
   h2 Firefox UI debugging
   ul
-    li Extesion Developer Extension
-    li
-      | Or in any build of Firefox:
-      ul
-        li Type about:
-        li Open the web console
-        li Type in the following:
-        :markdown
-          > Components.utils.import('resource://gre/modules/Services.jsm');  
-          > this.\_\_proto\_\_ = Services.wm.getMostRecentWindow('navigator:browser');  
-        li Now you can use anything you can in the extensions developer extension
+    li Open the Web Console (Ctrl+Shift+K on Windows/Linux, Cmd+Opt+K on Mac), open the settings pane (gear icon) and enable remote and chrome debugging.
+    li You can use the Browser Console from the Tools > Web Developer menu to evaluate JS against the main Firefox Window
+    li You can use Scratchpad from the Tools > Web Developer menu as well. Be sure to set the Environment to "Browser" from the menu inside Scratchpad.
+    li You can use the Browser Debugger to debug JS running in the browser chrome.
+    li You can use the --jsconsole and --jsdebugger commandline arguments to start the browser console/debugger when starting Firefox.
+    li: :markdown
+       Download the [DOM Inspector add-on](https://addons.mozilla.org/firefox/addon/dom-inspector-6622/)
+       to inspect the XUL tree and its CSS while Firefox is running.
+    li Extension Developer Extension
+
 
   h2 Contributor info and Metrics
   ul
