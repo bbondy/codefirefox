@@ -28,9 +28,19 @@ app.use(function(req,res){
     res.render('notFound');
 });
 
-process.on('uncaughtException', function (exception) {
-  console.error(exception);
+// Determine the environment like this: NODE_ENV=production node app.js
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.locals.pretty = true;
 });
 
-console.log("Starting server on port: " + PORT);
-app.listen(PORT);
+app.configure('production', function(){
+  app.use(express.errorHandler());
+  process.on('uncaughtException', function (exception) {
+    console.error(exception);
+  });
+});
+
+app.listen(PORT, function() {
+  console.log("Starting server on port %d in %s mode", PORT, app.settings.env);
+});
