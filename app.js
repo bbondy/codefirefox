@@ -24,5 +24,13 @@ app.get('/initData', routes.initData);
 app.get('/logout', routes.logout);
 app.get('/videos', routes.videos);
 
+app.use(function(req,res){
+    res.render('notFound');
+});
+
+process.on('uncaughtException', function (exception) {
+  console.error(exception);
+});
+
 console.log("Starting server on port: " + PORT);
 app.listen(PORT);
