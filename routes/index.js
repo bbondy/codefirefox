@@ -48,7 +48,7 @@ exports.logout = function (req, resp) {
 };
 
 exports.video = function(req, res, next) {
-  if (req.params.category == 0 || req.params.video == 0) {
+  if (!req.params.category || !req.params.video) {
     next(new Error('Invalid URL format, should be: category/video'));
     return;
   }
