@@ -99,7 +99,11 @@ Firefox from knowing nothing, step by step, in great detail, with videos.
     https://quality.mozilla.org/
 
 17. Running tests
-  17.0 Getting the build from tests, take link from
+  17.0 Running tests locally
+  17.1 Running tests on tinderbox (Including TryChooser syntax)
+  17.2 Understanding tinderbox pushlog results
+  17.3 Re-running failed tests when you aren't sure
+  17.4 Getting the build from tests, take link from
   https://tbpl.mozilla.org/?tree=Try&rev=c6b67e2a81b2 and  go here
   http://ftp.mozilla.org/pub/mozilla.org/firefox/try-builds/ and search for c6b67e2a81b2
 
@@ -119,4 +123,3 @@ Firefox from knowing nothing, step by step, in great detail, with videos.
 20. Getting commit access
   20.0 File for level 1 access - try server
   20.1 ssh-keygen to generate keys for commit access, it is part of the mozilla-build package.
-
