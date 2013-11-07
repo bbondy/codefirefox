@@ -191,6 +191,14 @@
         "youtubeid": "",
         "priority": 3,
         "category": 1
+      },
+      {
+        "title": "Workflow when developing with patches",
+        "description": "",
+        "slug": "development-workflow",
+        "youtubeid": "",
+        "priority": 4,
+        "category": 1
       }
     ]
   },
