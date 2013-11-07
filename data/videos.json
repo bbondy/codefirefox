@@ -19,6 +19,14 @@
         "priority": 2
       },
       {
+        "title": "Setting up mercurial",
+        "description": "",
+        "slug": "mercurial-setup",
+        "youtubeid": "",
+        "priority": 2,
+        "category": 2
+      },
+      {
         "title": "The different types of repositories for Firefox",
         "description": "",
         "slug": "firefox-repositories",
@@ -103,14 +111,6 @@
         "youtubeid": "",
         "priority": 1,
         "category": 1
-      },
-      {
-        "title": "Setting up patch headers",
-        "description": "",
-        "slug": "patch-headers",
-        "youtubeid": "",
-        "priority": 2,
-        "category": 2
       },
       {
         "title": "Making a patch",
