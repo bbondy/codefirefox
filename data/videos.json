@@ -121,9 +121,9 @@
         "category": 2
       },
       {
-        "title": "Making changes to that patch",
+        "title": "Making changes to that patch file",
         "description": "",
-        "slug": "making-patch-changes",
+        "slug": "patch-changes",
         "youtubeid": "",
         "priority": 4,
         "category": 2
@@ -171,9 +171,17 @@
       {
         "title": "Patch queue introduction",
         "description": "",
-        "slug": "patch-queues",
+        "slug": "patch-queues-intro",
         "youtubeid": "",
         "priority": 1,
+        "category": 2
+      },
+      {
+        "title": "Patch queues continued",
+        "description": "",
+        "slug": "patch-queues-continued",
+        "youtubeid": "",
+        "priority": 2,
         "category": 2
       },
       {
@@ -181,7 +189,7 @@
         "description": "",
         "slug": "remote-changes",
         "youtubeid": "",
-        "priority": 2,
+        "priority": 3,
         "category": 2
       },
       {
@@ -189,7 +197,7 @@
         "description": "",
         "slug": "bitrotted-patches",
         "youtubeid": "",
-        "priority": 3,
+        "priority": 4,
         "category": 1
       },
       {
@@ -197,7 +205,7 @@
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
-        "priority": 4,
+        "priority": 5,
         "category": 1
       }
     ]
