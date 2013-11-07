@@ -5,7 +5,7 @@ exports.cheatsheet = function(req, res, next) {
 };
 
 exports.initData = function(req, res) {
-db.initData('data/videos.json');
+db.initData(__dirname + '/../data/videos.json');
   res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index'});
 };
 
