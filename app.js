@@ -25,7 +25,7 @@ app.get('/logout', routes.logout);
 app.get('/videos', routes.videos);
 
 app.use(function(req,res){
-    res.render('notFound');
+  res.render('notFound');
 });
 
 // Determine the environment like this: NODE_ENV=production node app.js
