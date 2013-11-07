@@ -1,0 +1,17 @@
+Assume we have this patch file, which fixes some whitespace:
+
+Show diff of patch.
+
+And suddenly we realize that we should have also fixed some more whitespace just below.
+
+We could create a second patch file using qnew for the new change, but ideally we want the change in the same file.
+
+To do this we simply modify the file as usual, with the new change.
+
+Make a change to browser/base/content/browser.js
+
+And then we type hg qref
+
+And that's it! 
+
+If you go look at the new patch file, you'll see that it now has that additional change in it.
