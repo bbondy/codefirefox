@@ -22,8 +22,8 @@
         "title": "Setting up mercurial",
         "description": "",
         "slug": "mercurial-setup",
-        "youtubeid": "",
-        "priority": 2,
+        "youtubeid": "vHu4GV5Ii40",
+        "priority": 3,
         "category": 2
       },
       {
@@ -31,7 +31,7 @@
         "description": "",
         "slug": "firefox-repositories",
         "youtubeid": "",
-        "priority": 3,
+        "priority": 4,
         "category": 1
       },
       {
@@ -39,7 +39,7 @@
         "description": "",
         "slug": "irc",
         "youtubeid": "",
-        "priority": 4,
+        "priority": 5,
         "category": 1
       }
     ]
