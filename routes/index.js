@@ -28,7 +28,7 @@ exports.auth = function (audience) {
       }
 
       // got a result, check if it was okay or not
-      if ( email ) {
+      if (email) {
         console.info('browserid auth successful, setting req.session.email');
         req.session.email = email;
         return resp.redirect('/');
@@ -74,4 +74,3 @@ exports.videos = function(req, res) {
     res.render('index', { pageTitle: 'Code Firefox Videos', categories: categories, bodyID: 'body_index'});
   });
 };
-

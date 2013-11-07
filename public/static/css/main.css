@@ -25,7 +25,7 @@ ul.videos li {
 }
 
 ul.videos li span {
-  background: url("/static/img/video-play-middle.png") no-repeat top left;
+  background: url("/static/img/video-play-middle-na.png") no-repeat top left;
   line-height: 48px;
   height: 48px;
   vertical-align: middle;
@@ -33,14 +33,31 @@ ul.videos li span {
   display: inline-block
 }
 
-ul.videos li:first-child:last-child span {
+ul.videos li a span {
+  background: url("/static/img/video-play-middle.png") no-repeat top left;
+}
+
+ul.videos li:first-child:last-child a span {
   background: url("/static/img/video-play.png") no-repeat top left;
 }
 
-ul.videos li:first-child span {
+ul.videos li:first-child:last-child span {
+  background: url("/static/img/video-play-na.png") no-repeat top left;
+}
+
+ul.videos li:first-child a span {
   background: url("/static/img/video-play-top.png") no-repeat top left;
 }
 
-ul.videos li:last-child span {
+ul.videos li:first-child span {
+  background: url("/static/img/video-play-top-na.png") no-repeat top left;
+}
+
+ul.videos li:last-child a span {
   background: url("/static/img/video-play-bottom.png") no-repeat top left;
 }
+
+ul.videos li:last-child span {
+  background: url("/static/img/video-play-bottom-na.png") no-repeat top left;
+}
+

@@ -7,6 +7,9 @@ block mainContent
     ul.videos
       each video in category.videos
           li
-            a(href= '/' + category.slug + '/' + video.slug)
-              span= video.title
+            if video.youtubeid
+              a(href= '/' + category.slug + '/' + video.slug)
+                span= video.title
+            else
+                span= video.title
 
