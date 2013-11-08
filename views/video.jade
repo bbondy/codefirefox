@@ -1,6 +1,9 @@
 extends layout
 
 block mainContent
+  a(href='/videos') Videos
+  &nbsp; | &nbsp;
+  a(href='/cheatsheet') Cheatsheet
   h1= video.title
   p= video.description
   iframe(width='560', height='315', src='//www.youtube.com/embed/' + video.youtubeid, frameborder='0', allowfullscreen)
