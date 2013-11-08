@@ -61,3 +61,11 @@ ul.videos li:last-child span {
   background: url("/static/img/video-play-bottom-na.png") no-repeat top left;
 }
 
+a.twitter-follow-button {
+  right: 50px;
+}
+
+#footer {
+  bottom: 0;
+  height: 40px;
+}
