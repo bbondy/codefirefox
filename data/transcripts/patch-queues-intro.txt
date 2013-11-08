@@ -1,7 +1,6 @@
-Mercurial patch queues allow you to work on multiple different patches at the same time.
-But to be honest it should have been called a patch stack.
+Mercurial patch queues allow you to manage one or more patches.
 
-You only need few hg commands to fully understand patch qeueues,
+You only need few different commands to fully understand patch qeueues,
 those are: hg qpop, hg qpush, hg qapplied, and hg qseries
 
 So let's say you have a single patch already created.
