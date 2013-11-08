@@ -169,7 +169,7 @@
     "priority": 6,
     "videos": [
       {
-        "title": "Patch queue introduction",
+        "title": "Introduction to Mercurial Patch Queues",
         "description": "",
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
@@ -177,7 +177,7 @@
         "category": 2
       },
       {
-        "title": "Patch queues continued",
+        "title": "Mercurial Patch Queues continued",
         "description": "",
         "slug": "patch-queues-continued",
         "youtubeid": "",
