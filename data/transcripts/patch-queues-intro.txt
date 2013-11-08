@@ -1,0 +1,59 @@
+Mercurial patch queues allow you to work on multiple different patches at the same time.
+But to be honest it should have been called a patch stack.
+
+You only need few hg commands to fully understand patch qeueues,
+those are: hg qpop, hg qpush, hg qapplied, and hg qseries
+
+So let's say you have a single patch already created.
+You can use qseries to see that the patch is in your path queue:
+hg qseries
+
+You can use qapplied to see that the patch is applied:
+hg qapplied
+
+
+So qseries and qapplied looks the same.
+The difference comes in when you unapply a patch.
+
+hg qpop
+
+Now i I use hg qseries it still shows me what's in my queue:
+hg qseries
+
+Same as before.
+
+But the difference is with qapplied.
+Since we popped off the patch it is no longer applied.
+
+
+hg qapplied
+
+
+See nothing is applied.
+
+
+
+
+
+
+
+
+
+
+Assume we have this patch file, which fixes some whitespace:
+
+Show diff of patch.
+
+And suddenly we realize that we should have also fixed some more whitespace just below.
+
+We could create a second patch file using qnew for the new change, but ideally we want the change in the same file.
+
+To do this we simply modify the file as usual, with the new change.
+
+Make a change to browser/base/content/browser.js
+
+And then we type hg qref
+
+And that's it! 
+
+If you go look at the new patch file, you'll see that it now has that additional change in it.
