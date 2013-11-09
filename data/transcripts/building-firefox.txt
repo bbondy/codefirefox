@@ -1,0 +1,26 @@
+To buid Firefox, we're goin to use our checked out source code from mozilla-central.
+Open up mozilla-build folder
+Open up msvc-11 file for vs2012
+
+To build the source code we're goin to use a tool called mach.
+Mach is not only used for building the sourcec code, but it is also used to accomplish a bunch of different
+tasks that we'll see over time.
+Mach is a python script.
+
+The first time you run mach on your computer, it's going to do some configuration.
+So let's get that over with, and please note that you never need to do this more than once.
+
+After that's done we're ready to build:
+Type mach build > out.txt 2>&1
+
+- Behind the scenes this is creating a configure file, which amongst other things sets up your environment and detects where you're building.
+- Processes build config files, those are the moz.build files, and you can think of them as makefiles
+- Building, linking, and packaging.
+
+This process can take a long time, maybe even a couple hours to run.
+Once you're done building, you'll find a file that looks like this: out.txt
+
+And now we're ready to run firefox. You can do this in a couple ways:
+1) Type mach run
+or 
+2) Open up objdir_debug/dist/bin/firefox.exe
