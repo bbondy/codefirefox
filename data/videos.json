@@ -19,28 +19,18 @@
         "priority": 2
       },
       {
-        "title": "Setting up mercurial",
-        "description": "",
-        "slug": "mercurial-setup",
-        "youtubeid": "yhkOSgVGHTY",
-        "priority": 3,
-        "category": 2
-      },
-      {
         "title": "The different types of repositories for Firefox",
         "description": "",
         "slug": "firefox-repositories",
         "youtubeid": "",
-        "priority": 4,
-        "category": 1
+        "priority": 4
       },
       {
         "title": "Getting on help on IRC",
         "description": "",
         "slug": "irc",
         "youtubeid": "",
-        "priority": 5,
-        "category": 1
+        "priority": 5
       }
     ]
   },
@@ -77,24 +67,21 @@
         "description": "",
         "slug": "finding-bug",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       },
       {
         "title": "Creating a Bugzilla account",
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "",
-        "priority": 2,
-        "category": 1
+        "priority": 2
       },
       {
         "title": "Get assigned to your first (mentored) bug",
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "",
-        "priority": 3,
-        "category": 1
+        "priority": 3
       }
     ]
   },
@@ -109,24 +96,28 @@
         "description": "",
         "slug": "source-tree-explanation",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
+      },
+      {
+        "title": "Setting up mercurial",
+        "description": "",
+        "slug": "mercurial-setup",
+        "youtubeid": "yhkOSgVGHTY",
+        "priority": 2
       },
       {
         "title": "Creating a patch file",
         "description": "",
         "slug": "patch-creation",
         "youtubeid": "cLQlsRKJiS4",
-        "priority": 3,
-        "category": 2
+        "priority": 3
       },
       {
         "title": "Making changes to that patch file",
         "description": "",
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
-        "priority": 4,
-        "category": 2
+        "priority": 4
       }
     ]
   },
@@ -141,24 +132,21 @@
         "description": "",
         "slug": "landing-patch",
         "youtubeid": "",
-        "priority": 1,
-        "category": 2
+        "priority": 1
       },
       {
         "title": "Running tests through try",
         "description": "",
         "slug": "running-tests",
         "youtubeid": "",
-        "priority": 2,
-        "category": 2
+        "priority": 2
       },
       {
         "title": "Landing the patch after r+",
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "",
-        "priority": 3,
-        "category": 2
+        "priority": 3
       }
     ]
   },
@@ -173,40 +161,35 @@
         "description": "",
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
-        "priority": 1,
-        "category": 2
+        "priority": 1
       },
       {
         "title": "Working on multiple patches within your patch queue",
         "description": "",
         "slug": "patch-queues-multi-patches",
         "youtubeid": "9g7ePBFfS7A",
-        "priority": 2,
-        "category": 2
+        "priority": 2
       },
       {
         "title": "Pulling down remote changes",
         "description": "",
         "slug": "remote-changes",
         "youtubeid": "",
-        "priority": 3,
-        "category": 2
+        "priority": 3
       },
       {
         "title": "Rebasing a bitrotted patch",
         "description": "",
         "slug": "bitrotted-patches",
         "youtubeid": "",
-        "priority": 4,
-        "category": 1
+        "priority": 4
       },
       {
         "title": "Workflow when developing with patches",
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
-        "priority": 5,
-        "category": 1
+        "priority": 5
       }
     ]
   },
@@ -221,8 +204,7 @@
         "description": "",
         "slug": "dxr",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       }
     ]
   },
@@ -237,16 +219,14 @@
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       },
       {
         "title": "Reviewing a patch",
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "",
-        "priority": 2,
-        "category": 1
+        "priority": 2
       }
     ]
   },
@@ -261,16 +241,14 @@
         "description": "",
         "slug": "hg-annotate",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       },
       {
         "title": "Finding regression ranges",
         "description": "",
         "slug": "regression-range",
         "youtubeid": "",
-        "priority": 2,
-        "category": 1
+        "priority": 2
       }
     ]
   },
@@ -285,24 +263,21 @@
         "description": "",
         "slug": "debug-local-builds",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       },
       {
         "title": "Introduction to different debugger windows",
         "description": "",
         "slug": "debugger-windows",
         "youtubeid": "",
-        "priority": 2,
-        "category": 1
+        "priority": 2
       },
       {
         "title": "More advanced debugging tricks",
         "description": "",
         "slug": "advanced-debugging",
         "youtubeid": "",
-        "priority": 3,
-        "category": 1
+        "priority": 3
       }
     ]
   },
@@ -317,16 +292,14 @@
         "description": "",
         "slug": "commit-access-level-1",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       },
       {
         "title": "Getting commit access level 3",
         "description": "",
         "slug": "commit-acccess-level-3",
         "youtubeid": "",
-        "priority": 2,
-        "category": 1
+        "priority": 2
       }
     ]
   },
@@ -341,8 +314,7 @@
         "description": "",
         "slug": "mozilla-news",
         "youtubeid": "",
-        "priority": 1,
-        "category": 1
+        "priority": 1
       }
     ]
   }
