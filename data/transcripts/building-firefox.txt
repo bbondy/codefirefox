@@ -11,7 +11,13 @@ The first time you run mach on your computer, it's going to do some configuratio
 So let's get that over with, and please note that you never need to do this more than once.
 
 After that's done we're ready to build:
-Type mach build > out.txt 2>&1
+Type mach build 
+
+Pause, at this point you can press enter and things will start to build.
+But if you add the following:
+> out.txt 2>&1
+It will go a lot faster.  The first > sign menas redirect standard output to a file named out.txt
+The 2> means redirect error output to something, and the &1 says that the error output should be redirected to standard output.
 
 - Behind the scenes this is creating a configure file, which amongst other things sets up your environment and detects where you're building.
 - Processes build config files, those are the moz.build files, and you can think of them as makefiles
@@ -19,6 +25,7 @@ Type mach build > out.txt 2>&1
 
 This process can take a long time, maybe even a couple hours to run.
 Once you're done building, you'll find a file that looks like this: out.txt
+If all goes well it will have a message that your build succeeded. If it doesn't watch the previous videos, try googling your problem, try reaching out to someone on IRC, or try searching some MDN documentation via google.
 
 And now we're ready to run firefox. You can do this in a couple ways:
 1) Type mach run
