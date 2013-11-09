@@ -1,0 +1,30 @@
+{
+  "name": "codefirefox",
+  "version": "0.1.0",
+  "description": "Video tutorial for Code Firefox",
+  "main": "app.js",
+  "dependencies": {
+    "async": "~0.2.9",
+    "express": "~3.4.0",
+    "markdown": "~0.5.0",
+    "jade": "~0.35.0",
+    "redis": "~0.8.6",
+    "routes": "~0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbondy/codefirefox"
+  },
+  "keywords": [
+    "codefirefox"
+  ],
+  "author": "Brian R. Bondy",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bbondy/codefirefox/issues"
+  }
+}
