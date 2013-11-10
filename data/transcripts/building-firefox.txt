@@ -2,14 +2,14 @@ To buid Firefox, we're going to use our checked out source code from mozilla-cen
 Open up mozilla-build folder
 Open up msvc-11 file for vs2012
 
-To build the source code we're going to use a tool called mach.
+The best way to build the source code is to use use mach.
 After that's done we're ready to build:
 Type mach build 
 
 Pause, at this point you can press enter and things will start to build.
 But if you add the following:
 > out.txt 2>&1
-It will go a lot faster.  The first > sign menas redirect standard output to a file named out.txt
+It will go a lot faster.  The first > sign means redirect standard output to a file named out.txt
 The 2> means redirect error output to something, and the &1 says that the error output should be redirected to standard output.
 
 - Behind the scenes this is creating a configure file, which amongst other things sets up your environment and detects where you're building.
@@ -17,8 +17,10 @@ The 2> means redirect error output to something, and the &1 says that the error 
 - Building, linking, and packaging.
 
 This process can take a long time, maybe even a couple hours to run.
+1-3h, and it is slowest on Windows. On OSX and LInux it's a lot faster.
+
 Once you're done building, you'll find a file that looks like this: out.txt
-If all goes well it will have a message that your build succeeded. If it doesn't watch the previous videos, try googling your problem, try reaching out to someone on IRC, or try searching some MDN documentation via google.
+If all goes wellearit will have a message that your build succeeded. If it doesn't watch the previous videos, try googling your problem, try reaching out to someone on IRC, or try searching some MDN documentation via google.
 
 And now we're ready to run firefox. You can do this in a couple ways:
 1) Type mach run
