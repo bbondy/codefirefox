@@ -1,0 +1,23 @@
+To get code landed into Firefox, you first need to make a change to the source code, and then make a patch file with those changes.
+
+In this video we're going to learn how to make a patch file.
+
+A patch file is a collection of changes to the source code.
+These patch files are typically uploaded to bugs in bugzilla, reviewed by trusted developers, and then landed into Firefox.
+
+First we're going to make a change to the source code.
+Don't focus too much on what we're changing, it isn't important for this video.
+
+<make some edits>
+
+To create a patch file for those changes:
+hg qnew bug123456_whitespacefixes.diff
+
+This opens up your default editor with a blank window.
+You need to put a message here to describe what you're fixing.
+
+The format of that message should look like:
+Bug 123456 - Fixed some whitespace problems
+
+Next we're going to look at that patch file.
+You can find it in the .hg/patches/bug123456_whitespacefixes.diff file.
