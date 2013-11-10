@@ -1,15 +1,8 @@
-To buid Firefox, we're goin to use our checked out source code from mozilla-central.
+To buid Firefox, we're going to use our checked out source code from mozilla-central.
 Open up mozilla-build folder
 Open up msvc-11 file for vs2012
 
-To build the source code we're goin to use a tool called mach.
-Mach is not only used for building the sourcec code, but it is also used to accomplish a bunch of different
-tasks that we'll see over time.
-Mach is a python script.
-
-The first time you run mach on your computer, it's going to do some configuration.
-So let's get that over with, and please note that you never need to do this more than once.
-
+To build the source code we're going to use a tool called mach.
 After that's done we're ready to build:
 Type mach build 
 
