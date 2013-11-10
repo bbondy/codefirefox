@@ -60,6 +60,13 @@
         "slug": "making-changes",
         "youtubeid": "",
         "priority": 3 
+      },
+      {
+        "title": "Adding options with a .mozconfig file",
+        "description": "",
+        "slug": "mozconfig-intro",
+        "youtubeid": "",
+        "priority": 4 
       }
     ]
   },
