@@ -41,18 +41,25 @@
     "priority": 2,
     "videos": [
       {
+        "title": "Introduction to mach and mach setup",
+        "description": "",
+        "slug": "mach-intro",
+        "youtubeid": "7a5aeiSLhi8",
+        "priority": 1
+      },
+      {
         "title": "Building Desktop Firefox from the source code",
         "description": "",
         "slug": "building-firefox",
         "youtubeid": "",
-        "priority": 1
+        "priority": 2
       },
       {
         "title": "Incremental builds and making changes",
         "description": "",
         "slug": "making-changes",
         "youtubeid": "",
-        "priority": 2
+        "priority": 3 
       }
     ]
   },
