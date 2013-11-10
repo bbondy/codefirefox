@@ -1,0 +1,23 @@
+We want to eventually build the Firefox source code, and to do that, the best way is to use a tool called mach.
+
+Open up mozilla-build folder
+Open up msvc-11 file for vs2012
+Mach is a python script.
+
+ls -la mach
+Open the mach file
+
+Mach is not only used for building the sourcce code, but it is also used to accomplish a bunch of different
+tasks that we'll see over time like running tests, searching code, and in general just making your life easier.
+
+The first time you run mach on your computer, it's going to do some configuration.
+So let's get that over with, and please note that you never need to do this more than once.
+
+
+You can type mach help for a full list of mach commands
+
+> mach help
+
+You can also type mach help <command> for help on that specific command.
+
+> mach help build
