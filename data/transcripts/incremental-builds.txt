@@ -1,15 +1,11 @@
 So at this point we have a full build of Firefox done, and we ran the Firefox built from source code.
-This build took a long time, and future builds from this point will be a lot faster.
+This build took a long time, perhaps 1-3h depending on your computer.
 
-If you're going to be changing front end code like XUL, Javascript and CSS,
-then your builds will be blazing fast.
-If you're going to be changing C++ code, then your builds will be a bit slower
-as expected, but still workable.  Like a minute.
+The good news is that future builds will be a lot faster.
+
 
 Now after you make some change, you can always run:
 mach build
-
-That will either result in a build error if something you changed was wrong, or it will build successfully again with your change in it.
 
 But running mach build again can still take a while, for example it may take 10 minutes or 15 minutes.
 
@@ -17,6 +13,12 @@ So what you can do instead is run mach build
 subdirectory-path-that-you-changed
 
 So if you make a change inside the browser folder, you only need to run mach build browser.
+
+If you're going to be changing front end code like XUL, Javascript and CSS,
+then your builds will be blazing fast.
+
+If you're going to be changing C++ code, then your builds will be a bit slower
+as expected, but still workable.  Like a minute.
 
 So what we're going to do is make a change, and show how fast it is to build it.
 Don't pay too much attention to what we're changing, it's just to demonstrate
