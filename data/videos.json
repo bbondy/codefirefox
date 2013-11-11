@@ -12,25 +12,25 @@
         "priority": 1
       },
       {
-        "title": "Getting the source code",
-        "description": "",
-        "slug": "get-source-code",
-        "youtubeid": "",
-        "priority": 2
-      },
-      {
         "title": "The different types of repositories for Firefox",
         "description": "",
         "slug": "firefox-repositories",
         "youtubeid": "",
-        "priority": 4
+        "priority": 2
+      },
+      {
+        "title": "Getting the Firefox source code",
+        "description": "",
+        "slug": "get-source-code",
+        "youtubeid": "j0McmMfBIo0",
+        "priority": 3
       },
       {
         "title": "Getting on help on IRC",
         "description": "",
         "slug": "irc",
         "youtubeid": "",
-        "priority": 5
+        "priority": 4
       }
     ]
   },
