@@ -1,0 +1,39 @@
+Firefox Desktop comes in 4 different flavours, also called channels.
+You can install a build from any of these 4 different channels, and then get updates to remain on that channel over time.
+
+These channels are:
+Nightly builds (you can find it at this URL: http://nightly.mozilla.org/ )
+Pre-release build called Aurora channel (You can find the rest at this URL: http://www.mozilla.org/en-US/firefox/channel/#aurora)
+A pre-release build called Beta channel
+A released build called Release channel
+
+Code always lands on the Nightly channel fist. 
+
+On every 6 week interval, the code on Nightly gets promoted to Aurora.
+6 weeks after that, the same code gets landed onto Beta.
+6 weeks after that, the same code goes to Release.
+
+Why?
+So why not just do development in one big repository?
+If everything laned directly on Release then we'd have an unstable product.
+
+So instead it goes into a repository where Nightly builds are managed.
+But some people want early accesss to features but a bit more stability, so that's what Aurora is for.
+
+And Beta is basically a release candidate. We do final testing there and try to make it as close to the actual release as possible.
+That's why you see it using the same logo.
+
+--
+
+The Firefox source code is primarily managed with Mercurial.
+Some people are starting to use Git as well, but I'll show you mercurial because that's what most people are using.
+
+So Mozilla manages a lot of source code, some side projects are on github, but most of the main source code is available
+at:
+
+hg.mozilla.org
+
+The nightly channel is called mozilla-central and you can get it here.
+The other channels: Auora, Beta, and Release are under the subfolder called releases
+
+So what we're going to want on our machine is mozilla-central, since that's where changes go to first.
