@@ -1,0 +1,37 @@
+This video assumes you already have your development environment setup.
+
+The first thing we're going to do is go to mozilla-build, and open up msvc-11.bat which
+corresponds to the installed VS2012.
+
+There's 2 ways to get the source code:
+1) Using hg (if you have a good internet connection)
+2) Using a pre-packaged bundle downloaded from the website (if you have a bad internet connection)
+
+We're going ot do both in this video. 
+
+If you have a good internet connection, the easiest thing to do is just to use hg clone
+
+> mkdir projects/mozilla
+> cd projects/mozilla
+> hg clone http://hg.mozilla.org/mozilla-central
+
+Pause video, tell them it'll take a while... 
+OK we're resume now.
+
+Now if things succeeded for you, like they did on my end. You'll have a new subfolder called mozilla-central
+You can also probably drop off the video at this point too.
+
+If things didn't work for you, then let's go ahead and grab a bundle.
+
+First we're going to move the old directory out of the way
+mv mozilla-central _old
+
+Next we want to do is create a new hg repo and use hg unbundle
+
+> hg init
+> hg unbundle ~/downloads/
+
+Pause, Resume.
+
+The bundle may be a bit outdated, use hg pull and hg update to get the latest changes
+
