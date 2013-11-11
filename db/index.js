@@ -54,6 +54,7 @@ exports.initData = function(filePath) {
       return console.log(err);
     }
 
+    client.flushdb();
     categories.forEach(function(category) {
       exports.set("category:" + category.slug, category);
       console.log(JSON.stringify(category));
