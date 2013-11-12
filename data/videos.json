@@ -5,10 +5,10 @@
     "priority": 1,
     "videos": [
       {
-        "title": "Setting up a Windows build enviornment",
+        "title": "Setting up a Windows Firefox build environment",
         "description": "",
-        "slug": "windows-build-environment",
-        "youtubeid": "",
+        "slug": "windows-build-env",
+        "youtubeid": "SJzYZGnXE5A",
         "priority": 1
       },
       {

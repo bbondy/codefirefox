@@ -1,0 +1,15 @@
+In this video we're going to setup a fresh install of Windows, to prepare it to be able to build Firefox.
+The only thing I installed other than Windows on this machine, is Firefox. 
+
+There are 3 things you're going to need:
+- A package called MozillaBuild (which in itself contains a lot of things)
+- Visual Studio 2012
+- Direct X 2010 SDK
+
+The first thing we should do is type in the Google search box:
+Windows build prerequisites MDN (MDN for Mozilla Developer Network). MDN has a lot of great resources, which go in great detail, so check it out when you have some time.
+
+For some of the installations, I may pause the video recording while they are installing if there are no
+manual steps, and that's just so we don't end up with a 30 minute video.
+
+Walk through download and installing each thing...
