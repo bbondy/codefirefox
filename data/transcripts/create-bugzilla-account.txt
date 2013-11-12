@@ -1,0 +1,4 @@
+- Walk through creating a bugzilla account using persona
+- Show how to set IRC name
+- Explain edit bugz
+- Explain what they have permissions to do
