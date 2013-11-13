@@ -1,0 +1,37 @@
+I'm not going to go over everything, because some things you'll probably never touch, and
+because I don't know everything, but I'll introduce you to a few different top level directories.
+
+
+b2g - Code for Firefox OS
+
+browser - Firefox front end, this code is in Javascript, CSS, and XUL. If you're a web developer
+          you already have a lot of the needed tools to get started here.
+
+browser/metro - The Firefox for Windows 8 front end code. Again this uses JS, CSS, and JavaScript
+
+build - code for the build process
+
+dom - contains a definition of the DOM specificaiton, implementation of some of the DOM
+content - This is probably what most people think of when they think of browser source code: HTML, SVG, XML, implementaiton fo DOM interfaces, link handling, form behavior, etc.
+docshell - object for managing document windows, methods for loading URIs 
+db - sqlite
+editor
+extensions - prepackaged extensions that can be included at build time.
+gfx - graphics library, directx, opengl code
+image - image encoders and decoders
+ipc - inter process communicaiton library, most of this code started as a fork of chromium's ipc
+js - the javascript engine
+layout - code that manages the rendering tree
+mobile - this is the android front end code.
+netwerk - networking library, called necko, http client implementation, cache, etc.
+nsprpub - Netscape Portable Runtime, a bunch of everything, not very pretty
+parser - different parsers like for example an html parser
+profile - Code for the profile manager front and back end
+security - NSS and security sandboxing
+startupcache - Pretty self explanatory, manages things liek 
+
+toolkit - Has a ton of shared common code, things like downloads, preferences, updates, installer, maintenance service, filepicker, ...
+
+widget, code to abstract away the differences between each operating system.  If you're an OS X developer or a windows developer most of your code would probalby go here.
+
+xpcom - cross platform component object library
