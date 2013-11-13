@@ -106,10 +106,10 @@
     "priority": 4,
     "videos": [
       {
-        "title": "Explanation of the source tree",
+        "title": "Explanation of the Firefox source tree",
         "description": "",
-        "slug": "source-tree-explanation",
-        "youtubeid": "",
+        "slug": "source-structure",
+        "youtubeid": "7kuXZzsJJqY",
         "priority": 1
       },
       {
