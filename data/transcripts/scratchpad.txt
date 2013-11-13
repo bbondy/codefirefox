@@ -1,3 +1,12 @@
+In this video I'm going to introduce you to the scratchpad developer tool.
+This is an awesome tool that allows you to run code on the fly without having to write it to a file,
+build, and run.
+
+So you'd use the scratchpad mainly for prototyping code, or trying things out quickly.
+
+You may already know about the scratchpad for modifying different web pages.
+I'll go over it for web pages first, then I'll show you how to use it for Firefox development.
+
 Code entered into the scratchpad applies to the currently selected tab.
 So when we do something like:
 
@@ -13,3 +22,7 @@ And only select alert, run, it won't change the background to blue.
 
 
 devtools.chrome.enabled
+
+
+
+document.getElementById('urlbar').style.backgroundColor='red';
