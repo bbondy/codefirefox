@@ -225,7 +225,7 @@
 
   {
     "title": "Front end Firefox development tools",
-    "slug": "front-end",
+    "slug": "front-end-tools",
     "priority": 8,
     "videos": [
       {
@@ -260,9 +260,32 @@
   },
 
   {
+    "title": "Front end development",
+    "slug": "front-end",
+    "priority": 9,
+    "videos": [
+      {
+        "title": "Introduction to XUL",
+        "description": "",
+        "slug": "xul-intro",
+        "youtubeid": "",
+        "priority": 1
+      },
+      {
+        "title": "Introduction to XBL",
+        "description": "",
+        "slug": "xbl-intro",
+        "youtubeid": "",
+        "priority": 2
+      }
+    ]
+  },
+
+
+  {
     "title": "Reviewing code",
     "slug": "reviewing-code",
-    "priority": 9,
+    "priority": 10,
     "videos": [
       {
         "title": "Becoming a reviewer",
@@ -284,7 +307,7 @@
   {
     "title": "Troubleshooting code without debugging",
     "slug": "troubleshooting-code-no-debugging",
-    "priority": 10,
+    "priority": 11,
     "videos": [
       {
         "title": "Using hg annotate",
@@ -306,7 +329,7 @@
   {
     "title": "Windows C++ Debugging",
     "slug": "windows-debugging",
-    "priority": 11,
+    "priority": 12,
     "videos": [
       {
         "title": "Debugging your local build",
@@ -335,7 +358,7 @@
   {
     "title": "Getting commit access",
     "slug": "commit-access",
-    "priority": 12,
+    "priority": 13,
     "videos": [
       {
         "title": "Getting commit access level 1",
@@ -357,7 +380,7 @@
   {
     "title": "Staying up to date",
     "slug": "staying-up-to-date",
-    "priority": 13,
+    "priority": 14,
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",
