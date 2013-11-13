@@ -1,0 +1,15 @@
+Code entered into the scratchpad applies to the currently selected tab.
+So when we do something like:
+
+> document.getElementsByTagName('body')[0].style.backgroundColor = 'red';
+
+And run it.
+
+It will apply only to the selected tab.
+
+You can also use selection to only execute what is selected.
+So if I change to 'blue' and add an alert('hi');
+And only select alert, run, it won't change the background to blue.
+
+
+devtools.chrome.enabled
