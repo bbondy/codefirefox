@@ -224,7 +224,7 @@
   },
 
   {
-    "title": "Front end Firefox development tools",
+    "title": "Front end Firefox development",
     "slug": "front-end-tools",
     "priority": 8,
     "videos": [
@@ -236,16 +236,23 @@
         "priority": 1
       },
       {
-        "title": "DOM Inspector",
+        "title": "Introduction to XUL",
+        "description": "",
+        "slug": "xul-intro",
+        "youtubeid": "",
+        "priority": 1
+      },
+      {
+        "title": "Introduction to the DOM Inspector",
         "description": "",
         "slug": "dom-inspector",
-        "youtubeid": "",
+        "youtubeid": "PfnP3M759os",
         "priority": 2
       },
       {
         "title": "Browser Debugging",
         "description": "",
-        "slug": "dom-inspector",
+        "slug": "browser-debugger",
         "youtubeid": "",
         "priority": 3
       },
@@ -255,21 +262,6 @@
         "slug": "profiling",
         "youtubeid": "",
         "priority": 4
-      }
-    ]
-  },
-
-  {
-    "title": "Front end development",
-    "slug": "front-end",
-    "priority": 9,
-    "videos": [
-      {
-        "title": "Introduction to XUL",
-        "description": "",
-        "slug": "xul-intro",
-        "youtubeid": "",
-        "priority": 1
       },
       {
         "title": "Introduction to XBL",
@@ -280,7 +272,6 @@
       }
     ]
   },
-
 
   {
     "title": "Reviewing code",

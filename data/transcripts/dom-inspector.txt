@@ -1,0 +1,15 @@
+In this video we'll learn about the DOM Inspector, and how to use it to help you with Firefox development.
+
+DOM stands for Document Object Model, and it's basically just an in memory representation of a web page
+and / or XML document.  It also provides an API to work with that in memory representation.
+
+The DOM Inspector allows you to "inspect" the DOM, but also edit it and manipulate it.
+
+At the time of this video, there's actually a built in Firefox tool called the Inspector, you can
+for example right click on a document and select inspect, and that'll show you that element and allow
+you to modify it.
+
+This video isn't going to cover that though, this video is going to introduce you to an add-on called
+the DOM Inspector.  
+
+Walk through basic functionality of DOM Inspector
