@@ -84,17 +84,17 @@
     "priority": 3,
     "videos": [
       {
-        "title": "Finding a bug to work on",
-        "description": "",
-        "slug": "finding-bug",
-        "youtubeid": "4k_q8daxRU8",
-        "priority": 1
-      },
-      {
         "title": "Creating a Bugzilla account, account settings, and permissions",
         "description": "",
         "slug": "create-bugzilla-account",
         "youtubeid": "bEeF4-_0_xg",
+        "priority": 1
+      },
+      {
+        "title": "Finding a bug to work on",
+        "description": "",
+        "slug": "finding-bug",
+        "youtubeid": "4k_q8daxRU8",
         "priority": 2
       },
       {
