@@ -1,15 +1,26 @@
 extends layout
 
+
+block header
+  #legend
+    ul
+      li
+        #watched-legend-item.legend-item
+        | Available
+      li
+        #unavailable-legend-item.legend-item
+        | Unavailable
+
 block mainContent
-  a(href='/cheatsheet') Cheatsheet
   each category in categories
-    h1= category.title
-    ul.videos
-      each video in category.videos
-          li
-            if video.youtubeid
-              a(href= '/' + category.slug + '/' + video.slug, name= category.slug + '/' + video.slug)
-                span= video.title
-            else
-                span= video.title
+    .card-container
+      h1= category.title
+      ul.videos
+        each video in category.videos
+            li
+              if video.youtubeid
+                a(href= '/' + category.slug + '/' + video.slug, name= category.slug + '/' + video.slug)
+                  span= video.title
+              else
+                  span= video.title
 

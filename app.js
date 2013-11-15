@@ -16,13 +16,14 @@ app.use(express.bodyParser());
 app.use(express.limit('1mb'));
 
 // Routes
-app.get('/', routes.index);
+app.get('/', routes.videos);
 app.post('/auth', routes.auth(AUDIENCE));
 app.get('/:category/:video', routes.video);
 app.get('/cheatsheet', routes.cheatsheet);
 app.get('/initData', routes.initData);
 app.get('/logout', routes.logout);
 app.get('/videos', routes.videos);
+app.get('/about', routes.about);
 
 app.use(function(req,res){
   res.render('notFound');

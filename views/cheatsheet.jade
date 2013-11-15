@@ -1,559 +1,592 @@
 extends layout
 
 block mainContent
-  a(href='/videos') Videos
+  .card-container
+    h1 Repositories
+    ul
+      li: :markdown
+        mozilla-central (Latest for Firefox):  
+        [http://hg.mozilla.org/mozilla-central/](http://hg.mozilla.org/mozilla-central/)
+      li: :markdown
+        Mozilla Aurora:  
+        [http://hg.mozilla.org/releases/mozilla-aurora/](http://hg.mozilla.org/releases/mozilla-aurora/)
+      li: :markdown
+        Mozilla Beta:  
+        [http://hg.mozilla.org/releases/mozilla-beta/](http://hg.mozilla.org/releases/mozilla-beta/)
+      li: :markdown
+        Mozilla Release:  
+        [http://hg.mozilla.org/releases/mozilla-release/](http://hg.mozilla.org/releases/mozilla-release/)
+      li: :markdown
+        comm-central (Latest for Thunderbird, SeaMonkey, Lightning/Sunbird):  
+        [http://hg.mozilla.org/comm-central/](http://hg.mozilla.org/comm-central/)
+      li: :markdown
+        Mozilla Inbound (Push changes here to get them on mozilla-central):  
+        [http://hg.mozilla.org/integration/mozilla-inbound/](http://hg.mozilla.org/integration/mozilla-inbound)
+      li: :markdown
+        Mozilla ESR 24:  
+        [http://hg.mozilla.org/releases/mozilla-esr24](http://hg.mozilla.org/releases/mozilla-esr24)
 
-  h2 Repositories
-  ul
-    li: :markdown
-      mozilla-central (Latest for Firefox):  
-      [http://hg.mozilla.org/mozilla-central/](http://hg.mozilla.org/mozilla-central/)
-    li: :markdown
-      Mozilla Aurora:  
-      [http://hg.mozilla.org/releases/mozilla-aurora/](http://hg.mozilla.org/releases/mozilla-aurora/)
-    li: :markdown
-      Mozilla Beta:  
-      [http://hg.mozilla.org/releases/mozilla-beta/](http://hg.mozilla.org/releases/mozilla-beta/)
-    li: :markdown
-      Mozilla Release:  
-      [http://hg.mozilla.org/releases/mozilla-release/](http://hg.mozilla.org/releases/mozilla-release/)
-    li: :markdown
-      comm-central (Latest for Thunderbird, SeaMonkey, Lightning/Sunbird):  
-      [http://hg.mozilla.org/comm-central/](http://hg.mozilla.org/comm-central/)
-    li: :markdown
-      Mozilla Inbound (Push changes here to get them on mozilla-central):  
-      [http://hg.mozilla.org/integration/mozilla-inbound/](http://hg.mozilla.org/integration/mozilla-inbound)
-    li: :markdown
-      Mozilla ESR 24:  
-      [http://hg.mozilla.org/releases/mozilla-esr24](http://hg.mozilla.org/releases/mozilla-esr24)
+  .card-container
+    h1 Plugins
+    ul
+      li Copy to: &lt;installDir&gt;\Plugins
+      li Environment variable MOZ_DEBUG_CHILD_PROCESS=1 can be used to delay 30 seconds when loading plugin-container before the plugin is loaded.
+      li: a(href='https://developer.mozilla.org/En/Plugins') Plugin development
 
-  h2 Plugins
-  ul
-    li Copy to: &lt;installDir&gt;\Plugins
-    li Environment variable MOZ_DEBUG_CHILD_PROCESS=1 can be used to delay 30 seconds when loading plugin-container before the plugin is loaded.
-    li: a(href='https://developer.mozilla.org/En/Plugins') Plugin development
-
-  h2 Debugging
-  ul
-    li Use Firebug and Chromebug to debug XUL, XBL, JavaScript
-    li Debug C++ src in Windows: Open VS2010, select open project, select dist/bin/firefox.exe in your obj dir.   Press F5.  Change source, do an incremental build, open the source and set breakpoints in VS2010.
-    li To avoid having debug assertions and to have them show up in the log instead, set this environment variable: XPCOM_DEBUG_BREAK=warn
+  .card-container
+    h1 Debugging
+    ul
+      li Use Firebug and Chromebug to debug XUL, XBL, JavaScript
+      li Debug C++ src in Windows: Open VS2010, select open project, select dist/bin/firefox.exe in your obj dir.   Press F5.  Change source, do an incremental build, open the source and set breakpoints in VS2010.
+      li To avoid having debug assertions and to have them show up in the log instead, set this environment variable: XPCOM_DEBUG_BREAK=warn
  
-  h2 Debugging XUL apps
-  ul
-    li Preferences should be in a .js file in the directory %appname%/defaults/preferences/.
-    :markdown
-      > pref("browser.dom.window.dump.enabled", true);  
-      > pref("javascript.options.showInConsole", true);  
-      > pref("javascript.options.strict", true);  
-      > pref("nglayout.debug.disable\_xul\_cache", true);  
-      > pref("nglayout.debug.disable\_xul\_fastload", true);
-    li: :markdown
-      To write to the Error Console:  
-      > Components.utils.reportError("0");
-    li: :markdown
-      To write to the console:  
-      > dump("hello world!");
+  .card-container
+    h1 Debugging XUL apps
+    ul
+      li Preferences should be in a .js file in the directory %appname%/defaults/preferences/.
+      :markdown
+        > pref("browser.dom.window.dump.enabled", true);  
+        > pref("javascript.options.showInConsole", true);  
+        > pref("javascript.options.strict", true);  
+        > pref("nglayout.debug.disable\_xul\_cache", true);  
+        > pref("nglayout.debug.disable\_xul\_fastload", true);
+      li: :markdown
+        To write to the Error Console:  
+        > Components.utils.reportError("0");
+      li: :markdown
+        To write to the console:  
+        > dump("hello world!");
 
-  h2 Command Line
-  ul
-    li -purgecaches use when changing XUL, XBL, JSM, ...
-    li -no-remote allows you to run multiple instances of the program with different profiles
-    li -console starts the application with a debug console
-    li -ProfileManager starts the application with the profile manager
-    li -P "profilename" starts the application with the specified profile
-    li -console starts firefox with an extra console, you can then enable extra logs like app.update.log in about:config
-    li: a(href='https://developer.mozilla.org/En/Command_Line_Options') Other command line options
+  .card-container
+    h1 Command Line
+    ul
+      li -purgecaches use when changing XUL, XBL, JSM, ...
+      li -no-remote allows you to run multiple instances of the program with different profiles
+      li -console starts the application with a debug console
+      li -ProfileManager starts the application with the profile manager
+      li -P "profilename" starts the application with the specified profile
+      li -console starts firefox with an extra console, you can then enable extra logs like app.update.log in about:config
+      li: a(href='https://developer.mozilla.org/En/Command_Line_Options') Other command line options
 
-  h2 Crashes
-  ul
-    li about:crashes gives you links to your crashes
-    li: a(href='https://crash-stats.mozilla.com/products/Firefox') Online crash reports and stats
+  .card-container
+    h1 Crashes
+    ul
+      li about:crashes gives you links to your crashes
+      li: a(href='https://crash-stats.mozilla.com/products/Firefox') Online crash reports and stats
 
-  h2 Getting help
-  ul
-    li: a(href='nntp://news.mozilla.org') NNTP Server
-    li: a(href='https://groups.google.com/forum/?pli=1#!forum/mozilla.dev.identity') Google group
-    li: a(href='https://lists.mozilla.org/listinfo/dev-identity') Mailing list
+  .card-container
+    h1 Getting help
+    ul
+      li: a(href='nntp://news.mozilla.org') NNTP Server
+      li: a(href='https://groups.google.com/forum/?pli=1#!forum/mozilla.dev.identity') Google group
+      li: a(href='https://lists.mozilla.org/listinfo/dev-identity') Mailing list
 
-  h2 Useful links when getting started
-  ul
-    li: :markdown
-      [Ability to edit bugs on bugzilla]('http://www.gerv.net/hacking/before-you-mail-gerv.html') Ability to edit bugs on bugzilla) (editbugs privs)
-    li: a(href='http://www.mozilla.org/hacking/committer/') Getting commit access
-    li: a(href='https://developer.mozilla.org/en/Mozilla_Source_Code_Directory_Structure') Mozilla source code directory structure
+  .card-container
+    h1 Useful links when getting started
+    ul
+      li: :markdown
+        [Ability to edit bugs on bugzilla]('http://www.gerv.net/hacking/before-you-mail-gerv.html') Ability to edit bugs on bugzilla) (editbugs privs)
+      li: a(href='http://www.mozilla.org/hacking/committer/') Getting commit access
+      li: a(href='https://developer.mozilla.org/en/Mozilla_Source_Code_Directory_Structure') Mozilla source code directory structure
 
-  h2 Useful links forever
-  ul
-    li: a(href='https://bugzilla.mozilla.org/') Bugzilla
-    li: a(href='http://hg.mozilla.org/mozilla-central/pushloghtml') Mozilla central push log
-    li: a(href='http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/') Mozilla central Nightly builds
-    li: a(href='http://mxr.mozilla.org/') MXR (Browse source code online)
-    li: a(href='http://dxr.mozilla.org/') DXR (Search source code online)
-    li: a(href='https://developer.mozilla.org/en/Tinderbox') Tinderbox (Tool to ensure compiles on various platforms and all automated)
-    li: a(href='https://wiki.mozilla.org/Modules') Modules and module owners (for code reviews and questions)
-    li: a(href='https://crash-stats.mozilla.com/products/Firefox') Top crash reports
-    li: a(href='http://www.mozilla.org/MPL/boilerplate-1.1/') License Boilerplate
-    li: a(href='http://brasstacks.mozilla.com/toolbox/') Tools
-    li: a(href='http://air.mozilla.org/') Air Mozilla
-    li: a(href='http://air.mozilla.org/old-air-mozilla/') Old Air Mozilla
+  .card-container
+    h1 Useful links forever
+    ul
+      li: a(href='https://bugzilla.mozilla.org/') Bugzilla
+      li: a(href='http://hg.mozilla.org/mozilla-central/pushloghtml') Mozilla central push log
+      li: a(href='http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/') Mozilla central Nightly builds
+      li: a(href='http://mxr.mozilla.org/') MXR (Browse source code online)
+      li: a(href='http://dxr.mozilla.org/') DXR (Search source code online)
+      li: a(href='https://developer.mozilla.org/en/Tinderbox') Tinderbox (Tool to ensure compiles on various platforms and all automated)
+      li: a(href='https://wiki.mozilla.org/Modules') Modules and module owners (for code reviews and questions)
+      li: a(href='https://crash-stats.mozilla.com/products/Firefox') Top crash reports
+      li: a(href='http://www.mozilla.org/MPL/boilerplate-1.1/') License Boilerplate
+      li: a(href='http://brasstacks.mozilla.com/toolbox/') Tools
+      li: a(href='http://air.mozilla.org/') Air Mozilla
+      li: a(href='http://air.mozilla.org/old-air-mozilla/') Old Air Mozilla
 
-  h2 Useful links if you are an employee
-  ul
-    li: a(href='https://intranet.mozilla.org/') Intranet
-    li: a(href='https://intranet.mozilla.org/pto/') Submitting PTO
-    li: a(href='https://phonebook.mozilla.org') Internal phonebook
-    li: a(href='https://www.hrpassport.com/') TriNet
+  .card-container
+    h1 Useful links if you are an employee
+    ul
+      li: a(href='https://intranet.mozilla.org/') Intranet
+      li: a(href='https://intranet.mozilla.org/pto/') Submitting PTO
+      li: a(href='https://phonebook.mozilla.org') Internal phonebook
+      li: a(href='https://www.hrpassport.com/') TriNet
 
-  h2 Coding style
-  ul
-    li Line length: 80 chars or less
-    li Indenting: 2 spaces (no tabs)
-    li Function definitions, braces on newlines
-    li: :markdown
-      Conditionals and loops:  
-      if (condition) {  
-      }
-    li: :markdown
-      Multiline, align with parentheses:  
-      if (argument1 == paramvalu1 &amp;&amp; argument2 == paramvalue2 &amp;&amp;  
-      &nbsp;&nbsp;&nbsp; argument3 == paramvalue3 &amp;&amp; argument4 == paramValue4) {  
-      }
-    li Comments, use space after comment indicator
-    li: a(href='https://developer.mozilla.org/En/Mozilla\_Coding\_Style\_Guide') More info on coding style
+  .card-container
+    h1 Coding style
+    ul
+      li Line length: 80 chars or less
+      li Indenting: 2 spaces (no tabs)
+      li Function definitions, braces on newlines
+      li: :markdown
+        Conditionals and loops:  
+        if (condition) {  
+        }
+      li: :markdown
+        Multiline, align with parentheses:  
+        if (argument1 == paramvalu1 &amp;&amp; argument2 == paramvalue2 &amp;&amp;  
+        &nbsp;&nbsp;&nbsp; argument3 == paramvalue3 &amp;&amp; argument4 == paramValue4) {  
+        }
+      li Comments, use space after comment indicator
+      li: a(href='https://developer.mozilla.org/En/Mozilla\_Coding\_Style\_Guide') More info on coding style
 
-  h2 Build commands
-  ul
-    li: :markdown
-      Full build of Firefox: (~ 1.5h when run the first time)  
-      > mach build
-    li: :markdown
-      To clean: (~2min)  
-      > mach clobber
-    li: :markdown
-      Incremental builds (~1min, see below section)
-      > mach build
-    li: :markdown
-      Redirect output for faster builds
-      > mach build >out.txt 2>&1
+  .card-container
+    h1 Build commands
+    ul
+      li: :markdown
+        Full build of Firefox: (~ 1.5h when run the first time)  
+        > mach build
+      li: :markdown
+        To clean: (~2min)  
+        > mach clobber
+      li: :markdown
+        Incremental builds (~1min, see below section)
+        > mach build
+      li: :markdown
+        Redirect output for faster builds
+        > mach build >out.txt 2>&1
 
-  h2 Example .mozconfig files  (Gecko 2.0 and up)
-  ul
-    li: :markdown
-      Firefox Debug .mozconfig contents: (Using mozilla-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-debug  
-      > ac\_add\_options --enable-application=browser  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize  
-      > ac\_add\_options --enable-tests
-    li: :markdown
-      Firefox Release .mozconfig contents: (Using mozilla-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-debug  
-      > ac\_add\_options --enable-application=browser  
-      > ac\_add\_options --enable-optimize  
-      > ac\_add\_options --enable-debug-symbols
-    li: :markdown
-      xulrunner .mozconfig contents: (Using mozilla-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-xulrunner-debug  
-      > ac\_add\_options --enable-application=xulrunner  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize
-    li: :markdown
-      Thunderbird .mozconfig contents: (Using comm-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-tb-debug  
-      > ac\_add\_options --enable-application=mail  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize  
-      > \#If you also want Lightning  
-      > ac\_add\_options --enable-calendar
-    li: :markdown
-      SeaMonkey .mozconfig contents: (Using comm-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-seamonkey-debug  
-      > ac\_add\_options --enable-application=suite  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize
-    li: :markdown
-      Sunbird .mozconfig contents: (Using comm-central)  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-sunbird-debug  
-      > ac\_add\_options --enable-application=calendar  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize
-    li: :markdown
-      Fennec Win32 .mozconfig  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
-      > ac\_add\_options --enable-application=mobile  
-      > \# For improved compile speeds, all optional.  
-      > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
-      > \#export CCACHE\_HARDLINK=1  
-      > \#export MOZ\_DEBUG\_SYMBOLS=1  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize  
-      > \# Needed on Win32 to fix problem with Windows Vista SDK  
-      > ac\_add\_options --disable-accessibility
-    li: :markdown
-      Windows 8 Metro .mozconfig  
-      > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
-      > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
-      > ac\_add\_options --enable-debug  
-      > ac\_add\_options --disable-optimize  
-      > ac\_add\_options --enable-tests  
+  .card-container
+    h1 Example .mozconfig files  (Gecko 2.0 and up)
+    ul
+      li: :markdown
+        Firefox Debug .mozconfig contents: (Using mozilla-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-debug  
+        > ac\_add\_options --enable-application=browser  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize  
+        > ac\_add\_options --enable-tests
+      li: :markdown
+        Firefox Release .mozconfig contents: (Using mozilla-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-debug  
+        > ac\_add\_options --enable-application=browser  
+        > ac\_add\_options --enable-optimize  
+        > ac\_add\_options --enable-debug-symbols
+      li: :markdown
+        xulrunner .mozconfig contents: (Using mozilla-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-xulrunner-debug  
+        > ac\_add\_options --enable-application=xulrunner  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize
+      li: :markdown
+        Thunderbird .mozconfig contents: (Using comm-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-tb-debug  
+        > ac\_add\_options --enable-application=mail  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize  
+        > \#If you also want Lightning  
+        > ac\_add\_options --enable-calendar
+      li: :markdown
+        SeaMonkey .mozconfig contents: (Using comm-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-seamonkey-debug  
+        > ac\_add\_options --enable-application=suite  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize
+      li: :markdown
+        Sunbird .mozconfig contents: (Using comm-central)  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-sunbird-debug  
+        > ac\_add\_options --enable-application=calendar  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize
+      li: :markdown
+        Fennec Win32 .mozconfig  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
+        > ac\_add\_options --enable-application=mobile  
+        > \# For improved compile speeds, all optional.  
+        > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
+        > \#export CCACHE\_HARDLINK=1  
+        > \#export MOZ\_DEBUG\_SYMBOLS=1  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize  
+        > \# Needed on Win32 to fix problem with Windows Vista SDK  
+        > ac\_add\_options --disable-accessibility
+      li: :markdown
+        Windows 8 Metro .mozconfig  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
+        > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
+        > ac\_add\_options --enable-debug  
+        > ac\_add\_options --disable-optimize  
+        > ac\_add\_options --enable-tests  
       > ac\_add\_options --enable-metro
 
-  h2 Incremental builds
-  ul
-    li: :markdown
-      Example if you have changes to /widget:  
-      mach build widget
+  .card-container
+    h1 Incremental builds
+    ul
+      li: :markdown
+        Example if you have changes to /widget:  
+        mach build widget
 
-  h2 Logging
-  ul
-    li: :markdown
-      Logging Javascript with Firebug/Chromebug/web console:  
-      console.log("my output");  
-      console.log("%s is %d years old.", "Bob", 42).
-    li: :markdown
-      Netscape portable runtime logging ([PR\_LOG](http://www.mozilla.org/projects/nspr/reference/html/prlog.html)): Environment variables:  
-      NSPR\_LOG\_FILE = WinDebug and it will output to the debug output window or use NSPR\_LOG\_FILE=C:\nspr-log.txt to output to a file by that name  
-      NSPR\_LOG\_MODULES  can specify which modules to log with the, example NSPR\_LOG\_MODULES = nsWindowsWidgets:5 (5 is the log level)  
-      You can use NSPR\_LOG\_MODULES=all:5 to enable all module logging
+  .card-container
+    h1 Logging
+    ul
+      li: :markdown
+        Logging Javascript with Firebug/Chromebug/web console:  
+        console.log("my output");  
+        console.log("%s is %d years old.", "Bob", 42).
+      li: :markdown
+        Netscape portable runtime logging ([PR\_LOG](http://www.mozilla.org/projects/nspr/reference/html/prlog.html)): Environment variables:  
+        NSPR\_LOG\_FILE = WinDebug and it will output to the debug output window or use NSPR\_LOG\_FILE=C:\nspr-log.txt to output to a file by that name  
+        NSPR\_LOG\_MODULES  can specify which modules to log with the, example NSPR\_LOG\_MODULES = nsWindowsWidgets:5 (5 is the log level)  
+        You can use NSPR\_LOG\_MODULES=all:5 to enable all module logging
 
-  h2 Finding source of regressions
-  ul
-    li Do a binary search on the nightly builds until you narrow down a build that introduced the regression
-    li Use the push log to review changes in that time span
-    li: a(href='http://mozilla.github.com/mozregression/') Use MozRegression
+  .card-container
+    h1 Finding source of regressions
+    ul
+      li Do a binary search on the nightly builds until you narrow down a build that introduced the regression
+      li Use the push log to review changes in that time span
+      li: a(href='http://mozilla.github.com/mozregression/') Use MozRegression
 
-  h2 Submitting a patch for review
-  ul
-    li You don't have commit access at first, instead create a patch.
-    li: :markdown
-      Setup your author information (your ~/.hgrc or ~/mercurial.ini on Windows):  
-      [ui]  
-      username = Your Name &lt;your@email.com&gt;
-    li: :markdown
-      Use the mq extension, add to your ~/.hgrc or ~/mercurial.ini on Windows  
-      [extensions]  
-      hgext.mq =
-    li: a(href='http://blog.bonardo.net/2010/06/22/so-youre-about-to-use-checkin-needed') When submitting do this
+  .card-container
+    h1 Submitting a patch for review
+    ul
+      li You don't have commit access at first, instead create a patch.
+      li: :markdown
+        Setup your author information (your ~/.hgrc or ~/mercurial.ini on Windows):  
+        [ui]  
+        username = Your Name &lt;your@email.com&gt;
+      li: :markdown
+        Use the mq extension, add to your ~/.hgrc or ~/mercurial.ini on Windows  
+        [extensions]  
+        hgext.mq =
+      li: a(href='http://blog.bonardo.net/2010/06/22/so-youre-about-to-use-checkin-needed') When submitting do this
 
-  h2 Working with hg and patches
-  ul
-    li: :markdown
-      To create a patch:  
-      > hg qnew bugXXXXXX.patch  
-        
-      On popup:  
-      Bug XXXXXX - Description of your fix  
-    li: :markdown
-      To take a file out of a patch:  
-      > hg qrefresh -X re:regexp\_pattern\_of\_files\_to\_remove
-    li: :markdown
-      To refresh changes into your patch:  
-      > hg qrefresh
-    li: :markdown
-      To see the status of changes: (after you take out files it should re-appear in the changes)  
-      > hg status
-    li: :markdown
-      Undo application of a patch in your MQ patch queue: (Removes the patch from your commit tree and working directory)  
-      > hg qpop (To unapply the last applied patch)  
-      > hg qpop -a (To unapply all patches)  
-      > hg qpop name.patch (To unapply all patches up to but not including the specified patch)
-    li: :markdown
-      Apply a patch which is in your MQ patch queue: (Re-adds the patch to your commit tree and working directory, you can apply more than one patch)  
-      > hg qpush (To apply the next patch in the series)  
-      > hg qpush -a (To apply all patches)  
-      > hg qpush name.patch (To apply all patches in the series up to and including the named patch)
-    li: :markdown
-      List which patches are in your MQ patch queue:  
-      > hg qseries
-    li: :markdown
-      List which patches in your MQ patch queue are applied (pushed):  
-      > hg qapplied
-    li: :markdown
-      List which patches in your MQ patch queue are not yet applied (pushed):  
-      > qunapplied
-    li: :markdown
-      To delete a patch from your MQ patch queue: (Patch must first be unapplied)  
-      > hg qdelete
-    li: :markdown
-      To turn a patch into a permanent changeset: (Patch must first be applied)  
-      > hg qfinish
-    li: :markdown
-      To turn a normal changeset into a patch: (Patch must first be unapplied)  
-      > hg qimport -r tip
-    li: :markdown
-      Convert a patch to a finalized changeset: (Patch must first be applied)  
-      > hg qfinish tip  
-      > hg qfinish -a (for all of the patches
-    li: :markdown
-      To make a backup of your patches directory: (Saves the patches backup to .hg/patches.N)  
-      > hg qsave
-    li: :markdown
-      To import someone else's patch into your MQ patch queue:  
-      > hg qimport patchname.patch (You must later also apply it with qpush, also works with HTTP URLs)  
-    li: :markdown
-      To import someone else' patch with a different patch strip count:  
-      > patch -pN (to apply the patch, where N is the strip count of the patch)  
-      > qnew (to create a new patch)  
-      > hg addremove (to pickup any files added/removed by the patch)  
-      > qrefresh (to refresh the patch)
-    li: :markdown
-      To change the ordering of how patches are applied  
-      Manually edit your .hg/patches/series file, one patch name per line.
-    li: :markdown
-      To rollup several patches into one  
-      > hg diff -r qparent &gt; rollup.patch
-    li: :markdown
-      See last 50 pushed  
-      > hg log -l 50
-    li: :markdown
-      Undoing a qfinish or remove last commit into a patch  
-      > hg qimport -r tip (Make sure you have no other patches applied)
-    li: :markdown
-      To backout a revision  
-      > hg backout revnumber
-    li: :markdown
-      Folding a patch in your queue onto another one  
-      > hg qgoto base\_patch.patch  
-      > hg qfold patch\_to\_fold\_in\_base\_patch.patch  
-    li: :markdown
-      Renaming a patch  
-      > hg qrename new\_patch\_name.patch
-    li: :markdown
-      Merge all changes from parent repo into your branch  
-      > cd yourbranchdir  
-      > hg update  
-      > hg pull other-repo  
-      > hg merge  
-      > hg commit  
-      > hg push
-    li: :markdown
-      Clone a repository up until a specific changeset  
+  .card-container
+    h1 Working with hg and patches
+    ul
+      li: :markdown
+        To create a patch:  
+        > hg qnew bugXXXXXX.patch  
+          
+        On popup:  
+        Bug XXXXXX - Description of your fix  
+      li: :markdown
+        To take a file out of a patch:  
+        > hg qrefresh -X re:regexp\_pattern\_of\_files\_to\_remove
+      li: :markdown
+        To refresh changes into your patch:  
+        > hg qrefresh
+      li: :markdown
+        To see the status of changes: (after you take out files it should re-appear in the changes)  
+        > hg status
+      li: :markdown
+        Undo application of a patch in your MQ patch queue: (Removes the patch from your commit tree and working directory)  
+        > hg qpop (To unapply the last applied patch)  
+        > hg qpop -a (To unapply all patches)  
+        > hg qpop name.patch (To unapply all patches up to but not including the specified patch)
+      li: :markdown
+        Apply a patch which is in your MQ patch queue: (Re-adds the patch to your commit tree and working directory, you can apply more than one patch)  
+        > hg qpush (To apply the next patch in the series)  
+        > hg qpush -a (To apply all patches)  
+        > hg qpush name.patch (To apply all patches in the series up to and including the named patch)
+      li: :markdown
+        List which patches are in your MQ patch queue:  
+        > hg qseries
+      li: :markdown
+        List which patches in your MQ patch queue are applied (pushed):  
+        > hg qapplied
+      li: :markdown
+        List which patches in your MQ patch queue are not yet applied (pushed):  
+        > qunapplied
+      li: :markdown
+        To delete a patch from your MQ patch queue: (Patch must first be unapplied)  
+        > hg qdelete
+      li: :markdown
+        To turn a patch into a permanent changeset: (Patch must first be applied)  
+        > hg qfinish
+      li: :markdown
+        To turn a normal changeset into a patch: (Patch must first be unapplied)  
+        > hg qimport -r tip
+      li: :markdown
+        Convert a patch to a finalized changeset: (Patch must first be applied)  
+        > hg qfinish tip  
+        > hg qfinish -a (for all of the patches
+      li: :markdown
+        To make a backup of your patches directory: (Saves the patches backup to .hg/patches.N)  
+        > hg qsave
+      li: :markdown
+        To import someone else's patch into your MQ patch queue:  
+        > hg qimport patchname.patch (You must later also apply it with qpush, also works with HTTP URLs)  
+      li: :markdown
+        To import someone else' patch with a different patch strip count:  
+        > patch -pN (to apply the patch, where N is the strip count of the patch)  
+        > qnew (to create a new patch)  
+        > hg addremove (to pickup any files added/removed by the patch)  
+        > qrefresh (to refresh the patch)
+      li: :markdown
+        To change the ordering of how patches are applied  
+        Manually edit your .hg/patches/series file, one patch name per line.
+      li: :markdown
+        To rollup several patches into one  
+        > hg diff -r qparent &gt; rollup.patch
+      li: :markdown
+        See last 50 pushed  
+        > hg log -l 50
+      li: :markdown
+        Undoing a qfinish or remove last commit into a patch  
+        > hg qimport -r tip (Make sure you have no other patches applied)
+      li: :markdown
+        To backout a revision  
+        > hg backout revnumber
+      li: :markdown
+        Folding a patch in your queue onto another one  
+        > hg qgoto base\_patch.patch  
+        > hg qfold patch\_to\_fold\_in\_base\_patch.patch  
+      li: :markdown
+        Renaming a patch  
+        > hg qrename new\_patch\_name.patch
+      li: :markdown
+        Merge all changes from parent repo into your branch  
+        > cd yourbranchdir  
+        > hg update  
+        > hg pull other-repo  
+        > hg merge  
+        > hg commit  
+        > hg push
+      li: :markdown
+        Clone a repository up until a specific changeset  
       > hg clone -r revisionid http://hg.mozilla.org/mozilla-central/ repo\_name
-    li: :markdown
-      Remove a changeset and all of its decendants  
-      > hg strip changesetid
-    li: :markdown
-      Rebase one repository to another by beheading the old tip  
-      > cd repo\_you\_want\_to\_change  
-      > hg pull repo\_to\_change\_to  
-      > hg heads .  
-      > hg update -r revisin\_to\_forget\_about  
-      > hg commit --close-branch  
-      > hg update -r revision\_to\_use  
-      > hg push --force
+      li: :markdown
+        Remove a changeset and all of its decendants  
+        > hg strip changesetid
+      li: :markdown
+        Rebase one repository to another by beheading the old tip  
+        > cd repo\_you\_want\_to\_change  
+        > hg pull repo\_to\_change\_to  
+        > hg heads .  
+        > hg update -r revisin\_to\_forget\_about  
+        > hg commit --close-branch  
+        > hg update -r revision\_to\_use  
+        > hg push --force
 
-  h2 Documentation
-  ul
-    li: a(href='https://developer.mozilla.org/Project:en/How\_to\_Help') How to help with documentation
+  .card-container
+    h1 Documentation
+    ul
+      li: a(href='https://developer.mozilla.org/Project:en/How\_to\_Help') How to help with documentation
 
-  h2 Testing and QA
-  ul
-    li: :markdown
-      Automated testing [Link 1](https://developer.mozilla.org/en/Developing\_Tests) and [Link 2](https://developer.mozilla.org/en/Mozilla\_automated\_testing)
-    li: a(href='https://litmus.mozilla.org/') Litmus (Manual testing)
-    li: :markdown
-      [Mochitest](https://developer.mozilla.org/en/Mochitest) for testing via pages (HTML, XHTML, SVG, XUL, XBL)  (mochitest-plain, mochitest-chrome, mochitest-browser-chrome, mochitest-a11y or mochitest-ipc)
-    li: :markdown
-      [Browser Chrome](https://developer.mozilla.org/en/Browser\_chrome\_tests) Browser chrome mochitest) for testing via JS
-    li: :markdown
-      [Reftests](https://developer.mozilla.org/en/Creating\_reftest-based\_unit\_tests) for testing if 2 pages that should render the same actually do
-    li Compiled code tests
-    li: :markdown
-      [XPCShell tests](https://developer.mozilla.org/en/Writing\_xpcshell-based\_unit\_tests) for testing XPCOM components
+  .card-container
+    h1 Testing and QA
+    ul
+      li: :markdown
+        Automated testing [Link 1](https://developer.mozilla.org/en/Developing\_Tests) and [Link 2](https://developer.mozilla.org/en/Mozilla\_automated\_testing)
+      li: a(href='https://litmus.mozilla.org/') Litmus (Manual testing)
+      li: :markdown
+        [Mochitest](https://developer.mozilla.org/en/Mochitest) for testing via pages (HTML, XHTML, SVG, XUL, XBL)  (mochitest-plain, mochitest-chrome, mochitest-browser-chrome, mochitest-a11y or mochitest-ipc)
+      li: :markdown
+        [Browser Chrome](https://developer.mozilla.org/en/Browser\_chrome\_tests) Browser chrome mochitest) for testing via JS
+      li: :markdown
+        [Reftests](https://developer.mozilla.org/en/Creating\_reftest-based\_unit\_tests) for testing if 2 pages that should render the same actually do
+      li Compiled code tests
+      li: :markdown
+        [XPCShell tests](https://developer.mozilla.org/en/Writing\_xpcshell-based\_unit\_tests) for testing XPCOM components
 
-  h2 Automated test run examples (TODO: Needs updating use mach instead)
-  ul
-    li: :markdown
-      mochitest-plain:  
-      TEST\_PATH=content/html/content/test make -C $(OBJDIR) mochitest-plain
-    li: :markdown
-      mochitest-chrome: (like a mochitest but with chrome privs)  
-      TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-chrome
-    li: :markdown
-      mochitest-browser-chrome: (Chrome JS tests)  
-      TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-browser-chrome
-    li: :markdown
-      xpcshell test, whole directory:  
-      cd $(OBJDIR)  
-      make -C widget/tests/ xpcshell-tests
-    li: :markdown
-      xpcshell single test:  
-      cd $(OBJDIR)  
-      make SOLO\_FILE="testname.js" -C widget/tests/ check-one
-    li: :markdown
-      reftests:  
-      TEST\_PATH=image/test/reftest/reftest.list make -C obj-i686-pc-mingw32 reftest
+  .card-container
+    h1 Automated test run examples (TODO: Needs updating use mach instead)
+    ul
+      li: :markdown
+        mochitest-plain:  
+        TEST\_PATH=content/html/content/test make -C $(OBJDIR) mochitest-plain
+      li: :markdown
+        mochitest-chrome: (like a mochitest but with chrome privs)  
+        TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-chrome
+      li: :markdown
+        mochitest-browser-chrome: (Chrome JS tests)  
+        TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-browser-chrome
+      li: :markdown
+        xpcshell test, whole directory:  
+        cd $(OBJDIR)  
+        make -C widget/tests/ xpcshell-tests
+      li: :markdown
+        xpcshell single test:  
+        cd $(OBJDIR)  
+        make SOLO\_FILE="testname.js" -C widget/tests/ check-one
+      li: :markdown
+        reftests:  
+        TEST\_PATH=image/test/reftest/reftest.list make -C obj-i686-pc-mingw32 reftest
 
-  h2 Troubleshooting build problems
-  ul
-    li: :markdown
-      I built on windows, and had crashes on startup:  
-      The reason ended up being because I was using the same profile as my FF4 and some extensions were causing the crash (Firebug in particular).  Simply disabling the extensions fixed the problem.
-    li: :markdown
-      If you are building on Windows with VC2010, and get the error, install the [Win 7.0 SDK](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505&displaylang=en) instead.  Alternatively if you really want to use 7.1 you may need to [patch your guess-msvc.bat](https://bugzilla.mozilla.org/show\_bug.cgi?id=631910).
+  .card-container
+    h1 Troubleshooting build problems
+    ul
+      li: :markdown
+        I built on windows, and had crashes on startup:  
+        The reason ended up being because I was using the same profile as my FF4 and some extensions were causing the crash (Firebug in particular).  Simply disabling the extensions fixed the problem.
+      li: :markdown
+        If you are building on Windows with VC2010, and get the error, install the [Win 7.0 SDK](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=c17ba869-9671-4330-a63e-1fd44e0e2505&displaylang=en) instead.  Alternatively if you really want to use 7.1 you may need to [patch your guess-msvc.bat](https://bugzilla.mozilla.org/show\_bug.cgi?id=631910).
 
-  h2 about: URIs
-  ul
-    li: :markdown
-      Blank page:  
-      about:blank
-    li: :markdown
-      Addons:  
-      about:addons
-    li: :markdown
-      To adjust settings:  
-      about:config
-    li: :markdown
-      To see how your Firefox was built:  
-      about:buildconfig
-    li: :markdown
-      To see all of your crash reports:  
-        about:crashes
-    li: a(href='http://en.wikipedia.org/wiki/About\_URI\_scheme#Mozilla-specific\_about:\_addresses') Other
+  .card-container
+    h1 about: URIs
+    ul
+      li: :markdown
+        Blank page:  
+        about:blank
+      li: :markdown
+        Addons:  
+        about:addons
+      li: :markdown
+        To adjust settings:  
+        about:config
+      li: :markdown
+        To see how your Firefox was built:  
+        about:buildconfig
+      li: :markdown
+        To see all of your crash reports:  
+          about:crashes
+      li: a(href='http://en.wikipedia.org/wiki/About\_URI\_scheme#Mozilla-specific\_about:\_addresses') Other
 
-  h2 Common about:config prefs
-  ul
-    li: :markdown
-      Allow remote XUL from local computer:  
-      > dom.allow\_XUL\_XBL\_for\_file: true;
+  .card-container
+    h1 Common about:config prefs
+    ul
+      li: :markdown
+        Allow remote XUL from local computer:  
+        > dom.allow\_XUL\_XBL\_for\_file: true;
 
-  h2 XPCOM objects in JavaScript
-  ul
-    li: :markdown
-      Creating an XPCOM component:  
-      > var cid = "@brianbondy.com/componentname;1"  
-      > var obj = Components.classes[cid].createInstance();  
-      > obj = obj.QueryInterface(Components.interfaces.IMyInterface)
-    li: :markdown
-      Listing XPCOM components:  
-      > for (var c in Components.classes) { print(c); }
-    li: :markdown
-      Listing XPCOM interfaces:  
-      > for (var i in Components.interfaces) { print(i); }
+  .card-container
+    h1 XPCOM objects in JavaScript
+    ul
+      li: :markdown
+        Creating an XPCOM component:  
+        > var cid = "@brianbondy.com/componentname;1"  
+        > var obj = Components.classes[cid].createInstance();  
+        > obj = obj.QueryInterface(Components.interfaces.IMyInterface)
+      li: :markdown
+        Listing XPCOM components:  
+        > for (var c in Components.classes) { print(c); }
+      li: :markdown
+        Listing XPCOM interfaces:  
+        > for (var i in Components.interfaces) { print(i); }
 
-  h2 How to push to try
-  ul
-    li Need commit access level 1
-    li: a(href='https://wiki.mozilla.org/ReleaseEngineering/TryServer') Try server info
-    li: a(href='http://trychooser.pub.build.mozilla.org/') TryChooser - try command line generator
-    li: a(href='https://tbpl.mozilla.org/') Build bot results
-    li: :markdown
-      In ~/.hgrc (or mercurial.ini on Windows) add:  
-      > [paths]  
-      > try = ssh://hg.mozilla.org/try
-    li: :markdown
-      To push the applied hg queue patches to the try server:  
-      > hg qrefresh --message "try: -b do -p all -u all -t all"  
-      > hg push -f try
+  .card-container
+    h1 How to push to try
+    ul
+      li Need commit access level 1
+      li: a(href='https://wiki.mozilla.org/ReleaseEngineering/TryServer') Try server info
+      li: a(href='http://trychooser.pub.build.mozilla.org/') TryChooser - try command line generator
+      li: a(href='https://tbpl.mozilla.org/') Build bot results
+      li: :markdown
+        In ~/.hgrc (or mercurial.ini on Windows) add:  
+        > [paths]  
+        > try = ssh://hg.mozilla.org/try
+      li: :markdown
+        To push the applied hg queue patches to the try server:  
+        > hg qrefresh --message "try: -b do -p all -u all -t all"  
+        > hg push -f try
 
-  h2 How to push a changeset from your MQ
-  ul
-    li If you want your patch to land on Aurora, or Firefox Beta you need to request it in Bugzilla.  only for severe security, stability, or regressions recently introduced.  Provide risk/reward in ticket.
-    li Need commit access level 3
-    li: :markdown
-      In .hgrc (or mercurial.ini) add:  
-      > [paths]  
-      > mozilla-inbound = http://hg.mozilla.org/integration/mozilla-inbound/
-    li: :markdown
-      To push:  
-      Move your patch to the top of your queue  
-      > hg pull  
-      > hg update  
-      > hg qpush  
-      > hg qrefresh -m "Bug xxx - Blah. Blah. Blah. r=xyz"  
-      > hg qfinish -a  
-      > hg push mozilla-inbound
-    li: a(href='https://wiki.mozilla.org/Tree\_Rules/Inbound#Please\_do\_the\_following\_after\_pushing\_to\_inbound') Rules for pushing
+  .card-container
+    h1 How to push a changeset from your MQ
+    ul
+      li If you want your patch to land on Aurora, or Firefox Beta you need to request it in Bugzilla.  only for severe security, stability, or regressions recently introduced.  Provide risk/reward in ticket.
+      li Need commit access level 3
+      li: :markdown
+        In .hgrc (or mercurial.ini) add:  
+        > [paths]  
+        > mozilla-inbound = http://hg.mozilla.org/integration/mozilla-inbound/
+      li: :markdown
+        To push:  
+        Move your patch to the top of your queue  
+        > hg pull  
+        > hg update  
+        > hg qpush  
+        > hg qrefresh -m "Bug xxx - Blah. Blah. Blah. r=xyz"  
+        > hg qfinish -a  
+        > hg push mozilla-inbound
+      li: a(href='https://wiki.mozilla.org/Tree\_Rules/Inbound#Please\_do\_the\_following\_after\_pushing\_to\_inbound') Rules for pushing
 
-  h2 Bugzilla keywords
-  ul
-    li addon-compat: If your change may affect addon compatibility
-    li dev-doc-needed: If your change may need documentation
-    li regression: If your bug is a regression
-    li checkin-needed: If a checkin is needed for a patch but the author can't do it themselves because of privs or some other reason
-    li: a(href='https://bugzilla.mozilla.org/describekeywords.cgi') Others
+  .card-container
+    h1 Bugzilla keywords
+    ul
+      li addon-compat: If your change may affect addon compatibility
+      li dev-doc-needed: If your change may need documentation
+      li regression: If your bug is a regression
+      li checkin-needed: If a checkin is needed for a patch but the author can't do it themselves because of privs or some other reason
+      li: a(href='https://bugzilla.mozilla.org/describekeywords.cgi') Others
 
-  h2 Firefox UI debugging
-  ul
-    li Open the Web Console (Ctrl+Shift+K on Windows/Linux, Cmd+Opt+K on Mac), open the settings pane (gear icon) and enable remote and chrome debugging.
-    li You can use the Browser Console from the Tools > Web Developer menu to evaluate JS against the main Firefox Window
-    li You can use Scratchpad from the Tools > Web Developer menu as well. Be sure to set the Environment to "Browser" from the menu inside Scratchpad.
-    li You can use the Browser Debugger to debug JS running in the browser chrome.
-    li You can use the --jsconsole and --jsdebugger commandline arguments to start the browser console/debugger when starting Firefox.
-    li: :markdown
-       Download the [DOM Inspector add-on](https://addons.mozilla.org/firefox/addon/dom-inspector-6622/)
-       to inspect the XUL tree and its CSS while Firefox is running.
-    li Extension Developer Extension
+  .card-container
+    h1 Firefox UI debugging
+    ul
+      li Open the Web Console (Ctrl+Shift+K on Windows/Linux, Cmd+Opt+K on Mac), open the settings pane (gear icon) and enable remote and chrome debugging.
+      li You can use the Browser Console from the Tools > Web Developer menu to evaluate JS against the main Firefox Window
+      li You can use Scratchpad from the Tools > Web Developer menu as well. Be sure to set the Environment to "Browser" from the menu inside Scratchpad.
+      li You can use the Browser Debugger to debug JS running in the browser chrome.
+      li You can use the --jsconsole and --jsdebugger commandline arguments to start the browser console/debugger when starting Firefox.
+      li: :markdown
+        Download the [DOM Inspector add-on](https://addons.mozilla.org/firefox/addon/dom-inspector-6622/)
+        to inspect the XUL tree and its CSS while Firefox is running.
+      li Extension Developer Extension
 
+  .card-container
+    h1 Contributor info and Metrics
+    ul
+      li: a(href='https://metrics.mozilla.com/data') Contributor Map / Contribution Trends
+      li: a(href='#', title='Phonebook not yet available') Phonebook
 
-  h2 Contributor info and Metrics
-  ul
-    li: a(href='https://metrics.mozilla.com/data') Contributor Map / Contribution Trends
-    li: a(href='#', title='Phonebook not yet available') Phonebook
+  .card-container
+    h1 Doing Code Reviews
+    ul
+      li: a(href='https://wiki.mozilla.org/User:GavinSharp/Code\_Review') Code Review Guide
+      li
+        | Quick Points:
+        ul
+          li MultiByte vs. Wide character set comm-central defaults to ASCII
+          li Check if Windows platform API available on WinXP and above
+          li Does it pass try?
+          li Formatting? (But don't be too strict)
+          li Comments, typos, spelling
+          li Did you test in scenario X?
+          li New import libs in toolkit/library?
+          li Should it have tests?
+          li Interface change? Change IID, sr required, addon-compat keyword
+          li Documentation needed?
+          li Mark keywords for post-fix work: dev-doc-needed, privacy-review-needed, sec-review-needed, user-doc-needed, addon-compat, release tracking flags, in-testsuite flag
 
-  h2 Doing Code Reviews
-  ul
-    li: a(href='https://wiki.mozilla.org/User:GavinSharp/Code\_Review') Code Review Guide
-    li
-      | Quick Points:
-      ul
-        li MultiByte vs. Wide character set comm-central defaults to ASCII
-        li Check if Windows platform API available on WinXP and above
-        li Does it pass try?
-        li Formatting? (But don't be too strict)
-        li Comments, typos, spelling
-        li Did you test in scenario X?
-        li New import libs in toolkit/library?
-        li Should it have tests?
-        li Interface change? Change IID, sr required, addon-compat keyword
-        li Documentation needed?
-        li Mark keywords for post-fix work: dev-doc-needed, privacy-review-needed, sec-review-needed, user-doc-needed, addon-compat, release tracking flags, in-testsuite flag
+  .card-container
+    h1 Commit flags
+    ul
+      li
+        | Append to the end of patches:
+        ul
+          li reviewed by: r=nickname
+          li approved by: a=nickname
+          li super reviewed by: sr=nickname
 
-  h2 Commit flags
-  ul
-    li
-      | Append to the end of patches:
-      ul
-        li reviewed by: r=nickname
-        li approved by: a=nickname
-        li super reviewed by: sr=nickname
+  .card-container
+    h1 Mentoring bugs
+    ul
+      li Add who the mentor is to Bugzilla whiteboard [mentor=bbondy]
+      li Add which language it is to the Bugzilla whiteboard [lang=c++]
+      li: a(href='https://wiki.mozilla.org/Mentors') More info
 
-  h2 Mentoring bugs
-  ul
-    li Add who the mentor is to Bugzilla whiteboard [mentor=bbondy]
-    li Add which language it is to the Bugzilla whiteboard [lang=c++]
-    li: a(href='https://wiki.mozilla.org/Mentors') More info
+  .card-container
+    h1 Release cycle
+    ul
+      li
+        | Every 6 weeks:
+        ul
+          li Nightly -&gt; Aurora
+          li Aurora -&gt; Beta
+          li Beta -&gt; Release
+      li: a(href='https://wiki.mozilla.org/RapidRelease/Calendar') Release calendar
 
-  h2 Release cycle
-  ul
-    li
-      | Every 6 weeks:
-      ul
-        li Nightly -&gt; Aurora
-        li Aurora -&gt; Beta
-        li Beta -&gt; Release
-    li: a(href='https://wiki.mozilla.org/RapidRelease/Calendar') Release calendar
+  .card-container
+    h1 Personal files on people.mozilla.com
+    ul
+      li: :markdown
+        Add to your C:\Users\bbondy\.ssh\config file:  
+        > Host people.mozilla.com  
+        > User bbondy  
+        > IdentityFile C:\Users\bbondy\.ssh\bbondy.pub
+      li Your must already have L1 commit access, i.e. your public key is already on the server.
+      li: :markdown
+        You can upload files to a URL like: http://people.mozilla.com/~bbondy  
+        Anything under the /home/bbondy/public\_html will show up at the http address above.
+      li: :markdown
+        On Windows connect with putty sftp:  
+        > psftp bbondy@people.mozilla.com  
+        > Enter your private key password  
+        > put filename.ext
 
-  h2 Personal files on people.mozilla.com
-  ul
-    li: :markdown
-      Add to your C:\Users\bbondy\.ssh\config file:  
-      > Host people.mozilla.com  
-      > User bbondy  
-      > IdentityFile C:\Users\bbondy\.ssh\bbondy.pub
-    li Your must already have L1 commit access, i.e. your public key is already on the server.
-    li: :markdown
-      You can upload files to a URL like: http://people.mozilla.com/~bbondy  
-      Anything under the /home/bbondy/public\_html will show up at the http address above.
-    li: :markdown
-      On Windows connect with putty sftp:  
-      > psftp bbondy@people.mozilla.com  
-      > Enter your private key password  
-      > put filename.ext
-  
-  h2 Project Branches
-  ul
-    li TBPL results: https://tbpl.mozilla.org/?tree=BRANCHNAME
-    li: a(href='https://developer.mozilla.org/En/Plugins') Self serve build API to create dep, Nightly, or PGO builds 
+  .card-container
+    h1 Project Branches
+    ul
+      li TBPL results: https://tbpl.mozilla.org/?tree=BRANCHNAME
+      li: a(href='https://developer.mozilla.org/En/Plugins') Self serve build API to create dep, Nightly, or PGO builds 
 
