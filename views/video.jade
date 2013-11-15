@@ -4,7 +4,7 @@ block mainContent
   .card-container
     h1= video.title
     p= video.description
-    iframe(width='900', height='506', src='//www.youtube.com/embed/' + video.youtubeid, frameborder='0', allowfullscreen)
+    iframe(width='900', height='506', src='//www.youtube.com/embed/' + video.youtubeid + '?rel=0&amp;vq=hd1080', frameborder='0', allowfullscreen)
 
     #subnav
       a(href='/')
