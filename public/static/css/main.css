@@ -117,7 +117,7 @@ a {
 #mainTitle {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 60pt;
+  font-size: 40pt;
   font-family: OpenSansLight;
 }
 
@@ -128,7 +128,7 @@ a {
 /* Sub page styles */
 
 .card-container h1 {
-  font-size: 35pt;
+  font-size: 30pt;
   padding-bottom: 0px;
   color: #9bc5cf;
 }
@@ -188,7 +188,7 @@ ul.videos li {
   margin-bottom: 15px;
   margin-left: 0;
   padding-left: 0;
-  font-size: 20pt;
+  font-size: 15pt;
 }
 
 ul.videos li span {
