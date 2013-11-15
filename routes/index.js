@@ -1,16 +1,16 @@
 var db = require('../db');
 
 exports.cheatsheet = function(req, res, next) {
-  res.render('cheatsheet', { pageTitle: 'Code Firefox Cheatsheet', bodyID: 'body_cheatsheet'});
+  res.render('cheatsheet', { pageTitle: 'Code Firefox Cheatsheet', bodyID: 'body_cheatsheet', mainTitle: 'Cheatsheet'});
 };
 
 exports.initData = function(req, res) {
 db.initData(__dirname + '/../data/videos.json');
-  res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index'});
+  res.render('simpleStatus', { pageTitle: 'Sample data initialized', status: "Sample Data initialized successfully", bodyID: 'body_index', mainTitle: 'Data Initialized'});
 };
 
-exports.index = function(req, res) {
-    res.render('inDevelopment', { pageTitle: 'In Development', id: "in-dev", bodyID: 'in_dev'});
+exports.about = function(req, res) {
+    res.render('about', { pageTitle: 'About', id: "about", bodyID: 'body_about', mainTitle: 'About'});
 };
 
 exports.auth = function (audience) {
@@ -55,22 +55,22 @@ exports.video = function(req, res, next) {
 
   db.get(req.params.category + ":" + req.params.video, function(err, video) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
+      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Video not found'});
       return;
     }
 
-    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_index'});
+    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_video', mainTitle: video.title });
   });
 };
 
 exports.videos = function(req, res) {
   db.getAll("category", function(err, categories) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found'});
+      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Videos'});
       return;
     }
 
     categories.sort(db.sortByPriority);
-    res.render('index', { pageTitle: 'Code Firefox Videos', categories: categories, bodyID: 'body_index'});
+    res.render('index', { pageTitle: 'Code Firefox Videos', categories: categories, bodyID: 'body_index', mainTitle: 'Videos'});
   });
 };

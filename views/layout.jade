@@ -5,17 +5,46 @@ html(lang="en")
     //link(rel='alternate', type='application/rss+xml', title='RSS' href='/feeds/rss/')
     link(rel='shortcut icon' href='/static/img/favicon.ico')
     link(rel='stylesheet', type='text/css', href='/static/css/main.css')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
+
   body(id= bodyID)
-    #mainContent
-      block mainContent
-      a(href='https://github.com/bbondy/codefirefox')
-        img(style='position: absolute; top: 0; right: 0; border: 0;' src='https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png' alt='Fork me on GitHub')
+    #header
+      img#logo(src='/static/img/logo.png')
+      a(href='https://twitter.com/codefirefox', target='_blank')
+        img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
+      #navbar
+        ul
+          li
+            a#navbar-videos(href='/') Videos
+          li
+            a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
+          li
+            a#navbar-about(href='/about') About
+      block header
+
+    #page
+      h1#mainTitle= mainTitle
+      #mainContent
+        block mainContent
 
     #footer
-      hr
-      a(href='https://twitter.com/codefirefox', target='_blank')
-        img(src='/static/img/twitter.png')
-        &nbsp; Follow @codefirefox for updates as videos are posted
+      ul.navigation
+        li
+          a(href='/') Videos
+        li
+          a(href='/cheatsheet') Cheatsheet
+        li
+          a(href='/about') About
+      ul.social
+        li
+          a(href='https://twitter.com/codefirefox')
+            i(class='fa fa-twitter fa-2x')
+        li
+          a(href='http://github.com/bbondy/codefirefox')
+            i(class='fa fa-github fa-2x')
+        li
+          a(href='http://www.youtube.com/user/bbondy/videos')
+            i(class='fa fa-youtube-square fa-2x')
 
     script(type='text/javascript', src='/static/js/jquery.js')
     script(type='text/javascript', src='/static/js/analytics.js')
