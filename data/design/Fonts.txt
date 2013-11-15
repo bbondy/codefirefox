@@ -1,0 +1,7 @@
+Fonts used in the design:
+
+Open Sans // download from here: 
+http://www.google.com/fonts/specimen/Open+Sans
+
+Some social icons are fonts from the Fontawesome set // Download from here:
+http://fontawesome.io/
