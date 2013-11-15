@@ -1,6 +1,12 @@
 extends layout
 
 block mainContent
-  p= video.description
-  iframe(width='560', height='315', src='//www.youtube.com/embed/' + video.youtubeid, frameborder='0', allowfullscreen)
+  .card-container
+    h1= video.title
+    p= video.description
+    iframe(width='560', height='315', src='//www.youtube.com/embed/' + video.youtubeid, frameborder='0', allowfullscreen)
+
+    #subnav
+      a(href='/')
+        img(src='/static/img/back-to-videos.png')
 

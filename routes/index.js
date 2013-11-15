@@ -59,7 +59,7 @@ exports.video = function(req, res, next) {
       return;
     }
 
-    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_video', mainTitle: video.title });
+    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_video', mainTitle: 'Video' });
   });
 };
 

@@ -50,6 +50,7 @@ a {
 }
 
 #body_index #navbar-videos,
+#body_video #navbar-videos,
 #body_cheatsheet #navbar-cheatsheet,
 #body_about #navbar-about {
   font-weight: bold;
@@ -120,10 +121,6 @@ a {
   font-family: OpenSansLight;
 }
 
-#body_video #mainTitle {
-  font-size: 30pt;
-}
-
 #footer img {
   vertical-align: middle;
 }
@@ -134,6 +131,10 @@ a {
   font-size: 35pt;
   padding-bottom: 0px;
   color: #9bc5cf;
+}
+
+#body_video .card-container h1 {
+  font-size: 20pt;
 }
 
 .card-container {
@@ -167,6 +168,10 @@ a {
 
 #unwatched-legend-item {
   background-color: #db832a;
+}
+
+#subnav {
+  margin-top: 30px;
 }
 
 ul.videos {
