@@ -1,0 +1,6 @@
+Finding a first bug is one of the hardest steps that you'll have to go through, but future bugs get
+easier and easier.
+
+Walk through WhatCanIDoForMozilla.org
+Walk through BugsAhoy!
+Walk through bugzilla componnets

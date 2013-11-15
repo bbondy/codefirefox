@@ -67,6 +67,13 @@
         "slug": "mozconfig-intro",
         "youtubeid": "",
         "priority": 4 
+      },
+      {
+        "title": "Using more than one .mozconfig file",
+        "description": "",
+        "slug": "mozconfig-multiple",
+        "youtubeid": "",
+        "priority": 5
       }
     ]
   },
@@ -80,7 +87,7 @@
         "title": "Finding a bug to work on",
         "description": "",
         "slug": "finding-bug",
-        "youtubeid": "",
+        "youtubeid": "4k_q8daxRU8",
         "priority": 1
       },
       {
