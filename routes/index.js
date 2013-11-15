@@ -1,7 +1,7 @@
 var db = require('../db');
 
 exports.cheatsheet = function(req, res, next) {
-  res.render('cheatsheet', { pageTitle: 'Code Firefox Cheatsheet', bodyID: 'body_cheatsheet', mainTitle: 'Cheatsheet'});
+  res.render('cheatsheet', { pageTitle: 'Cheatsheet - Code Firefox', bodyID: 'body_cheatsheet', mainTitle: 'Cheatsheet'});
 };
 
 exports.initData = function(req, res) {
@@ -10,7 +10,7 @@ db.initData(__dirname + '/../data/videos.json');
 };
 
 exports.about = function(req, res) {
-    res.render('about', { pageTitle: 'About', id: "about", bodyID: 'body_about', mainTitle: 'About'});
+    res.render('about', { pageTitle: 'About - Code Firefox', id: "about", bodyID: 'body_about', mainTitle: 'About'});
 };
 
 exports.auth = function (audience) {
@@ -55,22 +55,22 @@ exports.video = function(req, res, next) {
 
   db.get(req.params.category + ":" + req.params.video, function(err, video) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Video not found'});
+      res.render('notFound', { pageTitle: 'Video - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Video not found'});
       return;
     }
 
-    res.render('video', { pageTitle: 'Code Firefox Videos', video: video, bodyID: 'body_video', mainTitle: 'Video' });
+    res.render('video', { pageTitle: video.title + ' - Code Firefox', video: video, bodyID: 'body_video', mainTitle: 'Video' });
   });
 };
 
 exports.videos = function(req, res) {
   db.getAll("category", function(err, categories) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Code Firefox Videos', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Videos'});
+      res.render('notFound', { pageTitle: 'Videos - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Videos'});
       return;
     }
 
     categories.sort(db.sortByPriority);
-    res.render('index', { pageTitle: 'Code Firefox Videos', categories: categories, bodyID: 'body_index', mainTitle: 'Videos'});
+    res.render('index', { pageTitle: 'Videos - Code Firefox', categories: categories, bodyID: 'body_index', mainTitle: 'Videos'});
   });
 };
