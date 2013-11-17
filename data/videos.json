@@ -280,10 +280,72 @@
     ]
   },
 
+
+
+
+
+  
+  {
+    "title": "Automated tests",
+    "slug": "automated-tests",
+    "priority": 10,
+    "videos": [
+      {
+        "title": "Introduction to the different types of automated tests",
+        "description": "",
+        "slug": "automated-tests-intro",
+        "youtubeid": "",
+        "priority": 1
+      },
+      {
+        "title": "Buildbot, Puhing to try, try syntax, and Tinderboxpushlog (TPBL)",
+        "description": "",
+        "slug": "buildbot-try-tbpl",
+        "youtubeid": "",
+        "priority": 2
+      },
+      {
+        "title": "Running a subset of tests and other functionality",
+        "description": "",
+        "slug": "automated-tests-more",
+        "youtubeid": "",
+        "priority": 3
+      },
+      {
+        "title": "Creating an xpcshell test",
+        "description": "",
+        "slug": "creating-xpcshell-tests",
+        "youtubeid": "",
+        "priority": 4
+      },
+      {
+        "title": "Creating a basic mochitest",
+        "description": "",
+        "slug": "creating-mochitests",
+        "youtubeid": "",
+        "priority": 5
+      },
+      {
+        "title": "Creating a basic reftest",
+        "description": "",
+        "slug": "creating-reftests",
+        "youtubeid": "",
+        "priority": 6
+      },
+      {
+        "title": "Creating a basic browser chrome test",
+        "description": "",
+        "slug": "creating-browser-chrome-tests",
+        "youtubeid": "",
+        "priority": 7
+      }
+    ]
+  },
+
   {
     "title": "Reviewing code",
     "slug": "reviewing-code",
-    "priority": 10,
+    "priority": 11,
     "videos": [
       {
         "title": "Becoming a reviewer",
@@ -305,7 +367,7 @@
   {
     "title": "Troubleshooting code without debugging",
     "slug": "troubleshooting-code-no-debugging",
-    "priority": 11,
+    "priority": 12,
     "videos": [
       {
         "title": "Using hg annotate",
@@ -327,7 +389,7 @@
   {
     "title": "Windows C++ Debugging",
     "slug": "windows-debugging",
-    "priority": 12,
+    "priority": 13,
     "videos": [
       {
         "title": "Debugging your local build",
@@ -356,7 +418,7 @@
   {
     "title": "Getting commit access",
     "slug": "commit-access",
-    "priority": 13,
+    "priority": 14,
     "videos": [
       {
         "title": "Getting commit access level 1",
@@ -378,7 +440,7 @@
   {
     "title": "Staying up to date",
     "slug": "staying-up-to-date",
-    "priority": 14,
+    "priority": 15,
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",
