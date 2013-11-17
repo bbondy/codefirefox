@@ -1,0 +1,35 @@
+So as you work on a bug, there are also hundreds of other people doing the same thing.
+During the time that you spend on your bug, a lot of these people will be landing their bugs on mozilla-central.
+
+
+--
+
+
+So what you want to do about once a week or so, or if you need some change that you don't already have
+is pull down the remote changes.
+
+--
+
+So let's say I have 2 patches applied
+> hg qapplied
+
+
+Now the first thing I want to do is pop off all of my work:
+
+> hg qpop -a
+
+
+Then pull in the remote work:
+
+> hg pull
+
+
+And finally do an hg update.
+
+> hg update
+
+--
+
+As long as there are no conflicts at this point you can re-push all of your patches
+
+hg qpush -a
