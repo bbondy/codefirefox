@@ -1,0 +1,72 @@
+In this video we're going to cover the mozconfig file.
+In order to build Firefox you don't need a mozconfig, that's why we covered building in a previous video
+
+--
+
+But still, you'll probably want to use a .mozconfig moving forward.
+
+Why? 
+
+It allows you to:
+- Change the application you're building (Why do you think it's called mozilla-central, notice generic name,
+ and not firefox?)
+  Thunderbird, Seamonkey, calendar, XUL Runner
+- Enable features and functionality
+- Disable features and functionality
+- Change your object directory
+
+--
+
+You place your mozconfig in the root of your checked out source code.
+
+--
+
+Comments in a mozconfig begin with #
+
+--
+
+There are 2 types of options:
+1. mk_add_options  (passed to client.mk)
+and 
+2. ac_add_options  (passed to configure)
+
+You don't need to understand this difference, but just know that some options must be specified
+with mk_add_options and some wiht ac_add_options.
+
+--
+
+Sample mozconfig:
+
+Change objdir:
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-debug
+
+Controls the number of parallel builds to use, if you don't specify this it will use
+the number of cores that you have by default:
+mk_add_options MOZ_MAKE_FLAGS="-j4"
+
+This is one of the most important options, it controls if you have a build that has assertions and other debug info or not. It will dramatically affect the speed when running the firefox build though.
+But it is recommended when writing c++ code, but maybe not the best for front end development.
+ac_add_options --enable-debug 
+
+Disable things like:
+ac_add_options --disable-tests
+
+---
+
+Normally when you make changes to your .mozconfig you should run
+mach configure
+Followed by 
+mach build
+
+But since we changed from debug to release, I'm going to just recommend that we start with a brand new
+fresh build.
+
+To do this we'll do:
+mach clobber
+and now
+mach build
+
+-- 
+
+Now we're back we're going to run that build, and we can see that it starts up significantly slower
+and it also shows this black console with logged messages by default.
