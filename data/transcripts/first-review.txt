@@ -1,0 +1,38 @@
+So once you create a patch, you're probably anxious to see this patch landed into the mozilla-central.
+
+Before you can do this you first need to get a review.
+And before you get a review you need to attach the patch to a bug in bugzilla and ask for a review.
+
+If there isn't already a bug posted, you'll want to create a new one first.
+
+--
+
+So I loaded up an example bugzilla bug and I'm going to attach a patch to it.
+
+I'm going to scroll down and attach a file.
+
+<page loads>
+
+---
+
+Select the file.
+
+Flag for review, suggested reviewers.
+
+---
+
+Now you shouldn't wait more than a couple days ot hear something back.
+You aren't guaranteed to get a review within that time, but you should at least hear back from the
+reivewer.
+
+If you don't, find them on IRC, or find someone on IRC that can help you with it.
+Or you can try to just flag someone else for a review.
+
+--
+
+What you'll end up getting eventually is some feedback from a reviewer.
+They'll either r+ the patch which means it is good to land, or they'll cancel the request with some information, or they mark it with r- which means it is not ok to land.
+
+Don't get discouraged with an r-. It is not a rejection of the work you've done, it's just that some things need to be changed.  I've done several hundred patches and still often get r-, it is just part of the process.
+
+
