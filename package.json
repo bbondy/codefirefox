@@ -9,7 +9,8 @@
     "markdown": "~0.5.0",
     "jade": "~0.35.0",
     "redis": "~0.8.6",
-    "routes": "~0.2.0"
+    "routes": "~0.2.0",
+    "stylus": "~0.40.3"
   },
   "devDependencies": {},
   "scripts": {
