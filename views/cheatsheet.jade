@@ -130,15 +130,15 @@ block mainContent
       li Line length: 80 chars or less
       li Indenting: 2 spaces (no tabs)
       li Function definitions, braces on newlines
-      li: :markdown
-        Conditionals and loops:  
-        if (condition) {  
-        }
-      li: :markdown
-        Multiline, align with parentheses:  
-        if (argument1 == paramvalu1 && argument2 == paramvalue2 &&  
-            argument3 == paramvalue3 && argument4 == paramValue4) {  
-        }
+      li Conditionals and loops:  
+        p(style='white-space:pre;')
+          | if (condition) {  
+          | }
+      li Multiline, align with parentheses:  
+        p(style='white-space:pre;')
+          |if (argument1 == paramvalue1 && argument2 == paramvalue2 &&
+          | &nbsp;&nbsp;&nbsp; argument3 == paramvalue3 && argument4 == paramValue4) {  
+          | }
       li Comments, use space after comment indicator
       li: a(href='https://developer.mozilla.org/En/Mozilla\_Coding\_Style\_Guide') More info on coding style
 
