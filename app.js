@@ -1,6 +1,7 @@
 var express = require('express'),
   async = require("async"),
-  routes = require('./routes');
+  routes = require('./routes'),
+  stylus = require('stylus');
 
 // Configuration
 const PORT = 22935;
@@ -11,9 +12,14 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.set('view options', { layout: false, pretty: true });
-app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 app.use(express.limit('1mb'));
+
+app.use(stylus.middleware({
+  src: __dirname + '/public',
+  compress: true
+}));
+app.use(express.static(__dirname + '/public'));
 
 // Routes
 app.get('/', routes.videos);
