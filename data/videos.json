@@ -98,11 +98,18 @@
         "priority": 2
       },
       {
+        "title": "Posting a bug",
+        "description": "",
+        "slug": "posting-bug",
+        "youtubeid": "",
+        "priority": 3
+      },
+      {
         "title": "Get assigned to your first (mentored) bug",
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "",
-        "priority": 3
+        "priority": 4
       }
     ]
   },
