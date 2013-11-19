@@ -278,32 +278,61 @@
         "priority": 2
       },
       {
-        "title": "Writing JavaScript modules (jsm)",
+        "title": "Using XPCOM and JavaScript modules (jsm)",
         "description": "",
         "slug": "javascript-modules",
         "youtubeid": "",
         "priority": 3
       },
       {
+        "title": "Writing JavaScript modules",
+        "description": "",
+        "slug": "javascript-modules",
+        "youtubeid": "",
+        "priority": 4
+      },
+      {
+        "title": "Writing JavaScript XPCOM objects",
+        "description": "",
+        "slug": "javascript-xpcom",
+        "youtubeid": "",
+        "priority": 5
+      },
+      {
         "title": "Browser Debugging",
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "",
-        "priority": 4
+        "priority": 6
       },
       {
         "title": "Profiling",
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
-        "priority": 5
+        "priority": 7
       },
       {
         "title": "Introduction to XBL",
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
-        "priority": 6
+        "priority": 8
+      }
+    ]
+  },
+
+  {
+    "title": "Platform development",
+    "slug": "platform-development",
+    "priority": 9,
+    "videos": [
+      {
+        "title": "Creating C++ XPCOM components",
+        "description": "",
+        "slug": "xpcom",
+        "youtubeid": "",
+        "priority": 1
       }
     ]
   },
