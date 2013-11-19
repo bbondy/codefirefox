@@ -49,7 +49,7 @@
       },
       {
         "title": "Building Desktop Firefox from the source code",
-        "description": "",
+        "description": "There is currently a problem building Firefox on Windows with VS2012, apply the patch in here to fix it: https://bugzilla.mozilla.org/show_bug.cgi?id=939557",
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
         "priority": 2
