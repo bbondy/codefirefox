@@ -278,34 +278,36 @@
         "priority": 2
       },
       {
+        "title": "Writing JavaScript modules (jsm)",
+        "description": "",
+        "slug": "javascript-modules",
+        "youtubeid": "",
+        "priority": 3
+      },
+      {
         "title": "Browser Debugging",
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "",
-        "priority": 3
+        "priority": 4
       },
       {
         "title": "Profiling",
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
-        "priority": 4
+        "priority": 5
       },
       {
         "title": "Introduction to XBL",
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
-        "priority": 2
+        "priority": 6
       }
     ]
   },
 
-
-
-
-
-  
   {
     "title": "Automated tests",
     "slug": "automated-tests",
