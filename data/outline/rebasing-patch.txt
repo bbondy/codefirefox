@@ -1,0 +1,37 @@
+In this video I'm going to show you what it looks like to try and apply a patch that has a conflict.
+
+This may happen to you for example if you're working on a patch for a while, then you pop off your patch,
+pull down remote patches, and then try to re-push your patch.  If someone made a change in a similar file,
+then you'll get a conflict.
+
+The patch I'm going to use is from bug 924900.
+
+---
+
+So I have the patch already in my queue ready to be pushed.
+The next thing I need to do is simply type hg qpush
+
+
+Normally this would finish with no output.
+
+But this time it spits out a lot of things.
+
+You can see here that it says HUNK X failed, well most of the patch actually succeeded to apply
+but you have one file here, Y, which failed.  Each file actually has different hunks, or parts,
+and only one of the 3 parts failed.
+
+
+---
+
+Open up the rej file.
+
+Rej file shows you what needs to be applied, but couldn't be applied.
+
+What you need to do is manually apply these changes.
+
+
+--
+
+So now I'm going to open the other file without .rej extension.
+
+Apply fix.

@@ -220,10 +220,10 @@
         "priority": 3
       },
       {
-        "title": "Rebasing a bitrotted patch",
+        "title": "Manually rebasing a patch that has conflicts",
         "description": "",
-        "slug": "bitrotted-patches",
-        "youtubeid": "",
+        "slug": "rebasing-patch",
+        "youtubeid": "67woYDn5DqY",
         "priority": 4
       },
       {
