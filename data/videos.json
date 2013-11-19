@@ -227,11 +227,18 @@
         "priority": 4
       },
       {
+        "title": "Importing a patch from Bugzilla and removing old patches",
+        "description": "",
+        "slug": "import-patch",
+        "youtubeid": "VNueS0ACxvc",
+        "priority": 5
+      },
+      {
         "title": "Workflow when developing with patches",
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
-        "priority": 5
+        "priority": 6
       }
     ]
   },
@@ -400,25 +407,18 @@
     "priority": 11,
     "videos": [
       {
-        "title": "Importing a patch from Bugzilla",
-        "description": "",
-        "slug": "import-patch",
-        "youtubeid": "",
-        "priority": 1
-      },
-      {
         "title": "Becoming a reviewer",
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "",
-        "priority": 2
+        "priority": 1
       },
       {
         "title": "Reviewing a patch",
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "",
-        "priority": 3
+        "priority": 2
       }
     ]
   },

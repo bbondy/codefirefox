@@ -1,0 +1,23 @@
+In this video we're going to learn how to import a patch that someone else created.
+I'll show you 2 different ways to do this, one from the local filesystem, and another directly from the web.
+
+---
+
+So let's say I'm doing a review, and I want to test out someone else's funcitonality before I review it.
+Or perhaps I Just want to import someone else's patch so I have it locally.
+
+--
+
+What I can do is load up the page and download the patch file.
+Done.
+
+--
+
+Now the next thing I'm going to do is open up my terminal and hg qimport the patch
+
+hg qimport ~/Downloads/bug9249...
+
+...
+
+Do the same with the remote patch.
+
