@@ -6,7 +6,7 @@
     "videos": [
       {
         "title": "Setting up a Windows Firefox build environment",
-        "description": "",
+        "description": "Due to some recent landings VS2012 builds are failing on Windows. As a temporary workaround please use VS2010.",
         "slug": "windows-build-env",
         "youtubeid": "SJzYZGnXE5A",
         "priority": 1
@@ -63,7 +63,7 @@
       },
       {
         "title": "Building Desktop Firefox from the source code",
-        "description": "There is currently a problem building Firefox on Windows with VS2012, please use VS2010 or apply the patches in here to fix it: https://bugzilla.mozilla.org/show_bug.cgi?id=939557 and https://bugzilla.mozilla.org/show_bug.cgi?id=940220",
+        "description": "Due to some recent landings VS2012 builds are failing on Windows. As a temporary workaround please use VS2010.",
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
         "priority": 2
