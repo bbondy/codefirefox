@@ -1,0 +1,20 @@
+In this video we're going to setup a fresh install of Ubuntoo (oo-boon-too)
+
+
+The good news is that this is actualy the easiest environment to setup for Firefox development.
+
+So I'm going to go up to the search box and type:
+Firefox linux build mdn
+
+MDN stands for mozilla developer network.
+
+--
+
+Next I'm going to copy this wget command
+
+<paste in terminal>
+
+<walk through process>
+
+<done>
+
