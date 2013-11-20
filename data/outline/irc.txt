@@ -1,0 +1,26 @@
+Mozilla is VERY distributed.
+To work closely together, and get a sense of unity, we use IRC (Internet Relay Chat) to communicate.
+
+IRC has been around forever, and there are a ton of different clients that all use the same protocol.
+So you have a vast number of choices for what to choose.
+
+
+The chat server is: irc.mozilla.org
+And it uses the default port of 6697
+
+---
+
+So first you'll want to use an IRC client.
+
+On Windows I like to use adiIRC, some people like mIRC, but it's not free after some trial period.
+On OS X I prefer to use LimeChat.
+
+There are a ton of different IRC clients, and it doesn't really matter which one you choose.
+Try out a couple and take oyur pick.
+
+--
+
+So I'm going to download adiIRC, install it, and connect to some channels that you should start with.
+
+#introduction, #developers
+
