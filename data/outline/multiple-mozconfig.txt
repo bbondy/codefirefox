@@ -1,0 +1,30 @@
+In a previous video I talked about .mozconfig files.
+
+.mozconfig files are useful because they allow you to enable and disable different options, build different products, or change environment settings like your build directory.
+
+---
+
+In this video I'm going to walk you through a use case of using 2 mozconfig files.
+1 for release, and 1 for debug. 
+
+First we'll create 2 mozconfig files.
+
+Name the first .mozconfig-release
+> mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-release
+
+Name the second .mozconfig-debug
+> mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-debug
+> ac_add_options --enable-debug 
+
+
+To select the mozconfig we'll use:
+> export MOZCONFIG=/c/projects/mozilla/mozilla-central/.mozconfig-release
+> export MOZCONFIG=/c/projects/mozilla/mozilla-central/.mozconfig-debug
+
+---
+
+Now having multiple mozconfig files is not for everyone.
+Some people may prefer to simply have 2 checked out source code directories, and that's perfectly fine.
+But the advantage of having 2 mozconfig files is that you will:
+i) Use less disk space
+and ii) Can work wiht 1 patch queue with 2 different build enviornments. 
