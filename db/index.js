@@ -45,6 +45,10 @@ exports.set = function(key, obj) {
   client.set(key, JSON.stringify(obj), redis.print);
 };
 
+exports.nukeDB = function() {
+  client.flushdb();
+};
+
 exports.initData = function(filePath) {
   fs.readFile(filePath, 'utf8', function (err,data) {
     if (err) {
@@ -56,7 +60,8 @@ exports.initData = function(filePath) {
       return console.log(err);
     }
 
-    client.flushdb();
+    client.del("video:*");
+    client.del("category:*");
     categories.forEach(function(category) {
       exports.set("category:" + category.slug, category);
       console.log(JSON.stringify(category));
