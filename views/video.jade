@@ -7,8 +7,11 @@ block mainContent
     iframe(width='900', height='506', src='//www.youtube.com/embed/' + video.youtubeid + '?rel=0&vq=hd1080', frameborder='0', allowfullscreen)
 
     #subnav
-      a(href='/')
-        img(src='/static/img/back-to-videos.png')
+      ul
+        li: a(href= video.shareUrl)
+          img(src='/static/img/share-this-page.png')
+        li: a(href='/')
+          img(src='/static/img/back-to-videos.png')
 
     p(style='margin-top:50px;')
     a(href='http://www.youtube.com/html5') Want HTML5 video?<br>
