@@ -16,7 +16,9 @@ exports.get = function(slug, callback) {
     err();
   client.get(slug, function(err, reply) {
     if (!reply) {
-      calback('no key found', null);
+      if (callback) {
+        calback('no key found', null);
+      }
       return;
     }
 
@@ -59,7 +61,7 @@ exports.initData = function(filePath) {
       exports.set("category:" + category.slug, category);
       console.log(JSON.stringify(category));
       category.videos.forEach(function(video) {
-        exports.set(category.slug + ":" + video.slug, video);
+        exports.set("video:" + category.slug + ":" + video.slug, video);
       });
     });
   });

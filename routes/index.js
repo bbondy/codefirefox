@@ -53,7 +53,7 @@ exports.video = function(req, res, next) {
     return;
   }
 
-  db.get(req.params.category + ":" + req.params.video, function(err, video) {
+  db.get("video:" + req.params.category + ":" + req.params.video, function(err, video) {
     if (err) {
       res.render('notFound', { pageTitle: 'Video - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Video not found'});
       return;
