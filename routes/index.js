@@ -1,4 +1,6 @@
-var db = require('../db');
+var db = require('../db'),
+  querystring = require("querystring");
+
 
 exports.cheatsheet = function(req, res, next) {
   res.render('cheatsheet', { pageTitle: 'Cheatsheet - Code Firefox', bodyID: 'body_cheatsheet', mainTitle: 'Cheatsheet'});
@@ -59,6 +61,7 @@ exports.video = function(req, res, next) {
       return;
     }
 
+    video.shareUrl = "http://twitter.com/home?status=" + encodeURIComponent(video.title + " " + req.protocol + "://" + req.get('host') + req.url + " @codefirefox")
     res.render('video', { pageTitle: video.title + ' - Code Firefox', video: video, bodyID: 'body_video', mainTitle: 'Video' });
   });
 };
