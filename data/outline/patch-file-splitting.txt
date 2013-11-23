@@ -1,0 +1,24 @@
+I've shown you in past videos how to create patch files, and qrefresh your changes into those patch files. I've also shown you how to work with multiple patch files.
+
+--
+
+But sometimes when you're working on a larger bug, you'll find that you need to split a
+single patch file in 2.  
+
+Sometimes splitting a patch file in 2 is necessary for getting reviews, if 2 different people need to review 2 different parts of the code.   
+
+Sometimes you may decide that you want to post a separate bug about part of the changes you made because they don't fit completely in the current bug.
+
+
+--
+
+To do this you still use the qrefresh (qref command)
+
+> Create 3 files: file1.txt, 2.txt, 3.txt
+> hg add them
+
+Show the patch file
+
+
+<show an example of hg qref -X and hg qref>
+

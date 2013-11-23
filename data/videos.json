@@ -215,31 +215,9 @@
   },
 
   {
-    "title": "More information on patch files",
-    "slug": "more-on-patches",
-    "priority": 7,
-    "videos": [
-      {
-        "title": "Excluding files from your patch",
-        "description": "",
-        "slug": "patch-file-exclude",
-        "youtubeid": "",
-        "priority": 1
-      },
-      {
-        "title": "Hacking on a patch file manually",
-        "description": "",
-        "slug": "patch-file-hacking",
-        "youtubeid": "",
-        "priority": 2
-      }
-    ]
-  },
-
-  {
     "title": "Working on more bugs",
     "slug": "more-bugs",
-    "priority": 8,
+    "priority": 7,
     "videos": [
       {
         "title": "Introduction to Mercurial Patch Queues",
@@ -289,6 +267,28 @@
         "slug": "development-workflow",
         "youtubeid": "",
         "priority": 7
+      }
+    ]
+  },
+
+  {
+    "title": "More information on patch files",
+    "slug": "more-on-patches",
+    "priority": 8,
+    "videos": [
+      {
+        "title": "Splitting up a patch file with hg and excluding files",
+        "description": "",
+        "slug": "patch-file-splitting",
+        "youtubeid": "b-ZZJxdfuU",
+        "priority": 1
+      },
+      {
+        "title": "Hacking on a patch file manually",
+        "description": "",
+        "slug": "patch-file-hacking",
+        "youtubeid": "",
+        "priority": 2
       }
     ]
   },
