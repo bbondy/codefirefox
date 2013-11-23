@@ -1,0 +1,30 @@
+This video is about Debugging!
+
+I'm going to do 2 things in this video
+1) Introduce you to the debugger built into Firefox to debug a web page.
+2) Transfer that knowledge, and show you how to use it to debug the browser itself
+
+I won't show you all of the features that you can use yet, but just a few basics.
+
+
+So first I'm going to show you the most simple example I could think up.
+This is the page source, all it does is pick 2 numbers, and then adds them.
+
+But there's a bug.
+And that bug is that the result of x + y is just x + y, not x + y + 1
+
+
+
+Show:
+- Setting a breakpoint
+- Call stack
+- Stepping through code
+- Watch window
+- Locals, globals
+
+Fix bug, run it
+
+
+----
+
+Show browser debugger
