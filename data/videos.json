@@ -294,16 +294,23 @@
   },
 
   {
-    "title": "Becoming more efficient",
+    "title": "Using online tools to help productivity",
     "slug": "more-efficient",
     "priority": 9,
     "videos": [
       {
-        "title": "Finding things in the tree fast",
+        "title": "Searching and referencing Firefox code",
         "description": "",
-        "slug": "dxr",
-        "youtubeid": "",
+        "slug": "dxr-referencing-code",
+        "youtubeid": "V3walfiWFPw",
         "priority": 1
+      },
+      {
+        "title": "Using DXR to figure out how to code a feature",
+        "description": "",
+        "slug": "dxr-code-unknown-feature",
+        "youtubeid": "",
+        "priority": 2
       }
     ]
   },
