@@ -1,0 +1,10 @@
+I'm going to introduce you to a couple of tools for searching and referencing code online.
+
+These tools allow you to find things in the source code instantly, and they can do things like show you all the callers, and show you the definition of the code.
+
+One use case is:
+You may be talking to someone on IRC about a problem you're having, or trying to solve someone else's problems, and often it's useful to be able to point someone to a specific location in code.
+
+
+The second use case is:
+I have no idea how 
