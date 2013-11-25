@@ -407,10 +407,10 @@
     "priority": 12,
     "videos": [
       {
-        "title": "Introduction to TBPL and the different categories of tests",
+        "title": "Introduction to the automated tests that run on each push",
         "description": "",
         "slug": "automated-tests-intro",
-        "youtubeid": "",
+        "youtubeid": "kWAn2lDvkog",
         "priority": 1
       },
       {
