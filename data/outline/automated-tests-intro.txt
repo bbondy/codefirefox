@@ -1,0 +1,62 @@
+Everytime you land a change, a series of tests run on most supporting operating systems.
+
+---
+
+So you can see here, there is a change that landed and this is the revision number.
+
+You can see a description fo that bug here.
+
+You can see each of the operating systems all the tests ran on here.
+
+For each operating system, you can see to the right th B (1, 2, 3, 4 5, Bc, ...JP).
+Each of these colored things is a whole category of tests.
+
+---
+
+The B is for the build itself and some compiled tests.
+
+---
+
+The M here just says that what follows are mochitests.
+Mochitests are javascript tests
+
+
+bc is browser crome, oth is momchitest other
+1,2,3,4,5 Mochitest plain are just html file which contain javascript and test some aspect of the DOM
+bc is for browser chrome how the browser interacts with itelf and content
+mochitest other is for higher privs than a web page has, sometimes xul files
+
+---
+
+C is for crash tests - does the pag eload without crashing?
+J is for javascript tests
+R is for reftests - do these 2 pages render the same match up pixel by pixel.
+  for example this can compare 2 different markups, or even 2 different image formats.
+
+
+---
+
+X is for xpcshell tests, these are basically just javascript shell tests,
+Useful when you don't need a window but want to test a certain component
+like an xpcom object or javascript module.
+
+---
+
+T is for talos performance tests
+
+
+---
+
+JP is for Jet Pac SDK tests - Add-ons
+
+---
+
+Sometimes an operating system may have addition tests that are not run on other operating systems.
+For example on Windows 8 Opt you can see thi mc that is not in any other line..
+This stands for metro chrome tests.
+
+
+--
+Things that are green just mean that al the tests in that category succeeded.
+Things in orange just means that one or more of the things failed, you can click to see more.
+You can click the little + at the bottom to re-run the test.

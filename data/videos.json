@@ -407,14 +407,14 @@
     "priority": 12,
     "videos": [
       {
-        "title": "Introduction to the different types of automated tests",
+        "title": "Introduction to TBPL and the different categories of tests",
         "description": "",
         "slug": "automated-tests-intro",
         "youtubeid": "",
         "priority": 1
       },
       {
-        "title": "Buildbot, Puhing to try, try syntax, and Tinderboxpushlog (TPBL)",
+        "title": "Puhing to try, Buildbot, try syntax, and TPBL",
         "description": "",
         "slug": "buildbot-try-tbpl",
         "youtubeid": "",
