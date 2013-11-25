@@ -1,0 +1,47 @@
+So let's say I have a patch ready, and I want to see if it passes all of the tests on each operating system.
+You could try to setup each operating system locally, and run the tests locally, but that would take a lot of time, and would be prone to problems.
+
+What you should always do before landing your code is to push it to the try repository:
+http://hg.mozilla.org/try/
+
+The results wil display on TBPL here:
+https://tbpl.mozilla.org/?tree=Try
+
+----
+
+Patch file (show in explorer)
+-> 
+land on hg.mozilla.org/try (show in Firefox)
+-> buildbot processes each tip and creates a build -> tests are run for those builds, results are reported back to tbpl.
+
+---
+
+so when I push to http://hg.mozilla.org/try/, it creates a remote head right.  
+A changeset that goes in just after one of your pushes, won't necessarily have your change in it, since it's a different head (unless the next changeset happened to pull in your change before they pushed).
+
+---
+
+so buildbot (which is probably some python glue) goes through each of the tips of the pushes to try, and creates a build from them on each supported operating system and archcitecture. Then each of these builds get run on different physical computers for each category of tests, on a bigger variety of operating sytems than the builds were performed on.
+
+---
+
+To push to try you need Mozilla Level 1 push access, there's a video on the outline about that if you don't have it yet.
+
+---
+
+Once something is pushed to the try repository, buildbot comes along and kicks off builds on various machines.
+Typically this is one build per operating system per architecture.
+
+Once those builds are done, a series of tests are run on other machines for each opearting system.
+
+All of the results then go back to to tinderboxpuhlog (tbpl).
+
+---
+
+When you push to try you will create a remote head.
+So you need to use the -f parameter to force it.
+Try is not like other repositories like mozilla-central.
+
+---
+
+Your push to try won't go through unless you have a changeset with a special message that specifies which operating systems and tests you want to run on.  We'll get to that in the next video.
