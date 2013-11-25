@@ -205,7 +205,7 @@
         "priority": 2
       },
       {
-        "title": "Landing the patch after r+",
+        "title": "Landing the patch after r+ and integration branches",
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "",
@@ -414,16 +414,23 @@
         "priority": 1
       },
       {
-        "title": "Puhing to try, Buildbot, try syntax, and TPBL",
+        "title": "Try server, Buildbot, and TPBL",
         "description": "",
-        "slug": "buildbot-try-tbpl",
+        "slug": "try-buildbot-tbpl",
         "youtubeid": "",
         "priority": 2
       },
       {
-        "title": "Running a subset of tests and other functionality",
+        "title": "Puhing to try and TryChooser syntax",
         "description": "",
-        "slug": "automated-tests-more",
+        "slug": "pushing-to-try",
+        "youtubeid": "",
+        "priority": 2
+      },
+      {
+        "title": "Running tests locally",
+        "description": "",
+        "slug": "running-tests-locally",
         "youtubeid": "",
         "priority": 3
       },
