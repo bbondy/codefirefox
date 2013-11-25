@@ -1,4 +1,9 @@
-Everytime you land a change, a series of tests run on most supporting operating systems.
+There's a lot of people landing fixes to firefox.
+And if you change code, you have the potential of introducing bugs and breaking things.
+
+To minimize disruption for other developers...
+Everytime you land a change, builds get created for most supporting operating systems, 
+and a series of tests run.
 
 ---
 
