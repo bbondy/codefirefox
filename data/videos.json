@@ -503,30 +503,44 @@
   },
 
   {
-    "title": "Windows C++ Debugging",
-    "slug": "windows-debugging",
+    "title": "Debugging C++ code",
+    "slug": "debugging",
     "priority": 15,
     "videos": [
       {
-        "title": "Debugging your local build",
+        "title": "Debugging your local build with Visual Studio",
         "description": "",
-        "slug": "debug-local-builds",
+        "slug": "debug-local-builds-win",
         "youtubeid": "",
         "priority": 1
       },
       {
-        "title": "Introduction to different debugger windows",
+        "title": "Introduction to different debugger windows in Visual Studio",
         "description": "",
         "slug": "debugger-windows",
         "youtubeid": "",
         "priority": 2
       },
       {
-        "title": "More advanced debugging tricks",
+        "title": "More advanced debugging tricks with Visual Studio",
         "description": "",
         "slug": "advanced-debugging",
         "youtubeid": "",
         "priority": 3
+      },
+      {
+        "title": "Debugging your local build in OS X with Xcode",
+        "description": "",
+        "slug": "debug-local-builds-osx",
+        "youtubeid": "",
+        "priority": 4
+      },
+      {
+        "title": "Debugging your local builds in Linux with gdb and ddd",
+        "description": "",
+        "slug": "debug-local-builds-linux",
+        "youtubeid": "",
+        "priority": 5
       }
     ]
   },
