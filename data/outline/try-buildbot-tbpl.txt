@@ -1,7 +1,12 @@
-So let's say I have a patch ready, and I want to see if it passes all of the tests on each operating system.
-You could try to setup each operating system locally, and run the tests locally, but that would take a lot of time, and would be prone to problems.
+So let's say you have a patch ready, and I want to see if it passes all of the tests on each operating system.
 
-What you should always do before landing your code is to push it to the try repository:
+You could try to run the tests locally, but you are probably only running one or two operating system locally.
+
+Mozilla provides something called the try server, that will run your patch through whichever operating systems, and running whichever tests you want, possibly all.
+
+So before you land any patch on mozilla-central, the first step is to run it through the try server. 
+
+To do this you need to create a special patch message that indicates which operating systems and tests to run, then push both your patch, and an empty patch with that message to try.
 http://hg.mozilla.org/try/
 
 The results wil display on TBPL here:
@@ -9,10 +14,36 @@ https://tbpl.mozilla.org/?tree=Try
 
 ----
 
-Patch file (show in explorer)
+So I'm going to go through the whole process, and explain along the way
+
+From your checked out m-c directory
+(show it)
+->
+Create a patch file
+(show it applied)
 -> 
-land on hg.mozilla.org/try (show in Firefox)
--> buildbot processes each tip and creates a build -> tests are run for those builds, results are reported back to tbpl.
+Create a second patch file with a special message that tells buildbot what to do.
+hg qnew try_all_options -m "try: -b do -p all -u all -t all"
+
+->
+land these patches on hg.mozilla.org/try (show in Firefox)
+hg push -f try
+
+->
+
+Since we're pushign from mozilla-central directly, 
+this will create a remote head because you didn't merge your change into hg.mozilla.org/try
+
+->
+
+buildbot, comes along, and looks at the tip of each push.
+
+->
+processes each tip and creates a build on each major operating system
+->
+tests are run for those builds on more operating systems than the builds were made
+->
+results are reported back to tbpl.
 
 ---
 
@@ -36,12 +67,3 @@ Once those builds are done, a series of tests are run on other machines for each
 
 All of the results then go back to to tinderboxpuhlog (tbpl).
 
----
-
-When you push to try you will create a remote head.
-So you need to use the -f parameter to force it.
-Try is not like other repositories like mozilla-central.
-
----
-
-Your push to try won't go through unless you have a changeset with a special message that specifies which operating systems and tests you want to run on.  We'll get to that in the next video.
