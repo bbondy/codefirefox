@@ -22,7 +22,7 @@
   },
   {
     "title": "Getting ready for development",
-    "slug": "getting-setup",
+    "slug": "getting-setup-1",
     "priority": 2,
     "videos": [
       {
@@ -493,10 +493,10 @@
     "priority": 14,
     "videos": [
       {
-        "title": "Using hg annotate",
+        "title": "Finding out why code is the way it is, using hg annotate",
         "description": "",
         "slug": "hg-annotate",
-        "youtubeid": "",
+        "youtubeid": "xt6xQPvmPZU",
         "priority": 1
       },
       {

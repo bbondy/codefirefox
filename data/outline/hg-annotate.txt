@@ -1,0 +1,50 @@
+So let's say you're looking into fixing a bug with how files launch.
+
+--
+
+So let's pretend we already have a good idea of which file the problem is in.
+
+> gvim xpcom/io/nsLocalFileWin.cpp
+
+Don't worry too much about if you have no idea what the code is doing, or even if you don't know
+C++.  That isn't the important part of this video.
+
+----
+
+Now we also happen to know that there is this function called "Launch" that gets run that opens a file.
+
+----
+
+Now as you read the code, you may think to yourself, who wrote this code? or why is this being done? You may want a bit more background information on why the code is like it is.
+
+
+----
+
+
+For that purpose you can use something called hg annotate, often refered to as hg blame.
+
+----
+
+
+So we're going to first type:
+
+> hg annotate -lc xpcom/io/nsLocalFileWin.cpp
+
+The l is for line number
+The c is for changeset
+
+----
+
+Now so can bring up information of that changeset with hg log
+
+> hg log -r 51863ce4e87d
+
+You can get the revision just before that changset by using ^ (caret)
+> hg log -r 51863ce4e87d^
+
+
+Well it's often useful to see what the code looked like and what hte changesets were just before a revision.  So we can use 
+
+
+Some of the file IO in C++ is done with this class nsLocalFileWin.
+
