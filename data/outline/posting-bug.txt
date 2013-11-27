@@ -1,0 +1,45 @@
+In this video I'm going to show you how to post a bug in Bugzilla.
+
+Every code change that happens in Firefox is tracked by a bug in Bugzilla.
+
+And whether you want to help with testing, or help with development, knowing how to post a
+good bug is absolutely needed.
+
+---
+
+So the first step before posting a bug is to perform a search to see if the bug already exists.
+
+There's a couple of ways to do that, you can either use bugzilla, or you can just use
+google.
+
+----
+
+site:bugzilla.mozilla.org Ability to duplicate tabs
+
+----
+
+So let's say there was a bug you wanted to post about tabs.
+And let's pretend there was a crash if you try to close the last tab.
+
+Short summary of the bug:
+Firefox crashes when dragging a single tab across different Firefox windows.
+
+Steps to reproduce:
+1. Open Firefox
+2. Click 3 times in the content area of a web page
+3. Open a second Firefox window
+4. Drag a tab from one window to another
+5. Drop the tab on the second window
+
+Actual results:
+Firefox crashes!
+
+Expected results:
+Firefox shouldn't crash, it should add that tab to the second window.
+
+Is this bug always reproducible?
+Is there any other information that you can post to help a developer reproduce?
+Can you take a screenshot or post a video of the problem?
+
+Ask yourself, if oyu are able to simplify the steps or remove an uneeded step that has information that is not relavent to the bug.
+
