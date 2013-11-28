@@ -198,18 +198,11 @@
         "priority": 1
       },
       {
-        "title": "Running tests through try",
-        "description": "",
-        "slug": "running-tests",
-        "youtubeid": "",
-        "priority": 2
-      },
-      {
         "title": "Landing the patch after r+ and integration branches",
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "",
-        "priority": 3
+        "priority": 2
       }
     ]
   },
@@ -421,46 +414,46 @@
         "priority": 2
       },
       {
-        "title": "Puhing to try and TryChooser syntax",
+        "title": "TryChooser syntax and pushing to try",
         "description": "",
-        "slug": "pushing-to-try",
+        "slug": "trychooser-syntax",
         "youtubeid": "",
-        "priority": 2
+        "priority": 3
       },
       {
         "title": "Running tests locally",
         "description": "",
         "slug": "running-tests-locally",
         "youtubeid": "",
-        "priority": 3
+        "priority": 4
       },
       {
         "title": "Creating an xpcshell test",
         "description": "",
         "slug": "creating-xpcshell-tests",
         "youtubeid": "",
-        "priority": 4
+        "priority": 5
       },
       {
         "title": "Creating a basic mochitest",
         "description": "",
         "slug": "creating-mochitests",
         "youtubeid": "",
-        "priority": 5
+        "priority": 6
       },
       {
         "title": "Creating a basic reftest",
         "description": "",
         "slug": "creating-reftests",
         "youtubeid": "",
-        "priority": 6
+        "priority": 7
       },
       {
         "title": "Creating a basic browser chrome test",
         "description": "",
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
-        "priority": 7
+        "priority": 8
       }
     ]
   },
