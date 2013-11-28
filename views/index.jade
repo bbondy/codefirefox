@@ -6,10 +6,12 @@ block header
     ul
       li
         #watched-legend-item.legend-item
-        | Available
+        span= stats.available
+        |  Available
       li
         #unavailable-legend-item.legend-item
-        | Unavailable
+        span= stats.unavailable
+        |  Unavailable
 
 block mainContent
   each category in categories

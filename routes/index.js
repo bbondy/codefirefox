@@ -67,13 +67,33 @@ exports.video = function(req, res, next) {
 };
 
 exports.videos = function(req, res) {
-  db.getAll("category", function(err, categories) {
-    if (err) {
-      res.render('notFound', { pageTitle: 'Videos - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Videos'});
-      return;
-    }
+  var getStats = function() {
+    db.get("stats:video", function(err, result) {
+      if (err) {
+        res.render('notFound', { pageTitle: 'Video - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Video not found'});
+        return;
+      }
+      stats = JSON.parse(result);
+      getCategories();
+    });
+  };
 
-    categories.sort(db.sortByPriority);
-    res.render('index', { pageTitle: 'Videos - Code Firefox', categories: categories, bodyID: 'body_index', mainTitle: 'Videos'});
-  });
+  var getCategories = function() {
+    db.getAll("category", function(err, categories) {
+      if (err) {
+        res.render('notFound', { pageTitle: 'Videos - Code Firefox', id: "Couldn't find video", bodyID: 'body_not_found', mainTitle: 'Videos'});
+        return;
+      }
+
+      categories.sort(db.sortByPriority);
+      res.render('index', { pageTitle: 'Videos - Code Firefox',
+                            categories: categories, bodyID: 'body_index',
+                            mainTitle: 'Videos',
+                            stats: stats
+      });
+    });
+  };
+
+  var stats;
+  getStats();
 };

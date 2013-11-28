@@ -82,6 +82,8 @@ exports.initData = function(filePath) {
   };
 
   var populateDB = function(err) {
+    var availableVideos = 0,
+      unavailableVideos = 0;
     newCategories.forEach(function(category) {
       console.log('populating category key: ' + "category:" + category.slug );
       exports.set("category:" + category.slug, category);
@@ -89,8 +91,13 @@ exports.initData = function(filePath) {
       category.videos.forEach(function(video) {
         console.log('populating video key: ' + "video:" + category.slug + ":" + video.slug);
         exports.set("video:" + category.slug + ":" + video.slug, video);
+        video.youtubeid ? availableVideos++ : unavailableVideos++;
       });
     });
+
+    exports.set("stats:video", JSON.stringify({
+      available: availableVideos, unavailable: unavailableVideos
+    }));
   };
 
   var newCategories;
