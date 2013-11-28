@@ -1,7 +1,8 @@
-In the last video I talked about how to push a patch to try.
+In the last video I talked about how to push a patch to try to get builds and tests run on that
+patch.
 
-As part of that video I talked about needing to create a second patch with a special message, that patch 
-indicates what builds to create and which tests to run.
+As part of that video I talked about needing to create a second patch with a special message.
+That patch indicates what builds to create and which tests to run.
 
 In that video I just pasted a string for that special message. In this video I'll show you how to generate your own.
 
