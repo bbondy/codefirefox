@@ -26,3 +26,8 @@ dump.rdb
 
 #Editor
 *.swp
+*.swo
+*.*~
+
+#Binaries
+*.exe
