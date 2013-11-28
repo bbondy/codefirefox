@@ -1,0 +1,37 @@
+In the last video I talked about how to push a patch to try.
+
+As part of that video I talked about needing to create a second patch with a special message, that patch 
+indicates what builds to create and which tests to run.
+
+In that video I just pasted a string for that special message. In this video I'll show you how to generate your own.
+
+---
+
+You can actually create the message yourself, but it's a lot easier to use this handy tool at:
+http://trychooser.pub.build.mozilla.org/
+
+---
+
+The first radio button is for debug, release, or both.
+
+The next section is for OS. You usually want all OS unless your code touches only a specific OS.
+You can also restrict tests to a certain platform.
+Then you can specify which tests to run, you usually want all tests.
+It may be useful if you're troubleshooting an individual test type for example to only run that.
+
+You don't usually need the talos suite which is for performance, unless you're adding code to starutp, or unless
+you suspect you're affecting perf.
+
+----
+
+Only push for what you need. For example if you're making a change to some win32 code that only runs on windows, you don't need to run
+that on other platforms.
+
+---
+
+Any custom mozconfig options go in:
+build/mozconfig.common.override
+
+Copy the generated test string.
+hg qnew try_all_options_no_talos -m "<paste>"
+hg push -f try
