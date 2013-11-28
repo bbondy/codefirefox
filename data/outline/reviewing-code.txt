@@ -1,0 +1,25 @@
+The first thing you want to do when reviewing is ask:
+
+Is this something we want to do?
+There are a lot of people posting bugs, and it's not always true that we need everything that gets posted.
+
+You usually want to try out the patch, to do this you can hg qimport directly into your patch queue.
+There's a video on that.
+
+You'll also want to future proof your code by creating unit tests.
+For a lot of bugs it's ok to ask for a test.
+Sometimes it may be possible to file a follow up bug for a unit test to be added.
+
+Make sure the file matches the style of the code it's landing with.
+Check for things like trailing whitespace on lines, or making sure unix newlines are used.
+Check for things like alignment and placing of whitespace operators and function braces in code.
+
+
+What you don't want to do is review bassed on exactly what you would do.
+
+
+Check for security, privacy, resource leaks, performance,
+
+
+More ideas available here:
+https://developer.mozilla.org/en-US/docs/Developer_Guide/Reviewer_Checklist
