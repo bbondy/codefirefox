@@ -27,6 +27,7 @@ dump.rdb
 #Editor
 *.swp
 *.swo
+*.swn
 *.*~
 
 #Binaries
