@@ -1,10 +1,16 @@
 extends layout
 
+// Code to detect when the video is complete
+block extraScripts
+  script.
+    var youtubeid="#{video.youtubeid}";
+  script(src='/static/js/video.js')
+
 block mainContent
   .card-container
     h1= video.title
     p= video.description
-    iframe(width='900', height='506', src='//www.youtube.com/embed/' + video.youtubeid + '?rel=0&vq=hd1080', frameborder='0', allowfullscreen)
+    #player
 
     #subnav
       ul
