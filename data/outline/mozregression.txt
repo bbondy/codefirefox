@@ -1,0 +1,30 @@
+Go here:
+http://mozilla.github.io/mozregression/
+
+And it has installation steps.
+
+On Windows you simply type easy_install mozregression, and wait a couple minutes.
+
+OSX and Linux steps are also there, they are pretty easy so I won't bother going over them.
+
+----
+
+mozregression --good=2013-11-01 --bad=2013-11-15 --bit=32
+
+----
+Even if you have 1000 day range, it would only take 10 checks to get it down to a 1 day range
+
+Walk through updating a notepad as mozregression runs
+
+Good
+2013-11-06 <--- Bug wasn't present on this day
+ 
+Bad
+2013-11-07 <--- Bug was present on this day
+
+------------|-----------------------------|------
+       2013-11-06                     2013-11-06
+       But not in build              Bug in build
+
+Once we get down to a day range, it'll try to check inbound builds, which just means on an even tighter granularity than 1 day:
+
