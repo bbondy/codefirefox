@@ -1,0 +1,31 @@
+So let's say you found a good bug that you want to work on. 
+
+If you happen to already have edit permissions in bugzilla, you can simply click on take bug.
+Right there.
+
+
+----
+
+I'm going to switch to a tab that is logged in with a different user which doesn't have permissions though.  In that case it'll look like this.
+
+What you'll want to do is post a comment in the bug asking if someone can make you the assignee.
+
+If no one is assigned, there's no one working on the bug, so you can begin working on it even before you are marked as the asignee.
+
+----
+
+If you don't get a response within a day, or if you want to even sooner, please go on IRC in #developers or #introduction and simply say something like: "I'd like to be assigned to bug XYZ, my email account for bugzilla is blah@gmail.com.  could someone make me the asignee."
+
+Someone will jump in and say sure, and do it.
+
+----
+
+
+To gain edit bugs permissions what you'll have to do is email:
+bmo-perms@mozilla.org
+
+
+Provide them with your bugzilla email.
+
+And you want to either provide 2 links to bugs you provided patches on.
+Or provide the link of 3 bugs where you wanted to make a change to a bug but couldn't.
