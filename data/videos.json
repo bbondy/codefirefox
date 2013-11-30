@@ -493,9 +493,9 @@
         "priority": 1
       },
       {
-        "title": "Finding regression ranges",
+        "title": "Finding regression ranges with mozregression",
         "description": "",
-        "slug": "regression-range",
+        "slug": "mozregression",
         "youtubeid": "",
         "priority": 2
       }
