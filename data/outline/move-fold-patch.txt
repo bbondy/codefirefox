@@ -1,0 +1,61 @@
+We covered splitting a patch file into 2 separate patch files in a separate video.
+
+In this video we'll do the opposite. We'll show how to combine 2 patches into a single patch.
+
+---
+
+So I setup 4 patches in my patch queue 1.diff, 2.diff, 3.diff, and 4.diff
+Each patch contains a single added file 1.txt, 2.txt, 3.txt and 4.txt respectively.
+
+Show one of the patches
+
+---
+
+So let's say we only have 1.diff applied
+> hg qpop q.diff
+> hg qapplied
+
+Now we want to let's say have both 1.txt and 2.txt both inside the 1.diff file.
+Then we'd do:
+
+hg qfold 2.diff
+
+And that's it, now if we check our qapplied we'll see 1.diff is still the only one applied
+If we do a diff we'll see the contents are now in the new file.
+
+> gvim .hg/patches/1.diff
+
+---
+
+
+hg qfold doesn't need to appear in sequence either.
+We can actually fold any unapplied patch onto the current top of the patch qeuue stack.
+
+hg qfold 4.diff
+
+---
+
+
+Now when we look we have 1.txt, 2.txt, and 4.txt
+So you can see there was an implied move there.
+
+The move seems kind of useful, and you can actually re-order your patch qeuue at any time using
+
+hg qpush --move.
+
+
+So first I'm going to pop everything off:
+hg qpop -a
+
+----
+
+
+Now let's say I wanted to apply 3.diff first. THen I can do:
+
+hg qpush --move 3.diff
+
+Now when I hg qpush again it will push on 1.diff.
+
+---
+
+So in this video I showed you how to reorder and also combine patches.

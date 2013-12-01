@@ -248,13 +248,6 @@
         "priority": 5
       },
       {
-        "title": "Moving and folding patches in your patch queue",
-        "description": "",
-        "slug": "move-fold-patch-queue",
-        "youtubeid": "",
-        "priority": 6
-      },
-      {
         "title": "Workflow when developing with patches",
         "description": "",
         "slug": "development-workflow",
@@ -277,18 +270,25 @@
         "priority": 1
       },
       {
+        "title": "Moving and folding patches in your patch queue",
+        "description": "",
+        "slug": "move-fold-patch",
+        "youtubeid": "",
+        "priority": 2
+      },
+      {
         "title": "Hacking on a patch file manually",
         "description": "",
         "slug": "patch-file-hacking",
         "youtubeid": "",
-        "priority": 2
+        "priority": 3
       },
       {
         "title": "Hacking on your patch queue internals",
         "description": "",
         "slug": "patch-queue-internals",
         "youtubeid": "",
-        "priority": 3
+        "priority": 4
       }
     ]
   },
