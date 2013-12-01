@@ -1,0 +1,37 @@
+So after you submitted your bug to get a review, you'll get an email that looks either like this:
+Show an r- email
+
+Or like this:
+Show an r+ email
+
+---
+
+If you get an r- you need to make changes to your patch, do an hg qrefresh to put the changes back in.
+Re-attach the patch to the bug, and re-request a review from the same reviewer.
+
+
+If you get an r+, congratulations your patch is ready to land.
+
+----
+
+If you haven't run the patch through tests yet, and if you don't have commit access level 1 yet, you should ask the reviewer if they
+can run it through try for you.  
+
+They may respond that they don't think it's needed, or they may run it try tests for you.
+
+Ask them after a day if everything is good with the try push if they haven't responded back. 
+
+---
+
+If you don't have commit access yet, what you should do at this point is add the keyword:
+checkin-needed
+
+At that point someone will come along and land the patch on an what's called an integration branch.
+If you're doing platform related code, then your patch would land your patch on the mozilla-inbound integration branch.
+If you're doing front end related code, then your patch would land your patch on the fx-team integration branch.
+
+---
+
+If you do happen to have commit access level 1, what you'd do is land the patch yourself on an integration branch.  And then paste the link 
+to the changeset in the bug. 
+
