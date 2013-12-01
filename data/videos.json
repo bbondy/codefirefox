@@ -186,7 +186,7 @@
   },
 
   {
-    "title": "Landing your first patch",
+    "title": "Getting a review and landing your first patch",
     "slug": "first-patch-landed",
     "priority": 6,
     "videos": [
@@ -248,9 +248,9 @@
         "priority": 5
       },
       {
-        "title": "Hacking on your patch queue internals",
+        "title": "Moving and folding patches in your patch queue",
         "description": "",
-        "slug": "patch-queue-internals",
+        "slug": "move-fold-patch-queue",
         "youtubeid": "",
         "priority": 6
       },
@@ -265,7 +265,7 @@
   },
 
   {
-    "title": "More information on patch files",
+    "title": "More on patch files and patch queues",
     "slug": "more-on-patches",
     "priority": 8,
     "videos": [
@@ -282,6 +282,13 @@
         "slug": "patch-file-hacking",
         "youtubeid": "",
         "priority": 2
+      },
+      {
+        "title": "Hacking on your patch queue internals",
+        "description": "",
+        "slug": "patch-queue-internals",
+        "youtubeid": "",
+        "priority": 3
       }
     ]
   },
