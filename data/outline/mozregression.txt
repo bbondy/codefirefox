@@ -1,3 +1,18 @@
+So let's say you run into a bug that happens on recent builds, but didn't used to happen.
+In bugs like this, it's often faster to fix the problem, if you look at what the changes were since the
+problem was reproduced.
+
+In this video I'll explain how to get a list of changesets, also referred to as a regression range.
+
+---
+
+Whenever you find such a bug by the way you'll want to add a keyword of: regressionwindow-wanted.
+
+---
+And if you want to help out, you can do an advanced search for regressionwindow-wanted
+
+---
+
 Go here:
 http://mozilla.github.io/mozregression/
 
@@ -27,4 +42,10 @@ Bad
        But not in build              Bug in build
 
 Once we get down to a day range, it'll try to check inbound builds, which just means on an even tighter granularity than 1 day:
+
+
+---
+
+Shows a list of regression windows:
+http://hg.mozilla.org/integration/mozilla-inbound/pushloghtml?fromchange=abe6790a5dd8&tochange=38a50c61c285
 
