@@ -1,4 +1,5 @@
-So let's say you run into a bug that happens on recent builds, but didn't used to happen.
+So let's say you run into a bug that happens on recent builds, but you rememeber it didn't used to be a problem on older builds.
+
 In bugs like this, it's often faster to fix the problem, if you look at what the changes were since the
 problem was reproduced.
 
