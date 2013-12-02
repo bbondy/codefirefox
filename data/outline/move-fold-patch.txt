@@ -59,3 +59,8 @@ Now when I hg qpush again it will push on 1.diff.
 ---
 
 So in this video I showed you how to reorder and also combine patches.
+
+
+Why would you want to fold patches?
+Let's say 
+You may want to move patches 
