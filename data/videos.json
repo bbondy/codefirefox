@@ -287,7 +287,7 @@
         "title": "Hacking on your patch queue internals",
         "description": "",
         "slug": "patch-queue-internals",
-        "youtubeid": "",
+        "youtubeid": "tsoV_GMML_c",
         "priority": 4
       }
     ]
@@ -306,9 +306,9 @@
         "priority": 1
       },
       {
-        "title": "Using DXR to figure out how to code a feature",
+        "title": "Coding a feature from start to finish with the help of DXR",
         "description": "",
-        "slug": "dxr-code-unknown-feature",
+        "slug": "dxr-to-code-feature",
         "youtubeid": "",
         "priority": 2
       }
