@@ -1,0 +1,21 @@
+In this video I'm going to go over the internals of your patch queue.
+
+Your patch queue is stored in .hg/patches/
+
+> ls .hg/patches
+
+It consists of all of the patches you've created, as well as 2 special files.
+
+series: Which stores all the patches and the order they will be applied
+status: Which stores the patches that are applied
+
+
+As a general rule, never modify the status file.
+You can modify the series file, though.
+
+---
+
+The general rule for the series file is to only modify the order of the files which are not yet
+applied.
+
+And in general it's usually better to use hg qpush --move and hg qremove for removal and moving.
