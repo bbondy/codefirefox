@@ -1,0 +1,60 @@
+In this video we're going to code a feature from scratch, with the help of dxr to do it.
+---
+
+Let's say you're working on a bug and that bug asks you to add a new checkbox to Firefox
+options, and that checkbox would control whether or not Jump lists are enabled.
+
+----
+
+
+So if you don't know what jump lists are, they are a feature of Windows where on your
+taskbar icons, you have a bunch of shortcuts.
+
+---
+
+
+So we want a feature that will enable and disable this feature,
+and let's say the task is to add it to the options.
+
+> Open firefox options.
+
+> Show the similar checkbox in the Tabs tab for Show tab previews
+
+We'd want to add another checkbox here.
+
+
+---
+
+What I'll do next is now that I've found a similar option, I'll search the code for its
+text to see what that brings up.
+
+---
+
+So I'm going to open up dxr.mozilla.org and I'm going to type:
+> Show tab preview
+
+But that brings up a lot of unrelated results for each found word.
+I actually want an exact match, so I'll type it in quotes.
+
+
+> Add quotes
+
+---
+
+It comes up with only 1 match, so I'm going to click that dtd file.
+It looks like this is where strings are listed.
+
+---
+
+Go open that file and make a copy and add the next text.
+
+---
+....
+Continue to do task until done.
+....
+---
+
+
+> mach build browser 
+> mach run
+> And show the feature.
