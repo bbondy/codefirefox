@@ -6,10 +6,13 @@ html(lang="en")
     //link(rel='alternate', type='application/rss+xml', title='RSS' href='/feeds/rss/')
     link(rel='shortcut icon' href='/static/img/favicon.ico')
     link(rel='stylesheet', type='text/css', href='/static/css/main.css')
+    link(rel='stylesheet', type='text/css', href='/static/css/persona-buttons.css')
     link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
     block extraHead
 
   body(id= bodyID)
+    script.
+      var email="#{session.email}";
     #header
       a(href='/')
         img#logo(src='/static/img/logo.png')
@@ -21,8 +24,18 @@ html(lang="en")
             a#navbar-videos(href='/') Videos
           li
             a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
+          if session.email
+            li
+              a#navbar-stats(href='/stats') Stats
           li
             a#navbar-about(href='/about') About
+          li
+            span.persona-buttons
+              a#logout(class='persona-button', href='#')
+                span Logout
+              a#login(class='persona-button', href='#')
+                span Login
+
       block header
 
     #page
@@ -52,4 +65,5 @@ html(lang="en")
     script(type='text/javascript', src='/static/js/jquery.js')
     script(type='text/javascript', src='/static/js/main.js')
     script(type='text/javascript', src='/static/js/analytics.js')
+    script(type='text/javascript', src='https://login.persona.org/include.js')
     block extraScripts

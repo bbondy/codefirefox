@@ -4,6 +4,8 @@ extends layout
 block extraScripts
   script.
     var youtubeid="#{video.youtubeid}";
+    var videoSlug="#{videoSlug}";
+    var categorySlug="#{categorySlug}";
   script(src='/static/js/video.js')
 
 block mainContent

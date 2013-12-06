@@ -28,5 +28,20 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
   // Later I'll add code to callback to report video as watched here
   if (event.data === 0) {
+    console.log("Reporting video watched");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/' + categorySlug + '/' + videoSlug, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.addEventListener("loadend", function(e) {
+      var data = JSON.parse(this.responseText);
+      if (data && data.status === "okay") {
+        console.log("reported watched video successfully");
+      }
+    }, false);
+
+    xhr.send(JSON.stringify({
+      categorySlug: categorySlug, 
+      videoSlug: videoSlug, 
+    }));
   }
 }

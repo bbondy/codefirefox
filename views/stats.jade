@@ -1,0 +1,32 @@
+extends layout
+
+block mainContent
+  .card-container
+    h1 Logged in user stats
+    p= 'Logged in as: ' + session.email
+    if session.isAdmin
+      p Administrator
+    if session.isTrusted
+      p Trusted account (@mozilla.com) domain
+    if (loginCount != 1)
+      p= 'Logged in ' + (loginCount || 0) + ' times'
+    else
+      p Logged in 1 time
+    p= 'Date joined: ' + info.dateJoined.toLocaleString()
+    p= 'Date last logged in: ' + info.dateLastLogin.toLocaleString()
+    p= 'Last logged in IP: ' + info.lastLoginIP
+
+  .card-container
+    h1 Videos watched
+    if !videosWatched
+      p none
+    else
+      ul.videos
+        each video in videosWatched
+          li
+            span= video.title
+
+    if session.isAdmin
+      p
+        a#del-stats(href="#") Delete stats data for your account
+

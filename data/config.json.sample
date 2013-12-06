@@ -1,0 +1,5 @@
+{
+  "host": "localhost",
+  "port": 22935,
+  "sessionSecret": "<put-something-here>"
+}

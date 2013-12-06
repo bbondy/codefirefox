@@ -10,7 +10,9 @@
     "jade": "~0.35.0",
     "redis": "~0.8.6",
     "routes": "~0.2.0",
-    "stylus": "~0.40.3"
+    "stylus": "~0.40.3",
+    "express-persona": "~0.1.1",
+    "json": "0.0.14"
   },
   "devDependencies": {},
   "scripts": {
