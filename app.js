@@ -75,7 +75,7 @@ var runSite = function(err, config) {
 
           var now = new Date();
           info.dateLastLogin = now.toISOString();
-          info.lastLoginIP = req.ip;
+          info.lastLoginIP = req.connection.remoteAddress;
           if (!info.dateJoined) {
             info.dateJoined = now.toISOString();
           }
