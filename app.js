@@ -55,7 +55,8 @@ var runSite = function(err, config) {
           req.session.email == "bbondy@gmail.com";
         req.session.isTrusted = 
           req.session.email.substring(req.session.email.length - 12) ==  "@mozilla.com" ||
-          req.session.email ==  "netzen@gmail.com";
+          req.session.email ==  "netzen@gmail.com" ||
+          req.session.email == "kamiljoz@gmail.com";
 
         console.log('User logged in: ' + req.session.email);
         db.reportUserLogin(req.session.email);
