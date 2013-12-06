@@ -49,6 +49,9 @@ html(lang="en")
           a(href='/') Videos
         li
           a(href='/cheatsheet') Cheatsheet
+        if session.email
+          li
+            a(href='/stats') Stats
         li
           a(href='/about') About
       ul.social
