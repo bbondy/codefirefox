@@ -24,7 +24,7 @@ block mainContent
       ul.videos
         each video in videosWatched
           li
-            span= video.title
+            span.watched= video.title
 
     if session.isAdmin
       p
