@@ -22,7 +22,7 @@ node_modules
 dump.rdb
 
 #Use stylus for css
-*.css
+main.css
 
 #Editor
 *.swp
