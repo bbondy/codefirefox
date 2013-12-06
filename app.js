@@ -76,6 +76,11 @@ var runSite = function(err, config) {
           var now = new Date();
           info.dateLastLogin = now.toISOString();
           info.lastLoginIP = req.connection.remoteAddress;
+	  if (info.lastLoginIP == '127.0.0.1' &&
+              config.host == 'codefirefox.com') {
+            info.lastLoginIP = req.get('HTTP_X_FORWARDED_FOR');
+          }
+
           if (!info.dateJoined) {
             info.dateJoined = now.toISOString();
           }
