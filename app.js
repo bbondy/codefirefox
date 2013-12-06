@@ -9,6 +9,7 @@ var express = require('express'),
 const PORT = 22935;
 
 var app = express();
+var serverRunningSince = new Date();
 
 var runSite = function(err, config) {
   if (err) {
@@ -37,6 +38,7 @@ var runSite = function(err, config) {
     //   email
     //   isAdmin
     res.locals.session = req.session;
+    res.locals.session.serverRunningSince = serverRunningSince;
     next();
   });
 
