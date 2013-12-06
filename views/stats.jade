@@ -30,3 +30,7 @@ block mainContent
       p
         a#del-stats(href="#") Delete stats data for your account
 
+  if session.isTrusted
+    .card-container
+      h1 Server stats
+      p= 'Last server instance reset: ' + session.serverRunningSince.toLocaleString()
