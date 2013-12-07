@@ -12,8 +12,8 @@ block mainContent
       p= 'Logged in ' + (loginCount || 0) + ' times'
     else
       p Logged in 1 time
-    p= 'Date joined: ' + info.dateJoined.toLocaleString()
-    p= 'Date last logged in: ' + info.dateLastLogin.toLocaleString()
+    p= 'Date joined: ' + info.dateJoined + ' ago'
+    p= 'Date last logged in: ' + info.dateLastLogin + ' ago'
     //p= 'Last logged in IP: ' + info.lastLoginIP
 
   .card-container
@@ -33,4 +33,4 @@ block mainContent
   if session.isTrusted
     .card-container
       h1 Server Stats
-      p= 'Last server instance reset: ' + session.serverRunningSince.toLocaleString()
+      p= 'Last server instance reset: ' + serverRunningSince + ' ago'
