@@ -33,11 +33,6 @@ $("#del-stats").click(function() {
   }));
 });
 
-function initLoginButtons(loggedIn) {
-  $(loggedIn ? "#login" : "#logout").hide();
-  $(loggedIn ? "#logout" : "#login").css('display', 'inline-block');
-}
-
 $(function() {
   // By default, express-persona adds the users email address to req.session.email when their email is validated.
   navigator.id.watch({
@@ -81,5 +76,4 @@ $(function() {
       xhr.send();
     }
   });
-  initLoginButtons(!!email);
 });
