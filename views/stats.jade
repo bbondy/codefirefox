@@ -2,7 +2,7 @@ extends layout
 
 block mainContent
   .card-container
-    h1 Logged in user stats
+    h1 User stats
     p= 'Logged in as: ' + session.email
     if session.isAdmin
       p Administrator
