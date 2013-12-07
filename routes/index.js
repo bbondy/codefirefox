@@ -1,6 +1,57 @@
 var db = require('../db'),
   querystring = require("querystring");
 
+
+function formatTimeSpan(firstDate, secondDate, includeMinutes, includeSeconds) {
+  const oneSecond = 1000;
+  const oneMinute = 60*oneSecond;
+  const oneHour = 60*oneMinute;
+  const oneDay = 24*oneHour;
+
+  // Calculate the time diffs
+  var diffTime = secondDate.getTime() - firstDate.getTime();
+  var diffDays = (diffTime / oneDay) | 0;
+  var diffHours = (diffTime % oneDay / oneHour) | 0;
+  var diffMinutes = (diffTime % oneDay % oneHour / oneMinute) | 0;
+  var diffSeconds = (diffTime % oneDay % oneHour % oneMinute / oneSecond) | 0;
+
+  // Reduce the time diffs and their suffixes to a string
+  var suffixes = ['day', 'hour', 'minute', 'second']
+  var timeDiffs = [diffDays, diffHours, diffMinutes, diffSeconds];
+  
+  if (!includeSeconds) {
+    suffixes.pop();
+    timeDiffs.pop();
+  }
+
+  if (!includeMinutes) {
+    suffixes.pop();
+    timeDiffs.pop();
+  }
+    
+  
+  var i = 0;
+  var str = timeDiffs.reduce(function (e1, e2) {
+    var str = e1;
+    
+    var suffix = suffixes[i++];
+    // If the other element is non 0, then include it in the span string
+    if (e2 !== 0) {
+      if (str)
+        str += ', '; // coma separate if needed
+      str += e2 + ' ' + suffix;
+      if (e2 != 1)
+        str += 's'; // append s to the suffix
+    }
+
+    return str;
+  }, '');
+
+  if (!str)
+    return  '0 ' + suffixes[suffixes.length - 1] + 's'
+  return str;
+}
+
 exports.cheatsheet = function(req, res, next) {
   res.render('cheatsheet', { pageTitle: 'Cheatsheet - Code Firefox', bodyID: 'body_cheatsheet', mainTitle: 'Cheatsheet'});
 };
@@ -29,10 +80,18 @@ exports.stats = function(req, res, next) {
           return;
         }
 
-        console.log('last login date: ' + info.dateLastLogin);
-        info.dateJoined = new Date(info.dateJoined);
-        info.dateLastLogin = new Date(info.dateLastLogin);
-        res.render('stats', { videosWatched: videosWatched, loginCount: loginCount || 0, info: info, pageTitle: 'Stats - Code Firefox', id: "stats", bodyID: 'body_stats', mainTitle: 'Stats'});
+        info.dateJoined = formatTimeSpan(new Date(info.dateJoined), new Date());
+        info.dateLastLogin = formatTimeSpan(new Date(info.dateLastLogin), new Date(), true);
+        var serverRunningSince = formatTimeSpan(req.session.serverRunningSince, new Date(), true, true);
+        console.log('server running since: ' + serverRunningSince);
+        res.render('stats', { videosWatched: videosWatched,
+                              serverRunningSince: serverRunningSince,
+                              loginCount: loginCount || 0,
+                              info: info,
+                              pageTitle: 'Stats - Code Firefox',
+                              id: "stats",
+                              bodyID: 'body_stats',
+                              mainTitle: 'Stats'});
       });
     });
   });
