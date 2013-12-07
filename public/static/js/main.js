@@ -73,7 +73,10 @@ $(function() {
       xhr.open("POST", "/persona/logout", true);
       xhr.addEventListener("loadend", function(e) {
         console.log("reporting logout for user: " + email);
-        location.reload(); 
+        if (location.pathname != '/stats')
+          location.reload(); 
+        else
+          location.href = '/';
       });
       xhr.send();
     }
