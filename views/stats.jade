@@ -7,7 +7,7 @@ block mainContent
     if session.isAdmin
       p Administrator
     if session.isTrusted
-      p Trusted account (@mozilla.com) domain
+      p Trusted account
     if (loginCount != 1)
       p= 'Logged in ' + (loginCount || 0) + ' times'
     else
