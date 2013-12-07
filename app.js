@@ -55,7 +55,7 @@ var runSite = function(err, config) {
         // Session vars that our server should know about
         req.session.isAdmin = req.session.email == "bbondy@mozilla.com" ||
           req.session.email == "bbondy@gmail.com";
-        req.session.isTrusted = 
+        req.session.isTrusted =  req.session.isAdmin ||
           req.session.email.substring(req.session.email.length - 12) ==  "@mozilla.com" ||
           req.session.email ==  "netzen@gmail.com" ||
           req.session.email == "kamiljoz@gmail.com";
