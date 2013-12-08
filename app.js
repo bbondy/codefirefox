@@ -42,16 +42,28 @@ var runSite = function(err, config) {
      }));
 
 
+  app.use(stylus.middleware({
+    src: __dirname + '/public',
+    compress: true
+  }));
+  app.use(express.static(__dirname + '/public'));
+
   // Any custom per request handling/filtering
   app.use(function(req, res, next) {
 
-    // Allow the session variables to be accessible from res.locals
-    // session contains:
-    //   email
-    //   isAdmin
-    res.locals.session = req.session;
-    res.locals.session.serverRunningSince = serverRunningSince;
-    next();
+    var setupResponseData = function() {
+      // session updated
+
+      // Allow the session variables to be accessible from res.locals
+      // session contains:
+      //   email
+      //   isAdmin
+      res.locals.session = req.session;
+      res.locals.session.serverRunningSince = serverRunningSince;
+      next();
+    };
+
+    setupResponseData();
   });
 
   var serverURL = 'http://' + config.host + (config.port == 80 ? '' : (':' + config.port));
@@ -107,12 +119,6 @@ var runSite = function(err, config) {
       }
     },
   });
-
-  app.use(stylus.middleware({
-    src: __dirname + '/public',
-    compress: true
-  }));
-  app.use(express.static(__dirname + '/public'));
 
   // Routes
   app.get('/', routes.videos);
