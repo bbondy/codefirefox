@@ -1,5 +1,7 @@
 {
   "host": "localhost",
   "port": 22935,
-  "sessionSecret": "<put-something-here>"
+  "sessionSecret": "<put-something-here>",
+  "redisHost": "localhost",
+  "redisPort": 10226
 }
