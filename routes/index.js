@@ -64,18 +64,18 @@ db.initVideoData(__dirname + '/../data/videos.json');
 };
 
 exports.about = function(req, res) {
-    res.render('about', { pageTitle: 'About - Code Firefox', id: "about", bodyID: 'body_about', mainTitle: 'About'});
+  res.render('about', { pageTitle: 'About - Code Firefox', id: "about", bodyID: 'body_about', mainTitle: 'About'});
 };
 
 exports.stats = function(req, res, next) {
-  if (!req.session.email) {
+  if (!res.locals.session.email) {
     res.render('notFound', { pageTitle: 'Not authenticated - Code Firefox', id: "Not logged in", bodyID: 'body_stats', mainTitle: 'Not authenticated'});
     return;
   } 
 
-  db.get('user:' + req.session.email + ':info', function (err0, info) {
-    db.getSetElements('user:' + req.session.email + ':videos_watched', function (err1, videosWatched) {
-      db.get('user:' + req.session.email + ':login_count', function (err2, loginCount) {
+  db.get('user:' + res.locals.session.email + ':info', function (err0, info) {
+    db.getSetElements('user:' + res.locals.session.email + ':videos_watched', function (err1, videosWatched) {
+      db.get('user:' + res.locals.session.email + ':login_count', function (err2, loginCount) {
         if (err0 && err1 && err2) {
           res.render('notFound', { pageTitle: 'No data found - Code Firefox', id: "Not authorized to view this page", bodyID: 'body_stats', mainTitle: err1});
           return;
@@ -83,7 +83,7 @@ exports.stats = function(req, res, next) {
 
         info.dateJoined = formatTimeSpan(new Date(info.dateJoined), new Date());
         info.dateLastLogin = formatTimeSpan(new Date(info.dateLastLogin), new Date());
-        var serverRunningSince = formatTimeSpan(req.session.serverRunningSince, new Date(), true);
+        var serverRunningSince = formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
         res.render('stats', { videosWatched: videosWatched,
                               serverRunningSince: serverRunningSince,
                               loginCount: loginCount || 0,
@@ -98,17 +98,17 @@ exports.stats = function(req, res, next) {
 };
 
 exports.delStats = function(req, res, next) {
-  if (!req.session.email) {
+  if (!res.locals.session.email) {
     res.json({ status: "failure",
                reason: "not logged in"});
     return;
   }
-  if (!req.session.isAdmin) {
+  if (!res.locals.session.isAdmin) {
     res.json({ status: "failure",
                reason: "not admin"});
     return;
   }
-  db.delUserStats(req.session.email, function(err, result) {
+  db.delUserStats(res.locals.session.email, function(err, result) {
     res.json({ status: "okay" });
   });
 };
@@ -125,7 +125,7 @@ exports.watchedVideo = function(req, res, next) {
       return;
     }
 
-    db.addToSet('user:' + req.session.email + ':videos_watched', video)
+    db.addToSet('user:' + res.locals.session.email + ':videos_watched', video)
     res.json({ status: "okay" });
   });
 };
@@ -156,10 +156,10 @@ exports.video = function(req, res, next) {
 exports.videos = function(req, res) {
 
   var getUserStats = function() {
-    if (!req.session.email) {
+    if (!res.locals.session.email) {
       getVideoStats();
     } else {
-      db.getSetElements('user:' + req.session.email + ':videos_watched', function (err1, videosWatched) {
+      db.getSetElements('user:' + res.locals.session.email + ':videos_watched', function (err1, videosWatched) {
         userVideosWatched = videosWatched;
         getVideoStats();
       });
@@ -185,7 +185,7 @@ exports.videos = function(req, res) {
       }
 
       // If the user is logged in add a watched attribute to each video
-      if (req.session.email) {
+      if (res.locals.session.email) {
         var slugsWatched = userVideosWatched.map(function(e) {
           return e.slug;
         });

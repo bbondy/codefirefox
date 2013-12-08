@@ -10,6 +10,19 @@ $("#login").click(function() {
 
 $("#logout").click(function() {
   console.log("logging out!");
+  console.log("Issuing logout");
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/persona/logout", true);
+  xhr.addEventListener("loadend", function(e) {
+    console.log("reporting logout for user: " + email);
+    if (location.pathname != '/stats') {
+      location.reload(); 
+    } else {
+      location.href = '/';
+    }
+  });
+  xhr.send();
+
   navigator.id.logout();
 });
 
@@ -37,6 +50,7 @@ $(function() {
   // By default, express-persona adds the users email address to req.session.email when their email is validated.
   navigator.id.watch({
     onlogin: function(assertion) {
+      console.log("onlogin");
       // Check for already logged in
       if (email) {
         return;
@@ -58,22 +72,14 @@ $(function() {
       }));
     },
     onlogout: function() {
-      // Check for already logged out
+      // For some reason we're getting onlogout calls when we shouldn't.
+      // To avoid this I put the actual xhr calls inside the logout button
+      // handler.
       if (!email) {
-        return;
+        console.log("persona calling onlogout with known email");
+      } else {
+        console.log("persona calling onlogout with unknown email");
       }
-
-      console.log("Issuing logout!");
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/persona/logout", true);
-      xhr.addEventListener("loadend", function(e) {
-        console.log("reporting logout for user: " + email);
-        if (location.pathname != '/stats')
-          location.reload(); 
-        else
-          location.href = '/';
-      });
-      xhr.send();
     }
   });
 });
