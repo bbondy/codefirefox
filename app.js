@@ -8,6 +8,8 @@ var express = require('express'),
 
 // Configuration
 const PORT = 22935;
+const HOUR = 3600000;
+const DAY = 24 * HOUR;
 
 var app = express();
 var serverRunningSince = new Date();
@@ -36,7 +38,7 @@ var runSite = function(err, config) {
          host: config.redisHost,
        }),
        // Expire cookies by default 30 days from now
-       expires: new Date(Date.now() + (30 * 86400 * 1000))
+       cookie: { path: '/', httpOnly: true, maxAge: DAY * 30 }
      }));
 
 
