@@ -2,7 +2,8 @@ var express = require('express'),
   async = require("async"),
   routes = require('./routes'),
   stylus = require('stylus'),
-  db = require('./db');
+  db = require('./db'),
+  RedisStore = require('connect-redis')(express);
 
 
 // Configuration
@@ -18,6 +19,9 @@ var runSite = function(err, config) {
     return;
   }
 
+  console.log('redis host: ' + config.redisHost);
+  console.log('redis port: ' + config.redisPort);
+
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('view options', { layout: false, pretty: true });
@@ -26,7 +30,13 @@ var runSite = function(err, config) {
      .use(express.bodyParser())
      .use(express.cookieParser())
      .use(express.session({
-       secret: config.sessionSecret
+       secret: config.sessionSecret,
+       store: new RedisStore({
+         port: config.redisPort,
+         host: config.redisHost,
+       }),
+       // Expire cookies by default 30 days from now
+       expires: new Date(Date.now() + (30 * 86400 * 1000))
      }));
 
 
@@ -79,7 +89,7 @@ var runSite = function(err, config) {
           var now = new Date();
           info.dateLastLogin = now.toISOString();
           info.lastLoginIP = req.connection.remoteAddress;
-	  if (info.lastLoginIP == '127.0.0.1' &&
+      	  if (info.lastLoginIP == '127.0.0.1' &&
               config.host == 'codefirefox.com') {
             info.lastLoginIP = req.get('HTTP_X_FORWARDED_FOR');
           }
