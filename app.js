@@ -31,11 +31,6 @@ var runSite = function(err, config) {
      .use(express.urlencoded())
      .use(express.bodyParser())
      .use(express.cookieParser())
-     .use(stylus.middleware({
-        src: __dirname + '/public',
-        compress: true
-      }))
-     .use(express.static(__dirname + '/public'))
      .use(express.session({
        secret: config.sessionSecret,
        store: new RedisStore({
@@ -44,23 +39,32 @@ var runSite = function(err, config) {
        }),
        // Expire cookies by default 30 days from now
        cookie: { path: '/', httpOnly: true, maxAge: DAY * 30 }
-     }))
-     .use(function(req, res, next) {
+     }));
 
-        var setupResponseData = function() {
-          // session updated
 
-          // Allow the session variables to be accessible from res.locals
-          // session contains:
-          //   email
-          //   isAdmin
-          res.locals.session = req.session;
-          res.locals.session.serverRunningSince = serverRunningSince;
-          next();
-        };
+  app.use(stylus.middleware({
+    src: __dirname + '/public',
+    compress: true
+  }));
+  app.use(express.static(__dirname + '/public'));
 
-        setupResponseData();
-      }); 
+  // Any custom per request handling/filtering
+  app.use(function(req, res, next) {
+
+    var setupResponseData = function() {
+      // session updated
+
+      // Allow the session variables to be accessible from res.locals
+      // session contains:
+      //   email
+      //   isAdmin
+      res.locals.session = req.session;
+      res.locals.session.serverRunningSince = serverRunningSince;
+      next();
+    };
+
+    setupResponseData();
+  });
 
   var serverURL = 'http://' + config.host + (config.port == 80 ? '' : (':' + config.port));
   console.log('server callback URL for Persona: ' + serverURL);
