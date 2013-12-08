@@ -2,7 +2,7 @@ var db = require('../db'),
   querystring = require("querystring");
 
 
-function formatTimeSpan(firstDate, secondDate, includeMinutes, includeSeconds) {
+function formatTimeSpan(firstDate, secondDate, includeExcessiveDetail) {
   const oneSecond = 1000;
   const oneMinute = 60*oneSecond;
   const oneHour = 60*oneMinute;
@@ -19,17 +19,19 @@ function formatTimeSpan(firstDate, secondDate, includeMinutes, includeSeconds) {
   var suffixes = ['day', 'hour', 'minute', 'second']
   var timeDiffs = [diffDays, diffHours, diffMinutes, diffSeconds];
   
-  if (!includeSeconds) {
-    suffixes.pop();
-    timeDiffs.pop();
+  if (!includeExcessiveDetail) {
+    // If we have days or hours, don't show seconds
+    if (diffDays != 0 || diffHours != 0) {
+      suffixes.pop();
+      timeDiffs.pop();
+    }
+    // If we have one day or more then don't show minutes
+    if (diffDays != 0) {
+      suffixes.pop();
+      timeDiffs.pop();
+    }
   }
 
-  if (!includeMinutes) {
-    suffixes.pop();
-    timeDiffs.pop();
-  }
-    
-  
   var i = 0;
   var str = timeDiffs.reduce(function (e1, e2) {
     var str = e1;
@@ -71,7 +73,6 @@ exports.stats = function(req, res, next) {
     return;
   } 
 
-  console.log('getting key: ' + 'user:' + req.session.email + ':info');
   db.get('user:' + req.session.email + ':info', function (err0, info) {
     db.getSetElements('user:' + req.session.email + ':videos_watched', function (err1, videosWatched) {
       db.get('user:' + req.session.email + ':login_count', function (err2, loginCount) {
@@ -81,9 +82,8 @@ exports.stats = function(req, res, next) {
         }
 
         info.dateJoined = formatTimeSpan(new Date(info.dateJoined), new Date());
-        info.dateLastLogin = formatTimeSpan(new Date(info.dateLastLogin), new Date(), true);
-        var serverRunningSince = formatTimeSpan(req.session.serverRunningSince, new Date(), true, true);
-        console.log('server running since: ' + serverRunningSince);
+        info.dateLastLogin = formatTimeSpan(new Date(info.dateLastLogin), new Date());
+        var serverRunningSince = formatTimeSpan(req.session.serverRunningSince, new Date(), true);
         res.render('stats', { videosWatched: videosWatched,
                               serverRunningSince: serverRunningSince,
                               loginCount: loginCount || 0,
