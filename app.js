@@ -127,6 +127,7 @@ var runSite = function(err, config) {
   app.get('/videos', routes.videos);
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
+  app.get('/admin', routes.admin);
 
   // API
   app.post('/:category/:video', routes.watchedVideo);
