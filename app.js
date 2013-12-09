@@ -75,13 +75,13 @@ var runSite = function(err, config) {
         out = { status: "failure", reason: error };
         res.json(out);
       } else {
+
         // Session vars that our server should know about
-        req.session.isAdmin = req.session.email == "bbondy@mozilla.com" ||
-          req.session.email == "bbondy@gmail.com";
-        req.session.isTrusted =  req.session.isAdmin ||
-          req.session.email.substring(req.session.email.length - 12) ==  "@mozilla.com" ||
-          req.session.email ==  "netzen@gmail.com" ||
-          req.session.email == "kamiljoz@gmail.com";
+        req.session.isAdmin = false;
+        config.admins.forEach(function(e) {
+          req.session.isAdmin = req.session.isAdmin || req.session.email == e;
+        });
+        req.session.isTrusted =  req.session.isAdmin;
 
         console.log('User logged in: ' + req.session.email);
         db.reportUserLogin(req.session.email);
