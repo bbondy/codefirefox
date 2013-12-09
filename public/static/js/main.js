@@ -15,7 +15,8 @@ $("#logout").click(function() {
   xhr.open("POST", "/persona/logout", true);
   xhr.addEventListener("loadend", function(e) {
     console.log("reporting logout for user: " + email);
-    if (location.pathname != '/stats') {
+    if (location.pathname != '/stats' ||
+        location.pathname != '/admin') {
       location.reload(); 
     } else {
       location.href = '/';

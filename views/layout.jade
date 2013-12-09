@@ -1,7 +1,10 @@
 doctype 5
 html(lang="en")
   head
-    title= pageTitle
+    if pageTitle
+      title= pageTitle + ' - Code Firefox'
+    else
+      title Code Firefox
     meta(name='description', content='Short, step by step, video tutorials for Firefox development')
     //link(rel='alternate', type='application/rss+xml', title='RSS' href='/feeds/rss/')
     link(rel='shortcut icon' href='/static/img/favicon.ico')
@@ -29,6 +32,9 @@ html(lang="en")
               a#navbar-stats(href='/stats') Stats
           li
             a#navbar-about(href='/about') About
+          if session.email && session.isAdmin
+            li
+              a#navbar-admin(href='/admin') Admin
 
       span.persona-buttons
         if session.email
@@ -56,6 +62,9 @@ html(lang="en")
             a(href='/stats') Stats
         li
           a(href='/about') About
+        if session.isAdmin
+          li
+            a(href='/admin') Admin
       ul.social
         li
           a(href='https://twitter.com/codefirefox')
