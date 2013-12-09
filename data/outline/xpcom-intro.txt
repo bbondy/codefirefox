@@ -1,0 +1,86 @@
+In this video I'm going to show you what XPCOM is, and how to use it. 
+
+XPCOM is a technology created by Mozilla for creating cross platform components.
+It stands for Cross Platform Component Object Model.
+
+Which basically just means that:
+- It's a set of functionality that does something, for example the filepicker dialog has
+  its own XPCOM component.
+- It can be used across different prodcuts: Seamonkey, Thunderbird, Firefox, other 3rd party
+- It can be used across different platforms: B2G, Linux, OSX, Windows
+- It can be used across different programming languages C++, JavaScript, python
+
+---
+
+So what we're going to do in this video is use an already existing XPCOM component that's
+bundled into Firefox, and the way we'll use it is using the Javascript Scratchpad.
+If you havne't watched the Scratchpad video yet, you should watch it before watching this
+video.
+
+----
+
+First let's look at all the available XPCOM components
+First we need to mark the Environment as Browser.
+
+> Components.classes
+> Hit Inspect button
+
+---
+
+And here on the right we can see all of the XPCOM components available for us to create
+
+You can extend any one of these to see its properties, like name and a unique ID.
+
+---
+
+Similarly, you can see a list of each interface that exists.
+Now an interface just describes some available properties and methods.
+And each XPCOM component provides the implementation of one or more interfaces.
+
+> Components.interfaces
+
+---
+
+It's important to know that when you work with an XPCOM component, you'll create
+an instance of an XPCOM object, but you won't work with it directly, you'll instead
+work with its interface.
+
+---
+
+And each and every XPCOM component will support at a minimum nsISupports. 
+nsISupports is like Microsoft COM's IUnknown if you are familiar with that.
+If not that's ok.
+
+nsISupports has 3 methods, 2 if them will be self managed for you (AddRef, Release),
+but one of the methods is particuarly important to you:
+QueryInterface.  YOu can call that method to 
+
+
+---
+
+So lets create an XPCOM componet, and let's use the filepicker, just so we have something
+visual.  This provides a consistent way to work with filepickers across platforms.
+
+> var picker =
+>   Components.classes["@mozilla.org/filepicker;1"]. 
+>   createInstance(Components.interfaces.nsIFilePicker);;
+
+And now let's inspect it.
+
+> picker
+
+---
+
+So what I normally do is just paste the XPCOM component in Google that I want to use, and it'll
+bring you to an MDN page describing which interface supports it.
+
+---
+
+> picker.init(window, "Select a file", Components.interfaces.nsIFilePicker.modeOpen);
+> picker.open(function(result) {
+    alert('file chosen: ' + picker.file.path);
+> });
+
+
+
+
