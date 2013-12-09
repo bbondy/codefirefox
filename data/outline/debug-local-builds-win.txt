@@ -1,0 +1,41 @@
+In this video I'm going to show you how to debug your local build.
+
+---
+
+So it's best to use debug builds, because more debugging information is avaialble to you.
+You can enable that in the .mozconfig file, please see the mozconfig video for more information there.
+
+---
+
+So the first thing I'll do is open up visual studio.
+It shoudl be under the name vs express for desktop if you're using vs 2012
+
+---
+
+So to debug your local build, you need to first start the browser.
+> mach run
+
+---
+
+So let's say we're debugging a problem with the color picker.
+> Show code for color picker
+
+---
+
+So I happen to know that the code for this color picker is in widget/windows/nsColorPicker.cpp
+
+---
+
+
+So my first step is to go to that code, and set a breakpoint.
+You can set a breakpoint just by clicking to the left of the line of code.
+
+---
+
+
+Next you want to attach to the running process.
+To do this go to Tools -> Attach to process
+
+
+---
+
