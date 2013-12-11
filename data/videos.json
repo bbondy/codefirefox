@@ -7,7 +7,7 @@
       {
         "title": "What Mozilla is all about",
         "description": "",
-        "slug": "why-mozilla",
+        "slug": "what-is-mozilla",
         "youtubeid": "",
         "priority": 2
       },
@@ -66,6 +66,13 @@
         "slug": "irc",
         "youtubeid": "TJIFBJy-nQ4",
         "priority": 6
+      },
+      {
+        "title": "Registering yourself as a Mozillian",
+        "description": "",
+        "slug": "mozillians",
+        "youtubeid": "Z4NXImG8AWc",
+        "priority": 7
       }
     ]
   },
