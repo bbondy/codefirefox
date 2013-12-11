@@ -349,53 +349,60 @@
         "priority": 3
       },
       {
-        "title": "Introduction to JavaScript modules (jsm) and using your first jsm",
+        "title": "Introduction to JavaScript modules (JSM)",
         "description": "",
         "slug": "using-jsm-intro",
-        "youtubeid": "",
+        "youtubeid": "p3JOY7VK9C4",
         "priority": 4
+      },
+      {
+        "title": "Creating a JavaScript module",
+        "description": "",
+        "slug": "creating-jsm-intro",
+        "youtubeid": "",
+        "priority": 5
       },
       {
         "title": "Introduction to XPCOM and using your first XPCOM component",
         "description": "",
         "slug": "using-xpcom-intro",
         "youtubeid": "6FcJQYsidHU",
-        "priority": 5
+        "priority": 6
       },
       {
         "title": "Writing JavaScript modules",
         "description": "",
         "slug": "javascript-modules",
         "youtubeid": "",
-        "priority": 6
+        "priority": 7
       },
       {
         "title": "Writing JavaScript XPCOM objects",
         "description": "",
         "slug": "javascript-xpcom",
         "youtubeid": "",
-        "priority": 7
+        "priority": 8
       },
       {
         "title": "Debugging front end Firefox code with the built-in debugger",
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
-        "priority": 8
+        "priority": 9
       },
       {
         "title": "Profiling",
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
-        "priority": 9
+        "priority": 10
       },
       {
         "title": "Introduction to XBL",
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
-        "priority": 10
+        "priority": 11
       }
     ]
   },
