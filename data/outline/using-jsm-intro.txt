@@ -1,0 +1,50 @@
+A JavaScript module (JSM) is used for common useful functions used by Firefox, other products, 
+or even extensions.
+
+JavaScript modules are priviliged, that means they run in the browser context, you can't
+access them within a web page.
+
+Basically a JavaScript module itself, is just a file with the extension .jsm, who is
+registered with the build system, and who has an array of exports that are available
+to the code that imports it.
+
+---
+
+If you want to see a list of JSM files, one way is to go to dxr and just put in
+ext:jsm
+
+---
+
+You can use a JavaScript module by using Components.utils.import() 
+
+---
+
+Now if you want to see how a particular JSM works, you can either search for it on Google,
+or just go look in the code and look for EXPORTED_SYMBOLS.
+
+---
+
+For example, there's a JavaScript module for OS.File and this module is for async file IO. 
+I can open up toolkit/components/osfile/osfile.jsm and see that the exported
+symbols is just an object called OS.
+
+And for further documentation, I can search:
+> osfile.jsm mdn in Google
+
+---
+
+If 2 different parts of code use import, then they both share the same module, and
+so if some attribute is changed, it can be observed and seen in the other usage.
+
+---
+
+So I'm just going to open up the scratchpad and I'm going to show you how to use this
+async IO JSM:
+
+
+> Components.utils.import("resource://gre/modules/osfile.jsm");
+> OS.File.read("C:\\users\\bbondy\\out.txt").then(function(array) {
+>    let decoder = new TextDecoder();
+>    var text = decoder.decode(array);
+>    alert (text);
+>  });
