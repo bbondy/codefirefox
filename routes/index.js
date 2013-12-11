@@ -71,9 +71,9 @@ exports.initVideoData = function(req, res) {
 };
 
 exports.admin = function(req, res) {
-  res.render('admin', { pageTitle: 'Admin',
+  res.render('admin', { pageTitle: 'Administration',
                         bodyID: 'body_admin',
-                        mainTitle: 'Admin'
+                        mainTitle: 'Administration'
                       });
 };
 
