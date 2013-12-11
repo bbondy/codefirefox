@@ -4,6 +4,7 @@ block mainContent
   .card-container
     if (session.isAdmin)
       h1 Videos
-      a(href='/initVideoData') Init video data
+      a(href='/initVideoData') Initialize video data 
+      | Reads data from videos.json and puts it into the redis DB.
     else
       h1 You are not authorized to see this page
