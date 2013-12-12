@@ -1,5 +1,5 @@
-A JavaScript module (JSM) is used for common useful functions used by Firefox, other products, 
-or even extensions.
+A JavaScript modules, referred to as JSM, is JavaScript code, that can be used across products
+and extensions.
 
 JavaScript modules are priviliged, that means they run in the browser context, you can't
 access them within a web page.
@@ -48,3 +48,7 @@ async IO JSM:
 >    var text = decoder.decode(array);
 >    alert (text);
 >  });
+
+
+When you're done you can use 
+Components.utils.unload("path to jsm");
