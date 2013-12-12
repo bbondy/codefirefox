@@ -5,7 +5,6 @@ var express = require('express'),
   db = require('./db'),
   RedisStore = require('connect-redis')(express);
 
-
 // Configuration
 const PORT = 22935;
 const HOUR = 3600000;
@@ -119,7 +118,7 @@ var runSite = function(err, config) {
     },
   });
 
-  // Routes
+  // GET
   app.get('/', routes.videos);
   app.get('/:category/:video', routes.video);
   app.get('/cheatsheet', routes.cheatsheet);
@@ -128,9 +127,13 @@ var runSite = function(err, config) {
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);
+  app.get('/exercise', routes.exercise);
 
-  // API
+  // POST
   app.post('/:category/:video', routes.watchedVideo);
+  app.post('/check-code', routes.checkCode);
+
+  // DELETE
   app.del('/stats', routes.delStats);
 
   app.use(function(req,res){

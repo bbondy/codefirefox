@@ -1,5 +1,7 @@
 var db = require('../db'),
-  querystring = require("querystring");
+  querystring = require("querystring")
+  acorn = require('acorn'),
+  prettyjson = require('prettyjson');
 
 
 function formatTimeSpan(firstDate, secondDate, includeExcessiveDetail) {
@@ -239,4 +241,34 @@ exports.videos = function(req, res) {
 
   var stats, userVideosWatched = [];
   getUserStats();
+};
+
+exports.exercise = function(req, res) {
+  res.render('exercise', { pageTitle: 'Exercise',
+                           bodyID: 'body_exercise',
+                           mainTitle: 'Exercise'
+                         });
+}
+
+exports.checkCode = function(req, res) {
+  console.log(req.body.code);
+  var reason = "Could not parse";
+  try {
+    var parsed = acorn.parse(req.body.code, {});
+    console.log('parsed: "' + parsed + '"');
+    console.log(prettyjson.render(parsed));
+
+    if (parsed) {
+      res.json({ status: "okay",
+                 parsedInfo: parsed
+               });
+    }
+  } catch(e) {
+    console.log('exception thrown');
+    reason = e;
+  }
+
+  res.json({ status: "failure",
+             reason: reason
+           });
 };
