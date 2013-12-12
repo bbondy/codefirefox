@@ -2,6 +2,12 @@ extends layout
 
 block mainContent
   .card-container
-    textarea#code(rows='20', cols='100')
+    pre#code var x = 3; if (x) { };
     p
     a#check-syntax(href='#') Check Syntax
+
+  script(src='static/js/ace/ace.js', type='text/javascript', charset='utf-8')
+  script.
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/TextMate");
+    editor.getSession().setMode("ace/mode/javascript");
