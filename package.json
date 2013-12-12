@@ -13,7 +13,9 @@
     "stylus": "~0.40.3",
     "express-persona": "~0.1.1",
     "json": "0.0.14",
-    "connect-redis": "~1.4.6"
+    "connect-redis": "~1.4.6",
+    "acorn": "~0.4.2",
+    "prettyjson": "~0.10.0"
   },
   "devDependencies": {},
   "scripts": {
