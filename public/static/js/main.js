@@ -48,11 +48,14 @@ $("#del-stats").click(function() {
 });
 
 $("#check-syntax").click(function() {
+
+  var editor = ace.edit("code");
+  var code = editor.getSession().getValue();
   $.ajax({
     url: "/check-code",
     type: "post",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify({ code: $("#code").val() }),
+    data: JSON.stringify({ code: code }),
     dataType: "json",
     success: function(response) { 
       if (response.status == "okay")
