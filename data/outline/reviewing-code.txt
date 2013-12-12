@@ -1,5 +1,7 @@
 The first thing you want to do when reviewing is ask:
 
+
+
 Is this something we want to do?
 There are a lot of people posting bugs, and it's not always true that we need everything that gets posted.
 
@@ -10,6 +12,13 @@ You'll also want to future proof your code by creating unit tests.
 For a lot of bugs it's ok to ask for a test.
 Sometimes it may be possible to file a follow up bug for a unit test to be added.
 
+
+Try to do the review fast, or at least provide information about why the redview will be delayed.
+Usually within a day. If you extremely busy, at least within a week.
+
+
+Is this the simplest way to solve the problem?
+
 Make sure the file matches the style of the code it's landing with.
 Check for things like trailing whitespace on lines, or making sure unix newlines are used.
 Check for things like alignment and placing of whitespace operators and function braces in code.
@@ -17,8 +26,23 @@ Check for things like alignment and placing of whitespace operators and function
 
 What you don't want to do is review bassed on exactly what you would do.
 
+There is this notion that code reviewers always know more about the code than the person
+who wrote the code. This is not always true.
+Remember that a code review should be a conversation, ask the person that provided you the code
+questions about the code to see why they made a change.  Feel free to try to find the person on IRC.
+
+When you get your code reviwed, you should reply to the reviewers comments and explain why you think they are wrong.
+Accept this gracefully.
+
 
 Check for security, privacy, resource leaks, performance,
+
+
+If you aren't the best person to review something, move the review to someone else.
+
+
+
+Thank the person for providing the patch.
 
 
 More ideas available here:
