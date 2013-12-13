@@ -1,8 +1,9 @@
 var db = require('../db'),
   querystring = require("querystring")
   acorn = require('acorn'),
-  prettyjson = require('prettyjson');
-
+  prettyjson = require('prettyjson'),
+  promise = require('promise'),
+  CodeChecker = require('../code_checker');
 
 function formatTimeSpan(firstDate, secondDate, includeExcessiveDetail) {
   const oneSecond = 1000;
@@ -243,6 +244,10 @@ exports.videos = function(req, res) {
   getUserStats();
 };
 
+/**
+ * GET /exercise
+ * Renders the exercise page
+ */ 
 exports.exercise = function(req, res) {
   res.render('exercise', { pageTitle: 'Exercise',
                            bodyID: 'body_exercise',
@@ -250,25 +255,65 @@ exports.exercise = function(req, res) {
                          });
 }
 
+/**
+ * POST /check-code
+ * Checks the POST'ed code to see if it matches a set of assertions
+*/
 exports.checkCode = function(req, res) {
-  console.log(req.body.code);
-  var reason = "Could not parse";
+  console.log('POST /check-code');
   try {
-    var parsed = acorn.parse(req.body.code, {});
-    console.log('parsed: "' + parsed + '"');
-    console.log(prettyjson.render(parsed));
+    var parseCode = function(whitelistState) {
+      whitelist = whitelistState.self.whitelist || '';
+      console.log('+++------' + JSON.stringify(whitelistState.self.whitelist));
+      console.log(prettyjson.render(whitelistState.self.whitelist));
+      checker.parseIt(req.body.code, function(state) {
 
-    if (parsed) {
-      res.json({ status: "okay",
-                 parsedInfo: parsed
-               });
-    }
+        res.json({ status: "okay",
+                   whitelist: whitelist,
+                   blacklist: blacklist
+                 });
+      });
+    };
+
+    var addToWhitelist2 = function(blacklistState) {
+      blacklist = blacklistState.self.blacklist || '';
+      console.log('------' + prettyjson.render(blacklist));
+      checker.addSampleToWhitelist({
+        code: "if (1 === 1) { var x = 3; }",
+        title: "Create a variable inside an if",
+        slug: "variable-in-if",
+        callback: parseCode
+      });
+    };
+
+    var addToWhitelist = function(whitelistState1) {
+      
+      checker.addSampleToWhitelist({
+        code: "x = 4;",
+        title: "Assign a variable to a value",
+        slug: "make-assignment",
+        callback: addToWhitelist2
+      });
+    };
+
+    var addToBlacklist = function() {
+      checker.addSampleToBlacklist({
+        code: ";",
+        title: "Do not have any empty statements",
+        slug: "no-empty-statements",
+        callback: addToWhitelist 
+      });
+    };
+
+    var whitelist, blacklist;
+    var checker = new CodeChecker();
+    addToBlacklist();
+
   } catch(e) {
-    console.log('exception thrown');
-    reason = e;
+    console.log('exception thrown: ' + e);
+    res.json({ status: "failure",
+               reason: e
+             });
   }
 
-  res.json({ status: "failure",
-             reason: reason
-           });
 };

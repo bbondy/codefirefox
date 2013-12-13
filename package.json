@@ -15,7 +15,8 @@
     "json": "0.0.14",
     "connect-redis": "~1.4.6",
     "acorn": "~0.4.2",
-    "prettyjson": "~0.10.0"
+    "prettyjson": "~0.10.0",
+    "promise": "~3.2.0"
   },
   "devDependencies": {},
   "scripts": {
