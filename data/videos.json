@@ -6,6 +6,7 @@
     "videos": [
       {
         "title": "What Mozilla is all about",
+        "type": "video",
         "description": "",
         "slug": "what-is-mozilla",
         "youtubeid": "",
@@ -13,6 +14,7 @@
       },
       {
         "title": "Marketing yourself as a contributor",
+        "type": "video",
         "description": "",
         "slug": "marketing-yourself",
         "youtubeid": "",
@@ -27,6 +29,7 @@
     "videos": [
       {
         "title": "Setting up a Windows Firefox build environment",
+        "type": "video",
         "description": "",
         "slug": "windows-build-env",
         "youtubeid": "SJzYZGnXE5A",
@@ -34,6 +37,7 @@
       },
       {
         "title": "Setting up an OS X Firefox build environment",
+        "type": "video",
         "description": "",
         "slug": "osx-build-env",
         "youtubeid": "",
@@ -41,6 +45,7 @@
       },
       {
         "title": "Setting up a Linux Firefox build environment",
+        "type": "video",
         "description": "",
         "slug": "linux-build-env",
         "youtubeid": "GzYZVL82ZFw",
@@ -48,6 +53,7 @@
       },
       {
         "title": "The different types of Firefox channels and repositories",
+        "type": "video",
         "description": "",
         "slug": "firefox-channels",
         "youtubeid": "1ayzz81hyIE",
@@ -55,6 +61,7 @@
       },
       {
         "title": "Getting the Firefox source code",
+        "type": "video",
         "description": "",
         "slug": "get-source-code",
         "youtubeid": "j0McmMfBIo0",
@@ -62,6 +69,7 @@
       },
       {
         "title": "Getting help on IRC",
+        "type": "video",
         "description": "",
         "slug": "irc",
         "youtubeid": "TJIFBJy-nQ4",
@@ -69,6 +77,7 @@
       },
       {
         "title": "Registering yourself as a Mozillian at mozillians.org",
+        "type": "video",
         "description": "",
         "slug": "mozillians",
         "youtubeid": "Z4NXImG8AWc",
@@ -84,6 +93,7 @@
     "videos": [
       {
         "title": "Introduction to mach and mach setup",
+        "type": "video",
         "description": "",
         "slug": "mach-intro",
         "youtubeid": "7a5aeiSLhi8",
@@ -91,6 +101,7 @@
       },
       {
         "title": "Building Desktop Firefox from the source code",
+        "type": "video",
         "description": "",
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
@@ -98,6 +109,7 @@
       },
       {
         "title": "Incremental builds and making changes",
+        "type": "video",
         "description": "",
         "slug": "incremental-builds",
         "youtubeid": "1ES3mTrAJ1c",
@@ -105,6 +117,7 @@
       },
       {
         "title": "Adding options with a .mozconfig file and debug builds",
+        "type": "video",
         "description": "",
         "slug": "mozconfig-intro",
         "youtubeid": "wg7Gyyis4Gk",
@@ -112,6 +125,7 @@
       },
       {
         "title": "Using more than one .mozconfig file",
+        "type": "video",
         "description": "",
         "slug": "multiple-mozconfig",
         "youtubeid": "9Do9R2v5ZEI",
@@ -127,6 +141,7 @@
     "videos": [
       {
         "title": "Creating a Bugzilla account, account settings, and permissions",
+        "type": "video",
         "description": "",
         "slug": "create-bugzilla-account",
         "youtubeid": "bEeF4-_0_xg",
@@ -134,6 +149,7 @@
       },
       {
         "title": "Finding a first Firefox bug to work on",
+        "type": "video",
         "description": "",
         "slug": "finding-bug",
         "youtubeid": "4k_q8daxRU8",
@@ -141,6 +157,7 @@
       },
       {
         "title": "Posting a well written bug to Bugzilla",
+        "type": "video",
         "description": "",
         "slug": "posting-bug",
         "youtubeid": "W25iNhT8DNU",
@@ -148,6 +165,7 @@
       },
       {
         "title": "Getting assigned to a bug and gaining edit bugs permissions",
+        "type": "video",
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "l5lzqxXmwwo",
@@ -163,6 +181,7 @@
     "videos": [
       {
         "title": "Explanation of the Firefox source tree",
+        "type": "video",
         "description": "",
         "slug": "source-structure",
         "youtubeid": "7kuXZzsJJqY",
@@ -170,6 +189,7 @@
       },
       {
         "title": "Setting up mercurial",
+        "type": "video",
         "description": "",
         "slug": "mercurial-setup",
         "youtubeid": "yhkOSgVGHTY",
@@ -177,6 +197,7 @@
       },
       {
         "title": "Creating a patch file",
+        "type": "video",
         "description": "",
         "slug": "patch-creation",
         "youtubeid": "cLQlsRKJiS4",
@@ -184,6 +205,7 @@
       },
       {
         "title": "Making changes to that patch file",
+        "type": "video",
         "description": "",
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
@@ -199,6 +221,7 @@
     "videos": [
       {
         "title": "Attaching a patch to Bugzilla and getting your first review",
+        "type": "video",
         "description": "",
         "slug": "first-review",
         "youtubeid": "f_c9RotA0Vs",
@@ -206,6 +229,7 @@
       },
       {
         "title": "Review results, integration branches, and landing your patch",
+        "type": "video",
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "twxHD0cG-9o",
@@ -221,6 +245,7 @@
     "videos": [
       {
         "title": "Introduction to Mercurial Patch Queues",
+        "type": "video",
         "description": "",
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
@@ -228,6 +253,7 @@
       },
       {
         "title": "Working on multiple patches within your patch queue",
+        "type": "video",
         "description": "",
         "slug": "patch-queues-multi-patches",
         "youtubeid": "9g7ePBFfS7A",
@@ -235,6 +261,7 @@
       },
       {
         "title": "Pulling down remote changes to your cloned repository",
+        "type": "video",
         "description": "",
         "slug": "remote-changes",
         "youtubeid": "qBKQw5U1qvk",
@@ -242,6 +269,7 @@
       },
       {
         "title": "Manually rebasing a patch that has conflicts",
+        "type": "video",
         "description": "",
         "slug": "rebasing-patch",
         "youtubeid": "67woYDn5DqY",
@@ -249,6 +277,7 @@
       },
       {
         "title": "Importing a patch from Bugzilla and removing old patches",
+        "type": "video",
         "description": "",
         "slug": "import-patch",
         "youtubeid": "VNueS0ACxvc",
@@ -256,6 +285,7 @@
       },
       {
         "title": "Workflow when developing with patches",
+        "type": "video",
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
@@ -271,6 +301,7 @@
     "videos": [
       {
         "title": "Splitting up a patch file with hg and excluding files",
+        "type": "video",
         "description": "",
         "slug": "patch-file-splitting",
         "youtubeid": "PYbY-ltqexs",
@@ -278,6 +309,7 @@
       },
       {
         "title": "Moving and folding patches in your patch queue",
+        "type": "video",
         "description": "",
         "slug": "move-fold-patch",
         "youtubeid": "zgxyA6QLMWI",
@@ -285,6 +317,7 @@
       },
       {
         "title": "Hacking on a patch file manually",
+        "type": "video",
         "description": "",
         "slug": "patch-file-hacking",
         "youtubeid": "",
@@ -292,6 +325,7 @@
       },
       {
         "title": "Hacking on your patch queue internals",
+        "type": "video",
         "description": "",
         "slug": "patch-queue-internals",
         "youtubeid": "tsoV_GMML_c",
@@ -307,6 +341,7 @@
     "videos": [
       {
         "title": "Searching and referencing Firefox code",
+        "type": "video",
         "description": "",
         "slug": "dxr-referencing-code",
         "youtubeid": "V3walfiWFPw",
@@ -314,6 +349,7 @@
       },
       {
         "title": "Coding a feature from start to finish with the help of DXR",
+        "type": "video",
         "description": "",
         "slug": "dxr-to-code-feature",
         "youtubeid": "PneGyGMzKpM",
@@ -329,6 +365,7 @@
     "videos": [
       {
         "title": "Introduction to the Firefox Scratchpad",
+        "type": "video",
         "description": "",
         "slug": "scratchpad",
         "youtubeid": "xqij3l84N2Y",
@@ -336,6 +373,7 @@
       },
       {
         "title": "Introduction to XUL",
+        "type": "video",
         "description": "",
         "slug": "xul-intro",
         "youtubeid": "",
@@ -343,6 +381,7 @@
       },
       {
         "title": "Introduction to the DOM Inspector",
+        "type": "video",
         "description": "",
         "slug": "dom-inspector",
         "youtubeid": "PfnP3M759os",
@@ -350,6 +389,7 @@
       },
       {
         "title": "Introduction to JavaScript modules (JSM)",
+        "type": "video",
         "description": "",
         "slug": "using-jsm-intro",
         "youtubeid": "p3JOY7VK9C4",
@@ -357,6 +397,7 @@
       },
       {
         "title": "Creating a JavaScript module",
+        "type": "video",
         "description": "",
         "slug": "creating-jsm-intro",
         "youtubeid": "",
@@ -364,6 +405,7 @@
       },
       {
         "title": "Introduction to XPCOM and using your first XPCOM component",
+        "type": "video",
         "description": "",
         "slug": "using-xpcom-intro",
         "youtubeid": "6FcJQYsidHU",
@@ -371,6 +413,7 @@
       },
       {
         "title": "Writing JavaScript modules",
+        "type": "video",
         "description": "",
         "slug": "javascript-modules",
         "youtubeid": "",
@@ -378,6 +421,7 @@
       },
       {
         "title": "Writing JavaScript XPCOM objects",
+        "type": "video",
         "description": "",
         "slug": "javascript-xpcom",
         "youtubeid": "",
@@ -385,6 +429,7 @@
       },
       {
         "title": "Debugging front end Firefox code with the built-in debugger",
+        "type": "video",
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
@@ -392,6 +437,7 @@
       },
       {
         "title": "Profiling",
+        "type": "video",
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
@@ -399,6 +445,7 @@
       },
       {
         "title": "Introduction to XBL",
+        "type": "video",
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
@@ -414,6 +461,7 @@
     "videos": [
       {
         "title": "Creating C++ XPCOM components",
+        "type": "video",
         "description": "",
         "slug": "xpcom",
         "youtubeid": "",
@@ -429,6 +477,7 @@
     "videos": [
       {
         "title": "Introduction to the automated tests that run on each push",
+        "type": "video",
         "description": "",
         "slug": "automated-tests-intro",
         "youtubeid": "EmuRWW4kNyg",
@@ -436,6 +485,7 @@
       },
       {
         "title": "Try server, Buildbot, and TBPL",
+        "type": "video",
         "description": "",
         "slug": "try-buildbot-tbpl",
         "youtubeid": "iPrm48npsUg",
@@ -443,6 +493,7 @@
       },
       {
         "title": "TryChooser syntax and pushing to try",
+        "type": "video",
         "description": "",
         "slug": "trychooser-syntax",
         "youtubeid": "qjUZcEb3eNU",
@@ -450,6 +501,7 @@
       },
       {
         "title": "Running tests locally",
+        "type": "video",
         "description": "",
         "slug": "running-tests-locally",
         "youtubeid": "",
@@ -457,6 +509,7 @@
       },
       {
         "title": "Creating an xpcshell test",
+        "type": "video",
         "description": "",
         "slug": "creating-xpcshell-tests",
         "youtubeid": "",
@@ -464,6 +517,7 @@
       },
       {
         "title": "Creating a basic mochitest",
+        "type": "video",
         "description": "",
         "slug": "creating-mochitests",
         "youtubeid": "",
@@ -471,6 +525,7 @@
       },
       {
         "title": "Creating a basic reftest",
+        "type": "video",
         "description": "",
         "slug": "creating-reftests",
         "youtubeid": "",
@@ -478,6 +533,7 @@
       },
       {
         "title": "Creating a basic browser chrome test",
+        "type": "video",
         "description": "",
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
@@ -493,6 +549,7 @@
     "videos": [
       {
         "title": "Becoming a reviewer",
+        "type": "video",
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "",
@@ -500,6 +557,7 @@
       },
       {
         "title": "Reviewing a patch",
+        "type": "video",
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "",
@@ -515,6 +573,7 @@
     "videos": [
       {
         "title": "Finding out why code is the way it is, using hg annotate",
+        "type": "video",
         "description": "",
         "slug": "hg-annotate",
         "youtubeid": "v8CbpAdGP3c",
@@ -522,6 +581,7 @@
       },
       {
         "title": "Finding regression ranges with mozregression",
+        "type": "video",
         "description": "",
         "slug": "mozregression",
         "youtubeid": "ABrenCFgP3Q",
@@ -537,6 +597,7 @@
     "videos": [
       {
         "title": "Debugging your local build with Visual Studio",
+        "type": "video",
         "description": "",
         "slug": "debug-local-builds-win",
         "youtubeid": "S6ohAwQnmrE",
@@ -544,6 +605,7 @@
       },
       {
         "title": "Introduction to different debugger windows in Visual Studio",
+        "type": "video",
         "description": "",
         "slug": "debugger-windows",
         "youtubeid": "",
@@ -551,6 +613,7 @@
       },
       {
         "title": "More advanced debugging tricks with Visual Studio",
+        "type": "video",
         "description": "",
         "slug": "advanced-debugging",
         "youtubeid": "",
@@ -558,6 +621,7 @@
       },
       {
         "title": "Debugging your local build in OS X with Xcode",
+        "type": "video",
         "description": "",
         "slug": "debug-local-builds-osx",
         "youtubeid": "",
@@ -565,6 +629,7 @@
       },
       {
         "title": "Debugging your local builds in Linux with gdb and ddd",
+        "type": "video",
         "description": "",
         "slug": "debug-local-builds-linux",
         "youtubeid": "",
@@ -580,6 +645,7 @@
     "videos": [
       {
         "title": "Getting commit access level 1",
+        "type": "video",
         "description": "",
         "slug": "commit-access-level-1",
         "youtubeid": "",
@@ -587,6 +653,7 @@
       },
       {
         "title": "Getting commit access level 3",
+        "type": "video",
         "description": "",
         "slug": "commit-acccess-level-3",
         "youtubeid": "",
@@ -602,6 +669,7 @@
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",
+        "type": "video",
         "description": "",
         "slug": "mozilla-news",
         "youtubeid": "",
