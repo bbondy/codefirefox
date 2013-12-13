@@ -2,10 +2,18 @@ extends layout
 
 block mainContent
   .card-container
-    pre#code var x = 3; if (x) { };
+    h1 Exercise framework demo
+    h3 Perform the following tasks:
+    ul#whitelist
+    h3 Without performing these tasks:
+    ul#blacklist
+
+    pre#code
     p
     a#check-syntax(href='#') Check Syntax
 
+block extraScripts
+  script(src='static/js/exercise.js', type='text/javascript', charset='utf-8')
   script(src='static/js/ace/ace.js', type='text/javascript', charset='utf-8')
   script.
     var editor = ace.edit("code");

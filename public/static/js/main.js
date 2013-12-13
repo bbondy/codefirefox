@@ -47,30 +47,6 @@ $("#del-stats").click(function() {
   }));
 });
 
-$("#check-syntax").click(function() {
-
-  var editor = ace.edit("code");
-  var code = editor.getSession().getValue();
-  $.ajax({
-    url: "/check-code",
-    type: "post",
-    contentType: "application/json; charset=utf-8",
-    data: JSON.stringify({ code: code }),
-    dataType: "json",
-    success: function(response) { 
-      if (response.status == "okay")
-        alert('Parsed info: ' + JSON.stringify(response.parsedInfo));
-      else {
-        alert('Syntax Error on line: ' + response.reason.loc.line +
-              ', column: ' + response.reason.loc.column);
-      }
-    },
-    failure: function(errMsg) {
-      alert('err: ' + errMsg);
-    }
-  });
-});
-
 $(function() {
   // By default, express-persona adds the users email address to req.session.email when their email is validated.
   navigator.id.watch({

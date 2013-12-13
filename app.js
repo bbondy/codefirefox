@@ -3,6 +3,7 @@ var express = require('express'),
   routes = require('./routes'),
   stylus = require('stylus'),
   db = require('./db'),
+  code_checker = require('./code_checker'),
   RedisStore = require('connect-redis')(express);
 
 // Configuration
