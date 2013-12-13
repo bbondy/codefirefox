@@ -18,6 +18,13 @@ Setting up this project
 10. Once the server is running visit ```localhost:22935/initVideoData```
 11. Browser to ```localhost:22935/videos``` to see all of the data or ```localhost:22935/slug``` to see a specific video
 
+Running tests
+=============
+
+Tests are run using the Mocha framework. To get tests working just run:
+
+```npm test````
+
 Setting up redis on Windows
 ===========================
 1. Extract `third_party/redisbin.zip` to a folder on your Desktop
