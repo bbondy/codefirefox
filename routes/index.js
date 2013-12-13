@@ -279,8 +279,8 @@ exports.checkCode = function(req, res) {
       blacklist = blacklistState.self.blacklist || '';
       console.log('------' + prettyjson.render(blacklist));
       checker.addSampleToWhitelist({
-        code: "if (1 === 1) { var x = 3; }",
-        title: "Create a variable inside an if",
+        code: "if (1 === 1) { x = 3; }",
+        title: "Assign a variable to a value inside an if statement (Not a declaration)",
         slug: "variable-in-if",
         callback: parseCode
       });
@@ -289,8 +289,8 @@ exports.checkCode = function(req, res) {
     var addToWhitelist = function(whitelistState1) {
       
       checker.addSampleToWhitelist({
-        code: "x = 4;",
-        title: "Assign a variable to a value",
+        code: "var x = 4;",
+        title: "Create a variable declaration",
         slug: "make-assignment",
         callback: addToWhitelist2
       });
@@ -299,7 +299,7 @@ exports.checkCode = function(req, res) {
     var addToBlacklist = function() {
       checker.addSampleToBlacklist({
         code: ";",
-        title: "Do not have any empty statements",
+        title: "Do not have any empty statements (Example: Extra semicolon)",
         slug: "no-empty-statements",
         callback: addToWhitelist 
       });
