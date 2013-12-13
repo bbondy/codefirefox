@@ -23,8 +23,9 @@ function checkSyntax() {
             element = $("<li/>").attr('id', e.slug);
             element.appendTo("#whitelist");
           }
-          element.html(e.title + '.  ' +
-            (e.hit ? 'Completed!' : 'Not yet Completed.') );
+          element.html('<i class="fa ' + (e.hit ? 'fa-check' : 'fa-times') + '"></i>  ' +
+            e.title + '.  ' +
+            (e.hit ? '<span class="good">Completed!</span>' : '<span class="bad">Not yet Completed.') );
         });
       }
 
@@ -36,8 +37,9 @@ function checkSyntax() {
             element = $("<li/>").attr('id', e.slug);
             element.appendTo("#blacklist");
           }
-          element.html(e.title + '.  ' +
-            (e.hit ? 'Oops, please fix' : 'So far so good.'));
+          element.html('<i class="fa ' + (e.hit ? 'fa-times' : 'fa-check') + '"></i>  ' +
+            e.title + '.  ' +
+            (e.hit ? '<span class="bad">Oops, please fix</span>' : '<span class="good">So far so good.</span>'));
         });
 
       }
