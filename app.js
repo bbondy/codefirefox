@@ -153,8 +153,8 @@ initConfigData().done(function(config) {
     });
   });
 
-  app.listen(config.port, function() {
-    console.log("Starting server on port %d in %s mode", config.port, app.settings.env);
+  app.listen(config.internalPort, function() {
+    console.log("Starting server on port %d in %s mode", config.internalPort, app.settings.env);
   });
 }, function onFailure() {
   console.log('Error starting server, aborting');
