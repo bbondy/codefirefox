@@ -119,8 +119,9 @@ initConfigData().done(function(config) {
   });
 
   // GET
-  app.get('/', routes.videos);
-  app.get('/videos', routes.videos);
+  app.get('/', routes.outline);
+  app.get('/videos', routes.outline);
+  app.get('/exercises', routes.outline);
   app.get('/video/:video', routes.video);
   app.get('/:category/:video', routes.video);
   app.get('/cheatsheet', routes.cheatsheet);

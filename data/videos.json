@@ -1,6 +1,6 @@
 [
   {
-    "title": "Finding motivation for contributing to Mozilla",
+    "title": "Introduction and contributing to Mozilla",
     "slug": "motivation",
     "priority": 1,
     "videos": [
@@ -10,7 +10,7 @@
         "description": "",
         "slug": "what-is-mozilla",
         "youtubeid": "",
-        "priority": 2
+        "priority": 1
       },
       {
         "title": "Marketing yourself as a contributor",
@@ -18,7 +18,14 @@
         "description": "",
         "slug": "marketing-yourself",
         "youtubeid": "",
-        "priority": 1
+        "priority": 2
+      },
+      {
+        "title": "Introduction to Code Firefox exercises",
+        "type": "exercise",
+        "description": "",
+        "slug": "intro-exercise",
+        "priority": 3
       }
     ]
   },
@@ -130,6 +137,13 @@
         "slug": "multiple-mozconfig",
         "youtubeid": "9Do9R2v5ZEI",
         "priority": 5
+      },
+      {
+        "title": "Creating a .mozconfig file exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "create-mozconfig-exercise",
+        "priority": 6
       }
     ]
   },
@@ -170,6 +184,13 @@
         "slug": "assigned-first-bug",
         "youtubeid": "l5lzqxXmwwo",
         "priority": 4
+      },
+      {
+        "title": "Validating you are assigned to a bugzilla bug",
+        "type": "exercise",
+        "description": "",
+        "slug": "validating-assigned-bugzilla",
+        "priority": 5
       }
     ]
   },
@@ -210,6 +231,13 @@
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
         "priority": 4
+      },
+      {
+        "title": "Create a patch file exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "create-patch-exercise",
+        "priority": 6
       }
     ]
   },
@@ -290,6 +318,13 @@
         "slug": "development-workflow",
         "youtubeid": "",
         "priority": 7
+      },
+      {
+        "title": "Patch queue exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "patch-queue-exercise",
+        "priority": 8
       }
     ]
   },
@@ -359,7 +394,7 @@
   },
 
   {
-    "title": "Front end Firefox development",
+    "title": "Front end Firefox development tools",
     "slug": "front-end-tools",
     "priority": 10,
     "videos": [
@@ -372,60 +407,12 @@
         "priority": 1
       },
       {
-        "title": "Introduction to XUL",
-        "type": "video",
-        "description": "",
-        "slug": "xul-intro",
-        "youtubeid": "",
-        "priority": 2
-      },
-      {
         "title": "Introduction to the DOM Inspector",
         "type": "video",
         "description": "",
         "slug": "dom-inspector",
         "youtubeid": "PfnP3M759os",
-        "priority": 3
-      },
-      {
-        "title": "Introduction to JavaScript modules (JSM)",
-        "type": "video",
-        "description": "",
-        "slug": "using-jsm-intro",
-        "youtubeid": "p3JOY7VK9C4",
-        "priority": 4
-      },
-      {
-        "title": "Creating a JavaScript module",
-        "type": "video",
-        "description": "",
-        "slug": "creating-jsm-intro",
-        "youtubeid": "",
-        "priority": 5
-      },
-      {
-        "title": "Introduction to XPCOM and using your first XPCOM component",
-        "type": "video",
-        "description": "",
-        "slug": "using-xpcom-intro",
-        "youtubeid": "6FcJQYsidHU",
-        "priority": 6
-      },
-      {
-        "title": "Writing JavaScript modules",
-        "type": "video",
-        "description": "",
-        "slug": "javascript-modules",
-        "youtubeid": "",
-        "priority": 7
-      },
-      {
-        "title": "Writing JavaScript XPCOM objects",
-        "type": "video",
-        "description": "",
-        "slug": "javascript-xpcom",
-        "youtubeid": "",
-        "priority": 8
+        "priority": 2
       },
       {
         "title": "Debugging front end Firefox code with the built-in debugger",
@@ -433,7 +420,7 @@
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
-        "priority": 9
+        "priority": 3
       },
       {
         "title": "Profiling",
@@ -441,7 +428,85 @@
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
-        "priority": 10
+        "priority": 4
+      }
+    ]
+  },
+
+
+  {
+    "title": "Front end Firefox development",
+    "slug": "front-end-dev",
+    "priority": 11,
+    "videos": [
+      {
+        "title": "Introduction to JavaScript modules (JSM)",
+        "type": "video",
+        "description": "",
+        "slug": "using-jsm-intro",
+        "youtubeid": "p3JOY7VK9C4",
+        "priority": 1
+      },
+      {
+        "title": "Using a JavaScript module exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "using-jsm-intro",
+        "priority": 2
+      },
+      {
+        "title": "Introduction to XPCOM and using your first XPCOM component",
+        "type": "video",
+        "description": "",
+        "slug": "using-xpcom-intro",
+        "youtubeid": "6FcJQYsidHU",
+        "priority": 3
+      },
+      {
+        "title": "Writing JavaScript modules",
+        "type": "video",
+        "description": "",
+        "slug": "javascript-modules",
+        "youtubeid": "",
+        "priority": 4
+      },
+      {
+        "title": "Writing a JavaScript module exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "intro-exercise",
+        "priority": 5
+      },
+      {
+        "title": "Writing JavaScript XPCOM objects",
+        "type": "video",
+        "description": "",
+        "slug": "javascript-xpcom",
+        "youtubeid": "",
+        "priority": 6
+      },
+      {
+        "title": "Writing a JavaScript XPCOM object exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "javascript-xpcom-exercise",
+        "priority": 7
+      }
+    ]
+  },
+
+  {
+    "title": "Front end Firefox user interface development",
+    "slug": "front-end-ui-dev",
+    "priority": 12,
+    "videos": [
+      {
+        "title": "Introduction to XUL",
+        "type": "video",
+        "description": "",
+        "slug": "xul-intro",
+        "youtubeid": "",
+        "priority": 1
       },
       {
         "title": "Introduction to XBL",
@@ -449,7 +514,15 @@
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
-        "priority": 11
+        "priority": 2
+      },
+      {
+        "title": "Creating a simple XUL window",
+        "type": "exercise",
+        "description": "",
+        "slug": "xul-intro-exercise",
+        "youtubeid": "",
+        "priority": 3
       }
     ]
   },
@@ -457,7 +530,7 @@
   {
     "title": "Platform development",
     "slug": "platform-development",
-    "priority": 11,
+    "priority": 13,
     "videos": [
       {
         "title": "Creating C++ XPCOM components",
@@ -473,7 +546,7 @@
   {
     "title": "Automated tests",
     "slug": "automated-tests",
-    "priority": 12,
+    "priority": 14,
     "videos": [
       {
         "title": "Introduction to the automated tests that run on each push",
@@ -545,7 +618,7 @@
   {
     "title": "Reviewing code",
     "slug": "reviewing-code",
-    "priority": 13,
+    "priority": 15,
     "videos": [
       {
         "title": "Becoming a reviewer",
@@ -569,7 +642,7 @@
   {
     "title": "Troubleshooting code without debugging",
     "slug": "troubleshooting-code-no-debugging",
-    "priority": 14,
+    "priority": 16,
     "videos": [
       {
         "title": "Finding out why code is the way it is, using hg annotate",
@@ -593,7 +666,7 @@
   {
     "title": "Debugging C++ code",
     "slug": "debugging",
-    "priority": 15,
+    "priority": 17,
     "videos": [
       {
         "title": "Debugging your local build with Visual Studio",
@@ -641,7 +714,7 @@
   {
     "title": "Getting commit access",
     "slug": "commit-access",
-    "priority": 16,
+    "priority": 18,
     "videos": [
       {
         "title": "Getting commit access level 1",
@@ -665,7 +738,7 @@
   {
     "title": "Staying up to date",
     "slug": "staying-up-to-date",
-    "priority": 17,
+    "priority": 19,
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",

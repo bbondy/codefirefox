@@ -182,10 +182,11 @@ exports.video = function(req, res, next) {
 
 /**
  * GET /
- * GET /videos
  * Renders the main page which shows a list of videos
+ * TODO: make GET /videos only show videos, currently just goes here
+ * TODO: make GET /exercises only show exercises, currently just goes here
  */
-exports.videos = function(req, res) {
+exports.outline = function(req, res) {
   var userStats, userVideosWatched;
   var getVideosWatchedIfLoggedIn = emptyPromise();
   if (res.locals.session.email)
@@ -211,9 +212,9 @@ exports.videos = function(req, res) {
     }
 
     categories.sort(db.sortByPriority);
-    res.render('index', { pageTitle: 'Videos',
+    res.render('index', { pageTitle: 'Lessons',
                           categories: categories, bodyID: 'body_index',
-                          mainTitle: 'Videos',
+                          mainTitle: 'Lessons',
                           userVideosWatched: userVideosWatched,
                           stats: userStats
     });
