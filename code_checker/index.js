@@ -33,7 +33,6 @@ CodeChecker.prototype = {
    * @param obj An object with a code property which contains a string of the code
    */
   addSampleToBlacklist: function(obj, callback) {
-    console.log('add to blacklist');
     obj.addToWhitelist = false;
     obj.addToBlacklist = true;
     obj.testAgainstLists = false,
@@ -63,6 +62,8 @@ CodeChecker.prototype = {
       Function: this._parseStatementWithFollowup.bind(this),
       IfStatement: this._parseStatementWithFollowup.bind(this),
       ForStatement: this._parseStatementWithFollowup.bind(this),
+      ForInStatement: this._parseStatementWithFollowup.bind(this),
+      DoWhileStatement: this._parseStatementWithFollowup.bind(this),
       WhileStatement: this._parseStatementWithFollowup.bind(this),
       VariableDeclaration: this._parseSimpleStatement.bind(this),
       AssignmentExpression: this._parseSimpleStatement.bind(this),

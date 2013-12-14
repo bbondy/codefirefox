@@ -260,6 +260,12 @@ exports.checkCode = function(req, res) {
     });
   }).then(function(res) {
     return addToBlacklist({
+      code: "do { continue;  } while (x);",
+      title: "Don't use a continue inside a do..while loop",
+      slug: "no-continue-in-do-while",
+    });
+  }).then(function(res) {
+    return addToBlacklist({
       code: "for (x = 0; x < 10; x++) continue;",
       title: "Don't use a continue statement inside a for loop",
       slug: "no-continue-in-for",
@@ -272,9 +278,9 @@ exports.checkCode = function(req, res) {
     });
   }).then(function(res) {
     return addToWhitelist({
-      code: "for (x = 0; x < 10; x++) { x++ }",
-      title: "Increment or decrement a variable by 1 inside the body of a for loop",
-      slug: "increment-in-loop",
+      code: "for (x in y) { x++ }",
+      title: "Use the increment or decrement operator on a variable in the body of a for..in loop",
+      slug: "increment-in-for-in-loop",
     });
   }).then(function(res) {
     return addToWhitelist({
