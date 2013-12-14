@@ -1,7 +1,7 @@
 "use strict";
 
-var acorn = require('acorn');
-//  prettyjson = require('prettyjson');
+var acorn = require('acorn'),
+  prettyjson = require('prettyjson');
 
 acorn.walk = require("../node_modules/acorn/util/walk.js");
 
@@ -33,6 +33,7 @@ CodeChecker.prototype = {
    * @param obj An object with a code property which contains a string of the code
    */
   addSampleToBlacklist: function(obj, callback) {
+    console.log('add to blacklist');
     obj.addToWhitelist = false;
     obj.addToBlacklist = true;
     obj.testAgainstLists = false,
@@ -63,6 +64,9 @@ CodeChecker.prototype = {
       ForStatement: this._parseStatementWithFollowup.bind(this),
       VariableDeclaration: this._parseSimpleStatement.bind(this),
       AssignmentExpression: this._parseSimpleStatement.bind(this),
+      UpdateExpression: this._parseSimpleStatement.bind(this),
+      BreakStatement: this._parseSimpleStatement.bind(this),
+      ContinueStatement: this._parseSimpleStatement.bind(this),
       EmptyStatement: this._parseSimpleStatement.bind(this)
     };
 

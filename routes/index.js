@@ -253,10 +253,28 @@ exports.checkCode = function(req, res) {
     title: "Do not have any empty statements (Example: Extra semicolon)",
     slug: "no-empty-statements",
   }).then(function(res) {
+    return addToBlacklist({
+      code: "for (x = 0; x < 10; x++) break;",
+      title: "Don't use a break statement inside a for loop",
+      slug: "no-break",
+    });
+  }).then(function(res) {
+    return addToBlacklist({
+      code: "for (x = 0; x < 10; x++) continue;",
+      title: "Don't use a continue statement inside a for loop",
+      slug: "no-continue",
+    });
+  }).then(function(res) {
     return addToWhitelist({
       code: "var x = 4;",
       title: "Create a variable declaration",
       slug: "make-assignment",
+    });
+  }).then(function(res) {
+    return addToWhitelist({
+      code: "for (x = 0; x < 10; x++) { x++ }",
+      title: "Increment or decrement a variable by 1 inside the body of a for loop",
+      slug: "increment-in-loop",
     });
   }).then(function(res) {
     return addToWhitelist({
