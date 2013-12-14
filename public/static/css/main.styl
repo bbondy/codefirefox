@@ -76,8 +76,8 @@ a
 .persona-button span:hover
   color #fff
 
-#body_index #navbar-videos,
-#body_video #navbar-videos,
+#body_index #navbar-lessons,
+#body_video #navbar-lessons,
 #body_cheatsheet #navbar-cheatsheet,
 #body_about #navbar-about,
 #body_stats #navbar-stats
@@ -207,6 +207,15 @@ ul.videos a span
 ul.videos span.watched
   background url("/static/img/video-completed.png") no-repeat top left
   color #000
+
+ul.videos li.exercise span
+  background url("/static/img/exercise-unavailable.png") no-repeat top left
+
+ul.videos li.exercise a span
+  background url("/static/img/video-available.png") no-repeat top left
+
+ul.videos li.exercise span.watched
+  background url("/static/img/video-completed.png") no-repeat top left
 
 #footer
   color #fff

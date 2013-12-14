@@ -17,15 +17,19 @@ block mainContent
     //p= 'Last logged in IP: ' + info.lastLoginIP
 
   .card-container
-    h1 Videos Watched
+    h1 Lessons Completed
     if !videosWatched
       p none
     else
       ul.videos
         each video in videosWatched
-          li
-            a(href= '/video/' + video.slug, name= video.slug)
-              span.watched= video.title
+          if !video.type || video.type == 'video'
+            li.video
+              a(href= '/video/' + video.slug, name= video.slug)
+                span.watched= video.title
+          else
+            li.exercise
+              span= video.title
 
     if session.isAdmin
       p

@@ -7,14 +7,11 @@ block header
         li
           #watched-legend-item.legend-item
           span= userVideosWatched.length
-          |  Watched
+          |  Completed
       li
         #unwatched-legend-item.legend-item
         span= stats.available - userVideosWatched.length
-        if session.email
-          |  Unwatched
-        else
-          |  Available
+        |  Available
       li
         #unavailable-legend-item.legend-item
         span= stats.unavailable
@@ -27,7 +24,8 @@ block mainContent
       h1= category.title
       ul.videos
         each video in category.videos
-            li
+          if video.type == 'video'
+            li.video
               if video.youtubeid
                 a(name= category.slug + '/' + video.slug)
                 a(href= '/video/' + video.slug, name= video.slug)
@@ -36,5 +34,9 @@ block mainContent
                   else
                     span= video.title
               else
-                  span= video.title
+                span= video.title
+          else
+            li.exercise
+              span= video.title
+
 
