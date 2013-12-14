@@ -12,7 +12,7 @@ var db = require('../db'),
 var dbGet = Promise.denodeify(db.get).bind(db);
 var dbGetAll = Promise.denodeify(db.getAll).bind(db);
 var dbGetSetElements = Promise.denodeify(db.getSetElements).bind(db);
-var emptyPromise = function(callback) { callback() };
+var emptyPromise = Promise.denodeify(function(callback) { callback(); });
 
 /**
  * GET /cheatsheet
@@ -135,12 +135,12 @@ exports.delStats = function(req, res, next) {
  * will store it as a key with null instead of the username.
  */ 
 exports.watchedVideo = function(req, res, next) {
-  if (!req.params.category || !req.params.video) {
-    next(new Error('Invalid URL format, should be: category/video'));
+  if (!req.params.video) {
+    next(new Error('Invalid URL format, should be: :category/:video or video/:video'));
     return;
   }
 
-  db.get("video:" + req.params.category + ":" + req.params.video, function(err, video) {
+  db.get("video:" + req.params.video, function(err, video) {
     if (err) {
       res.json({ status: "failure" });
       return;
@@ -156,12 +156,12 @@ exports.watchedVideo = function(req, res, next) {
  * Renders the specified video page
  */
 exports.video = function(req, res, next) {
-  if (!req.params.category || !req.params.video) {
-    next(new Error('Invalid URL format, should be: category/video'));
+  if (!req.params.video) {
+    next(new Error('Invalid URL format, should be: :category/:video or video/:video'));
     return;
   }
 
-  db.get("video:" + req.params.category + ":" + req.params.video, function(err, video) {
+  db.get("video:" + req.params.video, function(err, video) {
     if (err) {
       res.render('notFound', { pageTitle: 'Video',
                                bodyID: 'body_not_found',
@@ -175,7 +175,6 @@ exports.video = function(req, res, next) {
                           video: video,
                           bodyID: 'body_video',
                           mainTitle: 'Video',
-                          categorySlug: req.params.category,
                           videoSlug: req.params.video,
                         });
   });
@@ -187,13 +186,13 @@ exports.video = function(req, res, next) {
  * Renders the main page which shows a list of videos
  */
 exports.videos = function(req, res) {
-  var userStats, userVideosWatched = [];
-  var getVideosWatchedIfLoggedIn = emptyPromise;
+  var userStats, userVideosWatched;
+  var getVideosWatchedIfLoggedIn = emptyPromise();
   if (res.locals.session.email)
     getVideosWatchedIfLoggedIn  = dbGetSetElements('user:' + res.locals.session.email + ':videos_watched');
 
   getVideosWatchedIfLoggedIn.then(function(videosWatched) {
-    userVideosWatched = videosWatched;
+    userVideosWatched = videosWatched || [];
     return dbGet("stats:video");
   }).then(function(stats) {
     userStats = JSON.parse(stats);

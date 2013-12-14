@@ -120,16 +120,18 @@ initConfigData().done(function(config) {
 
   // GET
   app.get('/', routes.videos);
+  app.get('/videos', routes.videos);
+  app.get('/video/:video', routes.video);
   app.get('/:category/:video', routes.video);
   app.get('/cheatsheet', routes.cheatsheet);
   app.get('/initVideoData', routes.initVideoData);
-  app.get('/videos', routes.videos);
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);
   app.get('/exercise', routes.exercise);
 
   // POST
+  app.post('/video/:video', routes.watchedVideo);
   app.post('/:category/:video', routes.watchedVideo);
   app.post('/check-code', routes.checkCode);
 

@@ -29,7 +29,8 @@ block mainContent
         each video in category.videos
             li
               if video.youtubeid
-                a(href= '/' + category.slug + '/' + video.slug, name= category.slug + '/' + video.slug)
+                a(name= category.slug + '/' + video.slug)
+                a(href= '/video/' + video.slug, name= video.slug)
                   if video.watched
                     span.watched= video.title
                   else

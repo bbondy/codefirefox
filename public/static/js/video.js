@@ -30,7 +30,7 @@ function onPlayerStateChange(event) {
   if (event.data === 0) {
     console.log("Reporting video watched");
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/' + categorySlug + '/' + videoSlug, true);
+    xhr.open("POST", '/video/' + videoSlug, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.addEventListener("loadend", function(e) {
       var data = JSON.parse(this.responseText);
@@ -40,7 +40,6 @@ function onPlayerStateChange(event) {
     }, false);
 
     xhr.send(JSON.stringify({
-      categorySlug: categorySlug, 
       videoSlug: videoSlug, 
     }));
   }

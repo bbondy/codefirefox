@@ -24,7 +24,8 @@ block mainContent
       ul.videos
         each video in videosWatched
           li
-            span.watched= video.title
+            a(href= '/video/' + video.slug, name= video.slug)
+              span.watched= video.title
 
     if session.isAdmin
       p

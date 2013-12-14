@@ -143,8 +143,12 @@ exports.initVideoData = function(filePath) {
       exports.set('category:' + category.slug, category);
       console.log('DB: ' + JSON.stringify(category));
       category.videos.forEach(function(video) {
-        console.log('DB: populating video key: ' + 'video:' + category.slug + ':' + video.slug);
-        exports.set('video:' + category.slug + ':' + video.slug, video);
+        console.log('DB: populating video key: ' + 'video:' + video.slug);
+        video.categorySlug = category.slug;
+        video.categoryTitle = category.title;
+        // We don't need the category slug in the redis name because
+        // video slugs are now unique, guaranteed by the test framework.
+        exports.set('video:' + video.slug, video);
         video.youtubeid ? availableVideos++ : unavailableVideos++;
       });
     });
