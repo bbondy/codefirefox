@@ -1,62 +1,23 @@
+"use strict";
+
 var db = require('../db'),
-  querystring = require("querystring")
+  querystring = require("querystring"),
   acorn = require('acorn'),
   prettyjson = require('prettyjson'),
-  promise = require('promise'),
-  CodeChecker = require('../code_checker');
+  Promise = require('promise'),
+  CodeChecker = require('../code_checker'),
+  helpers = require('../helpers');
 
-function formatTimeSpan(firstDate, secondDate, includeExcessiveDetail) {
-  const oneSecond = 1000;
-  const oneMinute = 60*oneSecond;
-  const oneHour = 60*oneMinute;
-  const oneDay = 24*oneHour;
+// Promises to help simplify async callback flow
+var dbGet = Promise.denodeify(db.get).bind(db);
+var dbGetAll = Promise.denodeify(db.getAll).bind(db);
+var dbGetSetElements = Promise.denodeify(db.getSetElements).bind(db);
+var emptyPromise = function(callback) { callback() };
 
-  // Calculate the time diffs
-  var diffTime = secondDate.getTime() - firstDate.getTime();
-  var diffDays = (diffTime / oneDay) | 0;
-  var diffHours = (diffTime % oneDay / oneHour) | 0;
-  var diffMinutes = (diffTime % oneDay % oneHour / oneMinute) | 0;
-  var diffSeconds = (diffTime % oneDay % oneHour % oneMinute / oneSecond) | 0;
-
-  // Reduce the time diffs and their suffixes to a string
-  var suffixes = ['day', 'hour', 'minute', 'second']
-  var timeDiffs = [diffDays, diffHours, diffMinutes, diffSeconds];
-  
-  if (!includeExcessiveDetail) {
-    // If we have days or hours, don't show seconds
-    if (diffDays != 0 || diffHours != 0) {
-      suffixes.pop();
-      timeDiffs.pop();
-    }
-    // If we have one day or more then don't show minutes
-    if (diffDays != 0) {
-      suffixes.pop();
-      timeDiffs.pop();
-    }
-  }
-
-  var i = 0;
-  var str = timeDiffs.reduce(function (e1, e2) {
-    var str = e1;
-    
-    var suffix = suffixes[i++];
-    // If the other element is non 0, then include it in the span string
-    if (e2 !== 0) {
-      if (str)
-        str += ', '; // coma separate if needed
-      str += e2 + ' ' + suffix;
-      if (e2 != 1)
-        str += 's'; // append s to the suffix
-    }
-
-    return str;
-  }, '');
-
-  if (!str)
-    return  '0 ' + suffixes[suffixes.length - 1] + 's'
-  return str;
-}
-
+/**
+ * GET /cheatsheet
+ * Renders the cheat sheet page
+*/
 exports.cheatsheet = function(req, res, next) {
   res.render('cheatsheet', { pageTitle: 'Cheatsheet',
                              bodyID: 'body_cheatsheet',
@@ -64,6 +25,11 @@ exports.cheatsheet = function(req, res, next) {
                            });
 };
 
+/**
+ * GET /initVideoData
+ * Reads data from videos.json and loads it into redis.
+ * Renders the initVideoData page
+*/
 exports.initVideoData = function(req, res) {
   db.initVideoData(__dirname + '/../data/videos.json');
   res.render('simpleStatus', { pageTitle: 'Data initialized',
@@ -73,6 +39,13 @@ exports.initVideoData = function(req, res) {
                              });
 };
 
+/**
+ * GET /admin
+ * Renders the adminstration page
+ * You don't need to be logged in to view this page, mainly because
+ * there is nothing scary you can do here yet. It'll probably be locked down
+ * at some point later on though.
+ */
 exports.admin = function(req, res) {
   res.render('admin', { pageTitle: 'Administration',
                         bodyID: 'body_admin',
@@ -80,6 +53,10 @@ exports.admin = function(req, res) {
                       });
 };
 
+/**
+ * GET /about
+ * Renders the about page
+ */
 exports.about = function(req, res) {
   res.render('about', { pageTitle: 'About',
                         bodyID: 'body_about',
@@ -87,6 +64,12 @@ exports.about = function(req, res) {
                       });
 };
 
+/**
+ * GET /stats
+ * Renders the statistics page.
+ * This page is only available if you are lgoged in.
+ * If you are an administrator then this page will display exra information.
+ */
 exports.stats = function(req, res, next) {
   if (!res.locals.session.email) {
     res.render('notFound', { pageTitle: 'Not authenticated',
@@ -96,32 +79,38 @@ exports.stats = function(req, res, next) {
     return;
   } 
 
-  db.get('user:' + res.locals.session.email + ':info', function (err0, info) {
-    db.getSetElements('user:' + res.locals.session.email + ':videos_watched', function (err1, videosWatched) {
-      db.get('user:' + res.locals.session.email + ':login_count', function (err2, loginCount) {
-        if (err0 && err1 && err2) {
-          res.render('notFound', { pageTitle: 'No data found',
-                                   bodyID: 'body_stats',
-                                   mainTitle: err1
-                                 });
-          return;
-        }
-
-        info.dateJoined = formatTimeSpan(new Date(info.dateJoined), new Date());
-        info.dateLastLogin = formatTimeSpan(new Date(info.dateLastLogin), new Date());
-        var serverRunningSince = formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
-        res.render('stats', { videosWatched: videosWatched,
-                              serverRunningSince: serverRunningSince,
-                              loginCount: loginCount || 0,
-                              info: info,
-                              pageTitle: 'Stats',
-                              bodyID: 'body_stats',
-                              mainTitle: 'Stats'});
-      });
-    });
+  var info, videosWatched;
+  dbGet('user:' + res.locals.session.email + ':info')
+  .then(function(info1) {
+    info = info1;
+    return dbGetSetElements('user:' + res.locals.session.email + ':videos_watched');
+  }).then(function(videosWatched1) {
+    videosWatched = videosWatched1;
+    return dbGet('user:' + res.locals.session.email + ':login_count');
+  }).done(function onSuccess(loginCount) {
+    info.dateJoined = helpers.formatTimeSpan(new Date(info.dateJoined), new Date());
+    info.dateLastLogin = helpers.formatTimeSpan(new Date(info.dateLastLogin), new Date());
+    var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
+    res.render('stats', { videosWatched: videosWatched,
+                          serverRunningSince: serverRunningSince,
+                          loginCount: loginCount || 0,
+                          info: info,
+                          pageTitle: 'Stats',
+                          bodyID: 'body_stats',
+                          mainTitle: 'Stats'});
+  }, function onFailure() {
+    res.render('notFound', { pageTitle: 'No data found',
+                             bodyID: 'body_stats',
+                             mainTitle: err1
+                           });
   });
 };
 
+/**
+ * DELETE /stats
+ * Deletes all user stats.
+ * This oepration will only succeed if you are logged in, and you are an admin.
+ */ 
 exports.delStats = function(req, res, next) {
   if (!res.locals.session.email) {
     res.json({ status: "failure",
@@ -138,6 +127,13 @@ exports.delStats = function(req, res, next) {
   });
 };
 
+/**
+ * POST /:category/:video
+ * Sets per logged in user stats
+ *
+ * TODO: Should return an error if the user is not logged in, currently
+ * will store it as a key with null instead of the username.
+ */ 
 exports.watchedVideo = function(req, res, next) {
   if (!req.params.category || !req.params.video) {
     next(new Error('Invalid URL format, should be: category/video'));
@@ -155,6 +151,10 @@ exports.watchedVideo = function(req, res, next) {
   });
 };
 
+/**
+ * GET /:category/:video
+ * Renders the specified video page
+ */
 exports.video = function(req, res, next) {
   if (!req.params.category || !req.params.video) {
     next(new Error('Invalid URL format, should be: category/video'));
@@ -181,72 +181,54 @@ exports.video = function(req, res, next) {
   });
 };
 
+/**
+ * GET /
+ * GET /videos
+ * Renders the main page which shows a list of videos
+ */
 exports.videos = function(req, res) {
+  var userStats, userVideosWatched = [];
+  var getVideosWatchedIfLoggedIn = emptyPromise;
+  if (res.locals.session.email)
+    getVideosWatchedIfLoggedIn  = dbGetSetElements('user:' + res.locals.session.email + ':videos_watched');
 
-  var getUserStats = function() {
-    if (!res.locals.session.email) {
-      getVideoStats();
-    } else {
-      db.getSetElements('user:' + res.locals.session.email + ':videos_watched', function (err1, videosWatched) {
-        userVideosWatched = videosWatched;
-        getVideoStats();
+  getVideosWatchedIfLoggedIn.then(function(videosWatched) {
+    userVideosWatched = videosWatched;
+    return dbGet("stats:video");
+  }).then(function(stats) {
+    userStats = JSON.parse(stats);
+    return dbGetAll("category");
+  }).done(function onSuccess(categories) {
+    // If the user is logged in add a watched attribute to each video
+    if (res.locals.session.email) {
+      var slugsWatched = userVideosWatched.map(function(e) {
+        return e.slug;
+      });
+      categories.forEach(function(c) {
+        c.videos.forEach(function(v) {
+          v.watched = slugsWatched.indexOf(v.slug) != -1;
+        });
       });
     }
-  };
 
-  var getVideoStats = function() {
-    db.get("stats:video", function(err, result) {
-      if (err) {
-        res.render('notFound', { pageTitle: 'Video',
-                                 bodyID: 'body_not_found',
-                                 mainTitle: 'Video not found'
-                               });
-        return;
-      }
-      stats = JSON.parse(result);
-      getCategories();
+    categories.sort(db.sortByPriority);
+    res.render('index', { pageTitle: 'Videos',
+                          categories: categories, bodyID: 'body_index',
+                          mainTitle: 'Videos',
+                          userVideosWatched: userVideosWatched,
+                          stats: userStats
     });
-  };
-
-  var getCategories = function() {
-    db.getAll("category", function(err, categories) {
-      if (err) {
-        res.render('notFound', { pageTitle: 'Videos',
-                                 bodyID: 'body_not_found',
-                                 mainTitle: 'Videos'
-                               });
-        return;
-      }
-
-      // If the user is logged in add a watched attribute to each video
-      if (res.locals.session.email) {
-        var slugsWatched = userVideosWatched.map(function(e) {
-          return e.slug;
-        });
-        categories.forEach(function(c) {
-          c.videos.forEach(function(v) {
-            v.watched = slugsWatched.indexOf(v.slug) != -1;
-          });
-        });
-      }
-
-      categories.sort(db.sortByPriority);
-      res.render('index', { pageTitle: 'Videos',
-                            categories: categories, bodyID: 'body_index',
-                            mainTitle: 'Videos',
-                            userVideosWatched: userVideosWatched,
-                            stats: stats
-      });
-    });
-  };
-
-  var stats, userVideosWatched = [];
-  getUserStats();
+  }, function onFailure(res) {
+    res.render('notFound', { pageTitle: 'Video',
+                             bodyID: 'body_not_found',
+                             mainTitle: 'Video not found'
+                           });
+  });
 };
 
 /**
  * GET /exercise
- * Renders the exercise page
+ * Renders the exercise demo page
  */ 
 exports.exercise = function(req, res) {
   res.render('exercise', { pageTitle: 'Exercise',
@@ -261,59 +243,42 @@ exports.exercise = function(req, res) {
 */
 exports.checkCode = function(req, res) {
   console.log('POST /check-code');
-  try {
-    var parseCode = function(whitelistState) {
-      whitelist = whitelistState.self.whitelist || '';
-      console.log('+++------' + JSON.stringify(whitelistState.self.whitelist));
-      console.log(prettyjson.render(whitelistState.self.whitelist));
-      checker.parseIt(req.body.code, function(state) {
+  var checker = new CodeChecker();
+  var parseIt = Promise.denodeify(checker.parseIt).bind(checker);
+  var addToWhitelist = Promise.denodeify(checker.addSampleToWhitelist).bind(checker);
+  var addToBlacklist = Promise.denodeify(checker.addSampleToBlacklist).bind(checker);
+  var whitelist, blacklist;
 
-        res.json({ status: "okay",
-                   whitelist: whitelist,
-                   blacklist: blacklist
-                 });
-      });
-    };
-
-    var addToWhitelist2 = function(blacklistState) {
-      blacklist = blacklistState.self.blacklist || '';
-      console.log('------' + prettyjson.render(blacklist));
-      checker.addSampleToWhitelist({
-        code: "if (1 === 1) { x = 3; }",
-        title: "Assign a variable to a value inside an if statement (Not a declaration)",
-        slug: "variable-in-if",
-        callback: parseCode
-      });
-    };
-
-    var addToWhitelist = function(whitelistState1) {
-      
-      checker.addSampleToWhitelist({
-        code: "var x = 4;",
-        title: "Create a variable declaration",
-        slug: "make-assignment",
-        callback: addToWhitelist2
-      });
-    };
-
-    var addToBlacklist = function() {
-      checker.addSampleToBlacklist({
-        code: ";",
-        title: "Do not have any empty statements (Example: Extra semicolon)",
-        slug: "no-empty-statements",
-        callback: addToWhitelist 
-      });
-    };
-
-    var whitelist, blacklist;
-    var checker = new CodeChecker();
-    addToBlacklist();
-
-  } catch(e) {
-    console.log('exception thrown: ' + e);
-    res.json({ status: "failure",
-               reason: e
-             });
-  }
-
+  addToBlacklist({
+    code: ";",
+    title: "Do not have any empty statements (Example: Extra semicolon)",
+    slug: "no-empty-statements",
+  }).then(function(res) {
+    return addToWhitelist({
+      code: "var x = 4;",
+      title: "Create a variable declaration",
+      slug: "make-assignment",
+    });
+  }).then(function(res) {
+    return addToWhitelist({
+      code: "if (1 === 1) { x = 3; }",
+      title: "Assign a variable to a value inside an if statement (Not a declaration)",
+      slug: "variable-in-if",
+    });
+  }).then(function(res) {
+    whitelist = res.whitelist; 
+    blacklist = res.blacklist; 
+    return parseIt(req.body.code);
+  }).done(function onSuccess() {
+            res.json({ status: "okay",
+                       whitelist: whitelist,
+                       blacklist: blacklist
+                     });
+          },
+          function onRejected(e) {
+            res.json({ status: "failure",
+                       reason: e
+                     });
+          }
+  );
 };

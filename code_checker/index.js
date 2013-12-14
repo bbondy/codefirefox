@@ -1,25 +1,14 @@
-var acorn = require('acorn'),
-  prettyjson = require('prettyjson');
+"use strict";
+
+var acorn = require('acorn');
+//  prettyjson = require('prettyjson');
 
 acorn.walk = require("../node_modules/acorn/util/walk.js");
 
 function CodeChecker() {
   this.whitelist = [];
   this.blacklist = [];
-  this.state = { self: this };
-  
-  // Setup callback functions used for parsing elements into a rough
-  // simplified model of what the program actually does.
-  this._callbackFunctions = {
-    Program: this._parseBlockStatement,
-    BlockStatement: this._parseBlockStatement,
-    IfStatement: this._parseStatementWithFollowup,
-    ForStatement: this._parseStatementWithFollowup,
-    VariableDeclaration: this._parseSimpleStatement,
-    AssignmentExpression: this._parseSimpleStatement,
-    EmptyStatement: this._parseSimpleStatement
-  };
-  //console.log(prettyjson.render(this.parsed));
+  this.state = { };  
 }
 
 CodeChecker.prototype = {
@@ -29,10 +18,11 @@ CodeChecker.prototype = {
    *
    * @param obj An object with a code property which contains a string of the code
    */
-  addSampleToWhitelist: function(obj) {
+  addSampleToWhitelist: function(obj, callback) {
     obj.addToWhitelist = true;
     obj.addToBlacklist = false;
     obj.testAgainstLists = false,
+    obj.callback = callback;
     this._startParsing(obj.code, obj);
   },
 
@@ -42,10 +32,11 @@ CodeChecker.prototype = {
    *
    * @param obj An object with a code property which contains a string of the code
    */
-  addSampleToBlacklist: function(obj) {
+  addSampleToBlacklist: function(obj, callback) {
     obj.addToWhitelist = false;
     obj.addToBlacklist = true;
     obj.testAgainstLists = false,
+    obj.callback = callback;
     this._startParsing(obj.code, obj);
   },
 
@@ -56,7 +47,6 @@ CodeChecker.prototype = {
    */
   _startParsing: function(source, extraState) {
     var codeTree = acorn.parse(source, {});
-    console.log('code Tree: ' + codeTree);
     this.state.context = '';
     
     // Copy in the extra state into the stae variable
@@ -64,6 +54,19 @@ CodeChecker.prototype = {
       this.state[prop] = extraState[prop];
     }
 
+    // Setup callback functions used for parsing elements into a rough
+    // simplified model of what the program actually does.
+    this._callbackFunctions = {
+      Program: this._parseBlockStatement.bind(this),
+      BlockStatement: this._parseBlockStatement.bind(this),
+      IfStatement: this._parseStatementWithFollowup.bind(this),
+      ForStatement: this._parseStatementWithFollowup.bind(this),
+      VariableDeclaration: this._parseSimpleStatement.bind(this),
+      AssignmentExpression: this._parseSimpleStatement.bind(this),
+      EmptyStatement: this._parseSimpleStatement.bind(this)
+    };
+
+    //console.log(prettyjson.render(this.parsed));
     // Start the recursive walk
     acorn.walk.recursive(codeTree, this.state, this._callbackFunctions, null);
   },
@@ -86,21 +89,16 @@ CodeChecker.prototype = {
    */
   _testAgainst: function(codeToTest, state) {
     if (!state.testAgainstLists) {
-      console.log('skipping test against lists');
       return;
     }
 
-    console.log('Processing test against lists');
     // Go through both the whitelist and the blacklist
-    [state.self.whitelist, state.self.blacklist].forEach(function(arr) {
-      console.log('Checking for matches!!');
+    [this.whitelist, this.blacklist].forEach(function(arr) {
 
       // Go through each element of the list and mark it as hit if a match
       // is found.
       arr.forEach(function(e) {
-        console.log("Checking to see if ------" + e.code + ' === ' + codeToTest + '-----...');
         if (e.code == codeToTest) {
-          console.log('match was found!');
           e.hit = true;
         }
       });
@@ -115,14 +113,14 @@ CodeChecker.prototype = {
     var childNode = node.consequent || node.body;
     if (childNode.type == 'BlockStatement') {
       childNode.type = node.type;
-      this.BlockStatement(childNode, state, c);
+      this._callbackFunctions.BlockStatement(childNode, state, c);
     // Otherwise process the block directly
     } else {
       var blockNode = {
         body: [childNode],
         type: node.type
       };
-      this.BlockStatement(blockNode, state, c);
+      this._callbackFunctions.BlockStatement(blockNode, state, c);
     }
   },
 
@@ -130,7 +128,6 @@ CodeChecker.prototype = {
    * Parses a node that contains multiple other nodes, example: Program, BlockStatement
    */
   _parseBlockStatement: function (node, state, c) {
-    console.log('block statement');
     var baseContext = node.type;
     var newContext = [];
 
@@ -144,22 +141,21 @@ CodeChecker.prototype = {
         var newContextStr = node.type + '\n' + childContext;
         newContextStr = newContextStr.replace(/\n/g, '\n  ');
         newContext.push(newContextStr);
-        state.self._testAgainst(newContextStr, state);
-      });
-    });
+        this._testAgainst(newContextStr, state);
+      }, this);
+    }, this);
 
     // Check if we need to add the modelt to the whitelist
     // or black list if we are parsing the Program node.
     if (node.type == 'Program') {
       if (state.addToWhitelist) {
-        state.self.whitelist.push( { code: allSource,
+        this.whitelist.push( { code: allSource,
                                      hit: false,
                                      title: state.title,
                                      slug: state.slug
                                    });
       } else if (state.addToBlacklist) {
-        console.log('====adding to black list');
-        state.self.blacklist.push( { code: allSource,
+        this.blacklist.push( { code: allSource,
                                      hit: false,
                                      title: state.title,
                                      slug: state.slug
@@ -167,7 +163,10 @@ CodeChecker.prototype = {
       }
 
       if (state.callback) {
-        state.callback(state);
+        state.callback(null, { state: state,
+                               whitelist: this.whitelist,
+                               blacklist: this.blacklist
+                              });
       }
     }
     state.context = newContext;
@@ -178,7 +177,7 @@ CodeChecker.prototype = {
    */
   _parseSimpleStatement: function(node, state, c) {
     state.context = [ node.type ];
-    state.self._testAgainst(node.type, state);
+    this._testAgainst(node.type, state);
   },
 
   /**
