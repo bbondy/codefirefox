@@ -17,6 +17,7 @@ describe('files', function() {
            assert.ok(config.admins);
            assert.ok(config.host);
            assert.ok(config.port);
+           assert.ok(config.internalPort);
            assert.ok(config.sessionSecret);
            assert.ok(config.redisHost);
            assert.ok(config.redisPort);

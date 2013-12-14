@@ -2,6 +2,7 @@
   "admins": ["email1@gmail.com", "email2@gmail.com"],
   "host": "localhost",
   "port": 22935,
+  "internalPort": 22935,
   "sessionSecret": "<put-something-here>",
   "redisHost": "localhost",
   "redisPort": 10226
