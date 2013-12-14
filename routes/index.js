@@ -254,15 +254,15 @@ exports.checkCode = function(req, res) {
     slug: "no-empty-statements",
   }).then(function(res) {
     return addToBlacklist({
-      code: "for (x = 0; x < 10; x++) break;",
-      title: "Don't use a break statement inside a for loop",
-      slug: "no-break",
+      code: "while (x) break;",
+      title: "Don't use a break statement inside a while loop",
+      slug: "no-break-in-while",
     });
   }).then(function(res) {
     return addToBlacklist({
       code: "for (x = 0; x < 10; x++) continue;",
       title: "Don't use a continue statement inside a for loop",
-      slug: "no-continue",
+      slug: "no-continue-in-for",
     });
   }).then(function(res) {
     return addToWhitelist({
@@ -281,6 +281,12 @@ exports.checkCode = function(req, res) {
       code: "if (1 === 1) { x = 3; }",
       title: "Assign a variable to a value inside an if statement (Not a declaration)",
       slug: "variable-in-if",
+    });
+  }).then(function(res) {
+    return addToWhitelist({
+      code: "function fn() { return 3; }",
+      title: "Create a function with an explicit return in it",
+      slug: "function-with-return",
     });
   }).then(function(res) {
     whitelist = res.whitelist; 

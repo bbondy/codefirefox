@@ -60,13 +60,16 @@ CodeChecker.prototype = {
     this._callbackFunctions = {
       Program: this._parseBlockStatement.bind(this),
       BlockStatement: this._parseBlockStatement.bind(this),
+      Function: this._parseStatementWithFollowup.bind(this),
       IfStatement: this._parseStatementWithFollowup.bind(this),
       ForStatement: this._parseStatementWithFollowup.bind(this),
+      WhileStatement: this._parseStatementWithFollowup.bind(this),
       VariableDeclaration: this._parseSimpleStatement.bind(this),
       AssignmentExpression: this._parseSimpleStatement.bind(this),
       UpdateExpression: this._parseSimpleStatement.bind(this),
       BreakStatement: this._parseSimpleStatement.bind(this),
       ContinueStatement: this._parseSimpleStatement.bind(this),
+      ReturnStatement: this._parseSimpleStatement.bind(this),
       EmptyStatement: this._parseSimpleStatement.bind(this)
     };
 
