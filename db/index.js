@@ -1,4 +1,6 @@
-const REDIS_PORT = 10226;
+"use strict";
+
+var REDIS_PORT = 10226;
 
 var fs = require('fs'),
   redis = require('redis'),

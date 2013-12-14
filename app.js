@@ -1,25 +1,24 @@
+"use strict";
+
 var express = require('express'),
   async = require("async"),
   routes = require('./routes'),
   stylus = require('stylus'),
   db = require('./db'),
   code_checker = require('./code_checker'),
+  Promise = require('promise'),
   RedisStore = require('connect-redis')(express);
 
-// Configuration
-const PORT = 22935;
-const HOUR = 3600000;
-const DAY = 24 * HOUR;
-
-var app = express();
+var HOUR = 3600000;
+var DAY = 24 * HOUR;
 var serverRunningSince = new Date();
+var app = express();
 
-var runSite = function(err, config) {
-  if (err) {
-    console.log('Error starting server, aborting');
-    process.exit();
-    return;
-  }
+// Setup some helper promises
+var initConfigData = Promise.denodeify(db.initConfigData).bind(db);
+
+
+initConfigData().done(function(config) {
 
   console.log('redis host: ' + config.redisHost);
   console.log('redis port: ' + config.redisPort);
@@ -154,14 +153,12 @@ var runSite = function(err, config) {
     });
   });
 
-  app.listen(PORT, function() {
-    console.log("Starting server on port %d in %s mode", PORT, app.settings.env);
+  app.listen(config.port, function() {
+    console.log("Starting server on port %d in %s mode", config.port, app.settings.env);
   });
-};
+}, function onFailure() {
+  console.log('Error starting server, aborting');
+  process.exit();
+});
 
-var loadConfig = function() {
-  db.initConfigData(runSite);
-}
 
-
-loadConfig();
