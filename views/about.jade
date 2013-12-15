@@ -3,15 +3,25 @@ extends layout
 block mainContent
   .card-container
     h1 Becoming a Mozillian
-    p Becoming a Mozilla contributor can be intimidating.  There's a lot of information to consume, and that information can be dispersed in a variety of different places.  This site aim to outline the process of becoming a Mozilla contributor, from start to finish, with gentle, short, consumable 2-10 minute videos.
+    p Becoming a Mozilla contributor can be intimidating.  There's a lot of information to consume, and that information can be dispersed in a variety of different places.  This site aim to outline the process of becoming a Mozilla contributor, from start to finish, with gentle, short, consumable 2-10 minute videos.  Exercises are also used to solidify learnt concepts.
 
   .card-container
     h1 Site Direction
     p This site first aims to focus on Desktop Firefox videos from the ground up.  I'd love to also do videos on Firefox for Android, Firefox for Windows 8 style UI, and for Firefox OS.
 
   .card-container
-    h1 Content Creation
+    h1 Video Creation
     p The content on this site is produced on OS X with ScreenFlow. The videos are recorded in a local VMWare Windows 8 guest OS.  The audio is recorded with a Blue Yeti microphone.
+
+  .card-container
+    h1 Exercise Framework
+    p The exercise framework is created by parsing the JavaScript source using acorn.js.  This allows for advanced feedback based on the program structure. Other exercise types are still in progress.  The Ace editor is used for syntax highlighting and basic error detection.
+    
+  .card-container
+    h1 Contributors
+    :markdown
+      I'd like to give a special thanks to [Kamil Jozwiak](http://www.kamiljozwiak.com) ([@KamilJozwiak](http://twitter.com/KamilJozwiak)) for helping in various ways with this site. 
+      I'd also like to thank [these contributors](https://github.com/bbondy/codefirefox/graphs/contributors).
 
   .card-container
     h1 Personal Information
