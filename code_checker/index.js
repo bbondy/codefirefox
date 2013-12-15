@@ -1,55 +1,67 @@
 "use strict";
 
 var acorn = require('acorn'),
+  Promise = require('promise'), 
   prettyjson = require('prettyjson');
 
 acorn.walk = require("../node_modules/acorn/util/walk.js");
 
 function CodeChecker() {
-  this.whitelist = [];
-  this.blacklist = [];
+  this.assertions = [];
   this.state = { };  
+  this.parseItPromise = Promise.denodeify(this.parseIt).bind(this);
+  this.addAssertionPromise = Promise.denodeify(this.addAssertion).bind(this);
+  this.addAssertionsPromise = Promise.denodeify(this.addAssertions).bind(this);
 }
 
 CodeChecker.prototype = {
+
   /**
-   * Starts a parse of the template code and adds it to the whitelist
-   * Note: Even if the user's source code changes, this is only parsed once.
+   * Recursively adds each assertion, and calls the callback when
+   * all assertions are parsed and added.
    *
-   * @param obj An object with a code property which contains a string of the code
+   * @param codeArray An array of objects each containing at least a code property
+   * @param obj An object with extra properties to pass along
+   * @callback A function to call when all assertions are added
    */
-  addSampleToWhitelist: function(obj, callback) {
-    obj.addToWhitelist = true;
-    obj.addToBlacklist = false;
-    obj.testAgainstLists = false,
-    obj.callback = callback;
-    this._startParsing(obj.code, obj);
+  addAssertions: function addAssertions(codeArray, callback) {
+    if (codeArray.length == 0) {
+      callback();
+      return;
+    }
+    var assertionObj = codeArray.pop();
+    var self = this;
+
+    self.addAssertion(assertionObj.code, assertionObj, function() {
+      self.addAssertions(codeArray, callback);
+    });
   },
 
   /**
-   * Starts a parse of the template code and adds it to the blacklist
-   * Note: Even if the user's source code changes, this is only parsed once.
+   * Starts a parse of the template code and adds it to the list of assertions
+   * to check when parsing the mian code.
    *
-   * @param obj An object with a code property which contains a string of the code
+   * @param code The code assertion to test for
    */
-  addSampleToBlacklist: function(obj, callback) {
-    obj.addToWhitelist = false;
-    obj.addToBlacklist = true;
-    obj.testAgainstLists = false,
+  addAssertion: function(code, obj, callback) {
+    console.log('add assertion for slug: ' + obj.slug);
+    obj = obj || {};
+    obj.assertionParse = true;
+    obj.testAgainstLists = false;
     obj.callback = callback;
-    this._startParsing(obj.code, obj);
+    this._startParsing(code, obj);
   },
 
   /**
    * Helper function for parsing the user's source.
-   * Calls into acorn.walk and is used by: the whitelist adding, blacklist adding,
+   * Calls into acorn.walk and is used by: the assertion adding
    * and user source parsing.
    */
   _startParsing: function(source, extraState) {
     var codeTree = acorn.parse(source, {});
     this.state.context = '';
     
-    // Copy in the extra state into the stae variable
+    // Copy in the extra state into the state variable
     for (var prop in extraState) {
       this.state[prop] = extraState[prop];
     }
@@ -81,36 +93,28 @@ CodeChecker.prototype = {
 
 
   /**
-   * Resets each item in the white and black list to not hit
-   *
-   * @param arr A whitelist or blacklist to reset
+   * Resets each item in the assertion list to not hit
    */
-  _resetList: function(arr) {
-    arr.forEach(function(e) {
+  _resetList: function() {
+    this.assertions.forEach(function(e) {
       e.hit = false;
     });
   },
 
   /**
-   * Performs a test from the white list and black list against the
-   * provided source.  It is called on each combination of the provided source.
+   * Performs a test from the assertions against the provided source.  
+   * It is called on each combination of the provided source.
    */
   _testAgainst: function(codeToTest, state) {
     if (!state.testAgainstLists) {
       return;
     }
 
-    // Go through both the whitelist and the blacklist
-    [this.whitelist, this.blacklist].forEach(function(arr) {
-
-      // Go through each element of the list and mark it as hit if a match
-      // is found.
-      arr.forEach(function(e) {
-        if (e.code == codeToTest) {
-          e.hit = true;
-        }
-      });
-    });
+    this.assertions.forEach(function(e) {
+      if (e.code == codeToTest) {
+        e.hit = true;
+      }
+    }, this);
   },
 
   /**
@@ -153,27 +157,23 @@ CodeChecker.prototype = {
       }, this);
     }, this);
 
-    // Check if we need to add the modelt to the whitelist
-    // or black list if we are parsing the Program node.
+    // If we are parsing the program node, we're done parsing
+    // so setup the assertions list if this was an assertions parse, and
+    // call the callback.
     if (node.type == 'Program') {
-      if (state.addToWhitelist) {
-        this.whitelist.push( { code: allSource,
-                                     hit: false,
-                                     title: state.title,
-                                     slug: state.slug
-                                   });
-      } else if (state.addToBlacklist) {
-        this.blacklist.push( { code: allSource,
-                                     hit: false,
-                                     title: state.title,
-                                     slug: state.slug
-                                   });
-      }
+      if (state.assertionParse) {
+        console.log('blacklist: ' + state.blacklist);
+        this.assertions.push( { code: allSource,
+                                hit: false,
+                                title: state.title,
+                                slug: state.slug,
+                                blacklist: state.blacklist
+                               });
+      } 
 
       if (state.callback) {
         state.callback(null, { state: state,
-                               whitelist: this.whitelist,
-                               blacklist: this.blacklist
+                               assertions: this.assertions,
                               });
       }
     }
@@ -192,12 +192,10 @@ CodeChecker.prototype = {
    * Start enumerating the combination of things being done
    */
   parseIt: function(source, doneParsing) {
-
-    [this.whitelist, this.blacklist].forEach(this._resetList);
+    this._resetList();
     this._startParsing(source, {
       testAgainstLists: true,
-      addToWhitelist: false,
-      addToBlacklist: false,
+      assertionParse: false,
       callback: doneParsing
     });
   },

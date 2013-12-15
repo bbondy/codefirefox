@@ -2,11 +2,26 @@ extends layout
 
 block mainContent
   .card-container
-    h1 Exercise framework demo
-    h3 Perform the following tasks:
+    h1= exercise.title
+
+    p.exercise-description !{exercise.description.replace(/\n/g, '<br/>')}
+
+    h2 Perform the following tasks in JavaScript:
     ul#whitelist
-    h3 Without performing these tasks:
+      each assertion in exercise.assertions
+        if !assertion.blacklist
+          li(id= assertion.slug)
+            i(class='fa fa-times')
+            span= ' ' + assertion.title + '.  '
+            span.bad Not yet completed
+    h2 Without performing these tasks:
     ul#blacklist
+      each assertion in exercise.assertions
+        if assertion.blacklist
+          li(id= assertion.slug)
+            i(class='fa fa-check')
+            span= ' ' + assertion.title + '.  '
+            span.good So far so good.
 
     pre#code
     p
@@ -14,9 +29,7 @@ block mainContent
     //a#check-syntax(href='#') Check Syntax
 
 block extraScripts
-  script(src='static/js/exercise.js', type='text/javascript', charset='utf-8')
-  script(src='static/js/ace/ace.js', type='text/javascript', charset='utf-8')
   script.
-    var editor = ace.edit("code");
-    editor.setTheme("ace/theme/TextMate");
-    editor.getSession().setMode("ace/mode/javascript");
+    var exerciseSlug ="#{exercise.slug}"
+  script(src='/static/js/ace/ace.js', type='text/javascript', charset='utf-8')
+  script(src='/static/js/exercise.js', type='text/javascript', charset='utf-8')

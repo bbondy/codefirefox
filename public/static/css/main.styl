@@ -212,10 +212,10 @@ ul.videos li.exercise span
   background url("/static/img/exercise-unavailable.png") no-repeat top left
 
 ul.videos li.exercise a span
-  background url("/static/img/video-available.png") no-repeat top left
+  background url("/static/img/exercise-available.png") no-repeat top left
 
 ul.videos li.exercise span.watched
-  background url("/static/img/video-completed.png") no-repeat top left
+  background url("/static/img/exercise-completed.png") no-repeat top left
 
 #footer
   color #fff
@@ -270,15 +270,16 @@ ul.videos li.exercise span.watched
 #whitelist li, #blacklist li
   display inline-block
   list-style-type none
-  padding-top 10px
-  padding-bottom 10px
-  border-top 2px solid #f6f6f6
+  padding-top 8px
+  padding-bottom 8px
+  border-bottom 2px solid #f6f6f6
   display block
 
 #whitelist li i, #blacklist li i
-  margin-right 3px
+  margin-right 10px
 
-#whitelist li span, #blacklist li span
+#whitelist li span.good, #blacklist li span.good
+#whitelist li span.bad, #blacklist li span.bad
   font-style: italic
   font-weight bold
 
@@ -290,4 +291,14 @@ ul.videos li.exercise span.watched
 
 #whitelist li span.bad, #blacklist li span.good
   color #a3a096
+
+p.exercise-description
+  padding-bottom 20px
+  border-bottom 3px solid #f6f6f6
+  font-size 17pt
+
+h2
+  font-size 13pt
+  font-weight bold
+  padding-bottom 0
 

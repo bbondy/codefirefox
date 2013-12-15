@@ -37,6 +37,11 @@ block mainContent
                 span= video.title
           else
             li.exercise
-              span= video.title
+              if video.assertions
+                a(name= category.slug + '/' + video.slug)
+                a(href= '/exercise/' + video.slug, name= video.slug)
+                  span= video.title
+              else
+                span= video.title
 
 
