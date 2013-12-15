@@ -230,85 +230,121 @@ exports.outline = function(req, res) {
  * GET /exercise
  * Renders the exercise demo page
  */ 
-exports.exercise = function(req, res) {
-  res.render('exercise', { pageTitle: 'Exercise',
-                           bodyID: 'body_exercise',
-                           mainTitle: 'Exercise'
-                         });
+exports.exerciseDemo = function(req, res) {
+  res.redirect('/exercise/intro-exercise');
 }
 
 /**
- * POST /check-code
+ * GET /exercise/:exercise
+ * Renders the specified video page
+ */
+exports.exercise = function(req, res, next) {
+  if (!req.params.exercise) {
+    next(new Error('Invalid URL format, should be: exercise/:exercise'));
+    return;
+  }
+
+  db.get("video:" + req.params.exercise, function(err, exercise) {
+    if (err) {
+      res.render('notFound', { pageTitle: 'Exercise',
+                               bodyID: 'body_not_found',
+                               mainTitle: 'Exercise not found'
+                             });
+      return;
+    }
+
+    res.render('exercise', { pageTitle: exercise.title,
+                             bodyID: 'body_exercise',
+                             mainTitle: 'Exercise',
+                             exercise: exercise
+                           });
+  });
+};
+
+
+/**
+ * POST /check-code/:exercise
  * Checks the POST'ed code to see if it matches a set of assertions
 */
 exports.checkCode = function(req, res) {
   console.log('POST /check-code');
-  var checker = new CodeChecker();
-  var parseIt = Promise.denodeify(checker.parseIt).bind(checker);
-  var addToWhitelist = Promise.denodeify(checker.addSampleToWhitelist).bind(checker);
-  var addToBlacklist = Promise.denodeify(checker.addSampleToBlacklist).bind(checker);
-  var whitelist, blacklist;
+  if (!req.params.exercise) {
+    console.log('no checking code');
+    res.json({ status: "failure",
+               reason: "Exercise slug must be specified",
+             });
+    return;
+  }
 
-  addToBlacklist({
-    code: ";",
-    title: "Do not have any empty statements (Example: Extra semicolon)",
-    slug: "no-empty-statements",
-  }).then(function(res) {
-    return addToBlacklist({
+  console.log('checking code');
+  db.get("video:" + req.params.exercise, function(err, exercise) {
+    var checker = new CodeChecker();
+    var parseIt = Promise.denodeify(checker.parseIt).bind(checker);
+    var addToWhitelist = Promise.denodeify(checker.addToWhitelist).bind(checker);
+    var addToBlacklist = Promise.denodeify(checker.addToBlacklist).bind(checker);
+
+    console.log(exercise.assertions);
+    checker.addAssertionsPromise(exercise.assertions).then(function(res) {
+      return checker.parseItPromise(req.body.code);
+    }).done(function onSuccess(ret) {
+      console.log('assertions: ' + ret.assertions);
+      res.json({ status: "okay",
+                 assertions: ret.assertions,
+                 blacklist: ret.blacklist
+               });
+    }, function onRejected(e) {
+      console.log(e);
+      res.json({ status: "failure",
+                 reason: e
+               });
+    });
+  });
+};
+
+/*
+  checker.addAssertionsPromise([
+    {
+      code: ";",
+      title: "Do not have any empty statements (Example: Extra semicolon)",
+      slug: "no-empty-statements",
+      blacklist: true
+    },
+    {
       code: "while (x) break;",
       title: "Don't use a break statement inside a while loop",
       slug: "no-break-in-while",
-    });
-  }).then(function(res) {
-    return addToBlacklist({
+      blacklist: true
+    },
+    {
       code: "do { continue;  } while (x);",
       title: "Don't use a continue inside a do..while loop",
       slug: "no-continue-in-do-while",
-    });
-  }).then(function(res) {
-    return addToBlacklist({
+      blacklist: true
+    },
+    {
       code: "for (x = 0; x < 10; x++) continue;",
       title: "Don't use a continue statement inside a for loop",
       slug: "no-continue-in-for",
-    });
-  }).then(function(res) {
-    return addToWhitelist({
+      blacklist: true
+    },
+    {
       code: "var x = 4;",
       title: "Create a variable declaration",
       slug: "make-assignment",
-    });
-  }).then(function(res) {
-    return addToWhitelist({
+    },
+    {
       code: "for (x in y) { x++ }",
       title: "Use the increment or decrement operator on a variable in the body of a for..in loop",
       slug: "increment-in-for-in-loop",
-    });
-  }).then(function(res) {
-    return addToWhitelist({
+    },
+    {
       code: "if (1 === 1) { x = 3; }",
       title: "Assign a variable to a value inside an if statement (Not a declaration)",
       slug: "variable-in-if",
-    });
-  }).then(function(res) {
-    return addToWhitelist({
+    },
+    {
       code: "function fn() { return 3; }",
       title: "Create a function with an explicit return in it",
       slug: "function-with-return",
-    });
-  }).then(function(res) {
-    whitelist = res.whitelist; 
-    blacklist = res.blacklist; 
-    return parseIt(req.body.code);
-  }).done(function onSuccess() {
-            res.json({ status: "okay",
-                       whitelist: whitelist,
-                       blacklist: blacklist
-                     });
-          },
-          function onRejected(e) {
-            res.json({ status: "failure",
-                       reason: e
-                     });
-          }
-  );
-};
+    }]
+    */    

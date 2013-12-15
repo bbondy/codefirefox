@@ -9,40 +9,30 @@ function checkSyntax() {
 
   gLastSubmittedText = code;
   $.ajax({
-    url: "/check-code",
+    url: "/check-code/" + exerciseSlug,
     type: "post",
     contentType: "application/json; charset=utf-8",
     data: JSON.stringify({ code: code }),
     dataType: "json",
     success: function(response) { 
-      if (response.whitelist && response.whitelist.length) {
-        // Format the whitelist
-        response.whitelist.forEach(function(e) {
-          var element = $("#" + e.slug);
-          if (!element.length) {
-            element = $("<li/>").attr('id', e.slug);
-            element.appendTo("#whitelist");
-          }
-          element.html('<i class="fa ' + (e.hit ? 'fa-check' : 'fa-times') + '"></i>  ' +
-            e.title + '.  ' +
-            (e.hit ? '<span class="good">Completed!</span>' : '<span class="bad">Not yet Completed.') );
-        });
-      }
+      response.assertions = response.assertions || [];
 
-      if (response.blacklist && response.blacklist.length) {
-        // Format the blacklist
-        response.blacklist.forEach(function(e) {
+      // Format the whitelist
+      response.assertions.forEach(function(e) {
+
+        if (!e.blacklist) {
           var element = $("#" + e.slug);
-          if (!element.length) {
-            element = $("<li/>").attr('id', e.slug);
-            element.appendTo("#blacklist");
-          }
+          element.html('<i class="fa ' + (e.hit ? 'fa-check' : 'fa-times') + '"></i>  ' +
+            '<span>' + e.title + '.  </span>' +
+            (e.hit ? '<span class="good">Completed!</span>' : '<span class="bad">Not yet completed.') );
+        } else {
+          var element = $("#" + e.slug);
           element.html('<i class="fa ' + (e.hit ? 'fa-times' : 'fa-check') + '"></i>  ' +
             e.title + '.  ' +
             (e.hit ? '<span class="bad">Oops, please fix</span>' : '<span class="good">So far so good.</span>'));
-        });
+        }
+      });
 
-      }
       if (response.status == "okay") {
       } else {
         console.log('Syntax Error on line: ' + response.reason.loc.line +
@@ -55,11 +45,14 @@ function checkSyntax() {
   });
 }
 
+// This button is just for debugging when setInterval is commented out
 $("#check-syntax").click(function() {
   checkSyntax();
 });
 
 $(function() {
+  var editor = ace.edit("code");
+  editor.setTheme("ace/theme/TextMate");
+  editor.getSession().setMode("ace/mode/javascript");
   setInterval("checkSyntax();", 1000);
-  //setInterval("checkSyntax();", 1000);
 });

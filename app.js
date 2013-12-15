@@ -53,6 +53,8 @@ initConfigData().done(function(config) {
         res.locals.session = req.session;
         res.locals.session.serverRunningSince = serverRunningSince;
 
+        //console.log(req.url);
+
         // Allowed to modify session
         if (req.url == '/persona/verify' || req.url == '/persona/logout') {
           console.log('Request for: ' + req.url);
@@ -123,18 +125,19 @@ initConfigData().done(function(config) {
   app.get('/videos', routes.outline);
   app.get('/exercises', routes.outline);
   app.get('/video/:video', routes.video);
+  app.get('/exercise', routes.exerciseDemo);
+  app.get('/exercise/:exercise', routes.exercise);
   app.get('/:category/:video', routes.video);
   app.get('/cheatsheet', routes.cheatsheet);
   app.get('/initVideoData', routes.initVideoData);
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);
-  app.get('/exercise', routes.exercise);
 
   // POST
   app.post('/video/:video', routes.watchedVideo);
+  app.post('/check-code/:exercise', routes.checkCode);
   app.post('/:category/:video', routes.watchedVideo);
-  app.post('/check-code', routes.checkCode);
 
   // DELETE
   app.del('/stats', routes.delStats);

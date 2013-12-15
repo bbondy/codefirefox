@@ -23,9 +23,28 @@
       {
         "title": "Introduction to Code Firefox exercises",
         "type": "exercise",
-        "description": "",
+        "description": "Exercises are a great way to practice what you've learnt. \nThis exercise is just to get you started with the framework.",
+        "exerciseType": "js",
         "slug": "intro-exercise",
-        "priority": 3
+        "priority": 3,
+        "assertions": [
+          {
+            "code": ";",
+            "title": "Do not have any empty statements (Example: Extra semicolon)",
+            "slug": "no-empty-statements",
+            "blacklist": true
+          },
+          {
+            "code": "var x = 4;",
+            "title": "Create a variable declaration",
+            "slug": "make-assignment"
+          },
+          {
+            "code": "while (x) break;",
+            "title": "Use a break statement inside a while loop",
+            "slug": "no-break-in-while"
+          }
+        ]
       }
     ]
   },
@@ -451,7 +470,7 @@
         "title": "Using a JavaScript module exercise",
         "type": "exercise",
         "description": "",
-        "slug": "using-jsm-intro",
+        "slug": "using-jsm-intro-exercise",
         "priority": 2
       },
       {
@@ -474,7 +493,7 @@
         "title": "Writing a JavaScript module exercise",
         "type": "exercise",
         "description": "",
-        "slug": "intro-exercise",
+        "slug": "writing-jsm-exercise",
         "priority": 5
       },
       {
