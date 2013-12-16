@@ -1,203 +1,227 @@
 "use strict";
 
 var acorn = require('acorn'),
-  Promise = require('promise'), 
   prettyjson = require('prettyjson');
 
-acorn.walk = require("../node_modules/acorn/util/walk.js");
+// Overview:
+// This module determines if a set of assertions match a sample of code.
+// Assertions are simply just source code templates that are matched against
+// the sample of source code.
+// An assertion abstract syntax tree (AAST) matches a sample AST (SAST) if:
+//  - An AAST's parent node matches any SAST node
+//  - Each of the AAST subnodes, match against the children of an SAST node
+//  - If there are extra nodes in the AAST that do not match, then this is considered to be not a match.
+
+// Design choice consideration:
+// There are at least 2 possible ways you can approach validating assertions to sample code:
+// 1) Parse the provided source code and list all combinations of possible matches.
+//    Check each assertion against each combination.
+//    This has the advantage that the sample code tree is walked only once, but the memory usage
+//    and combinations processed get exponentially higher as your program grows depending at what
+//    depth new lines of code are added.
+// 2) For each asssertion, walk the source to see if it is a match.
+//    Restart the parse from the SAST parent node for each assertion.
+//    This has the advantage that it doesn't use a lot of memory.  And assuming your
+//    number of assertions are constant, you only have to walk the SAST tree a constant
+//    amount of times to see if it is a match.
+
 
 function CodeChecker() {
   this.assertions = [];
   this.state = { };  
-  this.parseItPromise = Promise.denodeify(this.parseIt).bind(this);
-  this.addAssertionPromise = Promise.denodeify(this.addAssertion).bind(this);
-  this.addAssertionsPromise = Promise.denodeify(this.addAssertions).bind(this);
 }
 
 CodeChecker.prototype = {
 
   /**
-   * Recursively adds each assertion, and calls the callback when
-   * all assertions are parsed and added.
+   * Adds an array of assertions and parses their abstract syntax tree.
    *
-   * @param codeArray An array of objects each containing at least a code property
-   * @param obj An object with extra properties to pass along
-   * @callback A function to call when all assertions are added
+   * @param codeTemplates An array of code templtes. Each item of the array must
+   *                      have a code member and may optionally have extra properties
+   *                      which will be preserved.
    */
-  addAssertions: function addAssertions(codeArray, callback) {
-    if (codeArray.length == 0) {
-      callback();
-      return;
-    }
-    var assertionObj = codeArray.pop();
-    var self = this;
-
-    self.addAssertion(assertionObj.code, assertionObj, function() {
-      self.addAssertions(codeArray, callback);
-    });
-  },
-
-  /**
-   * Starts a parse of the template code and adds it to the list of assertions
-   * to check when parsing the mian code.
-   *
-   * @param code The code assertion to test for
-   */
-  addAssertion: function(code, obj, callback) {
-    console.log('add assertion for slug: ' + obj.slug);
-    obj = obj || {};
-    obj.assertionParse = true;
-    obj.testAgainstLists = false;
-    obj.callback = callback;
-    this._startParsing(code, obj);
-  },
-
-  /**
-   * Helper function for parsing the user's source.
-   * Calls into acorn.walk and is used by: the assertion adding
-   * and user source parsing.
-   */
-  _startParsing: function(source, extraState) {
-    var codeTree = acorn.parse(source, {});
-    this.state.context = '';
-    
-    // Copy in the extra state into the state variable
-    for (var prop in extraState) {
-      this.state[prop] = extraState[prop];
-    }
-
-    // Setup callback functions used for parsing elements into a rough
-    // simplified model of what the program actually does.
-    this._callbackFunctions = {
-      Program: this._parseBlockStatement.bind(this),
-      BlockStatement: this._parseBlockStatement.bind(this),
-      Function: this._parseStatementWithFollowup.bind(this),
-      IfStatement: this._parseStatementWithFollowup.bind(this),
-      ForStatement: this._parseStatementWithFollowup.bind(this),
-      ForInStatement: this._parseStatementWithFollowup.bind(this),
-      DoWhileStatement: this._parseStatementWithFollowup.bind(this),
-      WhileStatement: this._parseStatementWithFollowup.bind(this),
-      VariableDeclaration: this._parseSimpleStatement.bind(this),
-      AssignmentExpression: this._parseSimpleStatement.bind(this),
-      UpdateExpression: this._parseSimpleStatement.bind(this),
-      BreakStatement: this._parseSimpleStatement.bind(this),
-      ContinueStatement: this._parseSimpleStatement.bind(this),
-      ReturnStatement: this._parseSimpleStatement.bind(this),
-      EmptyStatement: this._parseSimpleStatement.bind(this)
-    };
-
-    //console.log(prettyjson.render(this.parsed));
-    // Start the recursive walk
-    acorn.walk.recursive(codeTree, this.state, this._callbackFunctions, null);
-  },
-
-
-  /**
-   * Resets each item in the assertion list to not hit
-   */
-  _resetList: function() {
-    this.assertions.forEach(function(e) {
-      e.hit = false;
-    });
-  },
-
-  /**
-   * Performs a test from the assertions against the provided source.  
-   * It is called on each combination of the provided source.
-   */
-  _testAgainst: function(codeToTest, state) {
-    if (!state.testAgainstLists) {
-      return;
-    }
-
-    this.assertions.forEach(function(e) {
-      if (e.code == codeToTest) {
-        e.hit = true;
-      }
+  addAssertions: function(codeTemplates) {
+    codeTemplates.forEach(function(obj) {
+      this.addAssertion(obj.code, obj);
     }, this);
   },
 
   /**
-   * Parses a node that has a single statement followup, example: IfStatement, ForStatement
+   * Adds an assertion and parses its abstract syntax tree
+   *
+   * @param code The code for the assertion, the sample code must
+   *             match everything, but can match it at any level of code.
+   * @param obj  An object for state, each property will be copied to the
+   *             assertion, accessible through codeChecker.assertions
    */
-  _parseStatementWithFollowup: function(node, state, c) {
-    // Setup a fake block if we don't have one
-    var childNode = node.consequent || node.body;
-    if (childNode.type == 'BlockStatement') {
-      childNode.type = node.type;
-      this._callbackFunctions.BlockStatement(childNode, state, c);
-    // Otherwise process the block directly
-    } else {
-      var blockNode = {
-        body: [childNode],
-        type: node.type
-      };
-      this._callbackFunctions.BlockStatement(blockNode, state, c);
-    }
+  addAssertion: function(code, state) {
+    state = state || {};
+    state.code = code;
+    state.codeAAST = acorn.parse(code, {});
+
+    state.hit = false;
+    this.assertions.push(state);
   },
 
   /**
-   * Parses a node that contains multiple other nodes, example: Program, BlockStatement
+   * Clears out all added assertions
    */
-  _parseBlockStatement: function (node, state, c) {
-    var baseContext = node.type;
-    var newContext = [];
+  clearAssertions: function() {
+    this.assertions = [];
+  },
 
-    // Parse each child node
-    var allSource = '';
-    node.body.forEach(function (e) {
-      c(e, state);
-      state.context = state.context || [ '' ];
-      state.context.forEach(function(childContext) {
-        allSource += childContext;
-        var newContextStr = node.type + '\n' + childContext;
-        newContextStr = newContextStr.replace(/\n/g, '\n  ');
-        newContext.push(newContextStr);
-        this._testAgainst(newContextStr, state);
+  /**
+   * Parse the sample code into an abstract syntax tree and start a recursive
+   * walk against all assertions.
+   */
+  parseSample: function(code, doneParsing) {
+    var err;
+    try {
+      // Assume we hit the assertion until we prove otherwise
+      //this.resetAssertions(true); 
+      this.sampleCodeTree = acorn.parse(code, {});
+
+      //console.log(prettyjson.render(this.sampleCodeTree));
+
+      // Walk through the sampleCodeTree for each assertion we have
+      this.assertions.forEach(function(assertion) {
+        //console.log(prettyjson.render(assertion.codeAAST));
+        this.processNode(assertion, assertion.codeAAST, this.sampleCodeTree, false, 0, 0, 'loc1');
+        assertion.hit = this._isAssertionCompletelySatisfied(assertion.codeAAST);
+      }, this);
+    } catch (e) {
+      console.log(e.stack);
+      err = e;;
+    }
+
+    doneParsing(err);
+  },
+
+  /**
+   * Array of members in the abstract syntax tree that have followup nodes
+   * The type of each of these will be checked to see if they are an array or
+   * an object, and will react respectively.
+   */
+  recursiveProperties: ['body', 'cases', 'declarations', 'consequent', 'params',
+    'defaults', 'expression', 'left', 'right', 'test', 'args', 'init', 'update',
+    'finalizer', 'block', 'handler', 'guardedHandlers'],
+
+  /**
+   * Performs a recursive walk on the abstract syntax tree for the assertion
+   * and the sample tree.
+   *
+   * @param assertion The assertion currently being checked.
+   * @param nodeAAST  The assertion abstract syntax tree
+   * @param nodeSAST  The sample abststract syntax tree
+   * @param isMatchParse If true will try to match every node exactly
+   *                     Everytime there is a potential match we set this to true.
+   * @param depthAAST Just used for debugging, stores the depth of recursion
+   * @param depthSAST Just used for debugging, stores the depth of recursion
+   */
+  processNode: function(assertion, nodeAAST, nodeSAST, isMatchParse, depthAAST, depthSAST, recursiveLoc) {
+    // Nothing more to do if either of the nodes are null
+    if (!nodeAAST || !nodeSAST)
+      return;
+
+    //console.log(nodeAAST.type + ' DEPTH ' + depthAAST + ' vs. ' + nodeSAST.type + ' DEPTH: ' + depthSAST + ' LOC: ' + recursiveLoc);
+
+    // Ignore Program nodes for AAST because we want matches to be allowed
+    // anywhere, not enforced to be toplevel which all AASTs start with.
+    if (nodeAAST.type == 'Program') {
+      nodeAAST.body.forEach(function(childNodeAAST) {
+        this.processNode(assertion, childNodeAAST, nodeSAST, false, depthAAST + 1, depthSAST, 'loc2');
+      }, this);
+      return;
+    }
+
+    // Normalize statements which have followup block statements
+    ['consequent', 'body'].forEach(function(prop) {
+      [nodeAAST, nodeSAST].forEach(function(n) {
+        if (n[prop] && n.type != 'Program' && n.type != 'BLockStatement' &&
+            n[prop].constructor != Array && n[prop].type != 'BlockStatement') {
+          n[prop] = { type: 'BlockStatement', body: [ n[prop]] };
+        }
       }, this);
     }, this);
 
-    // If we are parsing the program node, we're done parsing
-    // so setup the assertions list if this was an assertions parse, and
-    // call the callback.
-    if (node.type == 'Program') {
-      if (state.assertionParse) {
-        console.log('blacklist: ' + state.blacklist);
-        this.assertions.push( { code: allSource,
-                                hit: false,
-                                title: state.title,
-                                slug: state.slug,
-                                blacklist: state.blacklist
-                               });
-      } 
-
-      if (state.callback) {
-        state.callback(null, { state: state,
-                               assertions: this.assertions,
-                              });
+    // Check if we want to set isMatchParse
+    if (nodeAAST.type == nodeSAST.type) {
+      //console.log('HIT THE NODE TYPE: ' + nodeAAST.type);
+      // First time match parse, let's reset the nodes!
+      if (!isMatchParse) {
+        //this._resetSatisfied(assertion.codeAAST);
+        isMatchParse = true;
       }
+      nodeAAST.hit = true;
     }
-    state.context = newContext;
+
+    // If we're doing a 'match parse' (previous nodes matched), bail out  and set
+    // hit to false as soon as we find something different.
+    if (isMatchParse) {
+
+      // Check types that need to be called recursively
+      this.recursiveProperties.forEach(function(prop) {
+        if (nodeAAST[prop] && nodeAAST[prop].constructor == Array) {
+          nodeAAST[prop].forEach(function(childAASTNode) {
+            nodeSAST[prop].forEach(function(childSASTNode) {
+              this.processNode(assertion, childAASTNode, childSASTNode, true, depthAAST + 1, depthSAST + 1, 'loc3')
+            }, this);
+          }, this);
+        } else if (nodeAAST[prop] && typeof nodeAAST[prop] == 'object') {
+          this.processNode(assertion, nodeAAST[prop], nodeSAST[prop], true, depthAAST + 1, depthSAST + 1, 'loc4')
+        }
+      }, this);
+    }
+
+    // If we don't have a match, one of our children might still match it!
+    this.recursiveProperties.forEach(function(prop) {
+      if (nodeSAST[prop] && nodeSAST[prop].constructor == Array) {
+        nodeSAST[prop].forEach(function(childSASTNode) {
+          this.processNode(assertion, nodeAAST, childSASTNode, false, depthAAST, depthSAST + 1, 'loc5');
+        }, this);
+      } else if (nodeSAST[prop] && typeof nodeSAST[prop] == 'object') {
+        this.processNode(assertion, nodeAAST, nodeSAST[prop], false, depthAAST, depthSAST + 1, 'loc6');
+      }
+    }, this);
+  },
+
+
+  /**
+   * Determines if a node is hit or not
+   *
+   * @param The starting node to recurse on
+   * @return true if all nodes have the hit property set on them
+   */
+  _isAssertionCompletelySatisfied: function(node) {
+    var allHit = node.hit || node.type == 'Program';
+    this.recursiveProperties.forEach(function(prop) {
+      if (node[prop] && node[prop].constructor == Array) {
+        node[prop].forEach(function(childSASTNode) {
+          allHit = allHit && this._isAssertionCompletelySatisfied(childSASTNode);
+        }, this);
+      } else if (node[prop] && typeof node[prop] == 'object') {
+        allHit = allHit && this._isAssertionCompletelySatisfied(node[prop]);
+      }
+    }, this);
+    return allHit;
   },
 
   /**
-   * Parses a simple statement with no special handling
+   * Resets the node's hit states back to false recursively
+   *
+   * @param The starting node to recurse on
    */
-  _parseSimpleStatement: function(node, state, c) {
-    state.context = [ node.type ];
-    this._testAgainst(node.type, state);
-  },
-
-  /**
-   * Start enumerating the combination of things being done
-   */
-  parseIt: function(source, doneParsing) {
-    this._resetList();
-    this._startParsing(source, {
-      testAgainstLists: true,
-      assertionParse: false,
-      callback: doneParsing
-    });
+  _resetSatisfied: function(node) {
+    node.hit = undefined;
+    this.recursiveProperties.forEach(function(prop) {
+      if (node[prop] && node[prop].constructor == Array) {
+        node[prop].forEach(function(childSASTNode) {
+          this._isAssertionCompletelySatisfied(childSASTNode);
+        }, this);
+      } else if (node[prop] && typeof node[prop] == 'object') {
+        this._isAssertionCompletelySatisfied(node[prop]);
+      }
+    }, this);
   },
 };
 

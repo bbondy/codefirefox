@@ -284,20 +284,29 @@ exports.checkCode = function(req, res) {
     var addToBlacklist = Promise.denodeify(checker.addToBlacklist).bind(checker);
 
     console.log(exercise.assertions);
-    checker.addAssertionsPromise(exercise.assertions).then(function(res) {
-      return checker.parseItPromise(req.body.code);
-    }).done(function onSuccess(ret) {
-      console.log('assertions: ' + ret.assertions);
-      res.json({ status: "okay",
-                 assertions: ret.assertions,
-                 blacklist: ret.blacklist
-               });
-    }, function onRejected(e) {
+    checker.addAssertions(exercise.assertions);
+    try {
+      checker.parseSample(req.body.code, function(err, ret) {
+        if (err) {
+          console.log(err);
+          res.json({ status: "failure",
+                     reason: err
+                   });
+          return;
+        }
+
+        console.log('assertions: ' + checker.assertions);
+        res.json({ status: "okay",
+                   assertions: checker.assertions,
+                 });
+
+      });
+    } catch (e) {
       console.log(e);
       res.json({ status: "failure",
                  reason: e
                });
-    });
+    }
   });
 };
 
