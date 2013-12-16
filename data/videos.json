@@ -35,11 +35,6 @@
             "blacklist": true
           },
           {
-            "code": "var x = 4;",
-            "title": "Create a variable declaration",
-            "slug": "make-assignment"
-          },
-          {
             "code": "for (x in y) break;",
             "title": "Use a break statement inside a for..in loop",
             "slug": "no-break-in-for-in",

@@ -488,34 +488,58 @@ describe('CodeChecker', function() {
 
 
     var samples = [
+      // var in the left
       {
         code: "for (var x in y) { ; }",
-        assertion: 0
+        assertion: 0,
+        shouldMatch: true
       },
+      // should skip the right thing (not body)
       {
-        "code": "for (var x in [1,2,3]) break;",
-        assertion: 0
+        code: "for (var x in y) { x++; }",
+        assertion: 0,
+        shouldMatch: false
       },
+      // array literal in the right
+      {
+        "code": "for (var x in [1,2,3]) { ; }",
+        assertion: 0,
+        shouldMatch: true
+      },
+      // null and a number instead of x, and y
       {
         "code": "if (null) if (3) x = 3;",
-        assertion: 1
+        assertion: 1,
+        shouldMatch: true
+      // true and y < 3 instead of x and y
       },
       {
+        "code": "if (true) if (y < 3) x = 3;",
+        assertion: 1,
+        shouldMatch: true
+      },
+      // Should match the right thing
+      {
         "code": "if (true) if (y < 3) x++;",
-        assertion: 1
+        assertion: 1,
+        shouldMatch: false 
       }
     ];
 
     var count = 0;
 
     samples.forEach(function(s) {
+      var shouldMatch = s.shouldMatch;
       var checker = new CodeChecker(); 
       checker.addAssertions([assertions[s.assertion]]);
       checker.parseSample(s.code, function() {
         count++;
         assert.equal(checker.assertions.length, 1);
         checker.assertions.forEach(function(assertion) {
-          assert.ok(assertion.hit);
+          if (shouldMatch)
+            assert.ok(assertion.hit);
+          else
+            assert.ok(!assertion.hit);
         });
         if (count == samples.length) {
           done();

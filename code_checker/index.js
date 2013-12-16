@@ -171,8 +171,7 @@ CodeChecker.prototype = {
           if (assertion.skip) {
             assertion.skip.forEach(function (skipObj) {
               if (skipObj.type == nodeAAST.type && prop == skipObj.prop) {
-                nodeAAST.skipped = true;
-                return;
+                this._resetSatisfied(nodeAAST[prop], true);
               }
             }, this);
           }
@@ -231,8 +230,15 @@ CodeChecker.prototype = {
    *
    * @param The starting node to recurse on
    */
-  _resetSatisfied: function(node) {
-    node.hit = undefined;
+  _resetSatisfied: function(node, val) {
+    if (node.constructor == Array) {
+      node.forEach(function(n) {
+        this._resetSatisfied(n, val);
+      }, this);
+      return;
+    }
+
+    node.hit = val;
     this.recursiveProperties.forEach(function(prop) {
       if (node[prop] && node[prop].constructor == Array) {
         node[prop].forEach(function(childSASTNode) {
