@@ -548,5 +548,46 @@ describe('CodeChecker', function() {
     }, this);
   }); // end it
 
+  it('Strict identifier name matching works', function(done) {
+    var snippets = [
+      // Diff names should match
+      { code: "function fn() { }", assertion: "function xyz() { }", match: true},
+      { code: "var x = 3;", assertion: "var y = 3;", match: true },
+      { code: "x = 3;", assertion: "y = 3;", match: true },
+      { code: "for(var x = 3; x < 10; x++) ;", assertion: "for(var y = 3; y < 10; y++) ;", match: true },
+      { code: "if (x) ;", assertion: "if(y) ;", match: true },
+
+      // Strict names should match
+      { code: "function fn() { }", assertion: "function __fn() { }", match: true},
+      { code: "var x = 3;", assertion: "var __x = 3;", match: true },
+      { code: "x = 3;", assertion: "__x = 3;", match: true },
+      { code: "for(var x = 3; x < 10; x++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: true },
+      { code: "if (x) ;", assertion: "if(__x) ;", match: true },
+
+      // Strict names that are different should not match
+      { code: "function fn1() { }", assertion: "function __fn() { }", match: false},
+      { code: "var x1 = 3;", assertion: "var __x = 3;", match: false },
+      { code: "x1 = 3;", assertion: "__x = 3;", match: false },
+      { code: "for(var x1 = 3; x < 10; x++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: false },
+      { code: "for(var x = 3; x1 < 10; x++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: false },
+      { code: "for(var x = 3; x < 10; x1++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: false },
+      { code: "if (x1) ;", assertion: "if(__x) ;", match: false },
+    ];
+    var count = 0;
+    snippets.forEach(function(snippet) {
+      // Create code to test against which contains all the statements
+      var checker = new CodeChecker(); 
+      checker.addAssertion(snippet.assertion);
+      checker.parseSample(snippet.code, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        assert.ok(snippet.match && checker.assertions[0].hit || 
+                  !snippet.match && !checker.assertions[0].hit);
+        if (count == snippets.length) {
+          done();
+        }
+      });
+    }, this);
+  }); // end it
 
 }); // end describe

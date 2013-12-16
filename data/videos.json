@@ -35,6 +35,17 @@
             "blacklist": true
           },
           {
+            "code": "var x = 3;",
+            "title": "Create a new variable declaration and assign it a value in one statement",
+            "slug": "var-decl-with-value"
+          },
+          {
+            "code": "if(x) { __age++; }",
+            "title": "Use the increment operator on a variable named age within the body of an if statement",
+            "slug": "increment-op-within-if-with-strict-name",
+            "skip": [{"type" : "IfStatement", "prop": "test"}]
+          },
+          {
             "code": "for (x in y) break;",
             "title": "Use a break statement inside a for..in loop",
             "slug": "no-break-in-for-in",

@@ -110,7 +110,7 @@ CodeChecker.prototype = {
    */
   recursiveProperties: ['body', 'cases', 'declarations', 'consequent', 'params',
     'defaults', 'expression', 'left', 'right', 'test', 'args', 'init', 'update',
-    'finalizer', 'block', 'handler', 'guardedHandlers'],
+    'finalizer', 'block', 'handler', 'guardedHandlers', 'id', 'argument'],
 
   /**
    * Performs a recursive walk on the abstract syntax tree for the assertion
@@ -158,7 +158,13 @@ CodeChecker.prototype = {
         //this._resetSatisfied(assertion.codeAAST);
         isMatchParse = true;
       }
-      nodeAAST.hit = true;
+      if (nodeAAST.type == 'Identifier' && nodeAAST.name.substring(0, 2) == '__') {
+        // Variable names that you want to strictly enforce must
+        // start with __, the prefix is ignored, but is otherwise enforced.
+        nodeAAST.hit = nodeAAST.name.substring(2, nodeAAST.name.length) == nodeSAST.name;
+      } else {
+        nodeAAST.hit = true;
+      }
     }
 
     // If we're doing a 'match parse' (previous nodes matched), bail out  and set
