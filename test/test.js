@@ -33,8 +33,8 @@ describe('files', function() {
        readFile(__dirname + '/../data/videos.json', 'utf8')
          .then(function(data) {
            var categories = JSON.parse(data);
-	   categories.forEach(function(c) {
-	       // Check that the category items are specified
+           categories.forEach(function(c) {
+               // Check that the category items are specified
                assert.ok(c.title);
                assert.ok(c.slug);
                assert.ok(c.priority);
@@ -472,4 +472,57 @@ describe('CodeChecker', function() {
       });
     }
   }); // end it
+
+
+  it('Skip overrides should be honored', function(done) {
+    var assertions = [
+      {
+        code: "for (x in y) { ; }",
+        skip: [{"type" : "ForInStatement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}]
+      },
+      {
+        code: "if (x) if (y) x = 3;",
+        skip: [{"type" : "IfStatement", "prop": "test"}]
+      }
+    ];
+
+
+    var samples = [
+      {
+        code: "for (var x in y) { ; }",
+        assertion: 0
+      },
+      {
+        "code": "for (var x in [1,2,3]) break;",
+        assertion: 0
+      },
+      {
+        "code": "if (null) if (3) x = 3;",
+        assertion: 1
+      },
+      {
+        "code": "if (true) if (y < 3) x++;",
+        assertion: 1
+      }
+    ];
+
+    var count = 0;
+
+    samples.forEach(function(s) {
+      var checker = new CodeChecker(); 
+      checker.addAssertions([assertions[s.assertion]]);
+      checker.parseSample(s.code, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        checker.assertions.forEach(function(assertion) {
+          assert.ok(assertion.hit);
+        });
+        if (count == samples.length) {
+          done();
+        }
+      });
+    }, this);
+  }); // end it
+
+
 }); // end describe

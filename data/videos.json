@@ -40,14 +40,16 @@
             "slug": "make-assignment"
           },
           {
-            "code": "while (x) break;",
-            "title": "Use a break statement inside a while loop",
-            "slug": "no-break-in-while"
+            "code": "for (x in y) break;",
+            "title": "Use a break statement inside a for..in loop",
+            "slug": "no-break-in-for-in",
+            "skip": [{"type" : "ForInStatement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}]
           },
           {
             "code": "if (x) if (y) x = 3;",
             "title": "Make an assignment within 2 nested if statements",
-            "slug": "assignment-within-nested-ifs"
+            "slug": "assignment-within-nested-ifs",
+            "skip": [{"type" : "IfStatement", "prop": "test"}]
           }
         ]
       }
