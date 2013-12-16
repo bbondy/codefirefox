@@ -49,7 +49,7 @@ describe('files', function() {
                assert(v.type != 'video' || v.youtubeid !== undefined);
                assert(v.priority);
                
-	       // Check for duplicate entry
+      	       // Check for duplicate entry
                assert.ok(!existsHelper[v.slug], v.slug);
                existsHelper[v.slug] = true;
              });
@@ -60,87 +60,416 @@ describe('files', function() {
   })
 });
 
-
-//
 describe('CodeChecker', function() {
-  var snippets = [
-    // Function
-    "function fn() { ; }",
 
-    // IfStatement
-    "if (x) { ; }",
+  it('supports basic exact matches for the JS language', function(done) {
+    var samples = [
+      // Function
+      "function fn() {  }",
+      "function fn() { ; }",
 
-    // ForStatement
-    "for (var x = 0; x < 10; x++) { ; }",
+      // IfStatement
+      "if (x) { }",
+      "if (x) { ; }",
 
-    // ForInStatement
-    "for (var x in y) { ; }",
+      // ForStatement
+      "for (var x = 0; x < 10; x++) { }",
+      "for (var x = 0; x < 10; x++) { ; }",
 
-    // DoWhileStatement
-    "do { ; } while (x);",
+      // ForInStatement
+      "for (var x in y) { }",
+      "for (var x in y) { ; }",
 
-    // WhileStatement
-    "while(x) { ; }",
+      // DoWhileStatement
+      "do { } while (x);",
+      "do { ; } while (x);",
 
-    // VariableDeclaration
-    "var x = 3",
+      // WhileStatement
+      "while(x) { }",
+      "while(x) { ; }",
 
-    // AssignmentExpression
-    "x = 4",
+      // VariableDeclaration
+      "var x = 3;",
 
-    // UpdateExpression
-    "x++", "x--", "++x", "--x",
+      // AssignmentExpression
+      "x = 4;",
 
-    // BreakStatement
-    "while(x) { break; }",
+      // UpdateExpression
+      "x++;", "x--;", "++x;", "--x;",
 
-    // ContinueStatement
-    "while(x) { continue; }",
+      // BreakStatement
+      "while(x) { break; }",
 
-    // ReturnStatement
-    "function fn(x) { return 3; }",
+      // ContinueStatement
+      "while(x) { continue; }",
+
+      // ReturnStatement
+      "function fn(x) { return 3; }",
+      
+      // Sequential statements
+      ";",
+
+      // Sequential statements
+      ";;",
+
+      // Sequential statements in a block
+      "{ ;; }",
+
+      // Sequential statements in a conditional block
+      "if(x) { ;; }",
+
+      // Nested ifs
+      "if(x) { if(y) { x++;} }",
+
+      // Deeply nested ifs loops, and sequential statements
+      "if(a) { x++; --x; if(b) if(c) while(d) if(e) { ;;;; x++; do (condition) ; while(y) }}",
+
+      // Empty program
+      "",
+
+      // Expression
+      "x < 3",
+
+      // Switch
+      "switch(x) { case 0: break; case 1: break; }",
+
+      // try catch
+      "try { x; throw x; } catch(e) { ; }",
+    ];
     
-    // EmptyStatement
-    ";"
-  ];
+    var count = 0;
+    samples.forEach(function(sample) {
+      var checker = new CodeChecker(); 
+      checker.addAssertions([{ code: sample}]);
+      checker.parseSample(sample, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        assert.ok(checker.assertions[0].hit);
+        if (count == samples.length)
+          done();
+      });
+    }, this);
+  }); // end it
 
-  var allSnippets = snippets.join("\n");
-  var count = 0;
+  it('works with empty block assertions when sample code is not empty', function(done) {
+    var assertions = [
+      // Function
+      "function fn() { }",
 
-  it('Basic matching for assertions should work', function(done) {
-    snippets.forEach(function(s) {
+      // IfStatement
+      "if (x) {  }",
+
+      // ForStatement
+      "for (var x = 0; x < 10; x++) { }",
+
+      // ForInStatement
+      "for (var x in y) { }",
+
+      // DoWhileStatement
+      "do { } while (x);",
+
+      // WhileStatement
+      "while(x) { }",
+    ];
+    var samples = [
+      // Function
+      "function fn() { ; }",
+
+      // IfStatement
+      "if (x) { ; }",
+
+      // ForStatement
+      "for (var x = 0; x < 10; x++) { ; }",
+
+      // ForInStatement
+      "for (var x in y) { ; }",
+
+      // DoWhileStatement
+      "do { x++; y--; if (x) { } } while (x);",
+
+      // WhileStatement
+      "while(x) { break; }",
+    ];
+    var count = 0;
+    for (var i = 0; i < assertions.length; i++) {
+      var s = assertions[i];
+      var sampleCode = samples[i];
       // Create code to test against which contains all the statements
       var checker = new CodeChecker(); 
-      checker.addAssertionPromise(s, ).then(function(ret) {
-        console.log('1');
-        return checker.parseItPromise(allSnippets);
-      }).done(function onSuccess(ret) {
+      checker.addAssertion(s);
+      checker.parseSample(sampleCode, function() {
         count++;
-        console.log('we have ret');
-        assert.equal(ret.assertions.length, 1);
-        assert.ok(ret.assertions[0].hit);
-        if (count == snippets.length) {
+        assert.equal(checker.assertions.length, 1);
+        assert.ok(checker.assertions[0].hit);
+        if (count == assertions.length) {
           done();
         }
-      }, function onRejected(e) {
-        console.log(e);
-        assert.ok(false);
       });
-    }, this); //end forEach snippet
-  }); // end test each snippet against assertions
+    }
+  }); // end it
 
+  it('assertion lists match at arbitrary levels and ordering, they need not be top level', function(done) {
+    var samples = [
+      // Function
+      "function fn() { x++; }",
 
-}); // end describe
+      // If
+      "if(x) { x++; }",
 
-/*
-var emptyPromise = Promise.denodeify(function(callback) { callback(); });
-var promise = emptyPromise();
-// Build promises
-statements.forEach(function(s) {
-  promise = promise.then(function (ret) {
-    return checker.addToWhitelistPromise({
-      code: s,
+      // Nested loops
+      "while(x) { while(y) x++; }",
+
+      // Not the first statement in a series
+      "var x = 3; x++;",
+
+      // Not the first statement in a series inside a block
+      "{ var x = 3; x++; }",
+
+      // Not the only statement in a series
+      "x++; var x = 3;",
+
+      // Not the only statement in a series inside a block
+      "{ x++; var x = 3; }",
+    ];
+    var count = 0;
+    samples.forEach(function(sampleCode) {
+      // Create code to test against which contains all the statements
+      var checker = new CodeChecker(); 
+      checker.addAssertion('x++;');
+
+      checker.parseSample(sampleCode, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        assert.ok(checker.assertions[0].hit);
+        if (count == samples.length) {
+          done();
+        }
+      });
+
+    }, this);
+  }); // end it
+
+  it('assertions should not match when they are not fully satisfied', function(done) {
+    var assertions = [
+      // Function
+      "function fn() { x++; }",
+
+      // If
+      "if(x) { x++; }",
+
+      // Nested loops
+      "while(x) { while(y) x++; }",
+
+      // Not the first statement in a series
+      "var x = 3; x++;",
+
+      // Not the first statement in a series inside a block
+      "{ var x = 3; x++; }",
+
+      // Not the only statement in a series
+      "x++; var x = 3;",
+
+      // Not the only statement in a series inside a block
+      "{ x++; var x = 3; }",
+    ];
+    var count = 0;
+    assertions.forEach(function(assertion) {
+      // Create code to test against which contains all the statements
+      var checker = new CodeChecker(); 
+      checker.addAssertion(assertion);
+
+      checker.parseSample("x++;", function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        assert.ok(!checker.assertions[0].hit);
+        if (count == assertions.length) {
+          done();
+        }
+      });
+
+    }, this);
+  }); // end it
+
+  it('more than one assertion should be able to be checked on the same sample code with 1 instance of checker only using addAssertion API', function(done) {
+    var assertions = [
+      // Has an increment
+      "x++;",
+
+      // Has an increment
+      "x++;",
+
+      // Has an empty statement
+      ";",
+
+      // Has an if with an assignment in it
+      "if (x) { x = 3; }"
+    ];
+    var count = 0;
+    var checker = new CodeChecker(); 
+    assertions.forEach(function(assertion) {
+      // Create code to test against which contains all the statements
+      checker.addAssertion(assertion);
     });
-  });
-});
-*/
+
+    checker.parseSample("if (x) { x = 3; x++;; }", function() {
+      count++;
+      assert.equal(checker.assertions.length, assertions.length);
+      checker.assertions.forEach(function(assertion) {
+        assert.ok(assertion.hit);
+      });
+      done();
+    });
+  }); // end it
+
+  it('more than one assertion should be able to be checked on the same sample code with 1 instance of checker only using addAssertions API. Extra properties should be carried forward', function(done) {
+    var assertions = [
+      // Has an increment
+      { code: "x++;", someExtraProp: true },
+
+      // Has an increment
+      { code: "x++;", someExtraProp: true  },
+
+      // Has an empty statement
+      { code: ";", someExtraProp: true },
+
+      // Has an if with an assignment in it
+      { code: "if (x) { x = 3; }", someExtraProp: true }
+    ];
+    var count = 0;
+    var checker = new CodeChecker(); 
+    checker.addAssertions(assertions);
+
+    checker.parseSample("if (x) { x = 3; x++;; }", function() {
+      count++;
+      assert.equal(checker.assertions.length, assertions.length);
+      checker.assertions.forEach(function(assertion) {
+        assert.ok(assertion.hit);
+        assert.ok(assertion.someExtraProp);
+      });
+      done();
+    });
+  }); // end it
+
+  it('block statements should match even if not provided on code sample', function(done) {
+    var assertions = [
+      // IfStatement
+      "if (x) { ; }",
+
+      // ForStatement
+      "for (var x = 0; x < 10; x++) { ; }",
+
+      // ForInStatement
+      "for (var x in y) { ; }",
+
+      // DoWhileStatement
+      "do { ; } while (x);",
+
+      // WhileStatement
+      "while(x) { ; }",
+
+      // Deeply nested ifs loops, and sequential statements
+      "if(a) { if (b) { while(d) { ; } } }"
+
+    ];
+
+    var count = 0;
+    assertions.forEach(function(assertion) {
+      var checker = new CodeChecker(); 
+      checker.addAssertion(assertion);
+      checker.parseSample(assertion.replace(/{/g, '').replace(/}/g, ''), function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        checker.assertions.forEach(function(assertion) {
+          assert.ok(assertion.hit);
+        });
+        if (count == assertions.length)
+          done();
+      });
+    });
+  }); // end it
+
+  it('block statements should match even if not provided on assertions', function(done) {
+    var samples = [
+      // IfStatement
+      "if (x) { ; }",
+
+      // ForStatement
+      "for (var x = 0; x < 10; x++) { ; }",
+
+      // ForInStatement
+      "for (var x in y) { ; }",
+
+      // DoWhileStatement
+      "do { ; } while (x);",
+
+      // WhileStatement
+      "while(x) { ; }",
+
+      // Deeply nested ifs loops, and sequential statements
+      "if(a) { if (b) { while(d) { ; } } }"
+
+    ];
+
+    var count = 0;
+    samples.forEach(function(sample) {
+      var checker = new CodeChecker(); 
+      checker.addAssertion(sample.replace(/{/g, '').replace(/}/g, ''));
+      checker.parseSample(sample, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        checker.assertions.forEach(function(assertion) {
+          assert.ok(assertion.hit);
+        });
+        if (count == samples.length)
+          done();
+      });
+    });
+  }); // end it
+
+  it('Assertions are allowed to match with blocks in between', function(done) {
+    var assertions = [
+      // break; statement in a while statement
+      "while (x) { break; }",
+
+      // nested ifs with an assignment inside
+      "if (x) { if (y) { x = 1; }  }",
+
+      // statement within block
+      "{ x = 3; }",
+
+      // if statement with 2 statements in it
+      "if (x) { x = 3; x++; }",
+    ];
+
+    var samples = [
+      // break; statement in a while statement with if in between
+      "while (x) { if (y) { break; } };",
+
+      // nested ifs but with loops around it
+      "while(1) { if (x) { for (x in z) { if (y) { x = 1; } }  } }",
+
+      // statement within block but has a different type of statement before it
+      "{ var k = 3; x = 3; }",
+
+      // if statement with more than 2 statements in it
+      "if (x) { var x = 3; ; ; x = 3; x++; var x; }",
+    ];
+
+    var count = 0;
+    for (var i = 0; i < assertions.length; i++) {
+      var s = assertions[i];
+      var sampleCode = samples[i];
+      var checker = new CodeChecker(); 
+      checker.addAssertion(s, '');
+      checker.parseSample(sampleCode, function() {
+        count++;
+        assert.equal(checker.assertions.length, 1);
+        checker.assertions.forEach(function(assertion) {
+          assert.ok(assertion.hit);
+        });
+        if (count == samples.length)
+          done();
+      });
+    }
+  }); // end it
+}); // end describe

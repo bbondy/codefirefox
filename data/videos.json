@@ -43,6 +43,11 @@
             "code": "while (x) break;",
             "title": "Use a break statement inside a while loop",
             "slug": "no-break-in-while"
+          },
+          {
+            "code": "if (x) if (y) x = 3;",
+            "title": "Make an assignment within 2 nested if statements",
+            "slug": "assignment-within-nested-ifs"
           }
         ]
       }
