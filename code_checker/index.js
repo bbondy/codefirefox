@@ -53,14 +53,20 @@ CodeChecker.prototype = {
    *             match everything, but can match it at any level of code.
    * @param obj  An object for state, each property will be copied to the
    *             assertion, accessible through codeChecker.assertions
+   *             This object can also specify a property named skip which
+   *             is an array of objects of type: { type : "StatementType", prop: "prop" }.
+   *             If specified, the specified attribute on the specified element will be skipped.
+   *             This is useful to generalize your assertions.
+   *             For more information see:
+   *             https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API
+   * 
    */
-  addAssertion: function(code, state) {
-    state = state || {};
-    state.code = code;
-    state.codeAAST = acorn.parse(code, {});
-
-    state.hit = false;
-    this.assertions.push(state);
+  addAssertion: function(code, obj) {
+    obj = obj || {};
+    obj.code = code;
+    obj.codeAAST = acorn.parse(code, {});
+    obj.hit = false;
+    this.assertions.push(obj);
   },
 
   /**
@@ -161,14 +167,24 @@ CodeChecker.prototype = {
 
       // Check types that need to be called recursively
       this.recursiveProperties.forEach(function(prop) {
-        if (nodeAAST[prop] && nodeAAST[prop].constructor == Array) {
-          nodeAAST[prop].forEach(function(childAASTNode) {
-            nodeSAST[prop].forEach(function(childSASTNode) {
-              this.processNode(assertion, childAASTNode, childSASTNode, true, depthAAST + 1, depthSAST + 1, 'loc3')
+        if (nodeAAST[prop]) {
+          if (assertion.skip) {
+            assertion.skip.forEach(function (skipObj) {
+              if (skipObj.type == nodeAAST.type && prop == skipObj.prop) {
+                nodeAAST.skipped = true;
+                return;
+              }
             }, this);
-          }, this);
-        } else if (nodeAAST[prop] && typeof nodeAAST[prop] == 'object') {
-          this.processNode(assertion, nodeAAST[prop], nodeSAST[prop], true, depthAAST + 1, depthSAST + 1, 'loc4')
+          }
+          if (nodeAAST[prop].constructor == Array) {
+            nodeAAST[prop].forEach(function(childAASTNode) {
+              nodeSAST[prop].forEach(function(childSASTNode) {
+                this.processNode(assertion, childAASTNode, childSASTNode, true, depthAAST + 1, depthSAST + 1, 'loc3')
+              }, this);
+            }, this);
+          } else if (typeof nodeAAST[prop] == 'object') {
+            this.processNode(assertion, nodeAAST[prop], nodeSAST[prop], true, depthAAST + 1, depthSAST + 1, 'loc4')
+          }
         }
       }, this);
     }
@@ -193,6 +209,10 @@ CodeChecker.prototype = {
    * @return true if all nodes have the hit property set on them
    */
   _isAssertionCompletelySatisfied: function(node) {
+    // When a node is explicitly skipped, don't process its children
+    if (node.skipped) {
+      return true;
+    }
     var allHit = node.hit || node.type == 'Program';
     this.recursiveProperties.forEach(function(prop) {
       if (node[prop] && node[prop].constructor == Array) {
