@@ -1,6 +1,5 @@
 "use strict";
 
-console.log(this);
 // Window isn't defined in node.js
 if (typeof window === 'undefined') {
 
