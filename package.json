@@ -17,7 +17,8 @@
     "acorn": "~0.4.2",
     "prettyjson": "~0.10.0",
     "promise": "~3.2.0",
-    "mocha": "~1.15.1"
+    "mocha": "~1.15.1",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {},
   "scripts": {

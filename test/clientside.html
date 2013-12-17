@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../node_modules/underscore/underscore.js"></script>
+<script src="mocha_shim.js"></script>
+<script src="../node_modules/acorn/acorn.js"></script>
+<script src="../code_checker/index.js"></script>
+<script src="test.js"></script>
+<script>
+  var rec = function() {
+  document.write('<br>PASS: ' + passCount + ', FAIL: ' + failCount + '<br>');
+	  passCount = 0;
+	  failCount = 0;
+    if (tests.length == 0)
+      return;
+     var test = tests[0];
+     tests.splice(0, 1);
+     document.write('Running test: ' + test.desc + '\n');
+     test.c(rec);
+  };
+
+  var test = tests[0];
+  tests.splice(0, 1);
+  document.write('Running test: ' + test.desc + '\n');
+  test.c(rec);
+
+</script>
+</head>
+<body>
+</body>
+</html>
