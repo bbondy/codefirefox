@@ -82,6 +82,7 @@ CodeChecker.prototype = {
    */
   parseSample: function(code, doneParsing) {
     var err;
+    this.allSatisfied = true;
     try {
       // Assume we hit the assertion until we prove otherwise
       //this.resetAssertions(true); 
@@ -94,6 +95,9 @@ CodeChecker.prototype = {
         //console.log(prettyjson.render(assertion.codeAAST));
         this.processNode(assertion, assertion.codeAAST, this.sampleCodeTree, false, 0, 0, 'loc1');
         assertion.hit = this._isAssertionCompletelySatisfied(assertion.codeAAST);
+        this.allSatisfied = this.allSatisfied && 
+          (assertion.hit && !assertion.blacklist || 
+           !assertion.hit && assertion.blacklist);
       }, this);
     } catch (e) {
       console.log(e.stack);

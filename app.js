@@ -135,9 +135,9 @@ initConfigData().done(function(config) {
   app.get('/admin', routes.admin);
 
   // POST
-  app.post('/video/:video', routes.watchedVideo);
-  app.post('/check-code/:exercise', routes.checkCode);
-  app.post('/:category/:video', routes.watchedVideo);
+  app.post('/check-code/:slug', routes.checkCode);
+  app.post('/video/:slug', routes.completedLesson);
+  app.post('/exercise/:slug', routes.completedLesson);
 
   // DELETE
   app.del('/stats', routes.delStats);

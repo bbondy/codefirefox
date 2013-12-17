@@ -26,10 +26,11 @@ block mainContent
           if !video.type || video.type == 'video'
             li.video
               a(href= '/video/' + video.slug, name= video.slug)
-                span.watched= video.title
+                span.completed= video.title
           else
             li.exercise
-              span= video.title
+              a(href= '/exercise/' + video.slug, name= video.slug)
+                span.completed= video.title
 
     if session.isAdmin
       p

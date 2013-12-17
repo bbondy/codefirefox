@@ -29,8 +29,8 @@ block mainContent
               if video.youtubeid
                 a(name= category.slug + '/' + video.slug)
                 a(href= '/video/' + video.slug, name= video.slug)
-                  if video.watched
-                    span.watched= video.title
+                  if video.completed
+                    span.completed= video.title
                   else
                     span= video.title
               else
@@ -40,7 +40,10 @@ block mainContent
               if video.assertions
                 a(name= category.slug + '/' + video.slug)
                 a(href= '/exercise/' + video.slug, name= video.slug)
-                  span= video.title
+                  if video.completed
+                    span.completed= video.title
+                  else
+                    span= video.title
               else
                 span= video.title
 

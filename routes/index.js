@@ -127,28 +127,35 @@ exports.delStats = function(req, res, next) {
   });
 };
 
+function reportCompleted(req, res, callback) {
+  db.get("video:" + req.params.slug, function(err, lesson) {
+    if (!err) {
+      db.addToSet('user:' + res.locals.session.email + ':videos_watched', lesson)
+    } 
+    if (callback) {
+      callback(err);
+    }
+  });
+}
+
 /**
- * POST /:category/:video
+ * POST /video/:slug
+ * POST /exercise/:slug
  * Sets per logged in user stats
  *
  * TODO: Should return an error if the user is not logged in, currently
  * will store it as a key with null instead of the username.
  */ 
-exports.watchedVideo = function(req, res, next) {
-  if (!req.params.video) {
-    next(new Error('Invalid URL format, should be: :category/:video or video/:video'));
+exports.completedLesson = function(req, res, next) {
+  if (!req.params.slug) {
+    next(new Error('Invalid URL format, should be: video/:slug or exercise/:slug'));
     return;
   }
 
-  db.get("video:" + req.params.video, function(err, video) {
-    if (err) {
-      res.json({ status: "failure" });
-      return;
-    }
-
-    db.addToSet('user:' + res.locals.session.email + ':videos_watched', video)
-    res.json({ status: "okay" });
+  reportCompleted(req, res, function(err) {
+    res.json({ status: (err ? "failure" : "okay") });
   });
+
 };
 
 /**
@@ -206,7 +213,7 @@ exports.outline = function(req, res) {
       });
       categories.forEach(function(c) {
         c.videos.forEach(function(v) {
-          v.watched = slugsWatched.indexOf(v.slug) != -1;
+          v.completed = slugsWatched.indexOf(v.slug) != -1;
         });
       });
     }
@@ -268,16 +275,14 @@ exports.exercise = function(req, res, next) {
 */
 exports.checkCode = function(req, res) {
   console.log('POST /check-code');
-  if (!req.params.exercise) {
-    console.log('no checking code');
+  if (!req.params.slug) {
     res.json({ status: "failure",
                reason: "Exercise slug must be specified",
              });
     return;
   }
 
-  console.log('checking code');
-  db.get("video:" + req.params.exercise, function(err, exercise) {
+  db.get("video:" + req.params.slug, function(err, exercise) {
     var checker = new CodeChecker();
     var parseIt = Promise.denodeify(checker.parseIt).bind(checker);
     var addToWhitelist = Promise.denodeify(checker.addToWhitelist).bind(checker);
@@ -292,9 +297,12 @@ exports.checkCode = function(req, res) {
           console.log(err);
           statusMessage = "failure";
           reason = err;
+        } else {
+          if (checker.allSatisfied) {
+            reportCompleted(req, res);
+          }
         }
 
-        console.log('assertions: ' + checker.assertions);
         res.json({ status: statusMessage,
                    reason: reason,
                    assertions: checker.assertions,
