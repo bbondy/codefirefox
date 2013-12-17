@@ -37,7 +37,7 @@ The API is very simple. It has 2 important methods:
 1. `addAssertion` which takes in a sample of code to match again. It also
    takes in an extra object which can carry extra state.
 2. `parseSample` which parses the sample and performs a match against all
-   added assertions.  It's callback passes an error if one occurs.
+   added assertions.  Its callback passes an error if one occurs.
 
 The API has 2 important members which should be used after a parseSample call:
 
@@ -75,9 +75,9 @@ Server side tests are included in the parent module tests
 
 **Assertions:**
 
-Each asserion will match as long as it appears somewhere in the sample of
+Each assertion will match as long as it appears somewhere in the sample of
 code.  Even an assertion like `while (x) break;`  will match even if there
-is an if statement before the break on teh sample code.
+is an if statement before the break on the sample code.
 
 Identifier names are ignored unless an `__` prefix is added in the assertion.
 If an `__` prefix is found, the identifier name will be matched, but the `__` prefix will be dropped.
