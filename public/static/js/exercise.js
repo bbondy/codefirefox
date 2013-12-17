@@ -23,12 +23,12 @@ function checkSyntax() {
         if (!e.blacklist) {
           var element = $("#" + e.slug);
           element.html('<i class="fa ' + (e.hit ? 'fa-check' : 'fa-times') + '"></i>  ' +
-            '<span>' + e.title + '.  </span>' +
-            (e.hit ? '<span class="good">Completed!</span>' : '<span class="bad">Not yet completed.') );
+            e.title + '. ' +
+            (e.hit ? '<span class="good">Completed!</span>' : '<span class="bad">Not yet completed.</span>'));
         } else {
           var element = $("#" + e.slug);
           element.html('<i class="fa ' + (e.hit ? 'fa-times' : 'fa-check') + '"></i>  ' +
-            e.title + '.  ' +
+            e.title + '. ' +
             (e.hit ? '<span class="bad">Oops, please fix</span>' : '<span class="good">So far so good.</span>'));
         }
       });
