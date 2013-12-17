@@ -1,9 +1,14 @@
 "use strict";
 
-var assert = require("assert"),
-  db = require("../db"),
-  Promise = require("promise"),
-  CodeChecker = require('../code_checker');
+console.log(this);
+// Window isn't defined in node.js
+if (typeof window === 'undefined') {
+
+global.assert = require("assert");
+global.db = require("../db");
+global.Promise = require("promise");
+global.CodeChecker = require('../code_checker');
+global._ = require("underscore");
 
 // Promise wrapped helpers
 var readFile = Promise.denodeify(require('fs').readFile);
@@ -33,14 +38,14 @@ describe('files', function() {
        readFile(__dirname + '/../data/videos.json', 'utf8')
          .then(function(data) {
            var categories = JSON.parse(data);
-           categories.forEach(function(c) {
+           _.each(categories, function(c) {
                // Check that the category items are specified
                assert.ok(c.title);
                assert.ok(c.slug);
                assert.ok(c.priority);
                assert.ok(c.videos);
 
-             c.videos.forEach(function(v) {
+             _.each(c.videos, function(v) {
 
                // Check that the video items are specified
                assert(v.title);
@@ -59,6 +64,7 @@ describe('files', function() {
     });
   })
 });
+}
 
 describe('CodeChecker', function() {
 
@@ -151,11 +157,11 @@ describe('CodeChecker', function() {
       "[1,2,3]",
 
       //ObjectExpression
-      "obj = { prop1: 'val1', prop2: 2 };" ,
+      "obj = { prop1: 'val1', prop2: 2 };"
     ];
     
     var count = 0;
-    samples.forEach(function(sample) {
+    _.each(samples, function(sample) {
       var checker = new CodeChecker(); 
       checker.addAssertions([{ code: sample}]);
       checker.parseSample(sample, function() {
@@ -186,7 +192,7 @@ describe('CodeChecker', function() {
       "do { } while (x);",
 
       // WhileStatement
-      "while(x) { }",
+      "while(x) { }"
     ];
     var samples = [
       // Function
@@ -205,7 +211,7 @@ describe('CodeChecker', function() {
       "do { x++; y--; if (x) { } } while (x);",
 
       // WhileStatement
-      "while(x) { break; }",
+      "while(x) { break; }"
     ];
     var count = 0;
     for (var i = 0; i < assertions.length; i++) {
@@ -246,10 +252,10 @@ describe('CodeChecker', function() {
       "x++; var x = 3;",
 
       // Not the only statement in a series inside a block
-      "{ x++; var x = 3; }",
+      "{ x++; var x = 3; }"
     ];
     var count = 0;
-    samples.forEach(function(sampleCode) {
+    _.each(samples, function(sampleCode) {
       // Create code to test against which contains all the statements
       var checker = new CodeChecker(); 
       checker.addAssertion('x++;');
@@ -289,10 +295,10 @@ describe('CodeChecker', function() {
       "x++; var x = 3;",
 
       // Not the only statement in a series inside a block
-      "{ x++; var x = 3; }",
+      "{ x++; var x = 3; }"
     ];
     var count = 0;
-    assertions.forEach(function(assertion) {
+    _.each(assertions, function(assertion) {
       // Create code to test against which contains all the statements
       var checker = new CodeChecker(); 
       checker.addAssertion(assertion);
@@ -327,11 +333,11 @@ describe('CodeChecker', function() {
       "a.o;",
 
       // Has an if with an assignment in it
-      "if (x) { x = 3; }",
+      "if (x) { x = 3; }"
     ];
     var count = 0;
     var checker = new CodeChecker(); 
-    assertions.forEach(function(assertion) {
+    _.each(assertions, function(assertion) {
       // Create code to test against which contains all the statements
       checker.addAssertion(assertion);
     });
@@ -339,7 +345,7 @@ describe('CodeChecker', function() {
     checker.parseSample("if (x) { x = 3; x++;; true; a.o; }", function() {
       count++;
       assert.equal(checker.assertions.length, assertions.length);
-      checker.assertions.forEach(function(assertion) {
+      _.each(checker.assertions, function(assertion) {
         assert.ok(assertion.hit);
       });
       done();
@@ -367,7 +373,7 @@ describe('CodeChecker', function() {
     checker.parseSample("if (x) { x = 3; x++;; }", function() {
       count++;
       assert.equal(checker.assertions.length, assertions.length);
-      checker.assertions.forEach(function(assertion) {
+      _.each(checker.assertions, function(assertion) {
         assert.ok(assertion.hit);
         assert.ok(assertion.someExtraProp);
       });
@@ -394,17 +400,16 @@ describe('CodeChecker', function() {
 
       // Deeply nested ifs loops, and sequential statements
       "if(a) { if (b) { while(d) { ; } } }"
-
     ];
 
     var count = 0;
-    assertions.forEach(function(assertion) {
+    _.each(assertions, function(assertion) {
       var checker = new CodeChecker(); 
       checker.addAssertion(assertion);
       checker.parseSample(assertion.replace(/{/g, '').replace(/}/g, ''), function() {
         count++;
         assert.equal(checker.assertions.length, 1);
-        checker.assertions.forEach(function(assertion) {
+        _.each(checker.assertions, function(assertion) {
           assert.ok(assertion.hit);
         });
         if (count == assertions.length)
@@ -432,17 +437,16 @@ describe('CodeChecker', function() {
 
       // Deeply nested ifs loops, and sequential statements
       "if(a) { if (b) { while(d) { ; } } }"
-
     ];
 
     var count = 0;
-    samples.forEach(function(sample) {
+    _.each(samples, function(sample) {
       var checker = new CodeChecker(); 
       checker.addAssertion(sample.replace(/{/g, '').replace(/}/g, ''));
       checker.parseSample(sample, function() {
         count++;
         assert.equal(checker.assertions.length, 1);
-        checker.assertions.forEach(function(assertion) {
+        _.each(checker.assertions, function(assertion) {
           assert.ok(assertion.hit);
         });
         if (count == samples.length)
@@ -463,7 +467,7 @@ describe('CodeChecker', function() {
       "{ x = 3; }",
 
       // if statement with 2 statements in it
-      "if (x) { x = 3; obj.fn(); }",
+      "if (x) { x = 3; obj.fn(); }"
     ];
 
     var samples = [
@@ -477,7 +481,7 @@ describe('CodeChecker', function() {
       "{ var k = 3; x = 3; fn(); }",
 
       // if statement with more than 2 statements in it
-      "if (x) { var x = 3; ; ; x = 3; obj.fn(); var x; fn(); }",
+      "if (x) { var x = 3; ; ; x = 3; obj.fn(); var x; fn(); }"
     ];
 
     var count = 0;
@@ -489,7 +493,7 @@ describe('CodeChecker', function() {
       checker.parseSample(sampleCode, function() {
         count++;
         assert.equal(checker.assertions.length, 1);
-        checker.assertions.forEach(function(assertion) {
+        _.each(checker.assertions, function(assertion) {
           assert.ok(assertion.hit);
         });
         if (count == samples.length)
@@ -553,14 +557,14 @@ describe('CodeChecker', function() {
 
     var count = 0;
 
-    samples.forEach(function(s) {
+    _.each(samples, function(s) {
       var shouldMatch = s.shouldMatch;
       var checker = new CodeChecker(); 
       checker.addAssertions([assertions[s.assertion]]);
       checker.parseSample(s.code, function() {
         count++;
         assert.equal(checker.assertions.length, 1);
-        checker.assertions.forEach(function(assertion) {
+        _.each(checker.assertions, function(assertion) {
           if (shouldMatch)
             assert.ok(assertion.hit);
           else
@@ -603,10 +607,10 @@ describe('CodeChecker', function() {
       { code: "if (x1) ;", assertion: "if(__x) ;", match: false },
       { code: "__fn(x) ;", assertion: "__fn2(y) ;", match: false },
       { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { __prop3: 'val1', prop4: 2 };", match: false },
-      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { prop3: 'val1', __prop4: 2 };", match: false },
+      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { prop3: 'val1', __prop4: 2 };", match: false }
     ];
     var count = 0;
-    snippets.forEach(function(snippet) {
+    _.each(snippets, function(snippet) {
       // Create code to test against which contains all the statements
       var checker = new CodeChecker(); 
       checker.addAssertion(snippet.assertion);
