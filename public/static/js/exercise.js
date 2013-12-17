@@ -33,11 +33,11 @@ function checkSyntax() {
         }
       });
 
-      if (response.status == "okay") {
-      } else {
-        console.log('Syntax Error on line: ' + response.reason.loc.line +
-                    ', column: ' + response.reason.loc.column);
-      }
+      var success = response.status == "okay";
+      var element = $("#no-syntax-errors");
+      element.html('<i class="fa ' + (!success ? 'fa-times' : 'fa-check') + '"></i>' +
+        'Do not have any syntax errors' + '.  ' +
+        (!success ? '<span class="bad">Oops, please fix on line: ' + response.reason.loc.line + '.  Above goals will be re-evaluated once fixed.</span>' : '<span class="good">So far so good.</span>'));
     },
     failure: function(errMsg) {
       alert('err: ' + errMsg);
