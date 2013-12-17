@@ -83,6 +83,12 @@ is an if statement before the break on the sample code.
 Identifier names are ignored unless an `__` prefix is added in the assertion.
 If an `__` prefix is found, the identifier name will be matched, but the `__` prefix will be dropped.
 
+An extra property of skip can also be provided for advanced filtering.
+It takes a list of abstract node types and properties to ignore and auto-match.
+
+    assertion.skip = [{"type" : "ForInStaTement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}]
+ 
+
 Running tests
 =============
 
