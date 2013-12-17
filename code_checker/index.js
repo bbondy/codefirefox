@@ -38,6 +38,7 @@ if (typeof window === 'undefined') {
 //    This has the advantage that it doesn't use a lot of memory.  And assuming your
 //    number of assertions are constant, you only have to walk the SAST tree a constant
 //    amount of times to see if it is a match.
+// This code implements solution #2.
 
 
 function CodeChecker() {
