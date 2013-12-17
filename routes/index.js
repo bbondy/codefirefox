@@ -283,20 +283,20 @@ exports.checkCode = function(req, res) {
     var addToWhitelist = Promise.denodeify(checker.addToWhitelist).bind(checker);
     var addToBlacklist = Promise.denodeify(checker.addToBlacklist).bind(checker);
 
-    console.log(exercise.assertions);
     checker.addAssertions(exercise.assertions);
     try {
       checker.parseSample(req.body.code, function(err, ret) {
+        var statusMessage = "okay";
+        var reason = "";
         if (err) {
           console.log(err);
-          res.json({ status: "failure",
-                     reason: err
-                   });
-          return;
+          statusMessage = "failure";
+          reason = err;
         }
 
         console.log('assertions: ' + checker.assertions);
-        res.json({ status: "okay",
+        res.json({ status: statusMessage,
+                   reason: reason,
                    assertions: checker.assertions,
                  });
 
@@ -310,50 +310,3 @@ exports.checkCode = function(req, res) {
   });
 };
 
-/*
-  checker.addAssertionsPromise([
-    {
-      code: ";",
-      title: "Do not have any empty statements (Example: Extra semicolon)",
-      slug: "no-empty-statements",
-      blacklist: true
-    },
-    {
-      code: "while (x) break;",
-      title: "Don't use a break statement inside a while loop",
-      slug: "no-break-in-while",
-      blacklist: true
-    },
-    {
-      code: "do { continue;  } while (x);",
-      title: "Don't use a continue inside a do..while loop",
-      slug: "no-continue-in-do-while",
-      blacklist: true
-    },
-    {
-      code: "for (x = 0; x < 10; x++) continue;",
-      title: "Don't use a continue statement inside a for loop",
-      slug: "no-continue-in-for",
-      blacklist: true
-    },
-    {
-      code: "var x = 4;",
-      title: "Create a variable declaration",
-      slug: "make-assignment",
-    },
-    {
-      code: "for (x in y) { x++ }",
-      title: "Use the increment or decrement operator on a variable in the body of a for..in loop",
-      slug: "increment-in-for-in-loop",
-    },
-    {
-      code: "if (1 === 1) { x = 3; }",
-      title: "Assign a variable to a value inside an if statement (Not a declaration)",
-      slug: "variable-in-if",
-    },
-    {
-      code: "function fn() { return 3; }",
-      title: "Create a function with an explicit return in it",
-      slug: "function-with-return",
-    }]
-    */    

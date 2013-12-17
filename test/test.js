@@ -135,6 +135,23 @@ describe('CodeChecker', function() {
 
       // try catch
       "try { x; throw x; } catch(e) { ; }",
+
+      // Function call
+      "fn();",
+
+      // Object members
+      "obj.fn();",
+      "obj.x;",
+
+      // Literals
+      "1;",
+      "true;",
+
+      // ArrayExpression
+      "[1,2,3]",
+
+      //ObjectExpression
+      "obj = { prop1: 'val1', prop2: 2 };" ,
     ];
     
     var count = 0;
@@ -173,16 +190,16 @@ describe('CodeChecker', function() {
     ];
     var samples = [
       // Function
-      "function fn() { ; }",
+      "function fn() { [1,2,3]; }",
 
       // IfStatement
-      "if (x) { ; }",
+      "if (x) { true; }",
 
       // ForStatement
       "for (var x = 0; x < 10; x++) { ; }",
 
       // ForInStatement
-      "for (var x in y) { ; }",
+      "for (var x in y) { var x = {a: 'hi', b: 2}; }",
 
       // DoWhileStatement
       "do { x++; y--; if (x) { } } while (x);",
@@ -249,6 +266,8 @@ describe('CodeChecker', function() {
     }, this);
   }); // end it
 
+  // The difference here from the above is that the code samples are constant
+  // and the assertions are changing
   it('assertions should not match when they are not fully satisfied', function(done) {
     var assertions = [
       // Function
@@ -301,8 +320,14 @@ describe('CodeChecker', function() {
       // Has an empty statement
       ";",
 
+      // Has a literal
+      "true",
+
+      // Has an object property access
+      "a.o;",
+
       // Has an if with an assignment in it
-      "if (x) { x = 3; }"
+      "if (x) { x = 3; }",
     ];
     var count = 0;
     var checker = new CodeChecker(); 
@@ -311,7 +336,7 @@ describe('CodeChecker', function() {
       checker.addAssertion(assertion);
     });
 
-    checker.parseSample("if (x) { x = 3; x++;; }", function() {
+    checker.parseSample("if (x) { x = 3; x++;; true; a.o; }", function() {
       count++;
       assert.equal(checker.assertions.length, assertions.length);
       checker.assertions.forEach(function(assertion) {
@@ -438,7 +463,7 @@ describe('CodeChecker', function() {
       "{ x = 3; }",
 
       // if statement with 2 statements in it
-      "if (x) { x = 3; x++; }",
+      "if (x) { x = 3; obj.fn(); }",
     ];
 
     var samples = [
@@ -449,10 +474,10 @@ describe('CodeChecker', function() {
       "while(1) { if (x) { for (x in z) { if (y) { x = 1; } }  } }",
 
       // statement within block but has a different type of statement before it
-      "{ var k = 3; x = 3; }",
+      "{ var k = 3; x = 3; fn(); }",
 
       // if statement with more than 2 statements in it
-      "if (x) { var x = 3; ; ; x = 3; x++; var x; }",
+      "if (x) { var x = 3; ; ; x = 3; obj.fn(); var x; fn(); }",
     ];
 
     var count = 0;
@@ -556,6 +581,8 @@ describe('CodeChecker', function() {
       { code: "x = 3;", assertion: "y = 3;", match: true },
       { code: "for(var x = 3; x < 10; x++) ;", assertion: "for(var y = 3; y < 10; y++) ;", match: true },
       { code: "if (x) ;", assertion: "if(y) ;", match: true },
+      { code: "fn(x) ;", assertion: "fn2(y) ;", match: true },
+      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { prop3: 'val1', prop4: 2 };", match: true },
 
       // Strict names should match
       { code: "function fn() { }", assertion: "function __fn() { }", match: true},
@@ -563,6 +590,8 @@ describe('CodeChecker', function() {
       { code: "x = 3;", assertion: "__x = 3;", match: true },
       { code: "for(var x = 3; x < 10; x++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: true },
       { code: "if (x) ;", assertion: "if(__x) ;", match: true },
+      { code: "fn(x) ;", assertion: "__fn(y) ;", match: true },
+      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { __prop1: 'val1', __prop2: 2 };", match: true },
 
       // Strict names that are different should not match
       { code: "function fn1() { }", assertion: "function __fn() { }", match: false},
@@ -572,6 +601,9 @@ describe('CodeChecker', function() {
       { code: "for(var x = 3; x1 < 10; x++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: false },
       { code: "for(var x = 3; x < 10; x1++) ;", assertion: "for(var __x = 3; __x < 10; __x++) ;", match: false },
       { code: "if (x1) ;", assertion: "if(__x) ;", match: false },
+      { code: "__fn(x) ;", assertion: "__fn2(y) ;", match: false },
+      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { __prop3: 'val1', prop4: 2 };", match: false },
+      { code: "obj = { prop1: 'val1', prop2: 2 };", assertion: "obj = { prop3: 'val1', __prop4: 2 };", match: false },
     ];
     var count = 0;
     snippets.forEach(function(snippet) {

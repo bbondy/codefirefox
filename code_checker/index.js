@@ -110,7 +110,8 @@ CodeChecker.prototype = {
    */
   recursiveProperties: ['body', 'cases', 'declarations', 'consequent', 'params',
     'defaults', 'expression', 'left', 'right', 'test', 'args', 'init', 'update',
-    'finalizer', 'block', 'handler', 'guardedHandlers', 'id', 'argument'],
+    'finalizer', 'block', 'handler', 'guardedHandlers', 'id', 'argument', 'callee',
+    'elements', 'properties', 'key', 'value'],
 
   /**
    * Performs a recursive walk on the abstract syntax tree for the assertion
@@ -161,7 +162,8 @@ CodeChecker.prototype = {
       if (nodeAAST.type == 'Identifier' && nodeAAST.name.substring(0, 2) == '__') {
         // Variable names that you want to strictly enforce must
         // start with __, the prefix is ignored, but is otherwise enforced.
-        nodeAAST.hit = nodeAAST.name.substring(2, nodeAAST.name.length) == nodeSAST.name;
+        nodeAAST.hit = nodeAAST.hit || nodeAAST.name.substring(2, nodeAAST.name.length) == nodeSAST.name;
+        //console.log('detected identifier ' + nodeAAST.name + 'with __ prefix. hit?' + nodeAAST.hit);
       } else {
         nodeAAST.hit = true;
       }
