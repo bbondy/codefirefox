@@ -23,6 +23,7 @@ Exercise module
 ===============
 
 The exercise module can be used either client or server side.
+Client side supports all modern browser, and also IE8+.
 
 The module is called CodeChecker and it gives the ability to check
 a list of whitelist code snippets and blacklist code snippets against
