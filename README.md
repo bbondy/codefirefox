@@ -85,6 +85,8 @@ If an `__` prefix is found, the identifier name will be matched, but the `__` pr
 
 An extra property of skip can also be provided for advanced filtering.
 It takes a list of abstract node types and properties to ignore and auto-match.
+See the Mozilla Parser API for more information:
+https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API
 
     assertion.skip = [{"type" : "ForInStaTement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}]
  
