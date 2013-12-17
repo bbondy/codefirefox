@@ -55,7 +55,7 @@
             "code": "if (x) if (y) x = 3;",
             "title": "Make an assignment within 2 nested if statements",
             "slug": "assignment-within-nested-ifs",
-            "skip": [{"type" : "IfStatement", "prop": "test"}]
+            "skip": [{"type" : "IfStatement", "prop": "test"}, {"type": "AssignmentExpression", "prop" : "right"}]
           }
         ]
       }
