@@ -36,7 +36,7 @@
           },
           {
             "code": "var x = 3;",
-            "title": "Create a new variable declaration and assign it a value in one statement",
+            "title": "Create a new variable declaration and initialize it with a literal value in one statement",
             "slug": "var-decl-with-value"
           },
           {
