@@ -44,8 +44,7 @@ The API has 2 important members which should be used after a parseSample call:
 1. `assertions` holds an array of assertions that were added. Each one has a `hit` property. This property does not take into consideration if the item is marked as a whitelist or blacklist item.
 2. `allSatisfied` will hold true if all whitelist items are matched, and all blacklist items are NOT matched.
 
-Example Usage of the API: 
--------------------------
+**Example Usage of the API:**
 
     var checker = new CodeChecker();
     checker.addAssertion("x = 3;");
@@ -55,20 +54,17 @@ Example Usage of the API:
       console.log('blacklist hit? ' + checker.assertions[1].hit);
     });
 
-Dependencies:
--------------
+**Dependencies:**
 
 - acorn.js
 - underscore
 - promise (server side only)
 
-Demo:
------
+**Demo:**
 
 http://codefirefox.com/exercise/intro-exercise
 
-Tests:
-------
+**Tests:**
 
 Client side tests for the exercise module can also be run simply by
 loading ../test/clientside.html on the browser you want to test the exercise
@@ -77,8 +73,7 @@ framework against.
 Server side tests are included in the parent module tests
 
 
-Assertions:
------------
+**Assertions:**
 
 Each asserion will match as long as it appears somewhere in the sample of
 code.  Even an assertion like `while (x) break;`  will match even if there
