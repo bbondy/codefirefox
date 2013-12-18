@@ -34,6 +34,7 @@ block mainContent
 
 block extraScripts
   script.
-    var exerciseSlug ="#{exercise.slug}"
+    var exerciseSlug ="#{exercise.slug}";
   script(src='/static/js/ace/ace.js', type='text/javascript', charset='utf-8')
   script(src='/static/js/exercise.js', type='text/javascript', charset='utf-8')
+  script(src='/exercise/' + exercise.slug + '?jsonp=beginParse', type='text/javascript', charset='utf-8')
