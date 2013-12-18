@@ -1,8 +1,14 @@
 var gLastSubmittedText;
 var gChecker;
 var gAssertions;
+var gWasSatisfied = false;
 
 function submitCode(code) {
+  // We already told the user the objectives were satisfied
+  // no more server checking for you!
+  if (gWasSatisfied)
+    return;
+
   $.ajax({
     url: "/check-code/" + exerciseSlug,
     type: "post",
@@ -12,12 +18,15 @@ function submitCode(code) {
     success: function(response) {
       if (response.status === 'okay') {
         if (email) {
-          if (response.allSatisfied)
+          if (response.allSatisfied) {
+            gWasSatisfied = true;
             alert('Congratulations, the exercise was marked as complete!');
+          }
           else
             alert('The exercise was attempted to be marked as complete, but not all code seems satisfied!');
         } else {
           alert('Congratulations, the exercise objectives are satisfied!');
+          gWasSatisfied = true;
         }
       } else {
         alert('There was an error submitting the code: ' + response.reason);
