@@ -3,6 +3,11 @@ var gChecker;
 var gAssertions;
 var gWasSatisfied = false;
 
+// IE8 hack in case I forget to leave some console.log when debugging
+if (typeof console == 'undefined') {
+  this.console = { log: function() { } };
+}
+
 function submitCode(code) {
   // We already told the user the objectives were satisfied
   // no more server checking for you!
@@ -36,7 +41,6 @@ function submitCode(code) {
 }
 
 function validateAssertions() {
-console.log('Validate assertions!');
   var editor = ace.edit("code");
   var code = editor.getSession().getValue();
   if (code == gLastSubmittedText) {
