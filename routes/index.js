@@ -260,10 +260,23 @@ exports.exercise = function(req, res, next) {
       return;
     }
 
+    var jsonpCallback = req.query.jsonp;
+    if (jsonpCallback) {
+      var assertions = JSON.stringify(exercise.assertions);
+      var assertions = jsonpCallback + "('" + assertions + "');"
+        res.writeHead(200, {
+            'Content-Type': 'application/javascript',
+            'Content-Length': assertions.length
+        });
+        res.end(assertions);
+        return;
+    }
+
     res.render('exercise', { pageTitle: exercise.title,
                              bodyID: 'body_exercise',
                              mainTitle: 'Exercise',
-                             exercise: exercise
+                             exercise: exercise,
+                             assertions: exercise.assertions
                            });
   });
 };
@@ -284,10 +297,6 @@ exports.checkCode = function(req, res) {
 
   db.get("video:" + req.params.slug, function(err, exercise) {
     var checker = new CodeChecker();
-    var parseIt = Promise.denodeify(checker.parseIt).bind(checker);
-    var addToWhitelist = Promise.denodeify(checker.addToWhitelist).bind(checker);
-    var addToBlacklist = Promise.denodeify(checker.addToBlacklist).bind(checker);
-
     checker.addAssertions(exercise.assertions);
     try {
       checker.parseSample(req.body.code, function(err, ret) {
@@ -306,6 +315,7 @@ exports.checkCode = function(req, res) {
         res.json({ status: statusMessage,
                    reason: reason,
                    assertions: checker.assertions,
+                   allSatisfied: checker.allSatisfied
                  });
 
       });
