@@ -1,4 +1,4 @@
-window = this; // Trick CodeChecker into knowing this is clientside
+window = this; // Trick CodeCheck into knowing this is clientside
 
 // Hack in a console.log
 if (typeof console == 'undefined') {
@@ -11,7 +11,7 @@ if (typeof console == 'undefined') {
 
 importScripts('/static/js/acorn.js',
   '/static/js/underscore-min.js',
-  '/static/js/codechecker.js');
+  '/static/js/codecheck.js');
 
 self.addEventListener('message', function(e) {
   switch (e.data.cmd) {
@@ -32,7 +32,7 @@ self.addEventListener('message', function(e) {
 
 self.validateAssertions = function() {
   try {
-    var checker = new CodeChecker;
+    var checker = new CodeCheck();
     checker.addAssertions(self.assertions);
     checker.parseSample(self.code, function(err) {
       var errLine;
