@@ -1,11 +1,15 @@
 var gLastSubmittedText;
-var gChecker;
 var gAssertions;
 var gWasSatisfied = false;
 
 // IE8 hack in case I forget to leave some console.log when debugging
 if (typeof console == 'undefined') {
   this.console = { log: function() { } };
+}
+
+function getCode() {
+  var editor = ace.edit("code");
+  return editor.getSession().getValue();
 }
 
 function submitCode(code) {
@@ -18,7 +22,7 @@ function submitCode(code) {
     url: "/check-code/" + exerciseSlug,
     type: "post",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify({ code: code }),
+    data: JSON.stringify({ code: getCode() }),
     dataType: "json",
     success: function(response) {
       if (response.status === 'okay') {
@@ -41,8 +45,7 @@ function submitCode(code) {
 }
 
 function validateAssertions() {
-  var editor = ace.edit("code");
-  var code = editor.getSession().getValue();
+  var code = getCode();
   if (code == gLastSubmittedText) {
     return;
   }
@@ -51,22 +54,26 @@ function validateAssertions() {
   try {
     // TODO: minor opt, don't make a new CodeChecker object each time, and
     // only add/parse assertions once per page.
-    gChecker = new CodeChecker;
-    gChecker.addAssertions(gAssertions);
-    gChecker.parseSample(code, function(err) {
-      // If we're completely satisfied, let the server know so it
-      // can do its own check and mark the exercise as complete!
-      if (!err && gChecker.allSatisfied) {
-        submitCode(code);
-      }
-      updateAssertionDisplay(err);
+    var checker = new CodeChecker;
+    checker.addAssertions(gAssertions);
+    checker.parseSample(code, function(err) { 
+      var errLine;
+      if (err && err.loc && err.loc.line)
+        errLine = err.loc.line;
+      updateAssertionResults(errLine, checker.allSatisfied);
     });
   } catch(err) {
     alert(err);
   }
 }
 
-function updateAssertionDisplay(err) {
+function updateAssertionResults(errLine, allSatisfied) {
+ // If we're completely satisfied, let the server know so it
+  // can do its own check and mark the exercise as complete!
+  if (!errLine && allSatisfied) {
+    submitCode(code);
+  }
+
   _.each(gAssertions, function(e) {
     if (!e.blacklist) {
       var element = $("#" + e.slug);
@@ -82,9 +89,9 @@ function updateAssertionDisplay(err) {
   });
 
   var element = $("#no-syntax-errors");
-  element.html('<i class="fa ' + (err ? 'fa-times' : 'fa-check') + '"></i>' +
+  element.html('<i class="fa ' + (errLine ? 'fa-times' : 'fa-check') + '"></i>' +
     'Do not have any syntax errors' + '.  ' +
-    (err ? '<span class="bad">Oops, please fix on line: ' + err.loc.line + '.  Above goals will be re-evaluated once fixed.</span>' : '<span class="good">So far so good.</span>'));
+    (errLine ? '<span class="bad">Oops, please fix on line: ' + errLine + '.  Above goals will be re-evaluated once fixed.</span>' : '<span class="good">So far so good.</span>'));
 }
 
 // This button is just for debugging when setInterval is commented out
@@ -100,5 +107,24 @@ $(function() {
 
 function beginParse(json) {
   gAssertions = JSON.parse(json);
-  setInterval("validateAssertions()", 1000);
+  if (typeof Worker !== 'undefined') {
+    // Check if we have web workers, if we do, do this on a background
+    // thread.
+    var worker = new Worker('/static/js/exerciseWorker.js');
+    worker.addEventListener('message', function(e) {
+      switch(e.data.cmd) {
+        case 'log':
+          console.log(e.data.msg);
+        break;
+        case 'done':
+          gAssertions = e.data.assertions;
+          updateAssertionResults(e.data.errLine, e.data.allSatisfied);
+          worker.postMessage({cmd: 'start', assertions: gAssertions, code: getCode()});
+        break;
+      }
+    });
+    worker.postMessage({cmd: 'start', assertions: gAssertions, code: getCode()});
+  } else {
+    setInterval("validateAssertions()", 1000);
+  }
 }
