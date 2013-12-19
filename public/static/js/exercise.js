@@ -34,8 +34,8 @@ function submitCode(code) {
           else
             alert('The exercise was attempted to be marked as complete, but not all code seems satisfied!');
         } else {
-          alert('Congratulations, the exercise objectives are satisfied!');
           gWasSatisfied = true;
+          alert('Congratulations, the exercise objectives are satisfied!');
         }
       } else {
         alert('There was an error submitting the code: ' + response.reason);
