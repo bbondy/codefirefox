@@ -5,7 +5,7 @@ var db = require('../db'),
   acorn = require('acorn'),
   prettyjson = require('prettyjson'),
   Promise = require('promise'),
-  CodeChecker = require('../code_checker'),
+  CodeCheck = require('codecheckjs'),
   helpers = require('../helpers');
 
 // Promises to help simplify async callback flow
@@ -296,7 +296,7 @@ exports.checkCode = function(req, res) {
   }
 
   db.get("video:" + req.params.slug, function(err, exercise) {
-    var checker = new CodeChecker();
+    var checker = new CodeCheck();
     checker.addAssertions(exercise.assertions);
     try {
       checker.parseSample(req.body.code, function(err, ret) {

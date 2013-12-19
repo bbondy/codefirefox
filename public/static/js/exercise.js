@@ -52,9 +52,9 @@ function validateAssertions() {
   gLastSubmittedText = code;
 
   try {
-    // TODO: minor opt, don't make a new CodeChecker object each time, and
+    // TODO: minor opt, don't make a new CodeCheck object each time, and
     // only add/parse assertions once per page.
-    var checker = new CodeChecker;
+    var checker = new CodeCheck();
     checker.addAssertions(gAssertions);
     checker.parseSample(code, function(err) { 
       var errLine;
