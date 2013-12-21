@@ -101,7 +101,7 @@ exports.stats = function(req, res, next) {
   }, function onFailure() {
     res.render('notFound', { pageTitle: 'No data found',
                              bodyID: 'body_stats',
-                             mainTitle: err1
+                             mainTitle: 'No data found'
                            });
   });
 };
