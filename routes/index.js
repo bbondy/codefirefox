@@ -263,6 +263,7 @@ exports.exercise = function(req, res, next) {
     var jsonpCallback = req.query.jsonp;
     if (jsonpCallback) {
       var assertions = JSON.stringify(exercise.assertions);
+      assertions = assertions.replace(/'/g, "\\'");
       var assertions = jsonpCallback + "('" + assertions + "');"
         res.writeHead(200, {
             'Content-Type': 'application/javascript',
