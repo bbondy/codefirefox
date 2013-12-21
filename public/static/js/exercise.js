@@ -12,6 +12,13 @@ function getCode() {
   return editor.getSession().getValue();
 }
 
+function setCode(code) {
+  if (!code)
+    return;
+  var editor = ace.edit("code");
+  return editor.getSession().setValue(code);
+}
+
 function submitCode(code) {
   // We already told the user the objectives were satisfied
   // no more server checking for you!
@@ -70,8 +77,13 @@ function validateAssertions() {
 function updateAssertionResults(errLine, allSatisfied) {
  // If we're completely satisfied, let the server know so it
   // can do its own check and mark the exercise as complete!
+  var code = getCode();
   if (!errLine && allSatisfied) {
     submitCode(code);
+  }
+
+  if (typeof localStorage !== "undefined") {
+    localStorage['savedCode-' + exerciseSlug] = code;
   }
 
   _.each(gAssertions, function(e) {
@@ -103,6 +115,10 @@ $(function() {
   var editor = ace.edit("code");
   editor.setTheme("ace/theme/TextMate");
   editor.getSession().setMode("ace/mode/javascript");
+
+  if (typeof localStorage !== "undefined") {
+    setCode(localStorage['savedCode-' + exerciseSlug]);
+  }
 });
 
 function beginParse(json) {
