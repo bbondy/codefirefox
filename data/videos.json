@@ -35,8 +35,8 @@
             "blacklist": true
           },
           {
-            "code": "var x = 3;",
-            "title": "Create a new variable declaration and initialize it with a literal value in one statement",
+            "code": "var x = $$;",
+            "title": "Create a new variable declaration and initialize it with a value in one statement",
             "slug": "var-decl-with-value"
           },
           {
@@ -498,7 +498,7 @@
           },
           {
             "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function(a) { });",
-            "title": "Call then() on the promise, passing in a callback function which takes one parameter",
+            "title": "Call then() on the promise, passing in a callback function directly which takes one parameter",
             "slug": "promise-then-osfile-jsm"
           },
           {
