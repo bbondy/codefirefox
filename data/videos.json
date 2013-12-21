@@ -480,11 +480,33 @@
         "priority": 1
       },
       {
-        "title": "Using a JavaScript module exercise",
+        "title": "Using a JavaScript module (JSM) exercise",
         "type": "exercise",
         "description": "",
         "slug": "using-jsm-intro-exercise",
-        "priority": 2
+        "priority": 2,
+        "assertions": [
+          {
+            "code": "__Components.__utils.__import('resource://gre/modules/osfile.jsm');",
+            "title": "Use Components.utils.import to import the module: 'resource://gre/modules/osfile.jsm'",
+            "slug": "import-osfile-jsm"
+          },
+          {
+            "code": "var promise = OS.File.read('topsecret.txt');",
+            "title": "Create a promise using the OS.File.read API for the file topsecret.txt",
+            "slug": "promise-read-osfile-jsm"
+          },
+          {
+            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function(a) { });",
+            "title": "Call then() on the promise, passing in a callback function which takes one parameter",
+            "slug": "promise-then-osfile-jsm"
+          },
+          {
+            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.decode($data); });",
+            "title": "Create a new TextDecoder instance inside the callback, and call its decode method, passing in the callback's read data.",
+            "slug": "decode-then-osfile-jsm"
+          }
+        ]
       },
       {
         "title": "Introduction to XPCOM and using your first XPCOM component",
