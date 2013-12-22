@@ -1,0 +1,12 @@
+#!/bin/sh
+NOWDATE=`date +%y-%m-%d__%H_%M_%S`
+LOCALDIR=/Users/brainrbondy/backup/
+LOCALFILE=$NOWDATE\_dump.rdb
+cd $LOCALDIR
+/usr/local/bin/lftp sftp://username:password@server -e "get /path/dump.rdb; bye"
+mv dump.rdb $LOCALFILE
+
+
+#In your crontab file put:
+#Every 6 hours....
+#2 * */6 * * * /Users/brainrbondy/backup/backup.sh > /Users/brainrbondy/backup/log.txt
