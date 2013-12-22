@@ -205,7 +205,12 @@ CodeCheck.prototype = {
           nodeAAST.hit = true;
           this.capturedSASTNodes.push(nodeSAST);
         } else if (!alreadyCapturedSASTNode) {
-          nodeAAST.hit = nodeAAST.hit || mustMatchTo == nodeSAST.name;
+          if (!nodeAAST.hit) {
+            nodeAAST.hit = mustMatchTo == nodeSAST.name;
+            if (nodeAAST.hit) {
+              this.capturedSASTNodes.push(nodeSAST);
+            }
+          }
         }
       // Otherwise just match all identifiers
       } else {

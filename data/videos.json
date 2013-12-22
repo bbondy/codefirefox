@@ -502,7 +502,7 @@
             "slug": "promise-then-osfile-jsm"
           },
           {
-            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.decode($data); });",
+            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.__decode($data); });",
             "title": "Create a new TextDecoder instance inside the callback, and call its decode method, passing in the callback's read data.",
             "slug": "decode-then-osfile-jsm"
           }
@@ -517,19 +517,48 @@
         "priority": 3
       },
       {
+        "title": "Using an XPCOM object exercise",
+        "type": "exercise",
+        "description": "",
+        "slug": "using-xpcom-intro-exercise",
+        "priority": 4,
+        "assertions": [
+          {
+            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);",
+            "title": "Initialize a new variable to a new instance of a filepicker XPCOM object. Use Components.classes['@mozilla.org/filepicker;1']'s createInstance method passing in an interface of Components.interfaces.nsIFilePicker",
+            "slug": "using-xpcom-intro-exercise-1"
+          },
+          {
+            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);",
+            "title": "Call the init method on the file picker instance, for the third parameter pass in Components.interfaces.nsIFilePicker.modeOpen for open mode",
+            "slug": "using-xpcom-intro-exercise-2"
+          },
+          {
+            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);  $picker.__open(function($$) { });",
+            "title": "Call the open method on the file picker instance, directly passing in a callback function with 1 parameter",
+            "slug": "using-xpcom-intro-exercise-3"
+          },
+          {
+            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);  $picker.__open(function($$) { __console.__log($picker.__file.__path); });",
+            "title": "Use console.log to print out the instance's file.path member",
+            "slug": "using-xpcom-intro-exercise-4"
+          }
+        ]
+      },
+      {
         "title": "Writing JavaScript modules",
         "type": "video",
         "description": "",
         "slug": "javascript-modules",
         "youtubeid": "",
-        "priority": 4
+        "priority": 5
       },
       {
         "title": "Writing a JavaScript module exercise",
         "type": "exercise",
         "description": "",
         "slug": "writing-jsm-exercise",
-        "priority": 5
+        "priority": 6
       },
       {
         "title": "Writing JavaScript XPCOM objects",
@@ -537,14 +566,14 @@
         "description": "",
         "slug": "javascript-xpcom",
         "youtubeid": "",
-        "priority": 6
+        "priority": 7
       },
       {
         "title": "Writing a JavaScript XPCOM object exercise",
         "type": "exercise",
         "description": "",
         "slug": "javascript-xpcom-exercise",
-        "priority": 7
+        "priority": 8
       }
     ]
   },
