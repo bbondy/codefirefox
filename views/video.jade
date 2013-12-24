@@ -10,18 +10,23 @@ block mainContent
     script.
       var youtubeid='#{video.youtubeid}';
       var videoSlug='#{videoSlug}';
+      var useAmara = #{useAmara};
+
     script(src='/static/js/video.js')
-    script(type='text/javascript', src='http://s3.amazonaws.com/s3.www.universalsubtitles.org/embed.js')
-      (
-        {
-          'video_url': 'http://www.youtube.com/watch?v=' + youtubeid,
-           video_config: {
-             color1: '0xFF0000',
-             width: 900,
-             height: 506
-           }
-        }
-      )
+
+    if useAmara
+      script(type='text/javascript', src='http://s3.amazonaws.com/s3.www.universalsubtitles.org/embed.js')
+        (
+          {
+            video_url: 'http://www.youtube.com/watch?v=' + youtubeid,
+            video_config: {
+               width: 900,
+               height: 506
+            }
+          }
+        )
+    else
+      #player
 
     #subnav
       ul
@@ -31,6 +36,12 @@ block mainContent
           img(src='/static/img/back-to-videos.png')
 
     p(style='margin-top:50px;')
+    if (!useAmara)
+      a#subtitles(href='#') Turn on translated subtitles<br>
+    else
+      a#no-subtitles(href='#') Turn off translated subtitles?<br>
+
+    p(style='margin-top:30px;')
     a(href='https://github.com/bbondy/codefirefox/issues/new') Outdated info?<br>
     | Find something that is outdated? Please report it!
 

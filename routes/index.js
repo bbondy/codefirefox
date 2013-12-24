@@ -168,6 +168,8 @@ exports.video = function(req, res, next) {
     return;
   }
 
+  var useAmara = req.cookies.useAmara == '1';
+  console.log('use amara cookie is: ' + req.cookies.useAmara);
   db.get("video:" + req.params.video, function(err, video) {
     if (err) {
       res.render('notFound', { pageTitle: 'Video',
@@ -183,6 +185,7 @@ exports.video = function(req, res, next) {
                           bodyID: 'body_video',
                           mainTitle: 'Video',
                           videoSlug: req.params.video,
+                          useAmara: useAmara
                         });
   });
 };
