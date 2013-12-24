@@ -47,6 +47,16 @@ $('#del-stats').click(function() {
   });
 });
 
+$('#subtitles').click(function() {
+  document.cookie = "useAmara=1";
+  location.reload();
+});
+
+$('#no-subtitles').click(function() {
+  document.cookie = "useAmara=0";
+  location.reload();
+});
+
 $(function() {
   // By default, express-persona adds the users email address to req.session.email when their email is validated.
   navigator.id.watch({
