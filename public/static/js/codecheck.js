@@ -121,7 +121,8 @@ CodeCheck.prototype = {
       }, this);
     } catch (e) {
       //console.log(e.stack);
-      err = e;;
+      err = e;
+      this.allSatisfied = false;
     }
 
     doneParsing(err);
