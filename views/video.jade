@@ -2,16 +2,26 @@ extends layout
 
 // Code to detect when the video is complete
 block extraScripts
-  script.
-    var youtubeid="#{video.youtubeid}";
-    var videoSlug="#{videoSlug}";
-  script(src='/static/js/video.js')
 
 block mainContent
   .card-container
     h1= video.title
     p= video.description
-    #player
+    script.
+      var youtubeid='#{video.youtubeid}';
+      var videoSlug='#{videoSlug}';
+    script(src='/static/js/video.js')
+    script(type='text/javascript', src='http://s3.amazonaws.com/s3.www.universalsubtitles.org/embed.js')
+      (
+        {
+          'video_url': 'http://www.youtube.com/watch?v=' + youtubeid,
+           video_config: {
+             color1: '0xFF0000',
+             width: 900,
+             height: 506
+           }
+        }
+      )
 
     #subnav
       ul
