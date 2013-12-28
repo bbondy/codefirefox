@@ -18,19 +18,21 @@ block mainContent
 
   .card-container
     h1 Lessons Completed
-    if !videosWatched
+    if videoSlugsWatched.length == 0
       p none
     else
       ul.videos
-        each video in videosWatched
-          if !video.type || video.type == 'video'
-            li.video
-              a(href= '/video/' + video.slug, name= video.slug)
-                span.completed= video.title
-          else
-            li.exercise
-              a(href= '/exercise/' + video.slug, name= video.slug)
-                span.completed= video.title
+        each category in categories
+          each video in category.videos
+            if videoSlugsWatched.indexOf(video.slug) != -1
+              if !video.type || video.type == 'video'
+                li.video
+                  a(href= '/video/' + video.slug, name= video.slug)
+                    span.completed= video.title
+              else
+                li.exercise
+                  a(href= '/exercise/' + video.slug, name= video.slug)
+                    span.completed= video.title
 
     if session.isAdmin
       p

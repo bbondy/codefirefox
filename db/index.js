@@ -102,7 +102,7 @@ exports.initConfigData = function(callback) {
   });
 };
 
-exports.initVideoData = function(filePath) {
+exports.initVideoData = function(filePath, c) {
   var readData = function() {
     fs.readFile(filePath, 'utf8', function (err,data) {
       if (err) {
@@ -156,6 +156,7 @@ exports.initVideoData = function(filePath) {
     exports.set('stats:video', JSON.stringify({
       available: availableVideos, unavailable: unavailableVideos
     }));
+    c();
   };
 
   var newCategories;

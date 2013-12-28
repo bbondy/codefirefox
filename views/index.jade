@@ -6,11 +6,11 @@ block header
       if session.email
         li
           #watched-legend-item.legend-item
-          span= userVideosWatched.length
+          span= videoSlugsWatched.length
           |  Completed
       li
         #unwatched-legend-item.legend-item
-        span= stats.available - userVideosWatched.length
+        span= stats.available - videoSlugsWatched.length
         |  Available
       li
         #unavailable-legend-item.legend-item
@@ -29,7 +29,7 @@ block mainContent
               if video.youtubeid
                 a(name= category.slug + '/' + video.slug)
                 a(href= '/video/' + video.slug, name= video.slug)
-                  if video.completed
+                  if videoSlugsWatched.indexOf(video.slug) != -1
                     span.completed= video.title
                   else
                     span= video.title
@@ -40,7 +40,7 @@ block mainContent
               if video.assertions
                 a(name= category.slug + '/' + video.slug)
                 a(href= '/exercise/' + video.slug, name= video.slug)
-                  if video.completed
+                  if videoSlugsWatched.indexOf(video.slug) != -1
                     span.completed= video.title
                   else
                     span= video.title

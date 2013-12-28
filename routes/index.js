@@ -12,6 +12,7 @@ var db = require('../db'),
 var dbGet = Promise.denodeify(db.get).bind(db);
 var dbGetAll = Promise.denodeify(db.getAll).bind(db);
 var dbGetSetElements = Promise.denodeify(db.getSetElements).bind(db);
+var initVideoData = Promise.denodeify(db.initVideoData).bind(db);
 var emptyPromise = Promise.denodeify(function(callback) { callback(); });
 
 /**
@@ -31,12 +32,25 @@ exports.cheatsheet = function(req, res, next) {
  * Renders the initVideoData page
 */
 exports.initVideoData = function(req, res) {
-  db.initVideoData(__dirname + '/../data/videos.json');
-  res.render('simpleStatus', { pageTitle: 'Data initialized',
+  var loadVideos = Promise.denodeify(exports.loadVideos).bind(exports);
+  initVideoData(__dirname + '/../data/videos.json').then(function() {
+    return loadVideos();
+  }).done(function() {
+    res.render('simpleStatus', { pageTitle: 'Data initialized',
                                status: "Data initialized successfully",
                                bodyID: 'body_simplestatus',
                                mainTitle: 'Data Initialized'
                              });
+  });
+};
+
+exports.loadVideos = function(c) {
+  dbGetAll("category").done(function onSuccess(cat) {
+    exports.categories  = cat;
+    c();
+  }, function onFailure(err) {
+    c(err);
+  });
 };
 
 /**
@@ -79,22 +93,23 @@ exports.stats = function(req, res, next) {
     return;
   } 
 
-  var info, videosWatched;
+  var info, videoSlugsWatched;
   dbGet('user:' + res.locals.session.email + ':info')
   .then(function(info1) {
     info = info1;
-    return dbGetSetElements('user:' + res.locals.session.email + ':videos_watched');
-  }).then(function(videosWatched1) {
-    videosWatched = videosWatched1;
+    return dbGetSetElements('user:' + res.locals.session.email + ':video_slugs_watched');
+  }).then(function(videoSlugsWatched1) {
+    videoSlugsWatched = videoSlugsWatched1;
     return dbGet('user:' + res.locals.session.email + ':login_count');
   }).done(function onSuccess(loginCount) {
     info.dateJoined = helpers.formatTimeSpan(new Date(info.dateJoined), new Date());
     info.dateLastLogin = helpers.formatTimeSpan(new Date(info.dateLastLogin), new Date());
     var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
-    res.render('stats', { videosWatched: videosWatched,
+    res.render('stats', { videoSlugsWatched: videoSlugsWatched,
                           serverRunningSince: serverRunningSince,
                           loginCount: loginCount || 0,
                           info: info,
+                          categories: exports.categories,
                           pageTitle: 'Stats',
                           bodyID: 'body_stats',
                           mainTitle: 'Stats'});
@@ -130,7 +145,7 @@ exports.delStats = function(req, res, next) {
 function reportCompleted(req, res, callback) {
   db.get("video:" + req.params.slug, function(err, lesson) {
     if (!err) {
-      db.addToSet('user:' + res.locals.session.email + ':videos_watched', lesson)
+      db.addToSet('user:' + res.locals.session.email + ':video_slugs_watched', lesson.slug)
     } 
     if (callback) {
       callback(err);
@@ -197,38 +212,24 @@ exports.video = function(req, res, next) {
  * TODO: make GET /exercises only show exercises, currently just goes here
  */
 exports.outline = function(req, res) {
-  var userStats, userVideosWatched;
+  var userStats, userVideoSlugsWatched;
   var getVideosWatchedIfLoggedIn = emptyPromise();
   if (res.locals.session.email)
-    getVideosWatchedIfLoggedIn  = dbGetSetElements('user:' + res.locals.session.email + ':videos_watched');
+    getVideosWatchedIfLoggedIn  = dbGetSetElements('user:' + res.locals.session.email + ':video_slugs_watched');
 
-  getVideosWatchedIfLoggedIn.then(function(videosWatched) {
-    userVideosWatched = videosWatched || [];
+  getVideosWatchedIfLoggedIn.then(function(videoSlugsWatched) {
+    userVideoSlugsWatched = videoSlugsWatched || [];
     return dbGet("stats:video");
-  }).then(function(stats) {
+  }).done(function(stats) {
     userStats = JSON.parse(stats);
-    return dbGetAll("category");
-  }).done(function onSuccess(categories) {
-    // If the user is logged in add a watched attribute to each video
-    if (res.locals.session.email) {
-      var slugsWatched = userVideosWatched.map(function(e) {
-        return e.slug;
-      });
-      categories.forEach(function(c) {
-        c.videos.forEach(function(v) {
-          v.completed = slugsWatched.indexOf(v.slug) != -1;
-        });
-      });
-    }
-
-    categories.sort(db.sortByPriority);
+    exports.categories.sort(db.sortByPriority);
     res.render('index', { pageTitle: 'Lessons',
-                          categories: categories, bodyID: 'body_index',
+                          categories: exports.categories, bodyID: 'body_index',
                           mainTitle: 'Lessons',
-                          userVideosWatched: userVideosWatched,
+                          videoSlugsWatched: userVideoSlugsWatched,
                           stats: userStats
     });
-  }, function onFailure(res) {
+  }, function onFailure(err) {
     res.render('notFound', { pageTitle: 'Video',
                              bodyID: 'body_not_found',
                              mainTitle: 'Video not found'
