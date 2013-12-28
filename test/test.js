@@ -39,15 +39,24 @@ describe('files', function() {
                assert.ok(c.slug);
                assert.ok(c.priority);
                assert.ok(c.videos);
+               assert(_.isUndefined(c.tags));
 
              _.each(c.videos, function(v) {
 
                // Check that the video items are specified
                assert(v.title);
-               assert(v.type);
-               assert(v.description !== undefined);
-               assert(v.type != 'video' || v.youtubeid !== undefined);
+               assert(v.type === 'video' || v.type === 'exercise');
+               assert(!_.isUndefined(v.description));
                assert(v.priority);
+               assert(_.isArray(v.tags));
+
+               if (v.type === 'exercise') {
+                 assert(v.exerciseType === 'js');  
+                 assert(_.isUndefined(v.youtubeid));
+               } else if (v.type === 'video') {
+                 assert(!_.isUndefined(v.youtubeid));
+                 assert(_.isUndefined(v.exerciseType));
+               }
                
       	       // Check for duplicate entry
                assert.ok(!existsHelper[v.slug], v.slug);
