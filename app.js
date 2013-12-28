@@ -15,9 +15,12 @@ var app = express();
 
 // Setup some helper promises
 var initConfigData = Promise.denodeify(db.initConfigData).bind(db);
+var loadVideos = Promise.denodeify(routes.loadVideos).bind(routes);
 
 
-initConfigData().done(function(config) {
+loadVideos().then(function(c) {
+  return initConfigData();
+}).done(function(config) {
 
   console.log('redis host: ' + config.redisHost);
   console.log('redis port: ' + config.redisPort);
