@@ -25,33 +25,7 @@ block mainContent
       li: :markdown
         Mozilla ESR 24:  
         [http://hg.mozilla.org/releases/mozilla-esr24](http://hg.mozilla.org/releases/mozilla-esr24)
-        
-  .card-container
-    h1 Useful Links
-    ul
-      li
-        a(href='https://www.mibbit.com/?server=irc.mozilla.org&channel=%23introduction') #introduction irc channel on irc.mozilla.org
-      li
-        a(href='https://developer.mozilla.org/docs/Introduction') Contributing to the Mozilla codebase
-      li
-        a(href='http://whatcanidoformozilla.org/') Build the project which interests you
-      li
-        a(href='http://www.joshmatthews.net/bugsahoy/') Find mentored bugs related to your component
-
-  .card-container
-    h1 Plugins
-    ul
-      li Copy to: &lt;installDir&gt;\Plugins
-      li Environment variable MOZ_DEBUG_CHILD_PROCESS=1 can be used to delay 30 seconds when loading plugin-container before the plugin is loaded.
-      li: a(href='https://developer.mozilla.org/En/Plugins') Plugin development
-
-  .card-container
-    h1 Debugging
-    ul
-      li Use Firebug and Chromebug to debug XUL, XBL, JavaScript
-      li Debug C++ src in Windows: Open VS2010, select open project, select dist/bin/firefox.exe in your obj dir.   Press F5.  Change source, do an incremental build, open the source and set breakpoints in VS2010.
-      li To avoid having debug assertions and to have them show up in the log instead, set this environment variable: XPCOM_DEBUG_BREAK=warn
- 
+         
   .card-container
     h1 Debugging XUL apps
     ul
@@ -96,6 +70,10 @@ block mainContent
   .card-container
     h1 Useful links when getting started
     ul
+      li: a(href='https://www.mibbit.com/?server=irc.mozilla.org&channel=%23introduction') #introduction irc channel on irc.mozilla.org
+      li: a(href='http://whatcanidoformozilla.org/') Build the project which interests you
+      li: a(href='http://www.joshmatthews.net/bugsahoy/') Find mentored bugs related to your component
+      li: a(href='https://developer.mozilla.org/docs/Introduction') Contributing to the Mozilla codebase
       li: a(href='https://bugzilla.mozilla.org/page.cgi?id=get_permissions.html') Ability to edit bugs on bugzilla
       li: a(href='http://www.mozilla.org/hacking/committer/') Getting commit access
       li: a(href='https://developer.mozilla.org/en/Mozilla_Source_Code_Directory_Structure') Mozilla source code directory structure
@@ -565,6 +543,13 @@ block mainContent
       li: a(href='https://wiki.mozilla.org/Mentors') More info
 
   .card-container
+    h1 Debugging
+    ul
+      li Use Firebug and Chromebug to debug XUL, XBL, JavaScript
+      li Debug C++ src in Windows: Open VS2010, select open project, select dist/bin/firefox.exe in your obj dir.   Press F5.  Change source, do an incremental build, open the source and set breakpoints in VS2010.
+      li To avoid having debug assertions and to have them show up in the log instead, set this environment variable: XPCOM_DEBUG_BREAK=warn
+
+  .card-container
     h1 Release cycle
     ul
       li
@@ -598,4 +583,11 @@ block mainContent
     ul
       li TBPL results: https://tbpl.mozilla.org/?tree=BRANCHNAME
       li: a(href='https://developer.mozilla.org/En/Plugins') Self serve build API to create dep, Nightly, or PGO builds 
+
+  .card-container
+    h1 Plugins
+    ul
+      li Copy to: &lt;installDir&gt;\Plugins
+      li Environment variable MOZ_DEBUG_CHILD_PROCESS=1 can be used to delay 30 seconds when loading plugin-container before the plugin is loaded.
+      li: a(href='https://developer.mozilla.org/En/Plugins') Plugin development
 
