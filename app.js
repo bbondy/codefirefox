@@ -126,6 +126,7 @@ loadVideos().then(function(c) {
   app.get('/', routes.outline);
   app.get('/videos', routes.outline);
   app.get('/exercises', routes.outline);
+  app.get('/tagged/:tagged', routes.outline);
   app.get('/video/:video', routes.video);
   app.get('/exercise', routes.exerciseDemo);
   app.get('/exercise/:exercise', routes.exercise);
