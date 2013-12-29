@@ -35,7 +35,7 @@ block mainContent
           ul
             each tag in video.tags
               li
-                a(href='/tagged/' + tag)= tag
+                a(href='/tagged/' + tag, rel='tag')= tag
 
       #subnav
         ul
