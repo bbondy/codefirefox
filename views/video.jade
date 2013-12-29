@@ -28,14 +28,24 @@ block mainContent
     else
       #player
 
-    #subnav
-      ul
-        li: a(href= video.shareUrl)
-          img(src='/static/img/share-this-page.png')
-        li: a(href='/')
-          img(src='/static/img/back-to-videos.png')
+    #video-bottom-toolbar
+      if video.tags.length > 0
+        #tags
+          span Tags:
+          ul
+            each tag in video.tags
+              li
+                a(href='/tagged/' + tag)= tag
 
-    p(style='margin-top:50px;')
+      #subnav
+        ul
+          li: a(href= video.shareUrl)
+            img(src='/static/img/share-this-page.png')
+          li: a(href='/')
+            img(src='/static/img/back-to-videos.png')
+
+    .clear
+    p(style='margin-top:30px;')
     if (!useAmara)
       a#subtitles(href='#') Turn on translated subtitles<br>
     else

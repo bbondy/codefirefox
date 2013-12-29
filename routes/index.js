@@ -227,6 +227,7 @@ exports.outline = function(req, res) {
                           categories: exports.categories, bodyID: 'body_index',
                           mainTitle: 'Lessons',
                           videoSlugsWatched: userVideoSlugsWatched,
+                          tagged: req.params.tagged,
                           stats: userStats
     });
   }, function onFailure(err) {
