@@ -11,6 +11,12 @@
         "slug": "what-is-mozilla",
         "youtubeid": "",
         "tags": [],
+        "links": [
+          {
+            "title": "The Mozilla manifesto",
+            "url": "https://www.mozilla.org/en-US/about/manifesto/"
+          }
+        ],
         "priority": 1
       },
       {
@@ -20,6 +26,7 @@
         "slug": "marketing-yourself",
         "youtubeid": "",
         "tags": [],
+        "links": [],
         "priority": 2
       },
       {
@@ -28,6 +35,7 @@
         "description": "Exercises are a great way to practice what you've learnt. \nThis exercise is just to get you started with the framework.",
         "exerciseType": "js",
         "tags": ["JavaScript"],
+        "links": [],
         "slug": "intro-exercise",
         "priority": 3,
         "assertions": [
@@ -76,6 +84,12 @@
         "slug": "windows-build-env",
         "youtubeid": "SJzYZGnXE5A",
         "tags": ["setup", "build"],
+        "links": [
+          {
+            "title": "Windows build prerequisites on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Windows_Prerequisites"
+          }
+        ],
         "priority": 1
       },
       {
@@ -85,6 +99,12 @@
         "slug": "osx-build-env",
         "youtubeid": "",
         "tags": ["setup", "build"],
+        "links": [
+          {
+            "title": "Mac OS X build prerequisites on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Mac_OS_X_Prerequisites"
+          }
+        ],
         "priority": 2
       },
       {
@@ -94,6 +114,12 @@
         "slug": "linux-build-env",
         "youtubeid": "GzYZVL82ZFw",
         "tags": ["setup", "build"],
+        "links": [
+          {
+            "title": "Linux build prerequisites on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Linux_Prerequisites"
+          }
+        ],
         "priority": 3
       },
       {
@@ -103,6 +129,16 @@
         "slug": "firefox-channels",
         "youtubeid": "1ayzz81hyIE",
         "tags": [],
+        "links": [
+          {
+            "title": "Firefox Nightly builds",
+            "url": "http://nightly.mozilla.org/"
+          },
+          {
+            "title": "Firefox Aurora and Beta builds",
+            "url": "http://www.mozilla.org/en-US/firefox/channel/"
+          }
+        ],
         "priority": 4
       },
       {
@@ -112,6 +148,16 @@
         "slug": "get-source-code",
         "youtubeid": "j0McmMfBIo0",
         "tags": ["setup", "hg"],
+        "links": [
+          {
+            "title": "Getting Mozilla source code using mercurial on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Developer_Guide/Source_Code/Mercurial"
+          },
+          {
+            "title": "Mozilla mercurial bundles on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Source_Code/Mercurial/Bundles"
+          }
+        ],
         "priority": 5
       },
       {
@@ -121,6 +167,12 @@
         "slug": "irc",
         "youtubeid": "TJIFBJy-nQ4",
         "tags": ["help"],
+        "links": [
+          {
+            "title": "Mozilla Wiki on IRC",
+            "url": "https://wiki.mozilla.org/IRC"
+          }
+        ],
         "priority": 6
       },
       {
@@ -130,6 +182,12 @@
         "slug": "mozillians",
         "youtubeid": "Z4NXImG8AWc",
         "tags": [],
+        "links": [
+          {
+            "title": "Mozillians: Mozilla community directory",
+            "url": "https://mozillians.org/"
+          }
+        ],
         "priority": 7
       }
     ]
@@ -147,6 +205,7 @@
         "slug": "mach-intro",
         "youtubeid": "7a5aeiSLhi8",
         "tags": ["setup", "build"],
+        "links": [],
         "priority": 1
       },
       {
@@ -156,6 +215,12 @@
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
         "tags": ["build"],
+        "links": [
+          {
+            "title": "Simple Firefox build on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
+          }
+        ],
         "priority": 2
       },
       {
@@ -165,6 +230,7 @@
         "slug": "incremental-builds",
         "youtubeid": "1ES3mTrAJ1c",
         "tags": ["build"],
+        "links": [],
         "priority": 3
       },
       {
@@ -174,6 +240,12 @@
         "slug": "mozconfig-intro",
         "youtubeid": "wg7Gyyis4Gk",
         "tags": ["build"],
+        "links": [
+          {
+            "title": "Configuring build options on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
+          }
+        ],
         "priority": 4
       },
       {
@@ -183,6 +255,12 @@
         "slug": "multiple-mozconfig",
         "youtubeid": "9Do9R2v5ZEI",
         "tags": ["build"],
+        "links": [
+          {
+            "title": "Configuring build options on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
+          }
+        ],
         "priority": 5
       },
       {
@@ -191,6 +269,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["build"],
+        "links": [
+          {
+            "title": "Configuring build options on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
+          }
+        ],
         "slug": "create-mozconfig-exercise",
         "priority": 6
       }
@@ -209,6 +293,12 @@
         "slug": "create-bugzilla-account",
         "youtubeid": "bEeF4-_0_xg",
         "tags": ["setup"],
+        "links": [
+          {
+            "title": "Bugzilla",
+            "url": "https://bugzilla.mozilla.org/"
+          }
+        ],
         "priority": 1
       },
       {
@@ -218,6 +308,20 @@
         "slug": "finding-bug",
         "youtubeid": "4k_q8daxRU8",
         "tags": ["setup"],
+        "links": [
+          {
+            "title": "What can I do for Mozilla",
+            "url": "http://whatcanidoformozilla.org/"
+          },
+          {
+            "title": "Bugs Ahoy!",
+            "url": "http://www.joshmatthews.net/bugsahoy/"
+          },
+          {
+            "title": "Bugzilla",
+            "url": "https://bugzilla.mozilla.org/"
+          }
+        ],
         "priority": 2
       },
       {
@@ -227,6 +331,7 @@
         "slug": "posting-bug",
         "youtubeid": "W25iNhT8DNU",
         "tags": ["setup"],
+        "links": [],
         "priority": 3
       },
       {
@@ -236,6 +341,12 @@
         "slug": "assigned-first-bug",
         "youtubeid": "l5lzqxXmwwo",
         "tags": ["setup"],
+        "links": [
+          {
+            "title": "How to apply for upgraded permissions",
+            "url": "https://bugzilla.mozilla.org/page.cgi?id=get_permissions.html"
+          }
+        ],
         "priority": 4
       },
       {
@@ -244,6 +355,7 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["setup"],
+        "links": [],
         "slug": "validating-assigned-bugzilla",
         "priority": 5
       }
@@ -262,6 +374,12 @@
         "slug": "source-structure",
         "youtubeid": "7kuXZzsJJqY",
         "tags": [],
+        "links": [
+          {
+            "title": "Source code directories overview on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Source_code_directories_overview"
+          }
+        ],
         "priority": 1
       },
 
@@ -272,6 +390,7 @@
         "slug": "mercurial-setup",
         "youtubeid": "yhkOSgVGHTY",
         "tags": ["setup", "hg"],
+        "links": [],
         "priority": 2
       },
       {
@@ -281,6 +400,12 @@
         "slug": "patch-creation",
         "youtubeid": "cLQlsRKJiS4",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Creating a patch on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
+          }
+        ],
         "priority": 3
       },
       {
@@ -290,6 +415,12 @@
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Creating a patch on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
+          }
+        ],
         "priority": 4
       },
       {
@@ -298,6 +429,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Creating a patch on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
+          }
+        ],
         "slug": "create-patch-exercise",
         "priority": 6
       }
@@ -316,6 +453,7 @@
         "slug": "first-review",
         "youtubeid": "f_c9RotA0Vs",
         "tags": ["review"],
+        "links": [],
         "priority": 1
       },
       {
@@ -325,6 +463,7 @@
         "slug": "landing-reviewed",
         "youtubeid": "twxHD0cG-9o",
         "tags": ["review"],
+        "links": [],
         "priority": 2
       }
     ]
@@ -342,6 +481,12 @@
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "priority": 1
       },
       {
@@ -351,6 +496,12 @@
         "slug": "patch-queues-multi-patches",
         "youtubeid": "9g7ePBFfS7A",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "priority": 2
       },
       {
@@ -360,6 +511,7 @@
         "slug": "remote-changes",
         "youtubeid": "qBKQw5U1qvk",
         "tags": ["hg"],
+        "links": [],
         "priority": 3
       },
       {
@@ -369,6 +521,7 @@
         "slug": "rebasing-patch",
         "youtubeid": "67woYDn5DqY",
         "tags": ["hg"],
+        "links": [],
         "priority": 4
       },
       {
@@ -378,6 +531,12 @@
         "slug": "import-patch",
         "youtubeid": "VNueS0ACxvc",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "priority": 5
       },
       {
@@ -387,6 +546,7 @@
         "slug": "development-workflow",
         "youtubeid": "",
         "tags": ["hg"],
+        "links": [],
         "priority": 7
       },
       {
@@ -395,6 +555,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "slug": "patch-queue-exercise",
         "priority": 8
       }
@@ -413,6 +579,12 @@
         "slug": "patch-file-splitting",
         "youtubeid": "PYbY-ltqexs",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "priority": 1
       },
       {
@@ -422,6 +594,12 @@
         "slug": "move-fold-patch",
         "youtubeid": "zgxyA6QLMWI",
         "tags": ["hg"],
+        "links": [
+          {
+            "title": "Mercurial Queues on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
+          }
+        ],
         "priority": 2
       },
       {
@@ -431,6 +609,7 @@
         "slug": "patch-file-hacking",
         "youtubeid": "",
         "tags": ["hg"],
+        "links": [],
         "priority": 3
       },
       {
@@ -440,6 +619,7 @@
         "slug": "patch-queue-internals",
         "youtubeid": "tsoV_GMML_c",
         "tags": ["hg"],
+        "links": [],
         "priority": 4
       }
     ]
@@ -457,6 +637,12 @@
         "slug": "dxr-referencing-code",
         "youtubeid": "V3walfiWFPw",
         "tags": ["help"],
+        "links": [
+          {
+            "title": "DXR",
+            "url": "http://dxr.mozilla.org/"
+          }
+        ],
         "priority": 1
       },
       {
@@ -466,6 +652,12 @@
         "slug": "dxr-to-code-feature",
         "youtubeid": "PneGyGMzKpM",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "DXR",
+            "url": "http://dxr.mozilla.org/"
+          }
+        ],
         "priority": 2
       }
     ]
@@ -483,6 +675,12 @@
         "slug": "scratchpad",
         "youtubeid": "xqij3l84N2Y",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "Scratchpad on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Tools/Scratchpad"
+          }
+        ],
         "priority": 1
       },
       {
@@ -492,6 +690,12 @@
         "slug": "dom-inspector",
         "youtubeid": "PfnP3M759os",
         "tags": [],
+        "links": [
+          {
+            "title": "DOM Inspector on MDN",
+            "url": "https://developer.mozilla.org/en/docs/DOM_Inspector"
+          }
+        ],
         "priority": 2
       },
       {
@@ -501,6 +705,12 @@
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "Debugging JavaScript on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Debugging_JavaScript"
+          }
+        ],
         "priority": 3
       },
       {
@@ -510,6 +720,12 @@
         "slug": "profiling",
         "youtubeid": "",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "Profiling with the built-in profiler on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Performance/Profiling_with_the_Built-in_Profiler"
+          }
+        ],
         "priority": 4
       }
     ]
@@ -528,6 +744,12 @@
         "slug": "using-jsm-intro",
         "youtubeid": "p3JOY7VK9C4",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "JavaScript code modules on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
+          }
+        ],
         "priority": 1
       },
       {
@@ -536,6 +758,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "JavaScript code modules on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
+          }
+        ],
         "slug": "using-jsm-intro-exercise",
         "priority": 2,
         "assertions": [
@@ -568,6 +796,12 @@
         "slug": "using-xpcom-intro",
         "youtubeid": "6FcJQYsidHU",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "XPCOM on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
+          }
+        ],
         "priority": 3
       },
       {
@@ -576,6 +810,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "XPCOM on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
+          }
+        ],
         "slug": "using-xpcom-intro-exercise",
         "priority": 4,
         "assertions": [
@@ -608,6 +848,12 @@
         "slug": "javascript-modules",
         "youtubeid": "",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "JavaScript code modules on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
+          }
+        ],
         "priority": 5
       },
       {
@@ -616,6 +862,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "JavaScript code modules on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
+          }
+        ],
         "slug": "writing-jsm-exercise",
         "priority": 6
       },
@@ -626,6 +878,12 @@
         "slug": "javascript-xpcom",
         "youtubeid": "",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "XPCOM on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
+          }
+        ],
         "priority": 7
       },
       {
@@ -634,6 +892,12 @@
         "description": "",
         "exerciseType": "js",
         "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "XPCOM on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
+          }
+        ],
         "slug": "javascript-xpcom-exercise",
         "priority": 8
       }
@@ -652,6 +916,12 @@
         "slug": "xul-intro",
         "youtubeid": "",
         "tags": [],
+        "links": [
+          {
+            "title": "XUL on MDN",
+            "url": "https://developer.mozilla.org/en/docs/XUL"
+          }
+        ],
         "priority": 1
       },
       {
@@ -661,14 +931,26 @@
         "slug": "xbl-intro",
         "youtubeid": "",
         "tags": [],
+        "links": [
+          {
+            "title": "XBL on MDN",
+            "url": "https://developer.mozilla.org/en/docs/XBL"
+          }
+        ],
         "priority": 2
       },
       {
-        "title": "Creating a simple XUL window",
+        "title": "Creating a simple XUL window exercise",
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
         "tags": [],
+        "links": [
+          {
+            "title": "XUL on MDN",
+            "url": "https://developer.mozilla.org/en/docs/XUL"
+          }
+        ],
         "slug": "xul-intro-exercise",
         "priority": 3
       }
@@ -687,6 +969,12 @@
         "slug": "xpcom",
         "youtubeid": "",
         "tags": ["C++"],
+        "links": [
+          {
+            "title": "XPCOM on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
+          }
+        ],
         "priority": 1
       }
     ]
@@ -704,6 +992,12 @@
         "slug": "automated-tests-intro",
         "youtubeid": "EmuRWW4kNyg",
         "tags": ["testing"],
+        "links": [
+          {
+            "title": "Running automated tests on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Running_automated_tests"
+          }
+        ],
         "priority": 1
       },
       {
@@ -713,6 +1007,7 @@
         "slug": "try-buildbot-tbpl",
         "youtubeid": "iPrm48npsUg",
         "tags": ["testing", "build"],
+        "links": [],
         "priority": 2
       },
       {
@@ -722,6 +1017,12 @@
         "slug": "trychooser-syntax",
         "youtubeid": "qjUZcEb3eNU",
         "tags": ["testing"],
+        "links": [
+          {
+            "title": "TryChooser syntax builder",
+            "url": "http://trychooser.pub.build.mozilla.org/"
+          }
+        ],
         "priority": 3
       },
       {
@@ -731,6 +1032,7 @@
         "slug": "running-tests-locally",
         "youtubeid": "",
         "tags": ["testing"],
+        "links": [],
         "priority": 4
       },
       {
@@ -740,6 +1042,7 @@
         "slug": "creating-xpcshell-tests",
         "youtubeid": "",
         "tags": ["testing"],
+        "links": [],
         "priority": 5
       },
       {
@@ -749,6 +1052,7 @@
         "slug": "creating-mochitests",
         "youtubeid": "",
         "tags": ["testing"],
+        "links": [],
         "priority": 6
       },
       {
@@ -758,6 +1062,7 @@
         "slug": "creating-reftests",
         "youtubeid": "",
         "tags": ["testing"],
+        "links": [],
         "priority": 7
       },
       {
@@ -767,6 +1072,7 @@
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
         "tags": ["testing"],
+        "links": [],
         "priority": 8
       }
     ]
@@ -784,6 +1090,7 @@
         "slug": "becoming-reviewer",
         "youtubeid": "",
         "tags": ["review"],
+        "links": [],
         "priority": 1
       },
       {
@@ -793,6 +1100,7 @@
         "slug": "reviewing-patch",
         "youtubeid": "",
         "tags": ["review"],
+        "links": [],
         "priority": 2
       }
     ]
@@ -810,6 +1118,7 @@
         "slug": "hg-annotate",
         "youtubeid": "v8CbpAdGP3c",
         "tags": ["testing"],
+        "links": [],
         "priority": 1
       },
       {
@@ -819,6 +1128,7 @@
         "slug": "mozregression",
         "youtubeid": "ABrenCFgP3Q",
         "tags": ["testing"],
+        "links": [],
         "priority": 2
       }
     ]
@@ -836,6 +1146,7 @@
         "slug": "debug-local-builds-win",
         "youtubeid": "S6ohAwQnmrE",
         "tags": ["C++"],
+        "links": [],
         "priority": 1
       },
       {
@@ -845,6 +1156,7 @@
         "slug": "debugger-windows",
         "youtubeid": "",
         "tags": ["C++"],
+        "links": [],
         "priority": 2
       },
       {
@@ -854,6 +1166,7 @@
         "slug": "advanced-debugging",
         "youtubeid": "",
         "tags": ["C++"],
+        "links": [],
         "priority": 3
       },
       {
@@ -863,6 +1176,7 @@
         "slug": "debug-local-builds-osx",
         "youtubeid": "",
         "tags": ["C++"],
+        "links": [],
         "priority": 4
       },
       {
@@ -872,6 +1186,7 @@
         "slug": "debug-local-builds-linux",
         "youtubeid": "",
         "tags": ["C++"],
+        "links": [],
         "priority": 5
       }
     ]
@@ -889,6 +1204,12 @@
         "slug": "commit-access-level-1",
         "youtubeid": "",
         "tags": ["setup", "testing", "hg"],
+        "links": [
+          {
+            "title": "Mozilla commit access policy",
+            "url": "https://www.mozilla.org/hacking/commit-access-policy/"
+          }
+        ],
         "priority": 1
       },
       {
@@ -898,6 +1219,12 @@
         "slug": "commit-acccess-level-3",
         "youtubeid": "",
         "tags": ["setup", "hg"],
+        "links": [
+          {
+            "title": "Mozilla commit access policy",
+            "url": "https://www.mozilla.org/hacking/commit-access-policy/"
+          }
+        ],
         "priority": 2
       }
     ]
@@ -915,6 +1242,7 @@
         "slug": "mozilla-news",
         "youtubeid": "",
         "tags": [],
+        "links": [],
         "priority": 1
       }
     ]

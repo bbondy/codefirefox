@@ -40,6 +40,7 @@ describe('files', function() {
                assert.ok(c.priority);
                assert.ok(c.videos);
                assert(_.isUndefined(c.tags));
+               assert(_.isUndefined(c.links));
 
              _.each(c.videos, function(v) {
 
@@ -49,6 +50,20 @@ describe('files', function() {
                assert(!_.isUndefined(v.description));
                assert(v.priority);
                assert(_.isArray(v.tags));
+               assert(_.isArray(v.links));
+
+               // Make sure each tag is a simple string
+               _.each(v.tags, function(tag) {
+                 assert(_.isString(tag));
+               });
+
+               // Make sure each link is an object with a title
+               // and a url property
+               _.each(v.links, function(l) {
+                 assert(_.isObject(l));
+                 assert(_.isString(l.title));
+                 assert(_.isString(l.url));
+               });
 
                if (v.type === 'exercise') {
                  assert(v.exerciseType === 'js');  
