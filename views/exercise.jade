@@ -4,7 +4,8 @@ block mainContent
   .card-container
     h1= exercise.title
 
-    p.exercise-description !{exercise.description.replace(/\n/g, '<br/>')}
+    if exercise.description.length > 0
+      p.exercise-description !{exercise.description.replace(/\n/g, '<br/>')}
 
     h2 Perform the following tasks in JavaScript:
     ul#whitelist
@@ -31,6 +32,16 @@ block mainContent
     p
     // Useful for debugging only:
     //a#check-syntax(href='#') Check Syntax
+
+    br
+
+    if exercise.links.length > 0
+    #links
+      div Resources:
+      ul
+        each link in exercise.links
+          li: a(href= link.url)= link.title
+
 
 block extraScripts
   script.
