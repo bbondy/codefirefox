@@ -37,7 +37,6 @@ describe('files', function() {
                // Check that the category items are specified
                assert.ok(c.title);
                assert.ok(c.slug);
-               assert.ok(c.priority);
                assert.ok(c.videos);
                assert(_.isUndefined(c.tags));
                assert(_.isUndefined(c.links));
@@ -48,7 +47,6 @@ describe('files', function() {
                assert(v.title);
                assert(v.type === 'video' || v.type === 'exercise');
                assert(!_.isUndefined(v.description));
-               assert(v.priority);
                assert(_.isArray(v.tags));
                assert(_.isArray(v.links));
 

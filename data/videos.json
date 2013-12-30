@@ -2,7 +2,6 @@
   {
     "title": "Introduction and contributing to Mozilla",
     "slug": "motivation",
-    "priority": 1,
     "videos": [
       {
         "title": "What Mozilla is all about",
@@ -16,8 +15,7 @@
             "title": "The Mozilla manifesto",
             "url": "https://www.mozilla.org/en-US/about/manifesto/"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Marketing yourself as a contributor",
@@ -26,8 +24,7 @@
         "slug": "marketing-yourself",
         "youtubeid": "",
         "tags": [],
-        "links": [],
-        "priority": 2
+        "links": []
       },
       {
         "title": "Introduction to Code Firefox exercises",
@@ -37,7 +34,6 @@
         "tags": ["JavaScript"],
         "links": [],
         "slug": "intro-exercise",
-        "priority": 3,
         "assertions": [
           {
             "code": ";",
@@ -75,7 +71,6 @@
   {
     "title": "Getting ready for development",
     "slug": "getting-setup",
-    "priority": 2,
     "videos": [
       {
         "title": "Setting up a Windows Firefox build environment",
@@ -89,8 +84,7 @@
             "title": "Windows build prerequisites on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Windows_Prerequisites"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Setting up an OS X Firefox build environment",
@@ -104,8 +98,7 @@
             "title": "Mac OS X build prerequisites on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Mac_OS_X_Prerequisites"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Setting up a Linux Firefox build environment",
@@ -119,8 +112,7 @@
             "title": "Linux build prerequisites on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Linux_Prerequisites"
           }
-        ],
-        "priority": 3
+        ]
       },
       {
         "title": "The different types of Firefox channels and repositories",
@@ -138,8 +130,7 @@
             "title": "Firefox Aurora and Beta builds",
             "url": "http://www.mozilla.org/en-US/firefox/channel/"
           }
-        ],
-        "priority": 4
+        ]
       },
       {
         "title": "Getting the Firefox source code",
@@ -157,8 +148,7 @@
             "title": "Mozilla mercurial bundles on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Source_Code/Mercurial/Bundles"
           }
-        ],
-        "priority": 5
+        ]
       },
       {
         "title": "Getting help on IRC",
@@ -172,8 +162,7 @@
             "title": "Mozilla Wiki on IRC",
             "url": "https://wiki.mozilla.org/IRC"
           }
-        ],
-        "priority": 6
+        ]
       },
       {
         "title": "Registering yourself as a Mozillian at mozillians.org",
@@ -187,8 +176,7 @@
             "title": "Mozillians: Mozilla community directory",
             "url": "https://mozillians.org/"
           }
-        ],
-        "priority": 7
+        ]
       }
     ]
   },
@@ -196,7 +184,6 @@
   {
     "title": "Building Firefox",
     "slug": "building-firefox",
-    "priority": 3,
     "videos": [
       {
         "title": "Introduction to mach and mach setup",
@@ -205,8 +192,7 @@
         "slug": "mach-intro",
         "youtubeid": "7a5aeiSLhi8",
         "tags": ["setup", "build"],
-        "links": [],
-        "priority": 1
+        "links": []
       },
       {
         "title": "Building Desktop Firefox from the source code",
@@ -220,8 +206,7 @@
             "title": "Simple Firefox build on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Incremental builds and making changes",
@@ -230,8 +215,7 @@
         "slug": "incremental-builds",
         "youtubeid": "1ES3mTrAJ1c",
         "tags": ["build"],
-        "links": [],
-        "priority": 3
+        "links": []
       },
       {
         "title": "Adding options with a .mozconfig file and debug builds",
@@ -245,8 +229,7 @@
             "title": "Configuring build options on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
           }
-        ],
-        "priority": 4
+        ]
       },
       {
         "title": "Using more than one .mozconfig file",
@@ -260,8 +243,7 @@
             "title": "Configuring build options on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
           }
-        ],
-        "priority": 5
+        ]
       },
       {
         "title": "Creating a .mozconfig file exercise",
@@ -275,8 +257,7 @@
             "url": "https://developer.mozilla.org/en-US/docs/Simple_Firefox_build"
           }
         ],
-        "slug": "create-mozconfig-exercise",
-        "priority": 6
+        "slug": "create-mozconfig-exercise"
       }
     ]
   },
@@ -284,7 +265,6 @@
   {
     "title": "Getting ready to work on your first bug",
     "slug": "first-bug-setup",
-    "priority": 4,
     "videos": [
       {
         "title": "Creating a Bugzilla account, account settings, and permissions",
@@ -298,8 +278,7 @@
             "title": "Bugzilla",
             "url": "https://bugzilla.mozilla.org/"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Finding a first Firefox bug to work on",
@@ -321,8 +300,7 @@
             "title": "Bugzilla",
             "url": "https://bugzilla.mozilla.org/"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Posting a well written bug to Bugzilla",
@@ -331,8 +309,7 @@
         "slug": "posting-bug",
         "youtubeid": "W25iNhT8DNU",
         "tags": ["setup"],
-        "links": [],
-        "priority": 3
+        "links": []
       },
       {
         "title": "Getting assigned to a bug and gaining edit bugs permissions",
@@ -346,8 +323,7 @@
             "title": "How to apply for upgraded permissions",
             "url": "https://bugzilla.mozilla.org/page.cgi?id=get_permissions.html"
           }
-        ],
-        "priority": 4
+        ]
       },
       {
         "title": "Validating you are assigned to a bugzilla bug",
@@ -356,8 +332,7 @@
         "exerciseType": "js",
         "tags": ["setup"],
         "links": [],
-        "slug": "validating-assigned-bugzilla",
-        "priority": 5
+        "slug": "validating-assigned-bugzilla"
       }
     ]
   },
@@ -365,7 +340,6 @@
   {
     "title": "Working on your first bug",
     "slug": "first-bug",
-    "priority": 5,
     "videos": [
       {
         "title": "Explanation of the Firefox source tree",
@@ -379,8 +353,7 @@
             "title": "Source code directories overview on MDN",
             "url": "https://developer.mozilla.org/en/docs/Source_code_directories_overview"
           }
-        ],
-        "priority": 1
+        ]
       },
 
       {
@@ -390,8 +363,7 @@
         "slug": "mercurial-setup",
         "youtubeid": "yhkOSgVGHTY",
         "tags": ["setup", "hg"],
-        "links": [],
-        "priority": 2
+        "links": []
       },
       {
         "title": "Creating a patch file",
@@ -405,8 +377,7 @@
             "title": "Creating a patch on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
           }
-        ],
-        "priority": 3
+        ]
       },
       {
         "title": "Making changes to that patch file",
@@ -420,8 +391,7 @@
             "title": "Creating a patch on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
           }
-        ],
-        "priority": 4
+        ]
       },
       {
         "title": "Create a patch file exercise",
@@ -435,8 +405,7 @@
             "url": "https://developer.mozilla.org/en-US/docs/Mercurial_FAQ#How_can_I_generate_a_patch_for_somebody_else_to_check-in_for_me.3F"
           }
         ],
-        "slug": "create-patch-exercise",
-        "priority": 6
+        "slug": "create-patch-exercise"
       }
     ]
   },
@@ -444,7 +413,6 @@
   {
     "title": "Getting a review and landing your first patch",
     "slug": "first-patch-landed",
-    "priority": 6,
     "videos": [
       {
         "title": "Attaching a patch to Bugzilla and getting your first review",
@@ -453,8 +421,7 @@
         "slug": "first-review",
         "youtubeid": "f_c9RotA0Vs",
         "tags": ["review"],
-        "links": [],
-        "priority": 1
+        "links": []
       },
       {
         "title": "Review results, integration branches, and landing your patch",
@@ -463,8 +430,7 @@
         "slug": "landing-reviewed",
         "youtubeid": "twxHD0cG-9o",
         "tags": ["review"],
-        "links": [],
-        "priority": 2
+        "links": []
       }
     ]
   },
@@ -472,7 +438,6 @@
   {
     "title": "Working on more bugs",
     "slug": "more-bugs",
-    "priority": 7,
     "videos": [
       {
         "title": "Introduction to Mercurial Patch Queues",
@@ -486,8 +451,7 @@
             "title": "Mercurial Queues on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Working on multiple patches within your patch queue",
@@ -501,8 +465,7 @@
             "title": "Mercurial Queues on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Pulling down remote changes to your cloned repository",
@@ -511,8 +474,7 @@
         "slug": "remote-changes",
         "youtubeid": "qBKQw5U1qvk",
         "tags": ["hg"],
-        "links": [],
-        "priority": 3
+        "links": []
       },
       {
         "title": "Manually rebasing a patch that has conflicts",
@@ -521,8 +483,7 @@
         "slug": "rebasing-patch",
         "youtubeid": "67woYDn5DqY",
         "tags": ["hg"],
-        "links": [],
-        "priority": 4
+        "links": []
       },
       {
         "title": "Importing a patch from Bugzilla and removing old patches",
@@ -536,8 +497,7 @@
             "title": "Mercurial Queues on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
-        ],
-        "priority": 5
+        ]
       },
       {
         "title": "Workflow when developing with patches",
@@ -546,8 +506,7 @@
         "slug": "development-workflow",
         "youtubeid": "",
         "tags": ["hg"],
-        "links": [],
-        "priority": 7
+        "links": []
       },
       {
         "title": "Patch queue exercise",
@@ -561,8 +520,7 @@
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
         ],
-        "slug": "patch-queue-exercise",
-        "priority": 8
+        "slug": "patch-queue-exercise"
       }
     ]
   },
@@ -570,7 +528,6 @@
   {
     "title": "More on patch files and patch queues",
     "slug": "more-on-patches",
-    "priority": 8,
     "videos": [
       {
         "title": "Splitting up a patch file with hg and excluding files",
@@ -584,8 +541,7 @@
             "title": "Mercurial Queues on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Moving and folding patches in your patch queue",
@@ -599,8 +555,7 @@
             "title": "Mercurial Queues on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mercurial_Queues"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Hacking on a patch file manually",
@@ -609,8 +564,7 @@
         "slug": "patch-file-hacking",
         "youtubeid": "",
         "tags": ["hg"],
-        "links": [],
-        "priority": 3
+        "links": []
       },
       {
         "title": "Hacking on your patch queue internals",
@@ -619,8 +573,7 @@
         "slug": "patch-queue-internals",
         "youtubeid": "tsoV_GMML_c",
         "tags": ["hg"],
-        "links": [],
-        "priority": 4
+        "links": []
       }
     ]
   },
@@ -628,7 +581,6 @@
   {
     "title": "Using online tools to help productivity",
     "slug": "more-efficient",
-    "priority": 9,
     "videos": [
       {
         "title": "Searching and referencing Firefox code",
@@ -642,8 +594,7 @@
             "title": "DXR",
             "url": "http://dxr.mozilla.org/"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Coding a feature from start to finish with the help of DXR",
@@ -657,8 +608,7 @@
             "title": "DXR",
             "url": "http://dxr.mozilla.org/"
           }
-        ],
-        "priority": 2
+        ]
       }
     ]
   },
@@ -666,7 +616,6 @@
   {
     "title": "Front end Firefox development tools",
     "slug": "front-end-tools",
-    "priority": 10,
     "videos": [
       {
         "title": "Introduction to the Firefox Scratchpad",
@@ -680,8 +629,7 @@
             "title": "Scratchpad on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Tools/Scratchpad"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Introduction to the DOM Inspector",
@@ -695,8 +643,7 @@
             "title": "DOM Inspector on MDN",
             "url": "https://developer.mozilla.org/en/docs/DOM_Inspector"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Debugging front end Firefox code with the built-in debugger",
@@ -710,8 +657,7 @@
             "title": "Debugging JavaScript on MDN",
             "url": "https://developer.mozilla.org/en/docs/Debugging_JavaScript"
           }
-        ],
-        "priority": 3
+        ]
       },
       {
         "title": "Profiling",
@@ -725,8 +671,7 @@
             "title": "Profiling with the built-in profiler on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Performance/Profiling_with_the_Built-in_Profiler"
           }
-        ],
-        "priority": 4
+        ]
       }
     ]
   },
@@ -735,7 +680,6 @@
   {
     "title": "Front end Firefox development",
     "slug": "front-end-dev",
-    "priority": 11,
     "videos": [
       {
         "title": "Introduction to JavaScript modules (JSM)",
@@ -749,8 +693,7 @@
             "title": "JavaScript code modules on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Using a JavaScript module (JSM) exercise",
@@ -765,7 +708,6 @@
           }
         ],
         "slug": "using-jsm-intro-exercise",
-        "priority": 2,
         "assertions": [
           {
             "code": "__Components.__utils.__import('resource://gre/modules/osfile.jsm');",
@@ -801,8 +743,7 @@
             "title": "XPCOM on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
           }
-        ],
-        "priority": 3
+        ]
       },
       {
         "title": "Using an XPCOM object exercise",
@@ -817,7 +758,6 @@
           }
         ],
         "slug": "using-xpcom-intro-exercise",
-        "priority": 4,
         "assertions": [
           {
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);",
@@ -853,8 +793,7 @@
             "title": "JavaScript code modules on MDN",
             "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
           }
-        ],
-        "priority": 5
+        ]
       },
       {
         "title": "Writing a JavaScript module exercise",
@@ -868,8 +807,7 @@
             "url": "https://developer.mozilla.org/en/docs/Mozilla/JavaScript_code_modules"
           }
         ],
-        "slug": "writing-jsm-exercise",
-        "priority": 6
+        "slug": "writing-jsm-exercise"
       },
       {
         "title": "Writing JavaScript XPCOM objects",
@@ -883,8 +821,7 @@
             "title": "XPCOM on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
           }
-        ],
-        "priority": 7
+        ]
       },
       {
         "title": "Writing a JavaScript XPCOM object exercise",
@@ -898,8 +835,7 @@
             "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
           }
         ],
-        "slug": "javascript-xpcom-exercise",
-        "priority": 8
+        "slug": "javascript-xpcom-exercise"
       }
     ]
   },
@@ -907,7 +843,6 @@
   {
     "title": "Front end Firefox user interface development",
     "slug": "front-end-ui-dev",
-    "priority": 12,
     "videos": [
       {
         "title": "Introduction to XUL",
@@ -921,8 +856,7 @@
             "title": "XUL on MDN",
             "url": "https://developer.mozilla.org/en/docs/XUL"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Introduction to XBL",
@@ -936,8 +870,7 @@
             "title": "XBL on MDN",
             "url": "https://developer.mozilla.org/en/docs/XBL"
           }
-        ],
-        "priority": 2
+        ]
       },
       {
         "title": "Creating a simple XUL window exercise",
@@ -951,8 +884,7 @@
             "url": "https://developer.mozilla.org/en/docs/XUL"
           }
         ],
-        "slug": "xul-intro-exercise",
-        "priority": 3
+        "slug": "xul-intro-exercise"
       }
     ]
   },
@@ -960,7 +892,6 @@
   {
     "title": "Platform development",
     "slug": "platform-development",
-    "priority": 13,
     "videos": [
       {
         "title": "Creating C++ XPCOM components",
@@ -974,8 +905,7 @@
             "title": "XPCOM on MDN",
             "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPCOM"
           }
-        ],
-        "priority": 1
+        ]
       }
     ]
   },
@@ -983,7 +913,6 @@
   {
     "title": "Automated tests",
     "slug": "automated-tests",
-    "priority": 14,
     "videos": [
       {
         "title": "Introduction to the automated tests that run on each push",
@@ -997,8 +926,7 @@
             "title": "Running automated tests on MDN",
             "url": "https://developer.mozilla.org/en/docs/Running_automated_tests"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Try server, Buildbot, and TBPL",
@@ -1007,8 +935,7 @@
         "slug": "try-buildbot-tbpl",
         "youtubeid": "iPrm48npsUg",
         "tags": ["testing", "build"],
-        "links": [],
-        "priority": 2
+        "links": []
       },
       {
         "title": "TryChooser syntax and pushing to try",
@@ -1022,8 +949,7 @@
             "title": "TryChooser syntax builder",
             "url": "http://trychooser.pub.build.mozilla.org/"
           }
-        ],
-        "priority": 3
+        ]
       },
       {
         "title": "Running tests locally",
@@ -1032,8 +958,7 @@
         "slug": "running-tests-locally",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": [],
-        "priority": 4
+        "links": []
       },
       {
         "title": "Creating an xpcshell test",
@@ -1042,8 +967,7 @@
         "slug": "creating-xpcshell-tests",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": [],
-        "priority": 5
+        "links": []
       },
       {
         "title": "Creating a basic mochitest",
@@ -1052,8 +976,7 @@
         "slug": "creating-mochitests",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": [],
-        "priority": 6
+        "links": []
       },
       {
         "title": "Creating a basic reftest",
@@ -1062,8 +985,7 @@
         "slug": "creating-reftests",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": [],
-        "priority": 7
+        "links": []
       },
       {
         "title": "Creating a basic browser chrome test",
@@ -1072,8 +994,7 @@
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": [],
-        "priority": 8
+        "links": []
       }
     ]
   },
@@ -1081,7 +1002,6 @@
   {
     "title": "Reviewing code",
     "slug": "reviewing-code",
-    "priority": 15,
     "videos": [
       {
         "title": "Becoming a reviewer",
@@ -1090,8 +1010,7 @@
         "slug": "becoming-reviewer",
         "youtubeid": "",
         "tags": ["review"],
-        "links": [],
-        "priority": 1
+        "links": []
       },
       {
         "title": "Reviewing a patch",
@@ -1100,8 +1019,7 @@
         "slug": "reviewing-patch",
         "youtubeid": "",
         "tags": ["review"],
-        "links": [],
-        "priority": 2
+        "links": []
       }
     ]
   },
@@ -1109,7 +1027,6 @@
   {
     "title": "Troubleshooting code without debugging",
     "slug": "troubleshooting-code-no-debugging",
-    "priority": 16,
     "videos": [
       {
         "title": "Finding out why code is the way it is, using hg annotate",
@@ -1118,8 +1035,7 @@
         "slug": "hg-annotate",
         "youtubeid": "v8CbpAdGP3c",
         "tags": ["testing"],
-        "links": [],
-        "priority": 1
+        "links": []
       },
       {
         "title": "Finding regression ranges with mozregression",
@@ -1128,8 +1044,7 @@
         "slug": "mozregression",
         "youtubeid": "ABrenCFgP3Q",
         "tags": ["testing"],
-        "links": [],
-        "priority": 2
+        "links": []
       }
     ]
   },
@@ -1137,7 +1052,6 @@
   {
     "title": "Debugging C++ code",
     "slug": "debugging",
-    "priority": 17,
     "videos": [
       {
         "title": "Debugging your local build with Visual Studio",
@@ -1146,8 +1060,7 @@
         "slug": "debug-local-builds-win",
         "youtubeid": "S6ohAwQnmrE",
         "tags": ["C++"],
-        "links": [],
-        "priority": 1
+        "links": []
       },
       {
         "title": "Introduction to different debugger windows in Visual Studio",
@@ -1156,8 +1069,7 @@
         "slug": "debugger-windows",
         "youtubeid": "",
         "tags": ["C++"],
-        "links": [],
-        "priority": 2
+        "links": []
       },
       {
         "title": "More advanced debugging tricks with Visual Studio",
@@ -1166,8 +1078,7 @@
         "slug": "advanced-debugging",
         "youtubeid": "",
         "tags": ["C++"],
-        "links": [],
-        "priority": 3
+        "links": []
       },
       {
         "title": "Debugging your local build in OS X with Xcode",
@@ -1176,8 +1087,7 @@
         "slug": "debug-local-builds-osx",
         "youtubeid": "",
         "tags": ["C++"],
-        "links": [],
-        "priority": 4
+        "links": []
       },
       {
         "title": "Debugging your local builds in Linux with gdb and ddd",
@@ -1186,8 +1096,7 @@
         "slug": "debug-local-builds-linux",
         "youtubeid": "",
         "tags": ["C++"],
-        "links": [],
-        "priority": 5
+        "links": []
       }
     ]
   },
@@ -1195,7 +1104,6 @@
   {
     "title": "Getting commit access",
     "slug": "commit-access",
-    "priority": 18,
     "videos": [
       {
         "title": "Getting commit access level 1",
@@ -1209,8 +1117,7 @@
             "title": "Mozilla commit access policy",
             "url": "https://www.mozilla.org/hacking/commit-access-policy/"
           }
-        ],
-        "priority": 1
+        ]
       },
       {
         "title": "Getting commit access level 3",
@@ -1224,8 +1131,7 @@
             "title": "Mozilla commit access policy",
             "url": "https://www.mozilla.org/hacking/commit-access-policy/"
           }
-        ],
-        "priority": 2
+        ]
       }
     ]
   },
@@ -1233,7 +1139,6 @@
   {
     "title": "Staying up to date",
     "slug": "staying-up-to-date",
-    "priority": 19,
     "videos": [
       {
         "title": "Staying up to date on Mozilla happenings",
@@ -1242,8 +1147,7 @@
         "slug": "mozilla-news",
         "youtubeid": "",
         "tags": [],
-        "links": [],
-        "priority": 1
+        "links": []
       }
     ]
   }
