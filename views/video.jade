@@ -45,7 +45,15 @@ block mainContent
             img(src='/static/img/back-to-videos.png')
 
     .clear
-    p(style='margin-top:30px;')
+
+    if video.links.length > 0
+      #links
+        div Resources:
+        ul
+          each link in video.links
+            li: a(href= link.url)= link.title
+
+    p(style='margin-top:40px;')
     if (!useAmara)
       a#subtitles(href='#') Turn on translated subtitles<br>
     else
