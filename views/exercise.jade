@@ -36,11 +36,11 @@ block mainContent
     br
 
     if exercise.links.length > 0
-    #links
-      div Resources:
-      ul
-        each link in exercise.links
-          li: a(href= link.url)= link.title
+      #links
+        div Resources:
+        ul
+          each link in exercise.links
+            li: a(href= link.url)= link.title
 
 
 block extraScripts
