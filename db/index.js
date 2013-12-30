@@ -137,12 +137,18 @@ exports.initVideoData = function(filePath, c) {
 
   var populateDB = function(err) {
     var availableVideos = 0,
-      unavailableVideos = 0;
+      unavailableVideos = 0,
+      // Priority is dictated by the ordering in the JSON file
+      categoryPriority = 0,
+      videoPriority = 0;
+
     newCategories.forEach(function(category) {
-      console.log('DB: Populating category key: ' + 'category:' + category.slug );
-      exports.set('category:' + category.slug, category);
-      console.log('DB: ' + JSON.stringify(category));
+      videoPriority = 0;
+      categoryPriority++;
+      category.priority = categoryPriority;
       category.videos.forEach(function(video) {
+        videoPriority++;
+        video.priority = videoPriority;
         console.log('DB: populating video key: ' + 'video:' + video.slug);
         video.categorySlug = category.slug;
         video.categoryTitle = category.title;
@@ -151,6 +157,9 @@ exports.initVideoData = function(filePath, c) {
         exports.set('video:' + video.slug, video);
         video.youtubeid ? availableVideos++ : unavailableVideos++;
       });
+      console.log('DB: Populating category key: ' + 'category:' + category.slug );
+      exports.set('category:' + category.slug, category);
+      console.log('DB: ' + JSON.stringify(category));
     });
 
     exports.set('stats:video', JSON.stringify({
