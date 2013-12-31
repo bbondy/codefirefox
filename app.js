@@ -136,6 +136,7 @@ loadVideos().then(function(c) {
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);
+  app.get('/tags', routes.tags);
 
   // POST
   app.post('/check-code/:slug', routes.checkCode);
