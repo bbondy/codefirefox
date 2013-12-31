@@ -18,39 +18,41 @@ html(lang="en")
   body(id= bodyID)
     script.
       var email="#{session.email}";
-    #header
-      a(href='/')
-        img#logo(src='/static/img/logo.png')
-      a(href='https://twitter.com/codefirefox', target='_blank')
-        img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
-      #navbar
-        ul
-          li
-            a#navbar-lessons(href='/') Lessons
-          li
-            a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
-          if session.email
+    .wrapper
+      #header
+        a(href='/')
+          img#logo(src='/static/img/logo.png')
+        a(href='https://twitter.com/codefirefox', target='_blank')
+          img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
+        #navbar
+          ul
             li
-              a#navbar-stats(href='/stats') Stats
-          li
-            a#navbar-tags(href='/tags') Tags
-          li
-            a#navbar-about(href='/about') About
+              a#navbar-lessons(href='/') Lessons
+            li
+              a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
+            if session.email
+              li
+                a#navbar-stats(href='/stats') Stats
+            li
+              a#navbar-tags(href='/tags') Tags
+            li
+              a#navbar-about(href='/about') About
 
-      span.persona-buttons
-        if session.email
-          a#logout(class='persona-button', href='#')
-            span Logout
-        else
-          a#login(class='persona-button', href='#')
-            span Login
+        span.persona-buttons
+          if session.email
+            a#logout(class='persona-button', href='#')
+              span Logout
+          else
+            a#login(class='persona-button', href='#')
+              span Login
 
-      block header
+        block header
 
-    #page
-      h1#mainTitle= mainTitle
-      #mainContent
-        block mainContent
+      #page
+        h1#mainTitle= mainTitle
+        #mainContent
+          block mainContent
+      .push
 
     #footer
       ul.navigation
