@@ -33,10 +33,9 @@ html(lang="en")
             li
               a#navbar-stats(href='/stats') Stats
           li
+            a#navbar-tags(href='/tags') Tags
+          li
             a#navbar-about(href='/about') About
-          if session.email && session.isAdmin
-            li
-              a#navbar-admin(href='/admin') Admin
 
       span.persona-buttons
         if session.email
@@ -62,6 +61,8 @@ html(lang="en")
         if session.email
           li
             a(href='/stats') Stats
+        li
+          a(href='/tags') Tags
         li
           a(href='/about') About
         if session.isAdmin

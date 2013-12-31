@@ -5,7 +5,8 @@ var REDIS_PORT = 10226;
 var fs = require('fs'),
   redis = require('redis'),
   async = require('async'),
-  redis = require('redis');
+  redis = require('redis'),
+  _ = require('underscore');
 
 var client = redis.createClient(REDIS_PORT);
 
@@ -140,13 +141,25 @@ exports.initVideoData = function(filePath, c) {
       unavailableVideos = 0,
       // Priority is dictated by the ordering in the JSON file
       categoryPriority = 0,
-      videoPriority = 0;
+      videoPriority = 0,
+      allTags = {}; 
 
     newCategories.forEach(function(category) {
       videoPriority = 0;
       categoryPriority++;
       category.priority = categoryPriority;
       category.videos.forEach(function(video) {
+        video.tags.forEach(function(tag) {
+          if (_.isUndefined(allTags[tag])) {
+            allTags[tag] = {
+              name: tag,
+              count: 1
+            };
+          } else {
+            allTags[tag].count++;
+          }
+        });
+
         videoPriority++;
         video.priority = videoPriority;
         console.log('DB: populating video key: ' + 'video:' + video.slug);
@@ -165,6 +178,13 @@ exports.initVideoData = function(filePath, c) {
     exports.set('stats:video', JSON.stringify({
       available: availableVideos, unavailable: unavailableVideos
     }));
+
+    var allTagsSortable = [];
+    for (var tag in allTags) {
+      allTagsSortable.push(allTags[tag]);
+    }
+    allTagsSortable.sort(exports.sortTagsByName);
+    exports.set('tags:all', allTagsSortable);
     c();
   };
 
@@ -184,4 +204,8 @@ exports.reportUserLogin = function(email) {
 
 exports.sortByPriority = function(a, b) {
   return a.priority - b.priority;
+};
+
+exports.sortTagsByName = function(a, b) {
+  return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 };

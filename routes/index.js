@@ -154,6 +154,25 @@ function reportCompleted(req, res, callback) {
 }
 
 /**
+ * GET /tags
+ * Renders the tag page
+ */
+exports.tags = function(req, res) {
+  dbGet("tags:all").done(function onSuccess(tags) {
+    res.render('tags', { pageTitle: 'Tags',
+                         bodyID: 'body_tags',
+                         mainTitle: 'Tags',
+                         tags: tags
+                       });
+  }, function onFailure(err) {
+    res.render('notFound', { pageTitle: 'Tags',
+                             bodyID: 'body_tags',
+                             mainTitle: 'Tags not found'
+                           });
+  });
+};
+
+/**
  * POST /video/:slug
  * POST /exercise/:slug
  * Sets per logged in user stats

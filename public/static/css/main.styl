@@ -85,8 +85,9 @@ a
 #body_exercise #navbar-lessons,
 #body_cheatsheet #navbar-cheatsheet,
 #body_about #navbar-about,
-#body_stats #navbar-stats
-#body_admin #navbar-admin
+#body_stats #navbar-stats,
+#body_admin #navbar-admin,
+#body_tags #navbar-tags
   //font-weight bold
   border-bottom 3px solid #a8b4c3
 
@@ -170,12 +171,10 @@ a
 
 #tags
   display inline-block
-  float left
-  margin-top: 4px;
+  margin-top: 6px;
   font-size 13pt
-  color #7ca1cf
 
-#tags span
+#tags > span
   float left
   font-weight bold
   color #2c4f97
@@ -191,6 +190,15 @@ a
   display inline
   margin-top 10px
   margin-left 10px
+
+#tags li a
+  padding 5px
+  background-color #f9f9f9
+  border-bottom 1px solid #999999
+  border-right 1px solid #999999
+  border-left 1px solid #dddddd
+  border-top 1px solid #dddddd
+  border-radius 10%
 
 .clear
   clear both
