@@ -19,11 +19,12 @@
     font-style normal
 }
 
-body
+html, body
   font-family OpenSans
   background url("/static/img/bg.png") no-repeat top right
   background-color #f1efe8
   margin 0
+  height: 100%
 
 #page
   min-height 100%
@@ -278,16 +279,19 @@ ul.videos li.exercise span.completed
 .cleanslate .unisubs-widget
   margin-bottom 5px !important
 
+.wrapper
+  min-height 100%
+  height auto !important
+  height 100%
+  margin 0 auto -60px
+  
+.push
+  height 60px
+
 #footer
   color #fff
   background-color #363f48
-  position relative
-  bottom 0
-  left 0
-  right 0
   height 60px
-  margin 0 auto
-  padding 0
 
 #footer a
   color #fff
