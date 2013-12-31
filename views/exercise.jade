@@ -33,6 +33,14 @@ block mainContent
     // Useful for debugging only:
     //a#check-syntax(href='#') Check Syntax
 
+    if exercise.tags.length > 0
+      #tags
+        span Tags:
+        ul
+          each tag in exercise.tags
+            li
+              a(href='/tagged/' + tag, rel='tag')= tag
+
     br
 
     if exercise.links.length > 0
