@@ -646,6 +646,20 @@
         ]
       },
       {
+        "title": "Mastering the Console for front end development",
+        "type": "video",
+        "description": "",
+        "slug": "browser-console",
+        "youtubeid": "",
+        "tags": ["JavaScript"],
+        "links": [
+          {
+            "title": "Debugging JavaScript on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Debugging_JavaScript"
+          }
+        ]
+      },
+      {
         "title": "Debugging front end Firefox code with the built-in debugger",
         "type": "video",
         "description": "",
