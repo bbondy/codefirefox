@@ -138,7 +138,7 @@ exports.delStats = function(req, res, next) {
   });
 };
 
-// TODO: Move to user controller
+// TODO: Move to User controller
 function reportCompleted(req, res, callback) {
   db.getOnePromise("video:" + req.params.slug, function(err, lesson) {
     if (!err) {
@@ -173,9 +173,6 @@ exports.tags = function(req, res) {
  * POST /video/:slug
  * POST /exercise/:slug
  * Sets per logged in user stats
- *
- * TODO: Should return an error if the user is not logged in, currently
- * will store it as a key with null instead of the username.
  */ 
 exports.completedLesson = function(req, res, next) {
   if (!req.params.slug) {
@@ -229,8 +226,6 @@ exports.video = function(req, res, next) {
 /**
  * GET /
  * Renders the main page which shows a list of videos
- * TODO: make GET /videos only show videos, currently just goes here
- * TODO: make GET /exercises only show exercises, currently just goes here
  */
 exports.outline = function(req, res) {
   var userStats, userVideoSlugsWatched;
@@ -249,7 +244,9 @@ exports.outline = function(req, res) {
                           mainTitle: 'Lessons',
                           videoSlugsWatched: userVideoSlugsWatched,
                           tagged: req.params.tagged,
-                          stats: userStats
+                          stats: userStats,
+                          videosOnly: req.url.substring(0, 7) == '/videos',
+                          exercisesOnly: req.url.substring(0, 10) == '/exercises'
     });
   }, function onFailure(err) {
     res.render('notFound', { pageTitle: 'Video',
