@@ -37,6 +37,9 @@ exports.initVideoData = function(req, res) {
   });
 };
 
+/**
+ * TODO: Move to Video controller
+*/
 exports.loadVideos = function(c) {
   db.getAllPromise("category").done(function onSuccess(cat) {
     exports.categories  = cat;
@@ -135,6 +138,7 @@ exports.delStats = function(req, res, next) {
   });
 };
 
+// TODO: Move to user controller
 function reportCompleted(req, res, callback) {
   db.getOnePromise("video:" + req.params.slug, function(err, lesson) {
     if (!err) {
@@ -176,6 +180,11 @@ exports.tags = function(req, res) {
 exports.completedLesson = function(req, res, next) {
   if (!req.params.slug) {
     next(new Error('Invalid URL format, should be: video/:slug or exercise/:slug'));
+    return;
+  }
+
+  if (!res.locals.session.email) {
+    res.json({ status:  "failure", reaosn: 'Not logged in' });
     return;
   }
 
