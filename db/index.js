@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ *  Basic low level db helper functions
+*/
+
 var REDIS_PORT = 10226;
 
 var fs = require('fs'),
