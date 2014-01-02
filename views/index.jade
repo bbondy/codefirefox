@@ -21,7 +21,7 @@ mixin video_list(category)
   ul.videos
     each video in category.videos
       if !tagged || video.tags.indexOf(tagged) != -1
-        if video.type == 'video'
+        if video.type == 'video' && !exercisesOnly
           li.video
             if video.youtubeid
               a(name= category.slug + '/' + video.slug)
@@ -32,7 +32,7 @@ mixin video_list(category)
                   span= video.title
             else
               span= video.title
-        else
+        else if video.type == 'exercise' && !videosOnly
           li.exercise
             if video.assertions
               a(name= category.slug + '/' + video.slug)
