@@ -6,7 +6,9 @@ var fs = require('fs'),
   redis = require('redis'),
   async = require('async'),
   redis = require('redis'),
-  _ = require('underscore');
+  _ = require('underscore'),
+  Promise = require('promise');
+
 
 var client = redis.createClient(REDIS_PORT);
 
@@ -209,3 +211,10 @@ exports.sortByPriority = function(a, b) {
 exports.sortTagsByName = function(a, b) {
   return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 };
+
+exports.getOnePromise = Promise.denodeify(exports.get).bind(exports);
+exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
+exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
+exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
+exports.emptyPromise = Promise.denodeify(function(callback) { callback(); });
+

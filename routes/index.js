@@ -8,13 +8,6 @@ var db = require('../db'),
   CodeCheck = require('codecheckjs'),
   helpers = require('../helpers');
 
-// Promises to help simplify async callback flow
-var dbGet = Promise.denodeify(db.get).bind(db);
-var dbGetAll = Promise.denodeify(db.getAll).bind(db);
-var dbGetSetElements = Promise.denodeify(db.getSetElements).bind(db);
-var initVideoData = Promise.denodeify(db.initVideoData).bind(db);
-var emptyPromise = Promise.denodeify(function(callback) { callback(); });
-
 /**
  * GET /cheatsheet
  * Renders the cheat sheet page
@@ -33,7 +26,7 @@ exports.cheatsheet = function(req, res, next) {
 */
 exports.initVideoData = function(req, res) {
   var loadVideos = Promise.denodeify(exports.loadVideos).bind(exports);
-  initVideoData(__dirname + '/../data/videos.json').then(function() {
+  db.initVideoDataPromise(__dirname + '/../data/videos.json').then(function() {
     return loadVideos();
   }).done(function() {
     res.render('simpleStatus', { pageTitle: 'Data initialized',
@@ -45,7 +38,7 @@ exports.initVideoData = function(req, res) {
 };
 
 exports.loadVideos = function(c) {
-  dbGetAll("category").done(function onSuccess(cat) {
+  db.getAllPromise("category").done(function onSuccess(cat) {
     exports.categories  = cat;
     c();
   }, function onFailure(err) {
@@ -94,13 +87,13 @@ exports.stats = function(req, res, next) {
   } 
 
   var info, videoSlugsWatched;
-  dbGet('user:' + res.locals.session.email + ':info')
+  db.getOnePromise('user:' + res.locals.session.email + ':info')
   .then(function(info1) {
     info = info1;
-    return dbGetSetElements('user:' + res.locals.session.email + ':video_slugs_watched');
+    return db.getSetElementsPromise('user:' + res.locals.session.email + ':video_slugs_watched');
   }).then(function(videoSlugsWatched1) {
     videoSlugsWatched = videoSlugsWatched1;
-    return dbGet('user:' + res.locals.session.email + ':login_count');
+    return db.getOnePromise('user:' + res.locals.session.email + ':login_count');
   }).done(function onSuccess(loginCount) {
     info.dateJoined = helpers.formatTimeSpan(new Date(info.dateJoined), new Date());
     info.dateLastLogin = helpers.formatTimeSpan(new Date(info.dateLastLogin), new Date());
@@ -143,7 +136,7 @@ exports.delStats = function(req, res, next) {
 };
 
 function reportCompleted(req, res, callback) {
-  db.get("video:" + req.params.slug, function(err, lesson) {
+  db.getOnePromise("video:" + req.params.slug, function(err, lesson) {
     if (!err) {
       db.addToSet('user:' + res.locals.session.email + ':video_slugs_watched', lesson.slug)
     } 
@@ -158,7 +151,7 @@ function reportCompleted(req, res, callback) {
  * Renders the tag page
  */
 exports.tags = function(req, res) {
-  dbGet("tags:all").done(function onSuccess(tags) {
+  db.getOnePromise("tags:all").done(function onSuccess(tags) {
     res.render('tags', { pageTitle: 'Tags',
                          bodyID: 'body_tags',
                          mainTitle: 'Tags',
@@ -204,7 +197,7 @@ exports.video = function(req, res, next) {
 
   var useAmara = req.cookies.useAmara == '1';
   console.log('use amara cookie is: ' + req.cookies.useAmara);
-  db.get("video:" + req.params.video, function(err, video) {
+  db.getOnePromise("video:" + req.params.video, function(err, video) {
     if (err) {
       res.render('notFound', { pageTitle: 'Video',
                                bodyID: 'body_not_found',
@@ -232,13 +225,13 @@ exports.video = function(req, res, next) {
  */
 exports.outline = function(req, res) {
   var userStats, userVideoSlugsWatched;
-  var getVideosWatchedIfLoggedIn = emptyPromise();
+  var getVideosWatchedIfLoggedIn = db.emptyPromise();
   if (res.locals.session.email)
-    getVideosWatchedIfLoggedIn  = dbGetSetElements('user:' + res.locals.session.email + ':video_slugs_watched');
+    getVideosWatchedIfLoggedIn  = db.getSetElementsPromise('user:' + res.locals.session.email + ':video_slugs_watched');
 
   getVideosWatchedIfLoggedIn.then(function(videoSlugsWatched) {
     userVideoSlugsWatched = videoSlugsWatched || [];
-    return dbGet("stats:video");
+    return db.getOnePromise("stats:video");
   }).done(function(stats) {
     userStats = JSON.parse(stats);
     exports.categories.sort(db.sortByPriority);
@@ -275,7 +268,7 @@ exports.exercise = function(req, res, next) {
     return;
   }
 
-  db.get("video:" + req.params.exercise, function(err, exercise) {
+  db.getOnePromise("video:" + req.params.exercise, function(err, exercise) {
     if (err) {
       res.render('notFound', { pageTitle: 'Exercise',
                                bodyID: 'body_not_found',
@@ -320,7 +313,7 @@ exports.checkCode = function(req, res) {
     return;
   }
 
-  db.get("video:" + req.params.slug, function(err, exercise) {
+  db.getOnePromise("video:" + req.params.slug, function(err, exercise) {
     var checker = new CodeCheck();
     checker.addAssertions(exercise.assertions);
     try {
