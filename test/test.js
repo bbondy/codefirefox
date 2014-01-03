@@ -1,7 +1,6 @@
 "use strict";
 
 var assert = require("assert"),
-  db = require("../db"),
   Promise = require("promise"),
   _ = require("underscore");
 
