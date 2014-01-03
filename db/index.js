@@ -20,8 +20,8 @@ client.on('error', function (err) {
   console.log('DB: Error ' + err);
 });
 
-exports.addToSet = function(key, obj) {
-  client.sadd(key, JSON.stringify(obj), redis.print);
+exports.addToSet = function(key, obj, callback) {
+  client.sadd(key, JSON.stringify(obj), callback);
 };
 
 exports.getSetElements = function(slug, callback) {
@@ -198,6 +198,7 @@ exports.initVideoData = function(filePath, c) {
   readData();
 };
 
+// TODO: Move to user controller and make this generic like db.increment
 exports.reportUserLogin = function(email) {
   client.incr('user:' + email + ':login_count', function(err) {
     if (err) {
@@ -219,6 +220,7 @@ exports.sortTagsByName = function(a, b) {
 exports.setOnePromise = Promise.denodeify(exports.set).bind(exports);
 exports.getOnePromise = Promise.denodeify(exports.get).bind(exports);
 exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
+exports.addToSetPromise = Promise.denodeify(exports.addToSet).bind(exports);
 exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
 exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
 exports.emptyPromise = Promise.denodeify(function(callback) { callback(); });
