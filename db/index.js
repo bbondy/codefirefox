@@ -77,8 +77,8 @@ exports.getAll = function(parentKey, callback, errCallback) {
   });
 };
 
-exports.set = function(key, obj) {
-  client.set(key, JSON.stringify(obj), redis.print);
+exports.set = function(key, obj, callback) {
+  client.set(key, JSON.stringify(obj), callback);
 };
 
 exports.nukeDB = function() {
@@ -216,6 +216,7 @@ exports.sortTagsByName = function(a, b) {
   return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 };
 
+exports.setOnePromise = Promise.denodeify(exports.set).bind(exports);
 exports.getOnePromise = Promise.denodeify(exports.get).bind(exports);
 exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
 exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
