@@ -1,19 +1,22 @@
 "use strict";
 
-var db = require('../db'),
-  querystring = require("querystring"),
+var querystring = require("querystring"),
   acorn = require('acorn'),
   prettyjson = require('prettyjson'),
   Promise = require('promise'),
   CodeCheck = require('codecheckjs'),
-  helpers = require('../helpers');
+  helpers = require('../helpers'),
+  lessonController = require('../controllers/lessonController.js'),
+  userController = require('../controllers/userController.js'),
+  tagsController = require('../controllers/tagsController.js');
 
 /**
  * GET /cheatsheet
  * Renders the cheat sheet page
 */
 exports.cheatsheet = function(req, res, next) {
-  res.render('cheatsheet', { pageTitle: 'Cheatsheet',
+  res.render('cheatsheet', {
+                             pageTitle: 'Cheatsheet',
                              bodyID: 'body_cheatsheet',
                              mainTitle: 'Cheatsheet'
                            });
@@ -25,27 +28,21 @@ exports.cheatsheet = function(req, res, next) {
  * Renders the initVideoData page
 */
 exports.initVideoData = function(req, res) {
-  var loadVideos = Promise.denodeify(exports.loadVideos).bind(exports);
-  db.initVideoDataPromise(__dirname + '/../data/videos.json').then(function() {
-    return loadVideos();
-  }).done(function() {
-    res.render('simpleStatus', { pageTitle: 'Data initialized',
-                               status: "Data initialized successfully",
+  lessonController.init(function(err) {
+    if (err) {
+      res.render('notFound', {
+                               pageTitle: 'No data found',
                                bodyID: 'body_simplestatus',
-                               mainTitle: 'Data Initialized'
+                               mainTitle: 'Data NOT initialized'
                              });
-  });
-};
-
-/**
- * TODO: Move to Video controller
-*/
-exports.loadVideos = function(c) {
-  db.getAllPromise("category").done(function onSuccess(cat) {
-    exports.categories  = cat;
-    c();
-  }, function onFailure(err) {
-    c(err);
+      return;
+    }
+    res.render('simpleStatus', { 
+                                 pageTitle: 'Data initialized',
+                                 status: "Data initialized successfully",
+                                 bodyID: 'body_simplestatus',
+                                 mainTitle: 'Data Initialized'
+                               });
   });
 };
 
@@ -57,7 +54,8 @@ exports.loadVideos = function(c) {
  * at some point later on though.
  */
 exports.admin = function(req, res) {
-  res.render('admin', { pageTitle: 'Administration',
+  res.render('admin', {
+                        pageTitle: 'Administration',
                         bodyID: 'body_admin',
                         mainTitle: 'Administration'
                       });
@@ -68,7 +66,8 @@ exports.admin = function(req, res) {
  * Renders the about page
  */
 exports.about = function(req, res) {
-  res.render('about', { pageTitle: 'About',
+  res.render('about', {
+                        pageTitle: 'About',
                         bodyID: 'body_about',
                         mainTitle: 'About'
                       });
@@ -82,38 +81,35 @@ exports.about = function(req, res) {
  */
 exports.stats = function(req, res, next) {
   if (!res.locals.session.email) {
-    res.render('notFound', { pageTitle: 'Not authenticated',
+    res.render('notFound', {
+                             pageTitle: 'Not authenticated',
                              bodyID: 'body_stats',
                              mainTitle: 'Not authenticated'
                            });
     return;
   } 
 
-  var info, videoSlugsWatched;
-  db.getOnePromise('user:' + res.locals.session.email + ':info')
-  .then(function(info1) {
-    info = info1;
-    return db.getSetElementsPromise('user:' + res.locals.session.email + ':video_slugs_watched');
-  }).then(function(videoSlugsWatched1) {
-    videoSlugsWatched = videoSlugsWatched1;
-    return db.getOnePromise('user:' + res.locals.session.email + ':login_count');
-  }).done(function onSuccess(loginCount) {
-    info.dateJoined = helpers.formatTimeSpan(new Date(info.dateJoined), new Date());
-    info.dateLastLogin = helpers.formatTimeSpan(new Date(info.dateLastLogin), new Date());
+  userController.get(res.locals.session.email, function(err, user) {
+    if (err) {
+      res.render('notFound', {
+                               pageTitle: 'No data found',
+                               bodyID: 'body_stats',
+                               mainTitle: 'No data found'
+                             });
+      return;
+    }
+
     var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
-    res.render('stats', { videoSlugsWatched: videoSlugsWatched,
+    res.render('stats', {
+                          videoSlugsWatched: user.slugsCompleted,
                           serverRunningSince: serverRunningSince,
-                          loginCount: loginCount || 0,
-                          info: info,
-                          categories: exports.categories,
+                          loginCount: user.loginCount || 0,
+                          info: user.info,
+                          categories: lessonController.categories,
                           pageTitle: 'Stats',
                           bodyID: 'body_stats',
-                          mainTitle: 'Stats'});
-  }, function onFailure() {
-    res.render('notFound', { pageTitle: 'No data found',
-                             bodyID: 'body_stats',
-                             mainTitle: 'No data found'
-                           });
+                          mainTitle: 'Stats'
+                        });
   });
 };
 
@@ -124,48 +120,46 @@ exports.stats = function(req, res, next) {
  */ 
 exports.delStats = function(req, res, next) {
   if (!res.locals.session.email) {
-    res.json({ status: "failure",
-               reason: "not logged in"});
+    res.json({
+               status: "failure",
+               reason: "not logged in"
+             });
     return;
   }
   if (!res.locals.session.isAdmin) {
-    res.json({ status: "failure",
-               reason: "not admin"});
+    res.json({
+               status: "failure",
+               reason: "not admin"
+             });
     return;
   }
-  db.delUserStats(res.locals.session.email, function(err, result) {
+  userController.delUser(res.locals.session.email, function(err, result) {
     res.json({ status: "okay" });
   });
 };
-
-// TODO: Move to User controller
-function reportCompleted(req, res, callback) {
-  db.getOnePromise("video:" + req.params.slug, function(err, lesson) {
-    if (!err) {
-      db.addToSet('user:' + res.locals.session.email + ':video_slugs_watched', lesson.slug)
-    } 
-    if (callback) {
-      callback(err);
-    }
-  });
-}
 
 /**
  * GET /tags
  * Renders the tag page
  */
 exports.tags = function(req, res) {
-  db.getOnePromise("tags:all").done(function onSuccess(tags) {
-    res.render('tags', { pageTitle: 'Tags',
+  tagsController.getAll(function(err, tags) {
+    if (err) {
+      res.render('notFound', {
+                               pageTitle: 'Tags',
+                               bodyID: 'body_tags',
+                               mainTitle: 'Tags not found'
+                             });
+      return;
+    }
+
+    res.render('tags', {
+                         pageTitle: 'Tags',
                          bodyID: 'body_tags',
                          mainTitle: 'Tags',
                          tags: tags
                        });
-  }, function onFailure(err) {
-    res.render('notFound', { pageTitle: 'Tags',
-                             bodyID: 'body_tags',
-                             mainTitle: 'Tags not found'
-                           });
+
   });
 };
 
@@ -185,7 +179,7 @@ exports.completedLesson = function(req, res, next) {
     return;
   }
 
-  reportCompleted(req, res, function(err) {
+  userController.reportCompleted(req.params.slug, res.locals.session.email, function(err) {
     res.json({ status: (err ? "failure" : "okay") });
   });
 
@@ -203,9 +197,10 @@ exports.video = function(req, res, next) {
 
   var useAmara = req.cookies.useAmara == '1';
   console.log('use amara cookie is: ' + req.cookies.useAmara);
-  db.getOnePromise("video:" + req.params.video, function(err, video) {
+  lessonController.get(req.params.video, function(err, video) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Video',
+      res.render('notFound', {
+                               pageTitle: 'Video',
                                bodyID: 'body_not_found',
                                mainTitle: 'Video not found'
                              });
@@ -213,7 +208,8 @@ exports.video = function(req, res, next) {
     }
 
     video.shareUrl = "http://twitter.com/home?status=" + encodeURIComponent(video.title + " " + req.protocol + "://" + req.get('host') + req.url + " @codefirefox")
-    res.render('video', { pageTitle: video.title,
+    res.render('video', {
+                          pageTitle: video.title,
                           video: video,
                           bodyID: 'body_video',
                           mainTitle: 'Video',
@@ -228,32 +224,38 @@ exports.video = function(req, res, next) {
  * Renders the main page which shows a list of videos
  */
 exports.outline = function(req, res) {
-  var userStats, userVideoSlugsWatched;
-  var getVideosWatchedIfLoggedIn = db.emptyPromise();
-  if (res.locals.session.email)
-    getVideosWatchedIfLoggedIn  = db.getSetElementsPromise('user:' + res.locals.session.email + ':video_slugs_watched');
-
-  getVideosWatchedIfLoggedIn.then(function(videoSlugsWatched) {
-    userVideoSlugsWatched = videoSlugsWatched || [];
-    return db.getOnePromise("stats:video");
-  }).done(function(stats) {
-    userStats = JSON.parse(stats);
-    exports.categories.sort(db.sortByPriority);
-    res.render('index', { pageTitle: 'Lessons',
-                          categories: exports.categories, bodyID: 'body_index',
+  var user;
+  var loadPage = function () {
+    console.log('lessonController.stats: ' + lessonController.stats);
+    console.log('user: ' + user);
+    res.render('index', {
+                          pageTitle: 'Lessons',
+                          categories: lessonController.categories, bodyID: 'body_index',
                           mainTitle: 'Lessons',
-                          videoSlugsWatched: userVideoSlugsWatched,
+                          slugsCompleted: user ? user.slugsCompleted : [],
                           tagged: req.params.tagged,
-                          stats: userStats,
+                          stats: lessonController.stats,
                           videosOnly: req.url.substring(0, 7) == '/videos',
                           exercisesOnly: req.url.substring(0, 10) == '/exercises'
+                        });
+  };
+
+  if (!res.locals.session.email)  {
+    loadPage();
+  } else {
+    userController.get(res.locals.session.email, function(err, usr) {
+      user = usr;
+      if (err) {
+        res.render('notFound', {
+                                 pageTitle: 'Video',
+                                 bodyID: 'body_not_found',
+                                 mainTitle: 'Video not found'
+                               });
+        return;
+      }
+      loadPage();
     });
-  }, function onFailure(err) {
-    res.render('notFound', { pageTitle: 'Video',
-                             bodyID: 'body_not_found',
-                             mainTitle: 'Video not found'
-                           });
-  });
+  }
 };
 
 /**
@@ -274,9 +276,10 @@ exports.exercise = function(req, res, next) {
     return;
   }
 
-  db.getOnePromise("video:" + req.params.exercise, function(err, exercise) {
+  lessonController.get(req.params.exercise, function(err, exercise) {
     if (err) {
-      res.render('notFound', { pageTitle: 'Exercise',
+      res.render('notFound', {
+                               pageTitle: 'Exercise',
                                bodyID: 'body_not_found',
                                mainTitle: 'Exercise not found'
                              });
@@ -296,7 +299,8 @@ exports.exercise = function(req, res, next) {
         return;
     }
 
-    res.render('exercise', { pageTitle: exercise.title,
+    res.render('exercise', {
+                             pageTitle: exercise.title,
                              bodyID: 'body_exercise',
                              mainTitle: 'Exercise',
                              exercise: exercise,
@@ -313,13 +317,14 @@ exports.exercise = function(req, res, next) {
 exports.checkCode = function(req, res) {
   console.log('POST /check-code');
   if (!req.params.slug) {
-    res.json({ status: "failure",
+    res.json({ 
+               status: "failure",
                reason: "Exercise slug must be specified",
              });
     return;
   }
 
-  db.getOnePromise("video:" + req.params.slug, function(err, exercise) {
+  lessonController.get(req.params.slug, function(err, exercise) {
     var checker = new CodeCheck();
     checker.addAssertions(exercise.assertions);
     try {
@@ -332,11 +337,12 @@ exports.checkCode = function(req, res) {
           reason = err;
         } else {
           if (checker.allSatisfied) {
-            reportCompleted(req, res);
+            userController.reportCompleted(req.params.slug, res.locals.session.email);
           }
         }
 
-        res.json({ status: statusMessage,
+        res.json({
+                   status: statusMessage,
                    reason: reason,
                    assertions: checker.assertions,
                    allSatisfied: checker.allSatisfied
@@ -345,7 +351,8 @@ exports.checkCode = function(req, res) {
       });
     } catch (e) {
       console.log(e);
-      res.json({ status: "failure",
+      res.json({
+                 status: "failure",
                  reason: e
                });
     }

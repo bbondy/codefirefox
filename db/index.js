@@ -181,9 +181,10 @@ exports.initVideoData = function(filePath, c) {
       console.log('DB: ' + JSON.stringify(category));
     });
 
-    exports.set('stats:video', JSON.stringify({
-      available: availableVideos, unavailable: unavailableVideos
-    }));
+    exports.set('stats:video', {
+      available: availableVideos,
+      unavailable: unavailableVideos
+    });
 
     var allTagsSortable = [];
     for (var tag in allTags) {

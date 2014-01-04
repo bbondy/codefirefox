@@ -6,19 +6,22 @@ var express = require('express'),
   stylus = require('stylus'),
   db = require('./db'),
   Promise = require('promise'),
-  RedisStore = require('connect-redis')(express);
+  RedisStore = require('connect-redis')(express),
+  lessonController = require('./controllers/lessonController.js');
 
 var HOUR = 3600000;
 var DAY = 24 * HOUR;
 var serverRunningSince = new Date();
 var app = express();
 
+// TODO: Get rid of db usage in this file and move to controller calls.
+// In particular we need a new configController.
+// And need to use reportUserLogin to the userController.
+
 // Setup some helper promises
 var initConfigData = Promise.denodeify(db.initConfigData).bind(db);
-var loadVideos = Promise.denodeify(routes.loadVideos).bind(routes);
 
-
-loadVideos().then(function(c) {
+lessonController.initPromise().then(function(c) {
   return initConfigData();
 }).done(function(config) {
 
@@ -166,8 +169,10 @@ loadVideos().then(function(c) {
   app.listen(config.internalPort, function() {
     console.log("Starting server on port %d in %s mode", config.internalPort, app.settings.env);
   });
-}, function onFailure() {
+}, function onFailure(err) {
   console.log('Error starting server, aborting');
+  console.log(err);
+  console.log(err.stack);
   process.exit();
 });
 
