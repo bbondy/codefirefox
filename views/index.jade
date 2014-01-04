@@ -6,11 +6,11 @@ block header
       if session.email
         li
           #watched-legend-item.legend-item
-          span= videoSlugsWatched.length
+          span= slugsCompleted.length
           |  Completed
       li
         #unwatched-legend-item.legend-item
-        span= stats.available - videoSlugsWatched.length
+        span= stats.available - slugsCompleted.length
         |  Available
       li
         #unavailable-legend-item.legend-item
@@ -26,7 +26,7 @@ mixin video_list(category)
             if video.youtubeid
               a(name= category.slug + '/' + video.slug)
               a(href= '/video/' + video.slug, name= video.slug)
-                if videoSlugsWatched.indexOf(video.slug) != -1
+                if slugsCompleted.indexOf(video.slug) != -1
                   span.completed= video.title
                 else
                   span= video.title
@@ -37,7 +37,7 @@ mixin video_list(category)
             if video.assertions
               a(name= category.slug + '/' + video.slug)
               a(href= '/exercise/' + video.slug, name= video.slug)
-                if videoSlugsWatched.indexOf(video.slug) != -1
+                if slugsCompleted.indexOf(video.slug) != -1
                   span.completed= video.title
                 else
                   span= video.title
