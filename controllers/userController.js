@@ -44,6 +44,38 @@ exports.reportCompleted = function(videoSlug, username, callback) {
   });
 };
 
+/**
+ * Deletes all information on the current user
+ */
 exports.delUser = function(username, callback) {
  db.delUserStats(username, callback);
 };
+
+/**
+ * Adds one to the user's login count
+ */
+exports.reportUserLogin = function(username, ip, callback) {
+  var loginCountKey = 'user:' + username + ':login_count';
+  var loginInfoKey = 'user:' + username + ':info';
+  db.increment(loginCountKey, function(err) {
+    if (err) {
+      callback(err);
+      return;
+    }
+
+    db.get(loginInfoKey, function(err, info) {
+      info = info || { };
+       var now = new Date();
+       info.dateLastLogin = now.toISOString();
+       info.lastLoginIP = ip;
+       if (!info.dateJoined) {
+         info.dateJoined = now.toISOString();
+       }
+
+       db.set(loginInfoKey, info, function(err) {
+         callback(err);
+       });
+    });
+  });
+};
+

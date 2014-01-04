@@ -95,20 +95,6 @@ exports.delUserStats = function(email, callback) {
   });
 };
 
-exports.initConfigData = function(callback) {
-  fs.readFile(__dirname + '/../data/config.json', 'utf8', function (err, data) {
-    if (err) {
-      console.log('DB: Could not load config data.');
-      console.log('DB: Please createa a file named data/config.json from data/config.json.sample');
-      callback(err, null);
-      return;
-    }
-
-    exports.config = JSON.parse(data);
-    callback(null, exports.config);
-  });
-};
-
 exports.initVideoData = function(filePath, c) {
   var readData = function() {
     fs.readFile(filePath, 'utf8', function (err,data) {
@@ -199,16 +185,14 @@ exports.initVideoData = function(filePath, c) {
   readData();
 };
 
-// TODO: Move to user controller and make this generic like db.increment
-exports.reportUserLogin = function(email) {
-  client.incr('user:' + email + ':login_count', function(err) {
-    if (err) {
-      console.log('DB: reportUserLogin error: ' + err);
-      return;
-    }
-    console.log('DB: reported user login for user: ' + email);
-  });
+/**
+ * Increments the key value by one
+ */
+exports.increment = function(key, callback) {
+  client.incr(key, callback);
 };
+
+
 
 exports.sortByPriority = function(a, b) {
   return a.priority - b.priority;
@@ -224,5 +208,6 @@ exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
 exports.addToSetPromise = Promise.denodeify(exports.addToSet).bind(exports);
 exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
 exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
+exports.incrementPromise = Promise.denodeify(exports.increment).bind(exports);
 exports.emptyPromise = Promise.denodeify(function(callback) { callback(); });
 
