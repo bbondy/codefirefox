@@ -4,25 +4,19 @@ var express = require('express'),
   async = require("async"),
   routes = require('./routes'),
   stylus = require('stylus'),
-  db = require('./db'),
   Promise = require('promise'),
   RedisStore = require('connect-redis')(express),
-  lessonController = require('./controllers/lessonController.js');
+  userController = require('./controllers/userController.js'),
+  lessonController = require('./controllers/lessonController.js'),
+  configController = require('./controllers/configController.js');
 
 var HOUR = 3600000;
 var DAY = 24 * HOUR;
 var serverRunningSince = new Date();
 var app = express();
 
-// TODO: Get rid of db usage in this file and move to controller calls.
-// In particular we need a new configController.
-// And need to use reportUserLogin to the userController.
-
-// Setup some helper promises
-var initConfigData = Promise.denodeify(db.initConfigData).bind(db);
-
 lessonController.initPromise().then(function(c) {
-  return initConfigData();
+  return configController.initPromise();
 }).done(function(config) {
 
   console.log('redis host: ' + config.redisHost);
@@ -76,10 +70,8 @@ lessonController.initPromise().then(function(c) {
   require('express-persona')(app, {
     audience: serverURL,
     verifyResponse: function(error, req, res, email) {
-      var out;
       if (error) {
-        out = { status: "failure", reason: error };
-        res.json(out);
+        res.json({ status: "failure", reason: error });
       } else {
 
         // Session vars that our server should know about
@@ -90,36 +82,20 @@ lessonController.initPromise().then(function(c) {
         req.session.isTrusted =  req.session.isAdmin;
 
         console.log('User logged in: ' + req.session.email);
-        db.reportUserLogin(req.session.email);
-
-        // Stuff to let the client know about
-        out = { isAdmin: req.session.isAdmin,
-                isTrusted: req.session.isTrusted,
-                status: "okay",
-                email: req.session.email
-              };
-
-        var userInfoKey = 'user:' + req.session.email + ':info';
-        db.get(userInfoKey, function (err, info) {
-          if (err) {
-            info = {};
-          }
-
-          var now = new Date();
-          info.dateLastLogin = now.toISOString();
-          info.lastLoginIP = req.connection.remoteAddress;
-      	  if (info.lastLoginIP == '127.0.0.1' &&
-              config.host == 'codefirefox.com') {
-            info.lastLoginIP = req.get('HTTP_X_FORWARDED_FOR');
-          }
-
-          if (!info.dateJoined) {
-            info.dateJoined = now.toISOString();
-          }
-
-          console.log('info key is: ' + userInfoKey);
-          db.set(userInfoKey, info);
-          res.json(out);
+         var ip = req.connection.remoteAddress;
+         if (ip == '127.0.0.1' &&
+             config.host == 'codefirefox.com') {
+           ip = req.get('HTTP_X_FORWARDED_FOR');
+         }
+        userController.reportUserLogin(req.session.email, ip, function(err) {
+          // Stuff to let the client know about
+          res.json({
+                    isAdmin: req.session.isAdmin,
+                    isTrusted: req.session.isTrusted,
+                    status: err ? 'failure' : "okay",
+                    reason: err,
+                    email: req.session.email
+                  });
         });
       }
     },
