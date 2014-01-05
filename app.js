@@ -19,8 +19,7 @@ lessonController.initPromise().then(function(c) {
   return configController.initPromise();
 }).done(function(config) {
 
-  console.log('redis host: ' + config.redisHost);
-  console.log('redis port: ' + config.redisPort);
+  configController.print();
 
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');

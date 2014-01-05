@@ -226,8 +226,6 @@ exports.video = function(req, res, next) {
 exports.outline = function(req, res) {
   var user;
   var loadPage = function () {
-    console.log('lessonController.stats: ' + lessonController.stats);
-    console.log('user: ' + user);
     res.render('index', {
                           pageTitle: 'Lessons',
                           categories: lessonController.categories, bodyID: 'body_index',
