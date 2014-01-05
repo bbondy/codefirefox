@@ -17,3 +17,14 @@ exports.init = function(callback) {
 exports.initPromise = Promise.denodeify(exports.init).bind(exports);
 
 
+exports.print = function() {
+  console.log('Config:');
+  console.log('  redis host: ' + exports.config.redisHost);
+  console.log('  redis port: ' + exports.config.redisPort);
+  console.log('  host: ' + exports.config.host);
+  console.log('  port: ' + exports.config.port);
+  console.log('  internal port: ' + exports.config.internalPort);
+  console.log('  admins: ' + exports.config.admins);
+}
+
+

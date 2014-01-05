@@ -20,6 +20,9 @@ client.on('error', function (err) {
   console.log('DB: Error ' + err);
 });
 
+/**
+ * Converts the passed in object to a string and adds it to the set
+ */
 exports.addToSet = function(key, obj, callback) {
   client.sadd(key, JSON.stringify(obj), callback);
 };
@@ -44,6 +47,9 @@ exports.getSetElements = function(slug, callback) {
   });
 };
 
+/**
+ * Obtains an object for the key, and deserializes it
+ */
 exports.get = function(slug, callback) {
   if (!slug) {
     callback('no slug specified', null);
@@ -63,10 +69,13 @@ exports.get = function(slug, callback) {
   });
 };
 
-exports.getAll = function(parentKey, callback, errCallback) {
+/**
+ * Obtains all subkeys for the passed in key and calls the callback when done
+ */
+exports.getAll = function(parentKey, callback) {
   client.keys((parentKey ? parentKey + ':' : '') + '*', function(err, replies) {
     if (!replies) {
-      errCallback();
+      callback(err);
       return;
     }
 
@@ -99,7 +108,7 @@ exports.initVideoData = function(filePath, c) {
   var readData = function() {
     fs.readFile(filePath, 'utf8', function (err,data) {
       if (err) {
-        console.log('DB: ' + err);
+        console.log('DB error: ' + err);
         return;
       }
 
@@ -164,7 +173,6 @@ exports.initVideoData = function(filePath, c) {
       });
       console.log('DB: Populating category key: ' + 'category:' + category.slug );
       exports.set('category:' + category.slug, category);
-      console.log('DB: ' + JSON.stringify(category));
     });
 
     exports.set('stats:video', {
@@ -192,8 +200,6 @@ exports.increment = function(key, callback) {
   client.incr(key, callback);
 };
 
-
-
 exports.sortByPriority = function(a, b) {
   return a.priority - b.priority;
 };
@@ -202,6 +208,7 @@ exports.sortTagsByName = function(a, b) {
   return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 };
 
+// Setup some promises if consumers prefer to use that
 exports.setOnePromise = Promise.denodeify(exports.set).bind(exports);
 exports.getOnePromise = Promise.denodeify(exports.get).bind(exports);
 exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
@@ -210,4 +217,3 @@ exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(e
 exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
 exports.incrementPromise = Promise.denodeify(exports.increment).bind(exports);
 exports.emptyPromise = Promise.denodeify(function(callback) { callback(); });
-
