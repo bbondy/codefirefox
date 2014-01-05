@@ -97,7 +97,6 @@ exports.nukeDB = function() {
 exports.delUserStats = function(email, callback) {
   client.keys('user:' + email+ ':*', function(err, replies) {
     async.each(replies, function(key, callback) {
-      console.log('DB: Deleting user key: ' + key);
       client.del(key);
       callback(null, key);
     }, callback);
@@ -120,7 +119,6 @@ exports.initVideoData = function(filePath, c) {
   var delVideos = function(err) {
     client.keys('video:*', function(err, replies) {
       async.each(replies, function(key, callback) {
-        console.log('DB: deleting video key: ' + key);
         client.del(key);
         callback(null, key);
       }, delCategories);
@@ -130,7 +128,6 @@ exports.initVideoData = function(filePath, c) {
   var delCategories = function(err) {
     client.keys('category:*', function(err, replies) {
       async.each(replies, function(key, callback) {
-        console.log('DB: deleting category key: ' + key);
         client.del(key);
         callback(null, key);
       }, populateDB);
@@ -163,7 +160,6 @@ exports.initVideoData = function(filePath, c) {
 
         videoPriority++;
         video.priority = videoPriority;
-        console.log('DB: populating video key: ' + 'video:' + video.slug);
         video.categorySlug = category.slug;
         video.categoryTitle = category.title;
         // We don't need the category slug in the redis name because
@@ -171,7 +167,6 @@ exports.initVideoData = function(filePath, c) {
         exports.set('video:' + video.slug, video);
         video.youtubeid ? availableVideos++ : unavailableVideos++;
       });
-      console.log('DB: Populating category key: ' + 'category:' + category.slug );
       exports.set('category:' + category.slug, category);
     });
 
