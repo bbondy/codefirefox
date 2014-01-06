@@ -22,8 +22,10 @@ exports.get = function(username, callback) {
     return db.getOnePromise('user:' + username + ':login_count');
   }).done(function onSuccess(loginCount) {
     user.loginCount = loginCount;
-    user.info.dateJoined = helpers.formatTimeSpan(new Date(user.info.dateJoined), new Date());
-    user.info.dateLastLogin = helpers.formatTimeSpan(new Date(user.info.dateLastLogin), new Date());
+    user.info.rawDateJoined = new Date(user.info.dateJoined);
+    user.info.rawDateLastLogin = new Date(user.info.dateLastLogin);
+    user.info.dateJoined = helpers.formatTimeSpan(user.info.rawDateJoined, new Date());
+    user.info.dateLastLogin = helpers.formatTimeSpan(user.info.rawDateLastLogin, new Date());
     callback(null, user);
   }, function onFailure(err) {
     callback(err || 'Failure', user);
