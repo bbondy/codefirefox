@@ -6,16 +6,15 @@ exports.init = function(callback) {
     if (err) {
       console.log('configController: Could not load config data.');
       console.log('configController: Please createa a file named data/config.json from data/config.json.sample');
-      callback(err, null);
+      callback(err);
       return;
     }
 
     exports.config = JSON.parse(data);
-    callback(null, exports.config);
+    callback(null);
   });
 };
 exports.initPromise = Promise.denodeify(exports.init).bind(exports);
-
 
 exports.print = function() {
   console.log('Config:');
