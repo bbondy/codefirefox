@@ -28,8 +28,8 @@ exports.cheatsheet = function(req, res, next) {
  * Renders the initVideoData page
 */
 exports.initVideoData = function(req, res) {
-  lessonController.init(function(err) {
-    if (err) {
+  tagsController.init(function(errTags) {
+    if (errTags) {
       res.render('notFound', {
                                pageTitle: 'No data found',
                                bodyID: 'body_simplestatus',
@@ -37,12 +37,23 @@ exports.initVideoData = function(req, res) {
                              });
       return;
     }
-    res.render('simpleStatus', { 
-                                 pageTitle: 'Data initialized',
-                                 status: "Data initialized successfully",
+
+    lessonController.init(function(err) {
+      if (err) {
+        res.render('notFound', {
+                                 pageTitle: 'No data found',
                                  bodyID: 'body_simplestatus',
-                                 mainTitle: 'Data Initialized'
+                                 mainTitle: 'Data NOT initialized'
                                });
+        return;
+      }
+      res.render('simpleStatus', { 
+                                   pageTitle: 'Data initialized',
+                                   status: "Data initialized successfully",
+                                   bodyID: 'body_simplestatus',
+                                   mainTitle: 'Data Initialized'
+                                 });
+    });
   });
 };
 
@@ -143,24 +154,13 @@ exports.delStats = function(req, res, next) {
  * Renders the tag page
  */
 exports.tags = function(req, res) {
-  tagsController.getAll(function(err, tags) {
-    if (err) {
-      res.render('notFound', {
-                               pageTitle: 'Tags',
-                               bodyID: 'body_tags',
-                               mainTitle: 'Tags not found'
-                             });
-      return;
-    }
+  res.render('tags', {
+                       pageTitle: 'Tags',
+                       bodyID: 'body_tags',
+                       mainTitle: 'Tags',
+                       tags: tagsController.tags
+                     });
 
-    res.render('tags', {
-                         pageTitle: 'Tags',
-                         bodyID: 'body_tags',
-                         mainTitle: 'Tags',
-                         tags: tags
-                       });
-
-  });
 };
 
 /**
