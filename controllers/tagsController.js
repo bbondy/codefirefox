@@ -1,10 +1,16 @@
 "use strict";
 
-var db = require('../db');
+var db = require('../db'),
+  Promise = require('promise');
 
-exports.getAll = function(callback) {
+
+/**
+ * Initializes the tags property
+ */
+exports.init = function(callback) {
   db.get("tags:all", function(err, tags) {
-    callback(err, tags);
+    exports.tags = tags;
+    callback(err);
   });
 };
-
+exports.initPromise = Promise.denodeify(exports.init).bind(exports);

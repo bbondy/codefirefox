@@ -8,14 +8,17 @@ var express = require('express'),
   RedisStore = require('connect-redis')(express),
   userController = require('./controllers/userController.js'),
   lessonController = require('./controllers/lessonController.js'),
-  configController = require('./controllers/configController.js');
+  configController = require('./controllers/configController.js'),
+  tagsController = require('./controllers/tagsController.js');
 
 var HOUR = 3600000;
 var DAY = 24 * HOUR;
 var serverRunningSince = new Date();
 var app = express();
 
-lessonController.initPromise().then(function(c) {
+tagsController.initPromise().then(function() {
+  return lessonController.initPromise();
+}).then(function() {
   return configController.initPromise();
 }).done(function(config) {
 
