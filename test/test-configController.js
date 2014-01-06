@@ -2,10 +2,22 @@
 
 var assert = require("assert"),
   Promise = require("promise"),
-  _ = require("underscore");
+  _ = require("underscore"),
+  configController = require('../controllers/configController.js');
 
 describe('configController', function() {
-  it('', function(done) {
+  it('init should load the config file', function(done) {
+    assert(!configController.config);
+    configController.init(function(err) {
+      assert(!err);
+      assert(configController.config);
+      assert(_.isString(configController.config.host));
+      assert(_.isNumber(configController.config.port));
+      assert(_.isNumber(configController.config.internalPort));
+      assert(_.isNumber(configController.config.redisPort));
+      assert(_.isArray(configController.config.admins));
+      assert(_.isString(configController.config.amaraKey));
+    });
     done();
   });
 });

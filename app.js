@@ -20,8 +20,9 @@ tagsController.initPromise().then(function() {
   return lessonController.initPromise();
 }).then(function() {
   return configController.initPromise();
-}).done(function(config) {
+}).done(function() {
 
+  var config = configController.config;
   configController.print();
 
   app.set('views', __dirname + '/views');
