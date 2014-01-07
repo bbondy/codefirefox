@@ -38,32 +38,37 @@
         "assertions": [
           {
             "code": ";",
-            "title": "Do not have any empty statements (Example: Extra semicolon)",
+            "title": "Do not have any empty statements",
             "slug": "no-empty-statements",
-            "blacklist": true
+            "blacklist": true,
+            "hints": ["An extra semicolon can lead to an empty statement"]
           },
           {
             "code": "var x = $$;",
             "title": "Create a new variable declaration and initialize it with a value in one statement",
-            "slug": "var-decl-with-value"
+            "slug": "var-decl-with-value",
+            "hints": ["Use var to declare a variable", "You should set a value equal to the variable you create with var", "var x = 3"]
           },
           {
-            "code": "if(x) { __age++; }",
+            "code": "if($$) { __age++; }",
             "title": "Use the increment operator on a variable named age within the body of an if statement",
             "slug": "increment-op-within-if-with-strict-name",
-            "skip": [{"type" : "IfStatement", "prop": "test"}]
+            "skip": [{"type" : "IfStatement", "prop": "test"}],
+            "hints": ["The increment operator is ++", "Inrementing a variable should look like age++", "Your code should look something like this: if (x) { age++; }"]
           },
           {
             "code": "for (x in y) break;",
             "title": "Use a break statement inside a for..in loop",
             "slug": "no-break-in-for-in",
-            "skip": [{"type" : "ForInStatement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}]
+            "skip": [{"type" : "ForInStatement", "prop": "left"}, {"type" : "ForInStatement", "prop": "right"}],
+            "hints": ["A break statement looks like this: break;", "A for..in statement looks like this: for (x in y) { }", "Your code should look like this: for (x in y) { break; } "]
           },
           {
-            "code": "if (x) if (y) x = 3;",
+            "code": "if ($$) if ($$) x = $$;",
             "title": "Make an assignment within 2 nested if statements",
             "slug": "assignment-within-nested-ifs",
-            "skip": [{"type" : "IfStatement", "prop": "test"}, {"type": "AssignmentExpression", "prop" : "right"}]
+            "skip": [{"type" : "IfStatement", "prop": "test"}, {"type": "AssignmentExpression", "prop" : "right"}],
+            "hints": ["A nested if statement looks like if (x) { if (y) { } }", "An assignment looks like this: x = 3;", "Your code should look like this: for (x in y) { break; } "]
           }
         ]
       }
@@ -762,23 +767,27 @@
         "assertions": [
           {
             "code": "__Components.__utils.__import('resource://gre/modules/osfile.jsm');",
-            "title": "Use Components.utils.import to import the module: 'resource://gre/modules/osfile.jsm'",
-            "slug": "import-osfile-jsm"
+            "title": "Import the module: 'resource://gre/modules/osfile.jsm'",
+            "slug": "import-osfile-jsm",
+            "hints": ["Use Components.utils.import to import the osfile.jsm module", "The osfile.jsm path is: resource://gre/modules/osfile.jsm", "Your code should look like this: Components.utils.import('resource://gre/modules/osfile.jsm');"]
           },
           {
-            "code": "var promise = OS.File.read('topsecret.txt');",
+            "code": "var promise = __OS.__File.__read('topsecret.txt');",
             "title": "Create a promise using the OS.File.read API for the file topsecret.txt",
-            "slug": "promise-read-osfile-jsm"
+            "slug": "promise-read-osfile-jsm",
+            "hints": ["Just call OS.File.read to create the promise and store it in a variable named anything you'd like", "Just pass a single parameter to OS.File.read for now", "Your code should look like this: var promise = OS.File.read('topsecret.txt');"]
           },
           {
-            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function(a) { });",
+            "code": "var $promise = __OS.__File.__read('topsecret.txt'); $promise.__then(function(a) { });",
             "title": "Call then() on the promise, passing in a callback function directly which takes one parameter",
-            "slug": "promise-then-osfile-jsm"
+            "slug": "promise-then-osfile-jsm",
+            "hints": ["Your code should look like this: promise.then(function(data) { });"]
           },
           {
-            "code": "var $promise = OS.File.read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.__decode($data); });",
+            "code": "var $promise = __OS.__File.__read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.__decode($data); });",
             "title": "Create a new TextDecoder instance inside the callback, and call its decode method, passing in the callback's read data.",
-            "slug": "decode-then-osfile-jsm"
+            "slug": "decode-then-osfile-jsm",
+            "hints": ["Creating a new text decoder looks like this var decoder = new TextDecoder();", "Decoding the text should look like this decoder.decode(data)", "Your code should look like this: promise = OS.File.read('topsecret.txt');\npromise.then(function(data) {\n var decoder = new TextDecoder();\n  decoder.decode(data); \n} "]
           }
         ]
       },
@@ -814,23 +823,27 @@
         "assertions": [
           {
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);",
-            "title": "Initialize a variable to an instance of a filepicker XPCOM object. Use Components.classes['@mozilla.org/filepicker;1']'s createInstance method passing in an interface of Components.interfaces.nsIFilePicker",
-            "slug": "using-xpcom-intro-exercise-1"
+            "title": "Initialize a variable to an instance of a filepicker XPCOM object with the interface nsIFilePicker",
+            "slug": "using-xpcom-intro-exercise-1",
+            "hints": ["Use var picker = Components.classes['@mozilla.org/filepicker;1']'s createInstance method",  "pass in an interface of Components.interfaces.nsIFilePicker", "Your code should look like this: var picker = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);"]
           },
           {
-            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);",
-            "title": "Call the init method on the file picker instance, for the third parameter pass in Components.interfaces.nsIFilePicker.modeOpen for open mode",
-            "slug": "using-xpcom-intro-exercise-2"
+            "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init($$, $$, __Components.__interfaces.__nsIFilePicker.__modeOpen);",
+            "title": "Call the init method on the file picker instance in open mode, for the third parameter pass in Components.interfaces.nsIFilePicker.modeOpen for open mode",
+            "slug": "using-xpcom-intro-exercise-2",
+            "hints": ["Pass in anything for the first 2 parameters", "For the third parameter to init, pass in Components.interfaces.nsIFilePicker.modeOpen for open mode", "Your code should look like this: var picker = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);\n picker.init(x, y, Components.interfaces.nsIFilePicker.modeOpen);"]
           },
           {
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);  $picker.__open(function($$) { });",
             "title": "Call the open method on the file picker instance, directly passing in a callback function with 1 parameter",
-            "slug": "using-xpcom-intro-exercise-3"
+            "slug": "using-xpcom-intro-exercise-3",
+            "hints": ["Your code should look like this: picker.open(function(result) { });"]
           },
           {
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);  $picker.__open(function($$) { __console.__log($picker.__file.__path); });",
-            "title": "Use console.log to print out the instance's file.path member",
-            "slug": "using-xpcom-intro-exercise-4"
+            "title": "Use console.log to print out the instance's file path member",
+            "slug": "using-xpcom-intro-exercise-4",
+            "hints": ["The instance is picker.file.path", "Your code should look like this: picker.open(function(result) { console.log(picker.file.path); });"]
           }
         ]
       },
