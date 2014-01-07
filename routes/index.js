@@ -8,7 +8,8 @@ var querystring = require("querystring"),
   helpers = require('../helpers'),
   lessonController = require('../controllers/lessonController.js'),
   userController = require('../controllers/userController.js'),
-  tagsController = require('../controllers/tagsController.js');
+  tagsController = require('../controllers/tagsController.js'),
+  rssController = require('../controllers/rssController.js');
 
 /**
  * GET /cheatsheet
@@ -26,6 +27,8 @@ exports.cheatsheet = function(req, res, next) {
  * GET /initVideoData
  * Reads data from videos.json and loads it into redis.
  * Renders the initVideoData page
+ * TODO: Implement an app controller and clean this ugliness up
+ * and use it also from app.js where similar code exists
 */
 exports.initVideoData = function(req, res) {
   tagsController.init(function(errTags) {
@@ -47,12 +50,24 @@ exports.initVideoData = function(req, res) {
                                });
         return;
       }
-      res.render('simpleStatus', { 
-                                   pageTitle: 'Data initialized',
-                                   status: "Data initialized successfully",
+
+      rssController.init(lessonController.categories, function(err) {
+        if (err) {
+          res.render('notFound', {
+                                   pageTitle: 'No data found',
                                    bodyID: 'body_simplestatus',
-                                   mainTitle: 'Data Initialized'
+                                   mainTitle: 'Data NOT initialized'
                                  });
+          return;
+        }
+
+        res.render('simpleStatus', { 
+                                     pageTitle: 'Data initialized',
+                                     status: "Data initialized successfully",
+                                     bodyID: 'body_simplestatus',
+                                     mainTitle: 'Data Initialized'
+                                   });
+      });
     });
   });
 };
@@ -355,5 +370,10 @@ exports.checkCode = function(req, res) {
                });
     }
   });
+};
+
+exports.rss = function(req, res) {
+  res.header('Content-Type', 'application/rss+xml');
+  res.send(rssController.getFeedXML(req.protocol + "://" + req.get('host') ));
 };
 

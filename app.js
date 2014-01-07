@@ -9,7 +9,8 @@ var express = require('express'),
   userController = require('./controllers/userController.js'),
   lessonController = require('./controllers/lessonController.js'),
   configController = require('./controllers/configController.js'),
-  tagsController = require('./controllers/tagsController.js');
+  tagsController = require('./controllers/tagsController.js'),
+  rssController = require('./controllers/rssController.js');
 
 var HOUR = 3600000;
 var DAY = 24 * HOUR;
@@ -20,6 +21,8 @@ tagsController.initPromise().then(function() {
   return lessonController.initPromise();
 }).then(function() {
   return configController.initPromise();
+}).then(function() {
+  return rssController.initPromise(lessonController.categories);
 }).done(function() {
 
   var config = configController.config;
@@ -119,6 +122,7 @@ tagsController.initPromise().then(function() {
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);
   app.get('/tags', routes.tags);
+  app.get('/rss', routes.rss);
 
   // POST
   app.post('/check-code/:slug', routes.checkCode);
