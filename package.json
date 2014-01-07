@@ -19,7 +19,8 @@
     "promise": "~3.2.0",
     "mocha": "~1.15.1",
     "underscore": "~1.5.2",
-    "codecheckjs": "~1.0.3"
+    "codecheckjs": "~1.0.3",
+    "rss": "~0.2.1"
   },
   "devDependencies": {},
   "scripts": {
