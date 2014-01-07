@@ -65,6 +65,7 @@ describe('files', function() {
                if (v.type === 'exercise') {
                  assert(v.exerciseType === 'js');  
                  assert(_.isUndefined(v.youtubeid));
+                 assert(v.assertions ? v.datePosted : !v.datePosted, v.slug + ' should have a valid datePosted field');
                } else if (v.type === 'video') {
                  assert(!_.isUndefined(v.youtubeid));
                  assert(_.isUndefined(v.exerciseType));
