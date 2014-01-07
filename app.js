@@ -7,24 +7,15 @@ var express = require('express'),
   Promise = require('promise'),
   RedisStore = require('connect-redis')(express),
   userController = require('./controllers/userController.js'),
-  lessonController = require('./controllers/lessonController.js'),
   configController = require('./controllers/configController.js'),
-  tagsController = require('./controllers/tagsController.js'),
-  rssController = require('./controllers/rssController.js');
+  appController = require('./controllers/appController.js');
 
 var HOUR = 3600000;
 var DAY = 24 * HOUR;
 var serverRunningSince = new Date();
 var app = express();
 
-tagsController.initPromise().then(function() {
-  return lessonController.initPromise();
-}).then(function() {
-  return configController.initPromise();
-}).then(function() {
-  return rssController.initPromise(lessonController.categories);
-}).done(function() {
-
+appController.initPromise().done(function() {
   var config = configController.config;
   configController.print();
 

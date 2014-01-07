@@ -8,10 +8,12 @@ var assert = require("assert"),
 
 describe('rssController', function() {
   it('init should make the items property available', function(done) {
-    assert(!rssController.items);
+    if (!rssController.initialized)
+      assert(!rssController.items);
     lessonController.init(function(err) {
       rssController.init(lessonController.categories, function(err) {
         assert(!err);
+        assert(rssController.initialized);
         assert(_.isArray(rssController.items));
         assert(rssController.items.length);
         assert(_.isString(rssController.getFeedXML('http://codefirefox.com')));

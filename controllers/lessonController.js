@@ -51,6 +51,7 @@ exports.init = function(callback) {
         callback(err);
         return;
       }
+      exports.initialized = true;
       loadLessonStats(callback);
     });
   });

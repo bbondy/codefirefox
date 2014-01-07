@@ -7,8 +7,11 @@ var assert = require("assert"),
 
 describe('lessonController', function() {
   it('should load data properly', function(done) {
-    assert(!lessonController.categories);
+    if (!lessonController.initialized) {
+      assert(!lessonController.categories);
+    }
     lessonController.init(function(err) {
+      assert(lessonController.initialized);
       assert(lessonController.categories);
       done();
     });
