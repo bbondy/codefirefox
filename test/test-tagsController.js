@@ -7,9 +7,12 @@ var assert = require("assert"),
 
 describe('tagsController', function() {
   it('init should make the tags property available', function(done) {
-    assert(!tagsController.tags);
+    if (!tagsController.initialized) {
+      assert(!tagsController.tags);
+    }
     tagsController.init(function(err) {
       assert(!err);
+      assert(tagsController.initialized);
       assert(_.isArray(tagsController.tags));
       assert(tagsController.tags.length);
       done();

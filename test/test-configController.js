@@ -7,9 +7,9 @@ var assert = require("assert"),
 
 describe('configController', function() {
   it('init should load the config file', function(done) {
-    assert(!configController.config);
     configController.init(function(err) {
       assert(!err);
+      assert(configController.initialized);
       assert(configController.config);
       assert(_.isString(configController.config.host));
       assert(_.isNumber(configController.config.port));

@@ -11,6 +11,7 @@ exports.init = function(callback) {
     }
 
     exports.config = JSON.parse(data);
+    exports.initialized = true;
     callback(null);
   });
 };
