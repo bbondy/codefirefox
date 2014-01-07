@@ -28,6 +28,7 @@
       },
       {
         "title": "Introduction to Code Firefox exercises",
+        "datePosted": "December 16, 2013 7:20 AM",
         "type": "exercise",
         "description": "Exercises are a great way to practice what you've learnt. \nThis exercise is just to get you started with the framework.",
         "exerciseType": "js",
@@ -746,6 +747,7 @@
       },
       {
         "title": "Using a JavaScript module (JSM) exercise",
+        "datePosted": "December 20, 2013 5:30 PM",
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
@@ -797,6 +799,7 @@
       },
       {
         "title": "Using an XPCOM object exercise",
+        "datePosted": "December 22, 2013 3:12 PM",
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
