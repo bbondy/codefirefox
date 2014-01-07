@@ -66,6 +66,19 @@ describe('files', function() {
                  assert(v.exerciseType === 'js');  
                  assert(_.isUndefined(v.youtubeid));
                  assert(v.assertions ? v.datePosted : !v.datePosted, v.slug + ' should have a valid datePosted field');
+                 assert(v.assertions ? _.isArray(v.assertions) : true);
+                 if (v.assertions) {
+                   _.each(v.assertions, function(assertion) {
+                     assert(_.isObject(assertion));
+                     assert(_.isString(assertion.code));
+                     assert(_.isString(assertion.title));
+                     assert(_.isString(assertion.slug));
+                     assert(_.isArray(assertion.hints));
+                     _.each(assertion.hints, function(hint) {
+                       assert(_.isString(hint));
+                     });
+                   });
+                 }
                } else if (v.type === 'video') {
                  assert(!_.isUndefined(v.youtubeid));
                  assert(_.isUndefined(v.exerciseType));
