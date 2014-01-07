@@ -68,6 +68,7 @@ describe('files', function() {
                } else if (v.type === 'video') {
                  assert(!_.isUndefined(v.youtubeid));
                  assert(_.isUndefined(v.exerciseType));
+                 assert(v.youtubeid ? v.datePosted : !v.datePosted, v.slug + ' should have a valid datePosted field');
                }
                
       	       // Check for duplicate entry
