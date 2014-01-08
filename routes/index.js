@@ -10,7 +10,8 @@ var querystring = require("querystring"),
   userController = require('../controllers/userController.js'),
   tagsController = require('../controllers/tagsController.js'),
   rssController = require('../controllers/rssController.js'),
-  appController = require('../controllers/adminController.js');
+  appController = require('../controllers/appController.js'),
+  adminController = require('../controllers/adminController.js');
 
 /**
  * GET /cheatsheet
@@ -25,11 +26,11 @@ exports.cheatsheet = function(req, res, next) {
 };
 
 /**
- * GET /initVideoData
+ * GET /initData
  * Reads data from videos.json and loads it into redis.
- * Renders the initVideoData page
+ * Renders the initData page
 */
-exports.initVideoData = function(req, res) {
+exports.initData = function(req, res) {
   appController.init(function onSuccess() {
     res.render('simpleStatus', { 
                                  pageTitle: 'Data initialized',
@@ -54,11 +55,21 @@ exports.initVideoData = function(req, res) {
  * at some point later on though.
  */
 exports.admin = function(req, res) {
-  res.render('admin', {
-                        pageTitle: 'Administration',
-                        bodyID: 'body_admin',
-                        mainTitle: 'Administration'
-                      });
+  
+  adminController.getStatsPromise().done(function(stats) {
+    res.render('admin', {
+                          pageTitle: 'Administration',
+                          bodyID: 'body_admin',
+                          mainTitle: 'Administration',
+                          stats: stats
+                        });
+  }, function onFailure(err) {
+    res.render('notFound', {
+                             pageTitle: 'Not found',
+                             bodyID: 'body_simplestatus',
+                             mainTitle: 'Not found'
+                           });
+  });
 };
 
 /**

@@ -109,7 +109,7 @@ appController.initPromise().done(function() {
   app.get('/exercise/:exercise', routes.exercise);
   app.get('/:category/:video', routes.video);
   app.get('/cheatsheet', routes.cheatsheet);
-  app.get('/initVideoData', routes.initVideoData);
+  app.get('/initData', routes.initData);
   app.get('/about', routes.about);
   app.get('/stats', routes.stats);
   app.get('/admin', routes.admin);

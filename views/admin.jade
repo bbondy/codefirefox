@@ -3,8 +3,12 @@ extends layout
 block mainContent
   .card-container
     if (session.isAdmin)
-      h1 Videos
-      a(href='/initVideoData') Initialize video data 
+      h1 Actions
+      a(href='/initData') Initialize data 
       | Reads data from videos.json and puts it into the redis DB.
+      | Also re-initializes all controllers
+
+      h1 Statistics
+      p=  'User count: ' + stats.userCount
     else
       h1 You are not authorized to see this page
