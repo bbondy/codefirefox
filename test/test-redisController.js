@@ -22,8 +22,8 @@ describe('db module', function() {
      redisController.setOnePromise(key1, val1).then(function() {
        return redisController.getOnePromise(key1);
      }).done(function onSuccess(data) {
-       assert(data.p1 == val1.p1);
-       assert(data.p2[0] == val1.p2[0]);
+       assert.equal(data.p1, val1.p1);
+       assert.equal(data.p2[0], val1.p2[0]);
        done();
      }, function onFailure(err) {
        console.log(err);
@@ -41,11 +41,14 @@ describe('db module', function() {
      }).then(function() {
        return redisController.getAllPromise('test:2');
      }).done(function onSuccess(data) {
-       assert(data.length == 2);
-       assert(data[0].p1 == val1.p1);
-       assert(data[0].p2[0] == val1.p2[0]);
-       assert(data[1].p1 == val2.p1);
-       assert(data[1].p2[0] == val2.p2[0]);
+       data.sort(function(a, b) {
+         return a.p1.localeCompare(b.p1) * -1;
+       });
+       assert.equal(data.length, 2);
+       assert.equal(data[0].p1, val1.p1);
+       assert.equal(data[0].p2[0], val1.p2[0]);
+       assert.equal(data[1].p1, val2.p1);
+       assert.equal(data[1].p2[0], val2.p2[0]);
        done();
      }, function onFailure(err) {
        console.log(err);
@@ -62,11 +65,14 @@ describe('db module', function() {
      }).then(function() {
        return redisController.getSetElementsPromise(key);
      }).done(function onSuccess(data) {
-       assert(data.length == 2);
-       assert(data[0].p1 == val1.p1);
-       assert(data[0].p2[0] == val1.p2[0]);
-       assert(data[1].p1 == val2.p1);
-       assert(data[1].p2[0] == val2.p2[0]);
+       data.sort(function(a, b) {
+         return a.p1.localeCompare(b.p1) * -1;
+       });
+       assert.equal(data.length, 2);
+       assert.equal(data[0].p1, val1.p1);
+       assert.equal(data[0].p2[0], val1.p2[0]);
+       assert.equal(data[1].p1, val2.p1);
+       assert.equal(data[1].p2[0], val2.p2[0]);
        done();
      }, function onFailure(err) {
        console.log(err);
