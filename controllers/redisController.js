@@ -89,8 +89,8 @@ exports.count = function(key, callback) {
  * Obtains all subkeys for the passed in key and calls the callback when done
  */
 exports.getAll = function(parentKey, callback) {
-  var key = (parentKey ? parentKey + ':' : '') + '*';
-  exports.redisClient.keys(key, function(err, replies) {
+  var computedKey = (parentKey ? parentKey + ':' : '') + '*';
+  exports.redisClient.keys(computedKey, function(err, replies) {
     if (!replies) {
       callback(err);
       return;
