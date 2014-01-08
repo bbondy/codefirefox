@@ -1,13 +1,13 @@
 "use strict";
 
-var db = require('../db'),
+var redisController = require('../controllers/redisController.js'),
   Promise = require('promise');
 
 /**
  * Initializes the tags property
  */
 exports.init = function(callback) {
-  db.get("tags:all", function(err, tags) {
+  redisController.get("tags:all", function(err, tags) {
     exports.tags = tags;
     exports.initialized = true;
     callback(err);
