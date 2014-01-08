@@ -1,6 +1,6 @@
 "use strict";
 
-var db = require('../db'),
+var redisController = require('../controllers/redisController.js'),
  helpers = require('../helpers');
 
 /**
@@ -13,13 +13,13 @@ var db = require('../db'),
  */
 exports.get = function(username, callback) {
  var user = { };
-  db.getOnePromise('user:' + username + ':info')
+  redisController.getOnePromise('user:' + username + ':info')
   .then(function(info) {
     user.info = info;
-    return db.getSetElementsPromise('user:' + username + ':video_slugs_watched');
+    return redisController.getSetElementsPromise('user:' + username + ':video_slugs_watched');
   }).then(function(slugsCompleted) {
     user.slugsCompleted = slugsCompleted;
-    return db.getOnePromise('user:' + username + ':login_count');
+    return redisController.getOnePromise('user:' + username + ':login_count');
   }).done(function onSuccess(loginCount) {
     user.loginCount = loginCount;
     user.info.rawDateJoined = new Date(user.info.dateJoined);
@@ -36,9 +36,9 @@ exports.get = function(username, callback) {
  * Reports a lesson as completed for the logged on user
  */
 exports.reportCompleted = function(videoSlug, username, callback) {
-  db.getOnePromise("video:" + videoSlug, function(err, lesson) {
+  redisController.getOnePromise("video:" + videoSlug, function(err, lesson) {
     if (!err) {
-      db.addToSet('user:' + username + ':video_slugs_watched', lesson.slug)
+      redisController.addToSet('user:' + username + ':video_slugs_watched', lesson.slug)
     } 
     if (callback) {
       callback(err);
@@ -50,7 +50,7 @@ exports.reportCompleted = function(videoSlug, username, callback) {
  * Deletes all information on the current user
  */
 exports.delUser = function(username, callback) {
- db.delUserStats(username, callback);
+ redisController.delUserStats(username, callback);
 };
 
 /**
@@ -59,13 +59,13 @@ exports.delUser = function(username, callback) {
 exports.reportUserLogin = function(username, ip, callback) {
   var loginCountKey = 'user:' + username + ':login_count';
   var loginInfoKey = 'user:' + username + ':info';
-  db.increment(loginCountKey, function(err) {
+  redisController.increment(loginCountKey, function(err) {
     if (err) {
       callback(err);
       return;
     }
 
-    db.get(loginInfoKey, function(err, info) {
+    redisController.get(loginInfoKey, function(err, info) {
       info = info || { };
        var now = new Date();
        info.dateLastLogin = now.toISOString();
@@ -74,7 +74,7 @@ exports.reportUserLogin = function(username, ip, callback) {
          info.dateJoined = now.toISOString();
        }
 
-       db.set(loginInfoKey, info, function(err) {
+       redisController.set(loginInfoKey, info, function(err) {
          callback(err);
        });
     });

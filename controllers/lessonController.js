@@ -1,22 +1,22 @@
 "use strict";
 
-var db = require('../db'),
+var redisController = require('../controllers/redisController.js'),
   Promise = require('promise');
 
 /**
  * Loads data from the JSON file into the redis db
  */
 function loadIntoDB(callback) {
-  db.initVideoData(__dirname + '/../data/videos.json', callback);
+  redisController.initVideoData(__dirname + '/../data/videos.json', callback);
 };
 
 /**
  * Loads the videos and fills in the exports.categories
  */
 function loadFromDB(callback) {
-  db.getAllPromise("category").done(function onSuccess(cat) {
+  redisController.getAllPromise("category").done(function onSuccess(cat) {
     exports.categories  = cat;
-    exports.categories.sort(db.sortByPriority);
+    exports.categories.sort(redisController.sortByPriority);
     callback(null, cat);
   }, function onFailure(err) {
     callback(err);
@@ -27,7 +27,7 @@ function loadFromDB(callback) {
  * Loads in overall lesson stats into exports.stats
  */
 function loadLessonStats(callback) {
-  db.get('stats:video', function(err, stats) {
+  redisController.get('stats:video', function(err, stats) {
     exports.stats = stats;
     callback(err, stats);
   });
@@ -63,5 +63,5 @@ exports.initPromise = Promise.denodeify(exports.init).bind(exports);
  * Obtains a lesson with with the specified slug
  */
 exports.get = function(slug, callback) {
-  db.get("video:" + slug, callback);
+  redisController.get("video:" + slug, callback);
 };

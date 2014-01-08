@@ -3,13 +3,16 @@ var lessonController = require('../controllers/lessonController.js'),
   tagsController = require('../controllers/tagsController.js'),
   rssController = require('../controllers/rssController.js'),
   adminController = require('../controllers/adminController.js'),
+  redisController = require('../controllers/redisController.js'),
   Promise = require('promise');
 
 exports.init = function(callback) {
-  tagsController.initPromise().then(function() {
-    return lessonController.initPromise();
+  configController.initPromise().then(function() {
+    return redisController.initPromise(configController.config.redisPort);
   }).then(function() {
-    return configController.initPromise();
+    return tagsController.initPromise();
+  }).then(function() {
+    return lessonController.initPromise();
   }).then(function() {
     return rssController.initPromise(lessonController.categories);
   }).then(function() {

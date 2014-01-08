@@ -1,10 +1,11 @@
-"use strict";
+'use strict';
 
 var express = require('express'),
-  async = require("async"),
+  async = require('async'),
   routes = require('./routes'),
   stylus = require('stylus'),
   Promise = require('promise'),
+  // RedisStore is for persistent session data across server restarts
   RedisStore = require('connect-redis')(express),
   userController = require('./controllers/userController.js'),
   configController = require('./controllers/configController.js'),
@@ -68,7 +69,7 @@ appController.initPromise().done(function() {
     audience: serverURL,
     verifyResponse: function(error, req, res, email) {
       if (error) {
-        res.json({ status: "failure", reason: error });
+        res.json({ status: 'failure', reason: error });
       } else {
 
         // Session vars that our server should know about
@@ -89,7 +90,7 @@ appController.initPromise().done(function() {
           res.json({
                     isAdmin: req.session.isAdmin,
                     isTrusted: req.session.isTrusted,
-                    status: err ? 'failure' : "okay",
+                    status: err ? 'failure' : 'okay',
                     reason: err,
                     email: req.session.email
                   });
@@ -141,7 +142,7 @@ appController.initPromise().done(function() {
   });
 
   app.listen(config.internalPort, function() {
-    console.log("Starting server on port %d in %s mode", config.internalPort, app.settings.env);
+    console.log('Starting server on port %d in %s mode', config.internalPort, app.settings.env);
   });
 }, function onFailure(err) {
   console.log('Error starting server, aborting');

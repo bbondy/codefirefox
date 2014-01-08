@@ -8,7 +8,8 @@ var assert = require("assert"),
   configController = require('../controllers/configController.js'),
   tagsController = require('../controllers/tagsController.js'),
   rssController = require('../controllers/rssController.js'),
-  adminController = require('../controllers/adminController.js');
+  adminController = require('../controllers/adminController.js'),
+  redisController = require('../controllers/redisController.js');
 
 describe('appController', function() {
   it('init should initialize the controller', function(done) {
@@ -20,6 +21,7 @@ describe('appController', function() {
       assert(rssController.initialized);
       assert(adminController.initialized);
       assert(appController.initialized);
+      assert(redisController.initialized);
       done();
     });
   });

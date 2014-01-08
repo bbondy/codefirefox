@@ -1,36 +1,36 @@
-"use strict";
+'use strict';
 
 /**
  *  Basic low level db helper functions
 */
 
-var REDIS_PORT = 10226;
-
 var fs = require('fs'),
   redis = require('redis'),
   async = require('async'),
-  redis = require('redis'),
   _ = require('underscore'),
   Promise = require('promise');
 
-
-var client = redis.createClient(REDIS_PORT);
-
-client.on('error', function (err) {
-  console.log('DB: Error ' + err);
-});
+exports.init = function(port, callback) {
+  exports.redisClient = redis.createClient(port);
+  exports.redisClient.on('error', function (err) {
+    console.log('DB: Error ' + err);
+  });
+  exports.initialized = true;
+  callback();
+}
+exports.initPromise = Promise.denodeify(exports.init).bind(exports);
 
 /**
  * Converts the passed in object to a string and adds it to the set
  */
 exports.addToSet = function(key, obj, callback) {
-  client.sadd(key, JSON.stringify(obj), callback);
+  exports.redisClient.sadd(key, JSON.stringify(obj), callback);
 };
 
 exports.getSetElements = function(slug, callback) {
   if (!slug)
     err();
-  client.sunion(slug, function(err, reply) {
+  exports.redisClient.sunion(slug, function(err, reply) {
     if (!reply) {
       if (callback) {
         callback('no sunion found', null);
@@ -56,7 +56,7 @@ exports.get = function(slug, callback) {
     return;
   }
 
-  client.get(slug, function(err, reply) {
+  exports.redisClient.get(slug, function(err, reply) {
     if (!reply) {
       if (callback) {
         callback('no key found', null);
@@ -73,7 +73,7 @@ exports.get = function(slug, callback) {
  * Obtains all subkeys for the passed in key and calls the callback when done
  */
 exports.getAll = function(parentKey, callback) {
-  client.keys((parentKey ? parentKey + ':' : '') + '*', function(err, replies) {
+  exports.redisClient.keys((parentKey ? parentKey + ':' : '') + '*', function(err, replies) {
     if (!replies) {
       callback(err);
       return;
@@ -87,17 +87,17 @@ exports.getAll = function(parentKey, callback) {
 };
 
 exports.set = function(key, obj, callback) {
-  client.set(key, JSON.stringify(obj), callback);
+  exports.redisClient.set(key, JSON.stringify(obj), callback);
 };
 
 exports.nukeDB = function() {
-  client.flushdb();
+  exports.redisClient.flushdb();
 };
 
 exports.delUserStats = function(email, callback) {
-  client.keys('user:' + email+ ':*', function(err, replies) {
+  exports.redisClient.keys('user:' + email+ ':*', function(err, replies) {
     async.each(replies, function(key, callback) {
-      client.del(key);
+      exports.redisClient.del(key);
       callback(null, key);
     }, callback);
   });
@@ -117,18 +117,18 @@ exports.initVideoData = function(filePath, c) {
   };
 
   var delVideos = function(err) {
-    client.keys('video:*', function(err, replies) {
+    exports.redisClient.keys('video:*', function(err, replies) {
       async.each(replies, function(key, callback) {
-        client.del(key);
+        exports.redisClient.del(key);
         callback(null, key);
       }, delCategories);
     });
   };
 
   var delCategories = function(err) {
-    client.keys('category:*', function(err, replies) {
+    exports.redisClient.keys('category:*', function(err, replies) {
       async.each(replies, function(key, callback) {
-        client.del(key);
+        exports.redisClient.del(key);
         callback(null, key);
       }, populateDB);
     });
@@ -192,7 +192,7 @@ exports.initVideoData = function(filePath, c) {
  * Increments the key value by one
  */
 exports.increment = function(key, callback) {
-  client.incr(key, callback);
+  exports.redisClient.incr(key, callback);
 };
 
 exports.sortByPriority = function(a, b) {
