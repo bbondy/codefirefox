@@ -70,10 +70,27 @@ exports.get = function(slug, callback) {
 };
 
 /**
+ * Obtains the number of keys that match the key expression passed in
+ * For example user:*:info
+ */
+exports.count = function(key, callback) {
+  exports.redisClient.keys(key, function(err, replies) {
+    if (!replies) {
+      callback(err);
+      return;
+    }
+
+    console.log('the count is: ' + replies.length);
+    callback(null, replies.length);
+  });
+};
+
+/**
  * Obtains all subkeys for the passed in key and calls the callback when done
  */
 exports.getAll = function(parentKey, callback) {
-  exports.redisClient.keys((parentKey ? parentKey + ':' : '') + '*', function(err, replies) {
+  var key = (parentKey ? parentKey + ':' : '') + '*';
+  exports.redisClient.keys(key, function(err, replies) {
     if (!replies) {
       callback(err);
       return;

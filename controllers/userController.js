@@ -1,7 +1,8 @@
 "use strict";
 
 var redisController = require('../controllers/redisController.js'),
- helpers = require('../helpers');
+ helpers = require('../helpers'),
+ Promise = require('promise');
 
 /**
  * Obtains a bunch of user info and returns a User object
@@ -81,3 +82,10 @@ exports.reportUserLogin = function(username, ip, callback) {
   });
 };
 
+/**
+ * Obtains the total user cound and calls the callback when rady
+ */
+exports.userCount = function(callback) {
+  redisController.count('user:*:info', callback);
+};
+exports.userCountPromise = Promise.denodeify(exports.userCount).bind(exports);
