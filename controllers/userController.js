@@ -2,12 +2,14 @@
 
 var redisController = require('../controllers/redisController.js'),
  helpers = require('../helpers'),
+ async = require('async'),
  Promise = require('promise');
 
 /**
  * Obtains a bunch of user info and returns a User object
  *
  * which is of the following format:
+ * - username: The username of the user, the samea s what is passed in
  * - loginCount: The number of times the user has logged in
  * - slugsCompleted: The lesson slugs that have been watched for this particular user
  * - info: An object with a bunch of different info for the user, such as dateJoined and dateLastLogin
@@ -22,6 +24,7 @@ exports.get = function(username, callback) {
     user.slugsCompleted = slugsCompleted;
     return redisController.getOnePromise('user:' + username + ':login_count');
   }).done(function onSuccess(loginCount) {
+    user.username = username;
     user.loginCount = loginCount;
     user.info.rawDateJoined = new Date(user.info.dateJoined);
     user.info.rawDateLastLogin = new Date(user.info.dateLastLogin);
@@ -29,9 +32,39 @@ exports.get = function(username, callback) {
     user.info.dateLastLogin = helpers.formatTimeSpan(user.info.rawDateLastLogin, new Date());
     callback(null, user);
   }, function onFailure(err) {
-    callback(err || 'Failure', user);
+    callback(err);
   });
 };
+
+/**
+ * Obtains all of the user information and returns an array of User objects
+ * See exports.get for a description of what is contained in these objects.
+ */
+exports.getAll = function(callback) {
+  redisController.redisClient.keys('user:*:info', function(err, users) {
+    if (err) {
+      callback(err);
+      return;
+    }
+    var usernames = users.map(function(userKey) {
+      var username = userKey.substring(5, userKey.length);
+      return username.substring(0, username.indexOf(':'));
+    });
+
+    // garbage usernames to remove
+    ['null', 'undefined'].forEach(function(garbage) {
+      var index = usernames.indexOf(garbage);
+      if (index != -1) {
+        usernames.splice(index, 1);
+      }
+    });
+
+    async.map(usernames, function(username, mapCallback) {
+      exports.get(username, mapCallback);
+    }, callback);
+  });
+}
+exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
 
 /**
  * Reports a lesson as completed for the logged on user

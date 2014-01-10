@@ -7,8 +7,17 @@ block mainContent
       a(href='/initData') Initialize data 
       | Reads data from videos.json and puts it into the redis DB.
       | Also re-initializes all controllers
-
-      h1 Statistics
-      p=  'User count: ' + stats.userCount
     else
       h1 You are not authorized to see this page
+
+    
+  if (session.isAdmin)
+    .card-container
+      h1 Statistics
+      p=  'User count: ' + stats.userCount
+
+    .card-container
+      h1 Administer users
+      ul
+        each user in users
+          li= user.username

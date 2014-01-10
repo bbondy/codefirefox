@@ -56,6 +56,13 @@ describe('userController', function() {
     });
   });
 
+  it('getAll should work', function(done) {
+    userController.getAll(function(err) {
+      assert(!err);
+      done();
+    });
+  });
+
   it('Deleting a user should make it so the user is no longer accessible', function(done) {
     userController.delUser(username, function(err) {
       assert(!err);
