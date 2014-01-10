@@ -787,7 +787,7 @@
             "code": "var $promise = __OS.__File.__read('topsecret.txt'); $promise.__then(function($data) { var $decoder = new __TextDecoder();  $decoder.__decode($data); });",
             "title": "Create a new TextDecoder instance inside the callback, and call its decode method, passing in the callback's read data.",
             "slug": "decode-then-osfile-jsm",
-            "hints": ["Creating a new text decoder looks like this var decoder = new TextDecoder();", "Decoding the text should look like this decoder.decode(data)", "Your code should look like this: promise = OS.File.read('topsecret.txt');\npromise.then(function(data) {\n var decoder = new TextDecoder();\n  decoder.decode(data); \n} "]
+            "hints": ["Creating a new text decoder looks like this var decoder = new TextDecoder();", "Decoding the text should look like this decoder.decode(data)", "Your code should look like this: promise = OS.File.read('topsecret.txt'); promise.then(function(data) { var decoder = new TextDecoder();  decoder.decode(data); } "]
           }
         ]
       },
@@ -831,7 +831,7 @@
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init($$, $$, __Components.__interfaces.__nsIFilePicker.__modeOpen);",
             "title": "Call the init method on the file picker instance in open mode, for the third parameter pass in Components.interfaces.nsIFilePicker.modeOpen for open mode",
             "slug": "using-xpcom-intro-exercise-2",
-            "hints": ["Pass in anything for the first 2 parameters", "For the third parameter to init, pass in Components.interfaces.nsIFilePicker.modeOpen for open mode", "Your code should look like this: var picker = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);\n picker.init(x, y, Components.interfaces.nsIFilePicker.modeOpen);"]
+            "hints": ["Pass in anything for the first 2 parameters", "For the third parameter to init, pass in Components.interfaces.nsIFilePicker.modeOpen for open mode", "Your code should look like this: var picker = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker); picker.init(x, y, Components.interfaces.nsIFilePicker.modeOpen);"]
           },
           {
             "code": "var $picker = __Components.__classes['@mozilla.org/filepicker;1'].__createInstance(__Components.__interfaces.__nsIFilePicker);  $picker.__init(x, y, __Components.__interfaces.__nsIFilePicker.__modeOpen);  $picker.__open(function($$) { });",
