@@ -14,9 +14,32 @@ var querystring = require("querystring"),
   adminController = require('../controllers/adminController.js');
 
 /**
+ * Sends a response page with a message that the page was not found
+ */
+function respondNotFound(res) {
+  res.render('notFound', {
+                           pageTitle: 'Not found',
+                           bodyID: 'body_not_found',
+                           mainTitle: 'Not found'
+                         });
+}
+
+/**
+ * Sends a response with a simple message in the body
+ */
+function respondSimpleMessage(res, message) {
+  res.render('simpleStatus', { 
+                               pageTitle: message,
+                               status: message,
+                               bodyID: 'body_simplestatus',
+                               mainTitle: message
+                             });
+}
+
+/**
  * GET /cheatsheet
  * Renders the cheat sheet page
-*/
+ */
 exports.cheatsheet = function(req, res, next) {
   res.render('cheatsheet', {
                              pageTitle: 'Cheatsheet',
@@ -29,21 +52,12 @@ exports.cheatsheet = function(req, res, next) {
  * GET /initData
  * Reads data from videos.json and loads it into redis.
  * Renders the initData page
-*/
+ */
 exports.initData = function(req, res) {
   appController.init(function onSuccess() {
-    res.render('simpleStatus', { 
-                                 pageTitle: 'Data initialized',
-                                 status: "Data initialized successfully",
-                                 bodyID: 'body_simplestatus',
-                                 mainTitle: 'Data Initialized'
-                               });
+      respondSimpleMessage(res, 'Data initialized');
     }, function onFailure(err) {
-      res.render('notFound', {
-                               pageTitle: 'No data found',
-                               bodyID: 'body_simplestatus',
-                               mainTitle: 'Data NOT initialized'
-                             });
+      respondNotFound(res);
   });
 };
 
@@ -55,20 +69,27 @@ exports.initData = function(req, res) {
  * at some point later on though.
  */
 exports.admin = function(req, res) {
+
+  if (!res.locals.session.email ||
+      !res.locals.session.isAdmin) {
+    respondNotFound(res);
+    return;
+  }
   
-  adminController.getStatsPromise().done(function(stats) {
+  var results = { };
+  userController.getAllPromise().then(function(users) {
+    results.users = users;
+    return adminController.getStatsPromise();
+  }).done(function(stats) {
     res.render('admin', {
                           pageTitle: 'Administration',
                           bodyID: 'body_admin',
                           mainTitle: 'Administration',
-                          stats: stats
+                          stats: stats,
+                          users: results.users
                         });
   }, function onFailure(err) {
-    res.render('notFound', {
-                             pageTitle: 'Not found',
-                             bodyID: 'body_simplestatus',
-                             mainTitle: 'Not found'
-                           });
+    respondNotFound(res);
   });
 };
 
@@ -92,21 +113,13 @@ exports.about = function(req, res) {
  */
 exports.stats = function(req, res, next) {
   if (!res.locals.session.email) {
-    res.render('notFound', {
-                             pageTitle: 'Not authenticated',
-                             bodyID: 'body_stats',
-                             mainTitle: 'Not authenticated'
-                           });
+    respondNotFound(res);
     return;
   } 
 
   userController.get(res.locals.session.email, function(err, user) {
     if (err) {
-      res.render('notFound', {
-                               pageTitle: 'No data found',
-                               bodyID: 'body_stats',
-                               mainTitle: 'No data found'
-                             });
+      respondNotFound(res);
       return;
     }
 
@@ -196,14 +209,9 @@ exports.video = function(req, res, next) {
   }
 
   var useAmara = req.cookies.useAmara == '1';
-  console.log('use amara cookie is: ' + req.cookies.useAmara);
   lessonController.get(req.params.video, function(err, video) {
     if (err) {
-      res.render('notFound', {
-                               pageTitle: 'Video',
-                               bodyID: 'body_not_found',
-                               mainTitle: 'Video not found'
-                             });
+      respondNotFound(res);
       return;
     }
 
@@ -244,11 +252,7 @@ exports.outline = function(req, res) {
     userController.get(res.locals.session.email, function(err, usr) {
       user = usr;
       if (err) {
-        res.render('notFound', {
-                                 pageTitle: 'Video',
-                                 bodyID: 'body_not_found',
-                                 mainTitle: 'Video not found'
-                               });
+        respondNotFound(res);
         return;
       }
       loadPage();
@@ -276,11 +280,7 @@ exports.exercise = function(req, res, next) {
 
   lessonController.get(req.params.exercise, function(err, exercise) {
     if (err) {
-      res.render('notFound', {
-                               pageTitle: 'Exercise',
-                               bodyID: 'body_not_found',
-                               mainTitle: 'Exercise not found'
-                             });
+      respondNotFound(res);
       return;
     }
 
@@ -311,9 +311,8 @@ exports.exercise = function(req, res, next) {
 /**
  * POST /check-code/:exercise
  * Checks the POST'ed code to see if it matches a set of assertions
-*/
+ */
 exports.checkCode = function(req, res) {
-  console.log('POST /check-code');
   if (!req.params.slug) {
     res.json({ 
                status: "failure",
@@ -357,6 +356,11 @@ exports.checkCode = function(req, res) {
   });
 };
 
+/**
+ * GET /rss
+ * Obtains a cached (if it's been retrieved before) RSS feed and returns it with
+ * content type application/rss+xml.
+ */
 exports.rss = function(req, res) {
   res.header('Content-Type', 'application/rss+xml');
   res.send(rssController.getFeedXML(req.protocol + "://" + req.get('host') ));
