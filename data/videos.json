@@ -1030,6 +1030,15 @@
         "links": []
       },
       {
+        "title": "Introduction to the xpcshell and xpcshell tests",
+        "type": "video",
+        "description": "",
+        "slug": "intro-to-xpcshell",
+        "youtubeid": "",
+        "tags": ["testing"],
+        "links": []
+      },
+      {
         "title": "Creating an xpcshell test",
         "type": "video",
         "description": "",

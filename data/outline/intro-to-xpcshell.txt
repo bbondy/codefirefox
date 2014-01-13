@@ -1,0 +1,38 @@
+The xpcshell is a JavaScript shell that has access to XPCOM.
+It also has access to things like JavaScript modules.
+
+An xpcshell test is a test that's written using the xpcshell.
+
+
+To begin this video I'll just show you an example of using the xpcshell.
+This is usually located in your objdir's dist/bin and then you'll find a xpcshell binary.
+
+
+So I'm not going to do much here but I'll just show you that it's a normal JavaScript shell.
+And I'll show you that you can access Compoennts.classes
+for (c in Components.classes) { dump(c + '\n'); }
+
+Components.utils.import("resource://gre/modules/osfile.jsm");
+OS.File.read
+
+Shows you that there's a function there.
+
+----
+
+To run all xpchsell tests you'd just run:
+mach xpcshell-test
+But this would take a long time.
+
+----
+
+To run a directory of xpcshell tests, you run:
+mach xpcshell-test 
+
+So I'm going to show you how to run those tests here.
+mach xpcshell-test toolkit/components/osfile
+
+You can also specify a single file simply by specifying the path to that file
+mach xpcshell-test toolkit/compoents/osfile/..../....jsm
+
+In subsequent videos I'll show you how to create an xpcshell test,
+and also show you running and creating other automated test types.
