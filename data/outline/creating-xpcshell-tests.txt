@@ -1,0 +1,51 @@
+The xpcshell is a JavaScript shell that has access to XPCOM.
+It also has access to things like JavaScript modules.
+
+An xpcshell test is a test that's written using the xpcshell.
+
+
+To begin this video I'll just show you an example of using the xpcshell.
+This is usually located in your objdir's dist/bin and then you'll find a xpcshell binary.
+
+
+So I'm not going to do much here but I'll just show you that it's a normal JavaScript shell.
+And I'll show you that you can access Compoennts.classes
+for (c in Components.classes) { dump(c + '\n'); }
+
+Components.utils.import("resource://gre/modules/osfile.jsm");
+OS.File.read
+
+Shows you that there's a function there.
+
+----
+
+Now to create a test you usually find a similar test, and put it alongside of it.
+
+Let's say we want to create a test for the OSFile JavaScript module.
+
+toolkit/components/osfile/tests/xpcshell/
+
+[test_1.js]
+function run_test() {
+  do_check_true(true);
+}
+
+The test system needs to know where your file is.
+To do that you need to add it into an xpcshell.ini file.
+
+
+----
+
+In the subsequent videos I'll show you how to create a video from scratch
+and also more advanced, non trivial things you can do inside xpcshell tests.
+
+
+----
+
+
+
+You're creating a brand new xpcom component, then you'd create your own 
+xpcshell.ini and you need to reference it from the parent moz.build file.
+XPCSHELL_TESTS_MANIFESTS += ['path/to/xpcshell.ini']
+So I won't do that but I'll just show you what that looks like.
+
