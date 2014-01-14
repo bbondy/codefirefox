@@ -1031,10 +1031,11 @@
       },
       {
         "title": "Introduction to the xpcshell and xpcshell tests",
+        "datePosted": "January 14, 2014 9:42 AM",
         "type": "video",
         "description": "",
         "slug": "intro-to-xpcshell",
-        "youtubeid": "",
+        "youtubeid": "WYYcDOlstCM",
         "tags": ["testing"],
         "links": []
       },
