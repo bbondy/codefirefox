@@ -65,3 +65,17 @@ Dependencies
 - acorn.js
 - underscore
 - prettyjson
+
+Checklist for posting new videos
+================================
+
+- Add the video slug to data/videos.json
+- Add a postedDate field to the JSON file
+- Run `npm test`
+- Watch the video on the locally deployed server (sometimes ScreenFlow doesn't encode properly)
+- Add to git and push
+- Pull in on codefirefox.com
+- Subtitle the live video in English
+- Double check live video is live
+- Post link on @codefirefox twitter
+
