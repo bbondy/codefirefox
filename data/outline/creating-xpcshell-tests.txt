@@ -1,23 +1,54 @@
-Now to create a test you usually find a similar test, and put it alongside of it.
+In the previous video I gave an introduction to XPCShell tests.
+In this video we'll create an xpcshell test.
 
 Let's say we want to create a test for the OSFile JavaScript module.
+And let's say we want to test something related to the osfile module.
 
 toolkit/components/osfile/tests/xpcshell/
 
 [test_1.js]
 function run_test() {
+  do_print("Hello Test!!!");
   do_check_true(true);
+  do_check_eq(3,2+1);
+  do_check_neq(3,3+1);
 }
 
-The test system needs to know where your file is.
-To do that you need to add it into an xpcshell.ini file.
+
+And now if I try to run it with:
+mach xpcshell-tset ..../test_1.js
+You'll see that it says that it's not found in the xpcshell.ini.
+
+So since you can run a whole directory of tests at a time,
+tests must be specified in an ini file. It's just a flat list.
+
+So you need to add the filename to that ini file.
+
+.../xpcshell.ini..... add test_1.js.
+
+And now when we re-run that same command.
+We'll see tha it says Passed: 1. 
+
+
+If we scroll up we see the TEST-INFO of Hello Test!!! that we added.
 
 
 ----
 
-In the subsequent videos I'll show you how to create a video from scratch
-and also more advanced, non trivial things you can do inside xpcshell tests.
+Asynchronous tests work by first telling the test harness to keep the 
+event loop running.
+Then when you're done you tell it you're finished, presumably inside
+an asynchronous callback.
 
+
+function run_test() {
+  do_print('hello');
+  do_test_pending();
+  do_timeout(3000, function() {
+  do_check_eq(2,2);
+  do_test_finished();
+  });
+}
 
 ----
 
@@ -25,4 +56,8 @@ You're creating a brand new xpcom component, then you'd create your own
 xpcshell.ini and you need to reference it from the parent moz.build file.
 XPCSHELL_TESTS_MANIFESTS += ['path/to/xpcshell.ini']
 So I won't do that but I'll just show you what that looks like.
+
+----
+
+In subsequent videos we'll go over more advanced uses of xpcshell tests
 
