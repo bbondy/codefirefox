@@ -1040,11 +1040,12 @@
         "links": []
       },
       {
-        "title": "Creating an xpcshell test",
+        "title": "Basics of creating an XPCShell test",
+        "datePosted": "January 16, 2014 10:00 AM",
         "type": "video",
         "description": "",
         "slug": "creating-xpcshell-tests",
-        "youtubeid": "",
+        "youtubeid": "hn_3t-HERY4",
         "tags": ["testing"],
         "links": []
       },
