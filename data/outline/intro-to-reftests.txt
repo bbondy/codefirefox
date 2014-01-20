@@ -1,0 +1,62 @@
+reftests will render 2 different web pages,
+and then compares them visually, pixel by pixel.
+
+If either rendered page differ by even a single pixel, the test fails.
+
+----
+
+To run all the reftests you would type:
+
+./mach reftest
+
+---
+
+To run a particular set of reftest you specify its .list file:
+
+This is similar to the xpcshell.ini files we talked about in the xpcshell test video.
+But the .list file specifies the path of 2 reference pages to compare.
+
+./mach reftest content/html/content/reftests/reftest.list > out.txt 2>&1
+
+There's a lot of output so I'm going to redirect everything to a file.
+
+---
+
+So now I'm going to open up that log file, and if you scroll to the bottom you can see that it passed.
+But if you want to see exactly what passed, just search in the file for:
+/successful:
+
+You can see that it says all 54 passed.
+
+
+---
+
+You can also run a single reftest, but not as easily as you may think.
+To do it you need to specify the .list file but also specify a regular expression.
+If the items in the .list file matches the regular expression, then the test is run.
+Otherwise it is not run.
+
+For example: 
+mach reftest content/html/content/reftests/reftest.list --filter .*52019.*
+
+
+---
+
+But be careful when you run these tests. If you interact with the window while the tests are running, you have a chance of affecting the results.
+You'll start to see failures. For example you may change the selection or add a focus ring.
+So if I run again, and this time interact with the window while it's running.
+
+./mach reftest ...
+
+You'll see that it says it failed for some subset of the tests.
+Looking at the log again, it shows X failures.
+
+----
+
+These tests are not for things that require elevated privleges
+
+----
+
+
+
+
