@@ -1,0 +1,39 @@
+In the last video I gave an introduction to creating reftests.
+In this video I'll go over how to create your own.
+
+---
+
+First I just wanted tos how you the python script that gets run from mach.
+layout/tools/reftest/runreftest.py
+
+
+If you want to use it directly, you can, and you will have more control.
+
+
+---
+
+
+Watch out for leaks, they may not be your fault.
+In particular there is a leak threshold. And if you only have a single test that is run, then it 
+may exceed that threshold. The threshold is divided amongst the number of tests as far as I can tell.
+
+---
+
+What mach will do is use the runreftest.py python script to parse and run a .list file.
+This python script also displays all of the output that you see.
+
+
+----
+
+The format of the .list file is simply a list of 3 things:
+== or != for equality or not equality, the first page to render, the second page to render
+
+== test1.html test2.html
+
+
+Reftests work by including each other recursively.
+The base reftest.list file that is processed is located at:
+layout/reftests/reftest.list 
+
+So if you create a new reftest.list file you'll want to mention its path there.
+

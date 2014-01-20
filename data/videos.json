@@ -1059,6 +1059,15 @@
         "links": []
       },
       {
+        "title": "Introduction to reftests",
+        "type": "video",
+        "description": "",
+        "slug": "intro-to-reftests",
+        "youtubeid": "",
+        "tags": ["testing"],
+        "links": []
+      },
+      {
         "title": "Creating a basic reftest",
         "type": "video",
         "description": "",
