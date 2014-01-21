@@ -1,7 +1,9 @@
-reftests will render 2 different web pages,
-and then compares them visually, pixel by pixel.
+In this video we're going to talk about reftests
+reftests will render 1 web page, then it'll render another web page,
+and then compare them visually, pixel by pixel.
 
-If either rendered page differ by even a single pixel, the test fails.
+If either rendered page differ by even a single pixel,
+the test fails.  If all pixels match, it'll pass.
 
 ----
 
