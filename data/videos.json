@@ -1037,7 +1037,16 @@
         "slug": "intro-to-xpcshell",
         "youtubeid": "WYYcDOlstCM",
         "tags": ["testing"],
-        "links": []
+        "links": [
+          {
+            "title": "XPCShell on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/XPConnect/xpcshell"
+          },
+          {
+            "title": "Writing xpcshell-based unit tests on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/QA/Writing_xpcshell-based_unit_tests"
+          }
+        ]
       },
       {
         "title": "Basics of creating an XPCShell test",
@@ -1047,7 +1056,12 @@
         "slug": "creating-xpcshell-tests",
         "youtubeid": "hn_3t-HERY4",
         "tags": ["testing"],
-        "links": []
+        "links": [
+          {
+            "title": "Writing xpcshell-based unit tests on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Mozilla/QA/Writing_xpcshell-based_unit_tests"
+          }
+        ]
       },
       {
         "title": "Creating a basic mochitest",
@@ -1060,12 +1074,18 @@
       },
       {
         "title": "Introduction to reftests",
+        "datePosted": "January 21, 2014 11:00 AM",
         "type": "video",
         "description": "",
         "slug": "intro-to-reftests",
-        "youtubeid": "",
+        "youtubeid": "dyatH0h-Bo0",
         "tags": ["testing"],
-        "links": []
+        "links": [
+          {
+            "title": "Creating reftest-based unit tests on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Creating_reftest-based_unit_tests"
+          }
+        ]
       },
       {
         "title": "Creating a basic reftest",
@@ -1074,7 +1094,12 @@
         "slug": "creating-reftests",
         "youtubeid": "",
         "tags": ["testing"],
-        "links": []
+        "links": [
+          {
+            "title": "Creating reftest-based unit tests on MDN",
+            "url": "https://developer.mozilla.org/en/docs/Creating_reftest-based_unit_tests"
+          }
+        ]
       },
       {
         "title": "Creating a basic browser chrome test",
