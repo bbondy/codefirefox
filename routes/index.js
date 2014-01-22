@@ -82,10 +82,12 @@ exports.admin = function(req, res) {
     results.users = users;
     return adminController.getStatsPromise();
   }).done(function(stats) {
+    var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
     res.render('admin', {
                           pageTitle: 'Administration',
                           bodyID: 'body_admin',
                           mainTitle: 'Administration',
+                          serverRunningSince: serverRunningSince,
                           stats: stats,
                           users: results.users
                         });
@@ -124,10 +126,8 @@ exports.stats = function(req, res, next) {
       return;
     }
 
-    var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
     res.render('stats', {
                           videoSlugsWatched: user.slugsCompleted,
-                          serverRunningSince: serverRunningSince,
                           loginCount: user.loginCount || 0,
                           info: user.info,
                           categories: lessonController.categories,
