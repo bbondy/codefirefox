@@ -11,6 +11,7 @@ var querystring = require("querystring"),
   tagsController = require('../controllers/tagsController.js'),
   rssController = require('../controllers/rssController.js'),
   appController = require('../controllers/appController.js'),
+  commentController = require('../controllers/commentController.js'),
   adminController = require('../controllers/adminController.js');
 
 /**
@@ -163,6 +164,28 @@ exports.delStats = function(req, res, next) {
 };
 
 /**
+ * GET /video/:video/comments.json
+ * Gets a list of comments for the specified video slug
+ */ 
+exports.comments = function(req, res, next) {
+  if (!req.params.slug) {
+    console.log('No slug specified for get commetns');
+    res.json([]);
+    return;
+  }
+
+  commentController.getComments(req.params.slug, false, function(err, commentList) {
+    if (err) {
+      res.json([]);
+      return;
+    }
+
+    res.json(commentList);
+  });
+};
+
+
+/**
  * GET /tags
  * Renders the tag page
  */
@@ -307,6 +330,45 @@ exports.exercise = function(req, res, next) {
   });
 };
 
+
+/**
+ * POST /video/:video/comments.json
+ * Posts a new comment for the specified video
+ */
+exports.postComment = function(req, res) {
+  console.log('Post Comment!');
+  if (!req.params.slug) {
+    console.log('No slug when posting a comment!');
+    res.json({ 
+               status: "failure",
+               reason: "Slug must be specified!",
+             });
+    return;
+  }
+  if (!res.locals.session.email) {
+    console.log('User must be logged in to post a comment');
+    res.json({ 
+               status: "failure",
+               reason: "User must be logged in to post a comment!",
+             });
+    return;
+  }
+
+  // Add the required email field to the comment
+  req.body.email = res.locals.session.email;
+
+  console.log('Request body for postComment for slug: ' + req.params.slug + ' and body: ' + req.body);
+  commentController.addComment(req.params.slug, req.body, function(err) {
+    if (err) {
+      console.log('Error posting comment: ' + err);
+    }
+    res.json({
+               status: err ? 'failure': 'success',
+               reason: err
+             });
+  });
+
+};
 
 /**
  * POST /check-code/:exercise

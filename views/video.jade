@@ -11,7 +11,11 @@ block mainContent
       var youtubeid='#{video.youtubeid}';
       var videoSlug='#{videoSlug}';
       var useAmara = #{useAmara};
+      var email = '#{session.email}';
 
+    script(src='http://fb.me/react-0.8.0.js')
+    script(src='http://fb.me/JSXTransformer-0.8.0.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js')
     script(src='/static/js/video.js')
 
     if useAmara
@@ -53,7 +57,7 @@ block mainContent
           each link in video.links
             li: a(href= link.url)= link.title
 
-    p(style='margin-top:40px;')
+    p(style='margin-top:30px;')
     if (!useAmara)
       a#subtitles(href='#') Turn on translated subtitles<br>
     else
@@ -66,4 +70,8 @@ block mainContent
     p(style='margin-top:30px;')
     a(href='http://www.youtube.com/html5') Want HTML5 video?<br>
     | If enabled, HTML5 video may be lower quality, possibly not in 1080p
+
+  //.card-container
+  //  div#comment-content
+  //    script(type='text/jsx', src='/static/js/comment.js').
 
