@@ -111,6 +111,10 @@ exports.nukeDB = function() {
   exports.redisClient.flushdb();
 };
 
+exports.del = function(key, callback) {
+  exports.redisClient.del(key, callback);
+}
+
 exports.delUserStats = function(email, callback) {
   exports.redisClient.keys('user:' + email+ ':*', function(err, replies) {
     async.each(replies, function(key, callback) {
@@ -206,6 +210,29 @@ exports.initVideoData = function(filePath, c) {
 };
 
 /**
+ * Adds an object to a list
+ */
+exports.pushToList = function(key, obj, callback) {
+  exports.redisClient.rpush(key, JSON.stringify(obj), callback);
+}
+
+/**
+ * Obtains all items in a list
+ */
+exports.getListElements = function(key, callback) {
+  exports.redisClient.lrange(key, 0, -1, function(err, replies) {
+    if (!replies) {
+      callback(err);
+      return;
+    }
+    var list = replies.map(function(result) {
+      return JSON.parse(result.toString());
+    });
+    callback(null, list);
+  });
+}
+
+/**
  * Increments the key value by one
  */
 exports.increment = function(key, callback) {
@@ -221,10 +248,13 @@ exports.sortTagsByName = function(a, b) {
 };
 
 // Setup some promises if consumers prefer to use that
+exports.delPromise = Promise.denodeify(exports.del).bind(exports);
 exports.setOnePromise = Promise.denodeify(exports.set).bind(exports);
 exports.getOnePromise = Promise.denodeify(exports.get).bind(exports);
 exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
+exports.getListElementsPromise = Promise.denodeify(exports.getListElements).bind(exports);
 exports.addToSetPromise = Promise.denodeify(exports.addToSet).bind(exports);
+exports.pushToListPromise = Promise.denodeify(exports.pushToList).bind(exports);
 exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
 exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
 exports.incrementPromise = Promise.denodeify(exports.increment).bind(exports);
