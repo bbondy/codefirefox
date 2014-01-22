@@ -10,10 +10,13 @@ block mainContent
     else
       h1 You are not authorized to see this page
 
-    
   if (session.isAdmin)
     .card-container
-      h1 Statistics
+      h1 Server Statistics
+      p= 'Last server instance reset: ' + serverRunningSince + ' ago'
+
+    .card-container
+      h1 User Statistics
       p=  'User count: ' + stats.userCount
 
     .card-container

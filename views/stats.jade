@@ -3,11 +3,8 @@ extends layout
 block mainContent
   .card-container
     h1 User Stats
-    p= 'Logged in as: ' + session.email
-    if session.isAdmin
-      p Administrator
-    if session.isTrusted
-      p Trusted account
+    p= 'Logged in as: ' + session.email + (session.isAdmin ? ' (Administrator)' : '')
+ 
     if (loginCount != 1)
       p= 'Logged in ' + (loginCount || 0) + ' times'
     else
