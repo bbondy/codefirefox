@@ -108,11 +108,29 @@ exports.reportUserLogin = function(username, ip, callback) {
          info.dateJoined = now.toISOString();
        }
 
-       redisController.set(loginInfoKey, info, function(err) {
-         callback(err);
-       });
+       redisController.set(loginInfoKey, info, callback);
     });
   });
+};
+
+/**
+ * Updates the user info with any overlapping properties in user
+ * It is expected that the user is already created when calling this
+ * because reportUserLogin must be called on each login and you can only
+ * set info on users that are logged in.
+ */
+exports.set = function(username, user, callback) {
+    var loginInfoKey = 'user:' + username + ':info';
+    redisController.get(loginInfoKey, function(err, info) {
+      if (err) {
+        callback(err);
+        return;
+      }
+      info = info || { };
+      info.displayName = user.displayName || info.displayName;
+      info.website = user.website || info.website;
+       redisController.set(loginInfoKey, info, callback);
+    });
 };
 
 /**

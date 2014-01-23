@@ -18,6 +18,10 @@ html(lang="en")
   body(id= bodyID)
     script.
       var email="#{session.email}";
+    script(src='http://fb.me/react-0.8.0.js')
+    script(src='http://fb.me/JSXTransformer-0.8.0.js')
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js')
+   
     .wrapper
       #header
         a(href='/')
@@ -32,7 +36,7 @@ html(lang="en")
               a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
             if session.email
               li
-                a#navbar-stats(href='/stats') Stats
+                a#navbar-stats(href='/stats') Profile
             li
               a#navbar-tags(href='/tags') Tags
             li
@@ -62,7 +66,7 @@ html(lang="en")
           a(href='/cheatsheet') Cheatsheet
         if session.email
           li
-            a(href='/stats') Stats
+            a(href='/stats') Profile
         li
           a(href='/tags') Tags
         li
