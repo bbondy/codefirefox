@@ -131,9 +131,9 @@ exports.stats = function(req, res, next) {
                           loginCount: user.loginCount || 0,
                           info: user.info,
                           categories: lessonController.categories,
-                          pageTitle: 'Stats',
+                          pageTitle: 'Profile',
                           bodyID: 'body_stats',
-                          mainTitle: 'Stats'
+                          mainTitle: 'Profile'
                         });
   });
 };
@@ -181,6 +181,33 @@ exports.comments = function(req, res, next) {
     }
 
     res.json(commentList);
+  });
+};
+
+/**
+ * GET /user/info.json
+ * Gets a JSON object with the informationa bout the logged on user
+ */ 
+exports.userInfo = function(req, res, next) {
+
+console.log('1');
+  if (!res.locals.session.email) {
+    console.log('User must be logged in to get info');
+    res.json([]);
+    return;
+  }
+console.log('2');
+
+  userController.get(res.locals.session.email, function(err, user) {
+console.log('3');
+    if (err) {
+      res.json([]);
+      return;
+    }
+console.log('4');
+console.log(user.info);
+
+    res.json(user.info);
   });
 };
 
@@ -369,6 +396,34 @@ exports.postComment = function(req, res) {
   });
 
 };
+
+/**
+ * POST /user/info.json
+ * Posts a new user information about the logged in user
+ */
+exports.postUserInfo = function(req, res) {
+  console.log('Post User Info!');
+  if (!res.locals.session.email) {
+    console.log('User must be logged in to post a comment');
+    res.json({
+               status: "failure",
+               reason: "User must be logged in to post information!",
+             });
+    return;
+  }
+
+  userController.set(res.locals.session.email, req.body, function(err) {
+    if (err) {
+      console.log('Error posting user information: ' + err);
+    }
+    res.json({
+               status: err ? 'failure': 'success',
+               reason: err
+             });
+  });
+
+};
+
 
 /**
  * POST /check-code/:exercise

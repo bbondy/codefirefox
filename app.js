@@ -105,6 +105,7 @@ appController.initPromise().done(function() {
   app.get('/exercises', routes.outline);
   app.get('/tagged/:tagged', routes.outline);
   app.get('/video/:slug/comments.json', routes.comments);
+  app.get('/user/info.json', routes.userInfo);
   app.get('/video/:video', routes.video);
   app.get('/exercise', routes.exerciseDemo);
   app.get('/exercise/:exercise', routes.exercise);
@@ -120,6 +121,7 @@ appController.initPromise().done(function() {
   // POST
   app.post('/check-code/:slug', routes.checkCode);
   app.post('/video/:slug/comments.json', routes.postComment);
+  app.post('/user/info.json', routes.postUserInfo);
   app.post('/video/:slug', routes.completedLesson);
   app.post('/exercise/:slug', routes.completedLesson);
 

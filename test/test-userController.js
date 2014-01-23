@@ -56,6 +56,59 @@ describe('userController', function() {
     });
   });
 
+  it('Setting user info should update that user info', function(done) {
+    var user_ = { displayName : 'hello', website: 'http://www.brianbondy.com' };
+    userController.set(username, user_, function(err) {
+      assert(!err);
+      userController.get(username, function(err, user) {
+        assert(!err);
+        assert(_.isObject(user.info));
+        assert(_.isArray(user.slugsCompleted));
+        assert.equal(user.loginCount, 2);
+        assert(user.info.dateJoined);
+        assert(user.info.dateLastLogin);
+        assert(new Date(user.info.rawDateJoined) < new Date(user.info.rawDateLastLogin));
+        assert(!user.info.displayName.localeCompare(user_.displayName), user.displayName + ' not the same as: ' + user.info.displayName);
+        assert(!user.info.website.localeCompare(user_.website));
+        done();
+      });
+    });
+  });
+
+  it('The user that logged in should be accessible, and have proper fields', function(done) {
+    userController.get(username, function(err, user) {
+      assert(!err);
+      assert(_.isObject(user.info));
+      assert(_.isArray(user.slugsCompleted));
+      assert.equal(user.loginCount, 2);
+      assert(user.info.dateJoined);
+      assert(user.info.dateLastLogin);
+      assert(user.info.website);
+      assert(user.info.displayName);
+      assert(new Date(user.info.rawDateJoined) <= new Date(user.info.rawDateLastLogin));
+      done();
+    });
+  });
+
+  it('Overwrriting user info should update that user info', function(done) {
+    var user_ = { displayName : 'hello2', website: 'http://brianbondy.com/#2' };
+    userController.set(username, user_, function(err) {
+      assert(!err);
+      userController.get(username, function(err, user) {
+        assert(!err);
+        assert(_.isObject(user.info));
+        assert(_.isArray(user.slugsCompleted));
+        assert.equal(user.loginCount, 2);
+        assert(user.info.dateJoined);
+        assert(user.info.dateLastLogin);
+        assert(new Date(user.info.rawDateJoined) < new Date(user.info.rawDateLastLogin));
+        assert(!user.info.displayName.localeCompare(user_.displayName), user.displayName + ' not the same as: ' + user.info.displayName);
+        assert(!user.info.website.localeCompare(user_.website));
+        done();
+      });
+    });
+  });
+  
   it('getAll should work', function(done) {
     userController.getAll(function(err) {
       assert(!err);

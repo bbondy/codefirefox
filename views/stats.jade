@@ -1,8 +1,15 @@
 extends layout
 
 block mainContent
+  script.
+    var email = '#{session.email}';
+  script(src='/static/js/userinfo.js', type='text/jsx')
+
   .card-container
-    h1 User Stats
+      div#user-info(email=session.email)
+
+  .card-container
+    h1 User Statistics
     p= 'Logged in as: ' + session.email + (session.isAdmin ? ' (Administrator)' : '')
  
     if (loginCount != 1)
@@ -34,8 +41,3 @@ block mainContent
     if session.isAdmin
       p
         a#del-stats(href="#") Delete stats data for your account
-
-  if session.isTrusted
-    .card-container
-      h1 Server Stats
-      p= 'Last server instance reset: ' + serverRunningSince + ' ago'
