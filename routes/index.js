@@ -12,6 +12,7 @@ var querystring = require("querystring"),
   rssController = require('../controllers/rssController.js'),
   appController = require('../controllers/appController.js'),
   commentController = require('../controllers/commentController.js'),
+  crypto = require('crypto'),
   adminController = require('../controllers/adminController.js');
 
 /**
@@ -126,11 +127,15 @@ exports.stats = function(req, res, next) {
       return;
     }
 
+    var md5sum = crypto.createHash('md5');
+    md5sum.update(res.locals.session.email.toLowerCase());
+    
     res.render('stats', {
                           videoSlugsWatched: user.slugsCompleted,
                           loginCount: user.loginCount || 0,
                           info: user.info,
                           categories: lessonController.categories,
+                          emailHash: md5sum.digest('hex'),
                           pageTitle: 'Profile',
                           bodyID: 'body_stats',
                           mainTitle: 'Profile'

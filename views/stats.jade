@@ -3,6 +3,7 @@ extends layout
 block mainContent
   script.
     var email = '#{session.email}';
+    var emailHash = '#{emailHash}';
   script(src='/static/js/userinfo.js', type='text/jsx')
 
   .card-container
