@@ -48,6 +48,20 @@ var UserInfoBox = React.createClass({
   } 
 });
 
+var GravatarIcon = React.createClass({
+  render: function() {
+    if (!this.props.size)
+      this.props.size = 80;
+    if (!this.props.url)
+      this.props.url = 'http://gravatar.com/';
+
+    var url = 'http://www.gravatar.com/avatar/' + this.props.emailHash + '?s=' + this.props.size;
+    return (
+      <a href={this.props.url} target='_blank'><img id='profile-pic' src={url} /></a>
+    );
+  }
+});
+
 /**
  * Renders a form for the user information
  */
@@ -82,14 +96,17 @@ var UserInfoForm = React.createClass({
       this.state.website = this.props.userInfo.website;
 
     return (
-      <form className='userInfoForm' onSubmit={this.handleSubmit}>
-        <label htmlFor='email'>Email</label>
-        <input type='text' placeholder='Email' ref='email' id='email' readOnly value={email} />
-        <label htmlFor='displayName'>Display Name</label>
-        <input type='text' placeholder='Display name shown for posting comments' ref='displayName' id='displayName' value={this.state.displayName } onChange={this.handleDisplayNameChange} />
-        <label htmlFor='website'>Website</label>
-        <input type='url' placeholder='Website linked when posting comments' ref='website' id='website' value={this.state.website } onChange={this.handleWebsiteChange} />
-      </form>
+      <div id='profile-container'>
+        <GravatarIcon emailHash={emailHash} size='200' />
+        <form className='userInfoForm' onSubmit={this.handleSubmit}>
+          <label htmlFor='email'>Email</label>
+          <input type='text' placeholder='Email' ref='email' id='email' readOnly value={email} />
+          <label htmlFor='displayName'>Display Name</label>
+          <input type='text' placeholder='Display name shown for posting comments' ref='displayName' id='displayName' value={this.state.displayName } onChange={this.handleDisplayNameChange} />
+          <label htmlFor='website'>Website</label>
+          <input type='url' placeholder='Website linked when posting comments' ref='website' id='website' value={this.state.website } onChange={this.handleWebsiteChange} />
+        </form>
+      </div>
     );
   }
 }); 
