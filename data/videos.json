@@ -1088,11 +1088,12 @@
         ]
       },
       {
-        "title": "Creating a basic reftest",
+        "title": "Basics of creating a reftest",
+        "datePosted": "January 23, 2013 7:40 AM",
         "type": "video",
         "description": "",
         "slug": "creating-reftests",
-        "youtubeid": "",
+        "youtubeid": "4Nj9VwWPwfM",
         "tags": ["testing"],
         "links": [
           {
