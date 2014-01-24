@@ -13,6 +13,7 @@ var querystring = require("querystring"),
   appController = require('../controllers/appController.js'),
   commentController = require('../controllers/commentController.js'),
   crypto = require('crypto'),
+  emailController = require('../controllers/emailController.js'),
   adminController = require('../controllers/adminController.js');
 
 /**
@@ -286,6 +287,22 @@ exports.completedLesson = function(req, res, next) {
 
 };
 
+
+/**
+ * GET /lesson/:slug
+ * Redirects to /video/:slug or /exercise/:slug
+ * depending on the type of the slug
+ */
+exports.lesson = function(req, res, next) {
+  lessonController.get(req.params.slug, function(err, lesson) {
+    if (!lesson.type.localeCompare('video')) {
+      res.redirect('/video/' + req.params.slug);
+    } else {
+      res.redirect('/exercise/' + req.params.slug);
+    }
+  });
+};
+
 /**
  * GET /:category/:video
  * Renders the specified video page
@@ -426,6 +443,14 @@ exports.postComment = function(req, res) {
   commentController.addComment(req.params.slug, req.body, function(err) {
     if (err) {
       console.log('Error posting comment: ' + err);
+    } else {
+      var body = '<p><strong>New comemnt posted:</strong></p><p>' + req.body.text + '</p>';
+      body += '<p><a href="http://codefirefox.com/lesson/' + req.params.slug + '">See post!</a>';
+      emailController.sendMailToAdmins('New comment posted on slug ' + req.params.slug , body, function(err) {
+        if (err) {
+          console.error(err);
+        }
+      });
     }
     res.json({
                status: err ? 'failure': 'success',

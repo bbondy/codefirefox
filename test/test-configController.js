@@ -17,6 +17,10 @@ describe('configController', function() {
       assert(_.isNumber(configController.config.redisPort));
       assert(_.isArray(configController.config.admins));
       assert(_.isString(configController.config.amaraKey));
+      assert(_.isString(configController.config.emailService));
+      assert(_.isString(configController.config.smtpUser));
+      assert(_.isString(configController.config.smtpPass));
+      assert(_.isString(configController.config.emailFrom));
     });
     done();
   });
