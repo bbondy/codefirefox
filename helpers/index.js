@@ -1,6 +1,6 @@
 "use strict";
 
-exports.formatTimeSpan = function(firstDate, secondDate, includeExcessiveDetail) {
+exports.formatTimeSpan = function(firstDate, secondDate, includeExcessiveDetail, hideSeconds) {
   var SECOND = 1000;
   var MINUTE = 60 * SECOND;;
   var HOUR = 60 * MINUTE;
@@ -19,7 +19,7 @@ exports.formatTimeSpan = function(firstDate, secondDate, includeExcessiveDetail)
   
   if (!includeExcessiveDetail) {
     // If we have days or hours, don't show seconds
-    if (diffDays != 0 || diffHours != 0) {
+    if (diffDays != 0 || diffHours != 0 || hideSeconds) {
       suffixes.pop();
       timeDiffs.pop();
     }

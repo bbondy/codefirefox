@@ -2,8 +2,6 @@
  * @jsx React.DOM
  */
 
-var converter = new Showdown.converter();
-
 var UserInfoBox = React.createClass({
   getInitialState: function() {
     return { data: [] };
@@ -46,20 +44,6 @@ var UserInfoBox = React.createClass({
       </div>
     );
   } 
-});
-
-var GravatarIcon = React.createClass({
-  render: function() {
-    if (!this.props.size)
-      this.props.size = 80;
-    if (!this.props.url)
-      this.props.url = 'http://gravatar.com/';
-
-    var url = 'http://www.gravatar.com/avatar/' + this.props.emailHash + '?s=' + this.props.size;
-    return (
-      <a href={this.props.url} target='_blank'><img id='profile-pic' src={url} /></a>
-    );
-  }
 });
 
 /**

@@ -233,6 +233,13 @@ exports.getListElements = function(key, callback) {
 }
 
 /**
+ * Removes an item from the specified list
+ */
+exports.removeFromList = function(key, obj, callback) {
+  exports.redisClient.lrem(key, 1, JSON.stringify(obj), callback);
+}
+
+/**
  * Increments the key value by one
  */
 exports.increment = function(key, callback) {
@@ -255,6 +262,7 @@ exports.getAllPromise = Promise.denodeify(exports.getAll).bind(exports);
 exports.getListElementsPromise = Promise.denodeify(exports.getListElements).bind(exports);
 exports.addToSetPromise = Promise.denodeify(exports.addToSet).bind(exports);
 exports.pushToListPromise = Promise.denodeify(exports.pushToList).bind(exports);
+exports.removeFromListPromise = Promise.denodeify(exports.removeFromList).bind(exports);
 exports.getSetElementsPromise = Promise.denodeify(exports.getSetElements).bind(exports);
 exports.initVideoDataPromise = Promise.denodeify(exports.initVideoData).bind(exports);
 exports.incrementPromise = Promise.denodeify(exports.increment).bind(exports);

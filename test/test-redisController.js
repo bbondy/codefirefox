@@ -87,15 +87,20 @@ describe('db module', function() {
        assert(false);
      });
   });
-  it('redisController.getList and redisController.pushToList should work', function(done) {
+  it('redisController.getList and redisController.pushToList and rmeoveFromList should work', function(done) {
      var key = 'test:4',
        val1 = { p1: '3.14', p2: [1] },
-       val2 = { p1: '159', p2: [42] };
+       val2 = { p1: '159', p2: [42] },
+       val3 = { p1: '158', p2: [3.14] };
 
      redisController.delPromise(key).then(function() {
        return redisController.pushToListPromise(key, val1);
      }).then(function() {
+       return redisController.pushToListPromise(key, val3);
+     }).then(function() {
        return redisController.pushToListPromise(key, val2);
+     }).then(function() {
+       return redisController.removeFromList(key, val3);
      }).then(function() {
        return redisController.getListElementsPromise(key);
      }).done(function onSuccess(data) {

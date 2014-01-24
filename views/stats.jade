@@ -4,6 +4,7 @@ block mainContent
   script.
     var email = '#{session.email}';
     var emailHash = '#{emailHash}';
+  script(src='/static/js/gravatar.js', type='text/jsx')
   script(src='/static/js/userinfo.js', type='text/jsx')
 
   .card-container
@@ -19,7 +20,6 @@ block mainContent
       p Logged in 1 time
     p= 'Date joined: ' + info.dateJoined + ' ago'
     p= 'Date last logged in: ' + info.dateLastLogin + ' ago'
-    //p= 'Last logged in IP: ' + info.lastLoginIP
 
   .card-container
     h1 Lessons Completed

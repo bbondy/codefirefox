@@ -10,8 +10,10 @@ block mainContent
     script.
       var youtubeid='#{video.youtubeid}';
       var videoSlug='#{videoSlug}';
+      var lessonSlug='#{videoSlug}';
       var useAmara = #{useAmara};
       var email = '#{session.email}';
+      var isAdmin = #{session.isAdmin}
 
     script(src='http://fb.me/react-0.8.0.js')
     script(src='http://fb.me/JSXTransformer-0.8.0.js')
@@ -71,7 +73,8 @@ block mainContent
     a(href='http://www.youtube.com/html5') Want HTML5 video?<br>
     | If enabled, HTML5 video may be lower quality, possibly not in 1080p
 
-  //.card-container
-  //  div#comment-content
-  //    script(type='text/jsx', src='/static/js/comment.js').
+  .card-container
+    div#comment-content
+      script(type='text/jsx', src='/static/js/gravatar.js').
+      script(type='text/jsx', src='/static/js/comment.js').
 
