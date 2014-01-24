@@ -7,4 +7,9 @@
   "redisPort": 10226,
   "admins": ["email1@gmail.com", "email2@gmail.com"],
   "amaraKey": "amara-key-here"
+  "emailservice": "Gmail",
+  "smtpUser": "gmail.user@gmail.com",
+  "smtpPass": "userpass",
+  "emailFrom:" "Some Person <gmail.user@gmail.com>",
+  "adminEmails": "bbondy@gmail.com"
 }

@@ -107,6 +107,7 @@ appController.initPromise().done(function() {
   app.get('/comments/:slug', routes.comments);
   app.get('/user/info.json', routes.userInfo);
   app.get('/video/:video', routes.video);
+  app.get('/lesson/:slug', routes.lesson);
   app.get('/exercise', routes.exerciseDemo);
   app.get('/exercise/:exercise', routes.exercise);
   app.get('/:category/:video', routes.video);

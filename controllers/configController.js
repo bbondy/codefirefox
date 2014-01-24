@@ -25,6 +25,7 @@ exports.print = function() {
   console.log('  port: ' + exports.config.port);
   console.log('  internal port: ' + exports.config.internalPort);
   console.log('  admins: ' + exports.config.admins);
+  console.log('  email Service: ' + exports.config.emailService);
+  console.log('  SMTP User: ' + exports.config.smtpUser);
+  console.log('  email from: ' + exports.config.emailFrom);
 }
-
-
