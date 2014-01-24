@@ -48,6 +48,8 @@ appController.initPromise().done(function() {
         //   email
         //   isAdmin
         res.locals.session = req.session;
+        if (res.locals.session.isAdmin === undefined)
+          res.locals.session.isAdmin = false;
         res.locals.session.serverRunningSince = serverRunningSince;
 
         //console.log(req.url);
