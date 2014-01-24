@@ -169,6 +169,39 @@ exports.delStats = function(req, res, next) {
 };
 
 /**
+ * DELETE /comment/:id
+ * Deletes the specified comment
+ * This oepration will only succeed if you are logged in and
+ * you are an admin.
+ */ 
+exports.delComment = function(req, res, next) {
+  console.log('del comment!');
+  if (!res.locals.session.email) {
+    res.json({
+               status: "failure",
+               reason: "not logged in"
+             });
+    return;
+  }
+  if (!res.locals.session.isAdmin) {
+    res.json({
+               status: "failure",
+               reason: "not admin"
+             });
+    return;
+  }
+  console.log('deleting for slug: ' + req.params.slug + ' wiht id: ' + req.params.id);
+  commentController.delComment(req.params.slug, req.params.id, function(err, result) {
+    if (!err) 
+      console.log('good');
+    else
+      console.log('not so good');
+    res.json({ status: "okay" });
+  });
+};
+
+
+/**
  * GET /video/:video/comments.json
  * Gets a list of comments for the specified video slug
  */ 
