@@ -61,6 +61,9 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
       this.loadCommentsFromServer();
       setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
+    signIn: function() {
+      $('#login').click();
+    },
     render: function() {
       if (email) {
         return (
@@ -82,8 +85,8 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
             <CommentList data={this.state.data} 
               onCommentRemove={this.handleCommentRemove}
             />
-            <div className="signInMessage">
-              Sign in to post a comment
+            <div className='signInMessage'>
+              <a href='#' onClick={this.signIn}>Sign in</a> to post a comment
             </div>
           </div>
         );
@@ -176,7 +179,7 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
   var CommentForm = React.createClass({
     handleSubmit: function() {
       var text = this.refs.text.getDOMNode().value.trim();
-      text = text.replace(/(<([^>]+)>)/ig,"");
+      text = text.replace(/(<([^>]+)>)/ig,'');
       if (!text) {
         return false;
       }
