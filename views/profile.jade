@@ -35,7 +35,7 @@ block mainContent
 
     if session.isAdmin
       p
-        a#del-stats(href="#") Delete stats data for your account
+        a#del-profile(href="#") Delete all data for your account
 
     script.
       var email = '#{session.email}';
