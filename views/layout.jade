@@ -71,7 +71,7 @@ html(lang="en")
           a(href='/tags') Tags
         li
           a(href='/about') About
-        if session.isAdmin
+        if session.isAdmin && session.email
           li
             a(href='/admin') Admin
       ul.social
