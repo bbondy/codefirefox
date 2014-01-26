@@ -111,12 +111,12 @@ exports.about = function(req, res) {
 };
 
 /**
- * GET /stats
+ * GET /profile
  * Renders the statistics page.
  * This page is only available if you are lgoged in.
  * If you are an administrator then this page will display exra information.
  */
-exports.stats = function(req, res, next) {
+exports.profile = function(req, res, next) {
   if (!res.locals.session.email) {
     respondNotFound(res);
     return;
@@ -131,25 +131,25 @@ exports.stats = function(req, res, next) {
     var md5sum = crypto.createHash('md5');
     md5sum.update(res.locals.session.email.toLowerCase());
     
-    res.render('stats', {
+    res.render('profile', {
                           videoSlugsWatched: user.slugsCompleted,
                           loginCount: user.loginCount || 0,
                           info: user.info,
                           categories: lessonController.categories,
                           emailHash: md5sum.digest('hex'),
                           pageTitle: 'Profile',
-                          bodyID: 'body_stats',
+                          bodyID: 'body_profile',
                           mainTitle: 'Profile'
                         });
   });
 };
 
 /**
- * DELETE /stats
- * Deletes all user stats.
+ * DELETE /profile
+ * Deletes the user profile
  * This oepration will only succeed if you are logged in, and you are an admin.
  */ 
-exports.delStats = function(req, res, next) {
+exports.delProfile = function(req, res, next) {
   if (!res.locals.session.email) {
     res.json({
                status: "failure",

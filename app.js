@@ -116,7 +116,7 @@ appController.initPromise().done(function() {
   app.get('/cheatsheet', routes.cheatsheet);
   app.get('/initData', routes.initData);
   app.get('/about', routes.about);
-  app.get('/stats', routes.stats);
+  app.get('/profile', routes.profile);
   app.get('/admin', routes.admin);
   app.get('/tags', routes.tags);
   app.get('/rss', routes.rss);
@@ -129,7 +129,7 @@ appController.initPromise().done(function() {
   app.post('/exercise/:slug', routes.completedLesson);
 
   // DELETE
-  app.del('/stats', routes.delStats);
+  app.del('/profile', routes.delProfile);
   app.del('/comments/:slug/:id', routes.delComment);
 
   app.use(function(req,res){

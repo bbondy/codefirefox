@@ -36,7 +36,7 @@ require(['jquery', 'underscore', 'persona'], function(jquery) {
       url: '/persona/logout',
       type: 'POST',
       success: function(response) {
-        if (location.pathname.substring(0, 6) != '/stats' && 
+        if (location.pathname.substring(0, 8) != '/profile' && 
             location.pathname.substring(0, 6) != '/admin') {
           location.reload(); 
         } else {
@@ -47,13 +47,13 @@ require(['jquery', 'underscore', 'persona'], function(jquery) {
     navigator.id.logout();
   });
 
-  $('#del-stats').click(function() {
+  $('#del-profile').click(function() {
     if (!confirm('Are you sure you want to completely nuke all of your user data?')) {
       return;
     }
 
     $.ajax({
-      url: '/stats',
+      url: '/profile',
       type: 'DELETE',
       contentType: 'application/json',
       dataType: 'json',
