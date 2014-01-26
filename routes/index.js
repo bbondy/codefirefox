@@ -176,7 +176,6 @@ exports.delProfile = function(req, res, next) {
  * you are an admin.
  */ 
 exports.delComment = function(req, res, next) {
-  console.log('del comment!');
   if (!res.locals.session.email) {
     res.json({
                status: "failure",
@@ -191,12 +190,7 @@ exports.delComment = function(req, res, next) {
              });
     return;
   }
-  console.log('deleting for slug: ' + req.params.slug + ' wiht id: ' + req.params.id);
   commentController.delComment(req.params.slug, req.params.id, function(err, result) {
-    if (!err) 
-      console.log('good');
-    else
-      console.log('not so good');
     res.json({ status: "okay" });
   });
 };
@@ -208,7 +202,6 @@ exports.delComment = function(req, res, next) {
  */ 
 exports.comments = function(req, res, next) {
   if (!req.params.slug) {
-    console.log('No slug specified for get commetns');
     res.json([]);
     return;
   }
@@ -229,23 +222,16 @@ exports.comments = function(req, res, next) {
  */ 
 exports.userInfo = function(req, res, next) {
 
-console.log('1');
   if (!res.locals.session.email) {
-    console.log('User must be logged in to get info');
     res.json([]);
     return;
   }
-console.log('2');
 
   userController.get(res.locals.session.email, function(err, user) {
-console.log('3');
     if (err) {
       res.json([]);
       return;
     }
-console.log('4');
-console.log(user.info);
-
     res.json(user.info);
   });
 };
@@ -418,7 +404,6 @@ exports.exercise = function(req, res, next) {
  * Posts a new comment for the specified video
  */
 exports.postComment = function(req, res) {
-  console.log('Post Comment!');
   if (!req.params.slug) {
     console.log('No slug when posting a comment!');
     res.json({ 
@@ -439,7 +424,6 @@ exports.postComment = function(req, res) {
   // Add the required email field to the comment
   req.body.email = res.locals.session.email;
 
-  console.log('Request body for postComment for slug: ' + req.params.slug + ' and body: ' + req.body);
   commentController.addComment(req.params.slug, req.body, function(err) {
     if (err) {
       console.log('Error posting comment: ' + err);
@@ -465,7 +449,6 @@ exports.postComment = function(req, res) {
  * Posts a new user information about the logged in user
  */
 exports.postUserInfo = function(req, res) {
-  console.log('Post User Info!');
   if (!res.locals.session.email) {
     console.log('User must be logged in to post a comment');
     res.json({
