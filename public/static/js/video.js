@@ -1,3 +1,5 @@
+define(['jsx!comment'], function() {
+
 if (!useAmara) {
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/player_api";
@@ -17,6 +19,12 @@ function onYouTubePlayerAPIReady() {
   });
 }
 
+function initPlayer(player) {
+  player.setPlaybackQuality('hd1080');
+  player.playVideo();
+  player.addEventListener("onStateChange", "onPlayerStateChange");
+}
+
 // !useAmara
 function onIFramePlayerReady(event) {
   initPlayer(event.target);
@@ -27,12 +35,6 @@ function onIFramePlayerReady(event) {
 function onYouTubePlayerReady(id) {
   var player = document.getElementsByTagName('object')[0];
   initPlayer(player);
-}
-
-function initPlayer(player) {
-  player.setPlaybackQuality('hd1080');
-  player.playVideo();
-  player.addEventListener("onStateChange", "onPlayerStateChange");
 }
 
 // Video in player ends
@@ -61,3 +63,12 @@ function onPlayerStateChange(state) {
     }));
   }
 }
+
+
+return {
+  onYouTubePlayerAPIReady: onYouTubePlayerAPIReady,
+  onIFramePlayerReady: onIFramePlayerReady,
+  onPlayerStateChange: onPlayerStateChange
+}
+
+});

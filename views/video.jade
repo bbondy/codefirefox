@@ -12,13 +12,11 @@ block mainContent
       var videoSlug='#{videoSlug}';
       var lessonSlug='#{videoSlug}';
       var useAmara = #{useAmara};
-      var email = '#{session.email}';
-      var isAdmin = #{session.isAdmin};
-
-    script(src='http://fb.me/react-0.8.0.js')
-    script(src='http://fb.me/JSXTransformer-0.8.0.js')
-    script(src='http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js')
-    script(src='/static/js/video.js')
+      require(['video'], function(video) {
+        this.onYouTubePlayerAPIReady = video.onYouTubePlayerAPIReady;
+        this.onIFramePlayerReady = video.onIFramePlayerReady;
+        this.onPlayerStateChange = video.onPlayerStateChange;
+      });
 
     if useAmara
       script(type='text/javascript', src='http://s3.amazonaws.com/s3.www.universalsubtitles.org/embed.js')
@@ -75,6 +73,3 @@ block mainContent
 
   .card-container
     div#comment-content
-      script(type='text/jsx', src='/static/js/gravatar.js').
-      script(type='text/jsx', src='/static/js/comment.js').
-

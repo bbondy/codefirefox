@@ -13638,7 +13638,7 @@ var VirtualRenderer = function(container, theme) {
         function afterLoad(module) {
             if (_self.$themeValue != theme)
                 return cb && cb();
-            if (!module.cssClass)
+            if (!module || !module.cssClass)
                 return;
             dom.importCssString(
                 module.cssText,

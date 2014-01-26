@@ -1,12 +1,6 @@
 extends layout
 
 block mainContent
-  script.
-    var email = '#{session.email}';
-    var emailHash = '#{emailHash}';
-  script(src='/static/js/gravatar.js', type='text/jsx')
-  script(src='/static/js/userinfo.js', type='text/jsx')
-
   .card-container
       div#user-info(email=session.email)
 
@@ -42,3 +36,9 @@ block mainContent
     if session.isAdmin
       p
         a#del-stats(href="#") Delete stats data for your account
+
+    script.
+      var email = '#{session.email}';
+      var emailHash = '#{emailHash}';
+      require(['jsx!userinfo'], function() {
+      });

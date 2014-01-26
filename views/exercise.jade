@@ -52,14 +52,13 @@ block mainContent
 
   .card-container
     div#comment-content
-      script(type='text/jsx', src='/static/js/gravatar.js').
-      script(type='text/jsx', src='/static/js/comment.js').
 
-block extraScripts
+block extraHead
   script.
     var exerciseSlug ="#{exercise.slug}";
     var lessonSlug ="#{exercise.slug}";
-    var isAdmin = #{session.isAdmin};
-  script(src='/static/js/ace/ace.js', type='text/javascript', charset='utf-8')
-  script(src='/static/js/exercise.js', type='text/javascript', charset='utf-8')
-  script(src='/exercise/' + exercise.slug + '?jsonp=beginParse', type='text/javascript', charset='utf-8')
+    require(['exercise'], function(exercise) {
+      this.beginParse = exercise.beginParse;
+      $.getScript('/exercise/' + lessonSlug + '?jsonp=beginParse', function(){
+      });
+    });
