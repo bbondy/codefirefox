@@ -40,22 +40,14 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
         dataType: 'json',
         success: function(data) {
           console.log('onSuccess data: ' + data);
-          //this.setState({data: data});
+          this.loadCommentsFromServer();
         }.bind(this)
       });
-      this.loadCommentsFromServer();
     },
     loadCommentsFromServer: function() {
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        success: function(data) {
-          this.setState({data: data});
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
+      $.getJSON(this.props.url, function(data) {
+        this.setState({data: data});
+      }.bind(this));
     },
     componentWillMount: function() {
       this.loadCommentsFromServer();
