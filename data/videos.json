@@ -1021,10 +1021,10 @@
         ]
       },
       {
-        "title": "Running tests locally",
+        "title": "Running buildbot tests locally",
         "type": "video",
         "description": "",
-        "slug": "running-tests-locally",
+        "slug": "running-buildbot-tests-locally",
         "youtubeid": "",
         "tags": ["testing"],
         "links": []
