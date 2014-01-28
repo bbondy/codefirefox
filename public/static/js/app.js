@@ -16,7 +16,11 @@ require.config({
     'comment': '/static/js/comment',
 
     'ace': '/static/js/ace/ace.js',
-    'exercise': '/static/js/video'
+    'exercise': '/static/js/video',
+
+    'backbone': 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
+
+    'models': '/static/js/models'
   }
 });
 

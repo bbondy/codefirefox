@@ -13,7 +13,7 @@ var fs = require('fs'),
 exports.init = function(port, callback) {
   exports.redisClient = redis.createClient(port);
   exports.redisClient.on('error', function (err) {
-    console.log('DB: Error ' + err);
+    console.error('DB: Error ' + err);
   });
   exports.initialized = true;
   callback();
@@ -80,7 +80,6 @@ exports.count = function(key, callback) {
       return;
     }
 
-    console.log('the count is: ' + replies.length);
     callback(null, replies.length);
   });
 };
@@ -128,7 +127,7 @@ exports.initVideoData = function(filePath, c) {
   var readData = function() {
     fs.readFile(filePath, 'utf8', function (err,data) {
       if (err) {
-        console.log('DB error: ' + err);
+        console.error('DB error: ' + err);
         return;
       }
 

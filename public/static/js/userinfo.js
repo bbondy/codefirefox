@@ -83,7 +83,7 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
 
       return (
         <div id='profile-container'>
-          <GravatarIcon emailHash={emailHash} size='200' />
+          <GravatarIcon emailHash={emailHash} size='200' url='http://gravatar.com'/>
           <form className='userInfoForm' onSubmit={this.handleSubmit}>
             <label htmlFor='email'>Email</label>
             <input type='text' placeholder='Email' ref='email' id='email' readOnly value={email} />
