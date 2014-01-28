@@ -2,8 +2,11 @@
  * @jsx React.DOM
  */
 
-require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, GravatarIcon) {
+require(['models', 'react', 'showdown', 'jsx!gravatar'], function(models, React, Showdown, GravatarIcon) {
 
+
+  var CommentModel = models.CommentModel;
+  var CommentList = models.CommentList;
   var converter = new Showdown.converter();
 
   /**
@@ -12,42 +15,28 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
    */
   var CommentBox = React.createClass({
     getInitialState: function() {
-      return { data: [] };
+      return { commentList: new CommentList() };
     },
     handleCommentSubmit: function(comment) {
-      var comments = this.state.data;
-      var newComments = comments.concat([comment]);
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        type: 'POST',
-        data: comment,
-        success: function(data) {
-          //this.setState({data: data});
-        }.bind(this)
-      });
+      comment.save();
       this.loadCommentsFromServer();
     },
-    handleCommentRemove: function(commentID) {
+    handleCommentRemove: function(comment) {
       if (!confirm('Are you sure you want to remove this comment?')) {
         return;
       }
 
-      $.ajax({
-        url: this.props.url + commentID,
-        type: 'DELETE',
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function(data) {
-          console.log('onSuccess data: ' + data);
-          this.loadCommentsFromServer();
-        }.bind(this)
-      });
+      console.dir(comment);
+      comment.destroy().done(function() {
+        this.loadCommentsFromServer();
+      }.bind(this));
     },
     loadCommentsFromServer: function() {
-      $.getJSON(this.props.url, function(data) {
-        this.setState({data: data});
+      var commentList = this.state.commentList;
+      commentList.fetch().done(function(){
+        this.setState({ commentList: commentList });
       }.bind(this));
+
     },
     componentWillMount: function() {
       this.loadCommentsFromServer();
@@ -61,8 +50,8 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
         return (
           <div className='commentBox'>
             <h1>Comments</h1>
-            <CommentList
-              data={this.state.data}
+            <CommentListView
+              commentList={this.state.commentList}
               onCommentRemove={this.handleCommentRemove}
             />
             <CommentForm 
@@ -74,7 +63,7 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
         return (
           <div className='commentBox'>
             <h1>Comments</h1>
-            <CommentList data={this.state.data} 
+            <CommentListView commentList={this.state.commentList} 
               onCommentRemove={this.handleCommentRemove}
             />
             <div className='signInMessage'>
@@ -89,18 +78,14 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
   /**
    * Represents a list of comments
    */
-  var CommentList = React.createClass({
+  var CommentListView = React.createClass({
     render: function() {
       var removeComment = this.props.onCommentRemove;
-      var commentNodes = this.props.data.map(function (comment) {
-        return <Comment
-                 displayName={comment.displayName}
-                 daysAgoPosted={comment.daysAgoPosted}
-                 emailHash={comment.emailHash}
-                 commentID={comment.id}
-                 website={comment.website}
+      var commentNodes = this.props.commentList.map(function (comment) {
+        return <CommentView
+                 comment={comment}
                  onCommentRemove={removeComment}
-               >{comment.text}</Comment>;
+               />;
       });
       return (
         <div className='commentList'>
@@ -113,9 +98,7 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
 
   var CommentDeleter = React.createClass({
     removeComment: function() {
-      console.log('removeComment: ' + this.props.commentID);
-      this.props.onCommentRemove(this.props.commentID);
-      console.log('aftercommentremove');
+      this.props.onCommentRemove(this.props.comment);
       return false;
     },
     render: function() {
@@ -138,25 +121,23 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
   /**
    * Represents an individual comment item.
    */
-  var Comment = React.createClass({
+  var CommentView = React.createClass({
     render: function() {
       // This text has HTML manually stripped before it is used
-      var rawMarkup = converter.makeHtml(this.props.children.toString());
-      var website = this.props.website;
-      if (!website)
-        website = '#';
+      var rawMarkup = converter.makeHtml(this.props.comment.get('text'));
+      var website = this.props.comment.get('website');
 
       return (
         <div className='comment'>
-          <GravatarIcon emailHash={this.props.emailHash} size='60' url={website} />
+          <GravatarIcon emailHash={this.props.comment.get('emailHash')} size='60' url={website} />
           <a href={website} target='_blank'>
           <span className='comment-name'>
-            {this.props.displayName}
+            {this.props.comment.get('displayName')}
           </span>
           </a>
-          <CommentDeleter commentID={this.props.commentID} onCommentRemove={this.props.onCommentRemove} />
+          <CommentDeleter comment={this.props.comment} onCommentRemove={this.props.onCommentRemove} />
           <div className='comment-date'>
-            {this.props.daysAgoPosted} ago
+            {this.props.comment.get('daysAgoPosted')} ago
           </div>
           <div className='clear' />
           <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
@@ -175,7 +156,8 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
       if (!text) {
         return false;
       }
-      this.props.onCommentSubmit({text: text});
+      var comment = new CommentModel({text: text});
+      this.props.onCommentSubmit(comment);
       this.refs.text.getDOMNode().value = '';
       return false;
     },
@@ -189,9 +171,8 @@ require(['react', 'showdown', 'jsx!gravatar'], function(React, Showdown, Gravata
     }
   }); 
 
-  var url = '/comments/' + lessonSlug + '/';
   React.renderComponent(
-      <CommentBox url={url} pollInterval={60000} />,
+      <CommentBox url={CommentModel.urlRoot} pollInterval={60000} />,
     document.getElementById('comment-content')
   );
 });

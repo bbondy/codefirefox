@@ -56,8 +56,17 @@ describe('commentController', function() {
   });
 
   it('Adding a comment should pass without an error', function(done) {
-    commentController.addComment(lessonSlug, comment1, function(err, results) {
+    commentController.addComment(lessonSlug, comment1, function(err, newComment) {
       assert(!err);
+      assert(newComment.id > 0);
+      assert(!newComment.displayName.localeCompare(user1.displayName));
+      assert(!newComment.email.localeCompare(comment1.email));
+      assert(newComment.emailHash);
+      assert(!newComment.website.localeCompare(user1.website));
+      assert(!newComment.text.localeCompare(comment1.text));
+      assert(!_.isUndefined(newComment.datePosted));
+      assert(!_.isUndefined(newComment.daysAgoPosted));
+      assert(new Date(newComment.datePosted) <= new Date());
       done();
     });
   });

@@ -424,10 +424,16 @@ exports.postComment = function(req, res) {
   // Add the required email field to the comment
   req.body.email = res.locals.session.email;
 
-  commentController.addComment(req.params.slug, req.body, function(err) {
+  commentController.addComment(req.params.slug, req.body, function(err, newComment) {
     if (err) {
       console.log('Error posting comment: ' + err);
+      res.json({
+                 status: 'failure',
+                 reason: err
+               });
     } else {
+
+      // Construct an email 
       var body = '<p><strong>New comemnt posted:</strong></p><p>' + req.body.text + '</p>';
       body += '<p><a href="http://codefirefox.com/lesson/' + req.params.slug + '">See post!</a>';
       emailController.sendMailToAdmins('New comment posted on slug ' + req.params.slug , body, function(err) {
@@ -436,10 +442,8 @@ exports.postComment = function(req, res) {
         }
       });
     }
-    res.json({
-               status: err ? 'failure': 'success',
-               reason: err
-             });
+
+    res.json(newComment);
   });
 
 };

@@ -10,6 +10,28 @@ var redisController = require('../controllers/redisController.js'),
 
 var KEY_PREFIX = 'comments:lesson:';
 
+/**
+ * Adds the additional comment fields which are generated
+ * and not stored.
+ */
+function addExtraCommentFields(comment, callback) {
+  userController.get(comment.email, function(err, user) {
+    // If there was an error just use undefined properties for displayname and website
+    var userInfo = user ? user.info : {};
+    comment.displayName = userInfo.displayName;
+    if (!comment.displayName) {
+      comment.displayName = comment.email.substring(0, comment.email.indexOf('@'));
+    }
+    if (userInfo.website)
+      comment.website = userInfo.website;
+    var md5sum = crypto.createHash('md5');
+    md5sum.update(comment.email.toLowerCase());
+    comment.emailHash = md5sum.digest('hex');
+    comment.daysAgoPosted = helpers.formatTimeSpan(new Date(comment.datePosted), new Date(), false, true);
+    callback(null, comment);
+  });
+}
+
 
 /**
  * Adds the specified commment to the DB
@@ -36,7 +58,14 @@ exports.addComment = function(lessonSlug, comment, callback) {
     }
 
     comment.id = count;
-    redisController.pushToList(KEY_PREFIX + lessonSlug, comment, callback);
+    redisController.pushToList(KEY_PREFIX + lessonSlug, comment, function(err) {
+      if (err) {
+        callback(err);
+        return;
+      }
+    });
+
+    addExtraCommentFields(comment, callback);
   });
 };
 exports.addCommentPromise = Promise.denodeify(exports.addComment).bind(exports);
@@ -58,20 +87,7 @@ exports.getComments = function(lessonSlug, includeEmails, callback) {
 
     // Get the user info for each one of the returned comments
     async.map(commentList, function(comment, mapCallback) {
-      userController.get(comment.email, function(err, user) {
-        // If there was an error just use undefined properties for displayname and website
-        var userInfo = user ? user.info : {};
-        comment.displayName = userInfo.displayName;
-        if (!comment.displayName) {
-          comment.displayName = comment.email.substring(0, comment.email.indexOf('@'));
-        }
-        comment.website = userInfo.website;
-        var md5sum = crypto.createHash('md5');
-        md5sum.update(comment.email.toLowerCase());
-        comment.emailHash = md5sum.digest('hex');
-        comment.daysAgoPosted = helpers.formatTimeSpan(new Date(comment.datePosted), new Date(), false, true);
-        mapCallback(null, comment);
-      });
+      addExtraCommentFields(comment, mapCallback);
     }, function allDone(err, commentList) {
       if (!includeEmails) {
         commentList.forEach(function(comment) {
