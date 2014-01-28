@@ -2,6 +2,8 @@
  * @jsx React.DOM
  */
 
+ "use strict";
+
 define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
 
   var UserInfoBox = React.createClass({
