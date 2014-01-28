@@ -1,0 +1,25 @@
+In a previous video I went over how buildbot is used to run tests,
+and the tests appear on tbpl, which is right in front of me.
+
+I also went over a high level overview of what each test type does.
+
+In this video I want to show you how to run theses tests locally,
+in the same way that buildbot does.
+
+Now you can always just click the + button to run again, but
+sometimes you'll want to run them locally.
+
+
+./mach help test
+
+./mach test crashtest
+./mach test xpcshell
+./mach test mochitest-1
+./mach test jetpack
+
+
+./mach help test
+
+
+
+In subsequent videos I'll go over running and creating each test type.
