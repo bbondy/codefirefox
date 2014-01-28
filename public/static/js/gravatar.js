@@ -2,6 +2,8 @@
  * @jsx React.DOM
  */
 
+ "use strict";
+
 define(['react'], function(React) {
   var GravatarIcon = React.createClass({
     render: function() {

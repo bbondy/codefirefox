@@ -2,6 +2,7 @@
  * @jsx React.DOM
  */
 
+ "use strict";
 
 require(['models', 'react', 'showdown', 'jsx!gravatar'], function(models, React, Showdown, GravatarIcon) {
 
