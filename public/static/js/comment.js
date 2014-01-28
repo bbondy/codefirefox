@@ -2,6 +2,7 @@
  * @jsx React.DOM
  */
 
+
 require(['models', 'react', 'showdown', 'jsx!gravatar'], function(models, React, Showdown, GravatarIcon) {
 
 
@@ -18,17 +19,19 @@ require(['models', 'react', 'showdown', 'jsx!gravatar'], function(models, React,
       return { commentList: new CommentList() };
     },
     handleCommentSubmit: function(comment) {
-      comment.save();
-      this.loadCommentsFromServer();
+      comment.save().done(function(comment) {
+        console.dir(comment);
+        this.state.commentList.add(comment);
+        this.setState({ commentList: this.state.commentList });
+      }.bind(this));
     },
     handleCommentRemove: function(comment) {
       if (!confirm('Are you sure you want to remove this comment?')) {
         return;
       }
 
-      console.dir(comment);
       comment.destroy().done(function() {
-        this.loadCommentsFromServer();
+        this.setState({ commentList: this.state.commentList });
       }.bind(this));
     },
     loadCommentsFromServer: function() {
