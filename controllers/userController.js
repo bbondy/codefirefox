@@ -3,7 +3,8 @@
 var redisController = require('../controllers/redisController.js'),
  helpers = require('../helpers'),
  async = require('async'),
- Promise = require('promise');
+ Promise = require('promise'),
+ _ = require('underscore');
 
 /**
  * Obtains a bunch of user info and returns a User object
@@ -127,9 +128,18 @@ exports.set = function(username, user, callback) {
         return;
       }
       info = info || { };
-      info.displayName = user.displayName || info.displayName;
-      info.website = user.website || info.website;
-       redisController.set(loginInfoKey, info, callback);
+      if (!_.isUndefined(user.displayName))
+        info.displayName = user.displayName;
+      if (!_.isUndefined(user.website))
+        info.website = user.website;
+      redisController.set(loginInfoKey, info, function(err) {
+        if (err) {
+          callback(err);
+          return;
+        }
+        
+        exports.get(username, callback);
+      });
     });
 };
 
