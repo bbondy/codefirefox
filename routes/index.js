@@ -405,7 +405,7 @@ exports.exercise = function(req, res, next) {
  */
 exports.postComment = function(req, res) {
   if (!req.params.slug) {
-    console.log('No slug when posting a comment!');
+    console.error('No slug when posting a comment!');
     res.json({ 
                status: "failure",
                reason: "Slug must be specified!",
@@ -413,7 +413,7 @@ exports.postComment = function(req, res) {
     return;
   }
   if (!res.locals.session.email) {
-    console.log('User must be logged in to post a comment');
+    console.error('User must be logged in to post a comment');
     res.json({ 
                status: "failure",
                reason: "User must be logged in to post a comment!",
@@ -426,7 +426,7 @@ exports.postComment = function(req, res) {
 
   commentController.addComment(req.params.slug, req.body, function(err, newComment) {
     if (err) {
-      console.log('Error posting comment: ' + err);
+      console.error('Error posting comment: ' + err);
       res.json({
                  status: 'failure',
                  reason: err
@@ -454,7 +454,7 @@ exports.postComment = function(req, res) {
  */
 exports.postUserInfo = function(req, res) {
   if (!res.locals.session.email) {
-    console.log('User must be logged in to post a comment');
+    console.error('User must be logged in to post a comment');
     res.json({
                status: "failure",
                reason: "User must be logged in to post information!",
@@ -462,14 +462,15 @@ exports.postUserInfo = function(req, res) {
     return;
   }
 
-  userController.set(res.locals.session.email, req.body, function(err) {
+  userController.set(res.locals.session.email, req.body, function(err, user) {
     if (err) {
-      console.log('Error posting user information: ' + err);
+      console.error('Error posting user information: ' + err);
+      res.json({
+                 status: err ? 'failure': 'success',
+                 reason: err
+               });
     }
-    res.json({
-               status: err ? 'failure': 'success',
-               reason: err
-             });
+    res.json(user);
   });
 
 };
@@ -496,7 +497,7 @@ exports.checkCode = function(req, res) {
         var statusMessage = "okay";
         var reason = "";
         if (err) {
-          console.log(err);
+          console.error(err);
           statusMessage = "failure";
           reason = err;
         } else {
@@ -514,7 +515,7 @@ exports.checkCode = function(req, res) {
 
       });
     } catch (e) {
-      console.log(e);
+      console.error(e);
       res.json({
                  status: "failure",
                  reason: e

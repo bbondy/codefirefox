@@ -8,31 +8,28 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
 
   var UserInfoBox = React.createClass({
     getInitialState: function() {
-      return { data: [] };
+      return { userInfo: {} };
     },
     handleSubmit: function(userInfo) {
-      this.setState({data: userInfo});
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        type: 'POST',
-        data: userInfo,
-        success: function(data) {
-          //this.setState({data: data});
-        }.bind(this)
-      });
+      this.setState({userInfo: userInfo});
+
+      clearTimeout(this.timeoutID);
+      this.timeoutID = window.setTimeout(function() {
+        $.ajax({
+          url: this.props.url,
+          dataType: 'json',
+          type: 'POST',
+          data: userInfo,
+          success: function(userInfo) {
+            this.setState({userInfo: userInfo});
+          }.bind(this)
+        });
+      }.bind(this), 500);
     },
     loadFromServer: function() {
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        success: function(data) {
-          this.setState({data: data});
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
+      $.getJSON(this.props.url, function(userInfo) {
+        this.setState({userInfo: userInfo});
+      }.bind(this));
     },
     componentWillMount: function() {
       this.loadFromServer();
@@ -43,7 +40,7 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
           <h1>User Information</h1>
           <UserInfoForm 
             onUserInfoSubmit={this.handleSubmit}
-            userInfo={this.state.data}
+            userInfo={this.state.userInfo}
           />
         </div>
       );
@@ -58,6 +55,7 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
       var displayName = this.refs.displayName.getDOMNode().value.trim();
       var website = this.refs.website.getDOMNode().value.trim();
       this.props.onUserInfoSubmit({ displayName: displayName, website: website });
+
       // Return false to cancel default page submit action
       return false;
     },
@@ -68,13 +66,11 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
     },
     handleDisplayNameChange: function(event) {
       this.setState({ displayName: event.target.value });
-      clearTimeout(this.timeoutID);
-      this.timeoutID = window.setTimeout(this.handleSubmit, 1000);
+      this.handleSubmit();
     },
     handleWebsiteChange: function(event) {
       this.setState({ website: event.target.value });
-      clearTimeout(this.timeoutID);
-      this.timeoutID = window.setTimeout(this.handleSubmit, 1000);
+      this.handleSubmit();
     },
     render: function() {
       // Hack becuase getINitialState doesn't have this.props available
