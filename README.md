@@ -54,9 +54,10 @@ Versions
 Install node.js (Current Version: v0.10.20)
 redis-server: https://github.com/MSOpenTech/redis/ (Windows based on Redis 2.6. The latest version merged in 2.6.12)
 
-Dependencies
-============
+Server side dependencies
+========================
 
+- Node
 - express
 - stylus
 - jade
@@ -65,6 +66,13 @@ Dependencies
 - acorn.js
 - underscore
 - prettyjson
+
+Client side dependencies
+========================
+
+- Backbone.js
+- React
+- RequireJS
 
 Checklist for posting new videos
 ================================
