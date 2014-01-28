@@ -1130,12 +1130,18 @@
       },
       {
         "title": "Reviewing a patch",
+        "datePosted": "January 28, 2014 9:00 AM",
         "type": "video",
         "description": "",
         "slug": "reviewing-patch",
-        "youtubeid": "",
+        "youtubeid": "1sO27a_DkY8",
         "tags": ["review"],
-        "links": []
+        "links": [
+          {
+            "title": "Reviewer Checklist on MDN",
+            "url": "https://developer.mozilla.org/en-US/docs/Developer_Guide/Reviewer_Checklist"
+          }
+        ]
       }
     ]
   },

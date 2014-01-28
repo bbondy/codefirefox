@@ -9,8 +9,15 @@ in the same way that buildbot does.
 Now you can always just click the + button to run again, but
 sometimes you'll want to run them locally.
 
+---
+
+We're going to use the mach test command.
+And to see the parameters we can pass, we can type ./mach help test
 
 ./mach help test
+
+
+So for example if I wanted to run all of the crash tests
 
 ./mach test crashtest
 ./mach test xpcshell
