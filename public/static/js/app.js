@@ -24,7 +24,7 @@ require.config({
   }
 });
 
-require(['jquery', 'underscore', 'persona'], function(jquery) {
+require(['analytics', 'jquery', 'underscore', 'persona'], function(jquery) {
   $(document.links).filter(function() {
       return this.hostname != window.location.hostname;
   }).attr('target', '_blank');
