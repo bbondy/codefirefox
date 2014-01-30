@@ -371,25 +371,32 @@ block mainContent
     h1 Automated test run examples (TODO: Needs updating use mach instead)
     ul
       li: :markdown
-        mochitest-plain:  
-        TEST\_PATH=content/html/content/test make -C $(OBJDIR) mochitest-plain
+        All xpcshell tests  
+        > ./mach xpcshell-test
       li: :markdown
-        mochitest-chrome: (like a mochitest but with chrome privs)  
-        TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-chrome
-      li: :markdown
-        mochitest-browser-chrome: (Chrome JS tests)  
-        TEST\_PATH=widget/tests/ make -C $(OBJDIR) mochitest-browser-chrome
-      li: :markdown
-        xpcshell test, whole directory:  
-        cd $(OBJDIR)  
-        make -C widget/tests/ xpcshell-tests
+        xpcshell entire directory  
+        > ./mach xpcshell-test dir-path
       li: :markdown
         xpcshell single test:  
-        cd $(OBJDIR)  
-        make SOLO\_FILE="testname.js" -C widget/tests/ check-one
+        > ./mach xpcshell-test file-path
       li: :markdown
-        reftests:  
-        TEST\_PATH=image/test/reftest/reftest.list make -C obj-i686-pc-mingw32 reftest
+        All reftests:  
+        > ./mach reftest
+      li: :markdown
+        All reftests in a .list file:  
+        > ./mach reftest file-path.list
+      li: :markdown
+        Reftest single test:  
+        > ./mach reftest file-path.list --filter .*testname.*
+      li: :markdown
+        mochitest-plain:  
+        > ./mach mochitest-plain
+      li: :markdown
+        mochitest-chrome: (like a mochitest but with chrome privs)  
+        > ./mach mochitest-chrome
+      li: :markdown
+        mochitest-browser
+        > ./mach mochitest-browser
 
   .card-container
     h1 Troubleshooting build problems
