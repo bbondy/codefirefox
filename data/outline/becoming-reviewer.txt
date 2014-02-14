@@ -1,0 +1,36 @@
+links: http://www.mozilla.org/hacking/module-ownership.html
+https://wiki.mozilla.org/Modules/All
+
+I just wnated to do a quick video on how to actually become a module peer.
+
+First you should ask yourself why?
+The answer should probably go something like: Your'e highly interested in this type of code, and you want to be more involved with it.
+
+Your biggest responsiblity in becoming a peer on a module will be code reviews.
+
+----
+
+The first thing you want to do is to prove expertise in the area of the module.
+To do that you need to basically create a lot of patches, and fix a lot of bugs in that module.
+A good way to do this is to go in bugzilla under the component in question, and read through the bugs.
+Then pick some and work on them.
+
+> Show a bugzilla component
+
+You also want show that you care about the component, that means help triage bugs and mentor bugs in that component. 
+
+One way to keep up to date on a component is to watch the component in Bugzilla
+
+> Show them the preference for component watching in Bugzilla
+
+
+By doing a lot of bugs in the component, you'll quickly show expertise, or learn expertise.
+You'll also learn about things to look out for in reviews naturally.
+
+----
+
+After a while, when you have a lot of patches in, and you feel comfortable, you can feel free to email a module owner or peer and asking them.
+If you've been doing a lot of patches and showing a lot of promise, there should be no problem adding you as a reviewer.
+
+In all honesty as you do a lot of patches, you'll probably naturally fall into the role of a module peer. 
+The appointment as a peer will just be a formalization of a role you're already performing.
