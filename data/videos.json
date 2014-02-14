@@ -1116,17 +1116,45 @@
   },
 
   {
-    "title": "Reviewing code",
+    "title": "Module ownership and reviewing code",
     "slug": "reviewing-code",
     "videos": [
+      {
+        "title": "Modules, owners, and peers",
+        "datePosted": "February 14, 2014 9:00 AM",
+        "type": "video",
+        "description": "",
+        "slug": "modules-owners-peers",
+        "youtubeid": "sHUiUJeKM80",
+        "tags": ["review", "ownership"],
+        "links": [
+          {
+            "title": "Mozilla modules and module owners",
+            "url": "http://www.mozilla.org/hacking/module-ownership.html"
+          },
+          {
+            "title": "All module owners",
+            "url": "https://wiki.mozilla.org/Modules/All"
+          }
+        ]
+      },
       {
         "title": "Becoming a reviewer",
         "type": "video",
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "",
-        "tags": ["review"],
-        "links": []
+        "tags": ["review", "ownership"],
+        "links": [
+          {
+            "title": "Mozilla modules and module owners",
+            "url": "http://www.mozilla.org/hacking/module-ownership.html"
+          },
+          {
+            "title": "All module owners",
+            "url": "https://wiki.mozilla.org/Modules/All"
+          }
+        ]
       },
       {
         "title": "Reviewing a patch",
@@ -1135,7 +1163,7 @@
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "1sO27a_DkY8",
-        "tags": ["review"],
+        "tags": ["review", "ownership"],
         "links": [
           {
             "title": "Reviewer Checklist on MDN",
