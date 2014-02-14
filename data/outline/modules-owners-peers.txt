@@ -1,0 +1,32 @@
+links: http://www.mozilla.org/hacking/module-ownership.html
+https://wiki.mozilla.org/Modules/All
+
+Mozilla has a lot of code, and this code is split up into modules.
+Each module has an owner and peers who help the owner.
+
+Module owners and peers will be listed here:
+https://wiki.mozilla.org/Modules/All
+
+
+----
+
+For each module there's a name, a description of what it is.
+Usually one, but sometimes multiple owners
+A list of peers
+Source directories (if applicable, not all modules are about code)
+Discussion groups for that module, and URLs that are helping for that module.
+
+-----
+
+So what are the responsibilities of these owners and peers?
+Overall, an owner, and peers of a module are people who make decisions about a module.
+A decision often boils down to a code review, approving code to go in that section fo code.
+... but it's actually a lot more than just that....
+
+-----
+
+Reponsibilities include: maintaining the code, making sure the code has tests,
+improving it, triaging it, documenting it, reviewing it, having a vision for it, comunity involvement, etc..
+
+A module owner doesn't take on all of these tasks on by themselves, they enlist module peers to help them. 
+A module peer does basically the same thing as a module owner.
