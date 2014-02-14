@@ -7,7 +7,6 @@ Each module has an owner and peers who help the owner.
 Module owners and peers will be listed here:
 https://wiki.mozilla.org/Modules/All
 
-
 ----
 
 For each module there's a name, a description of what it is.
