@@ -36,9 +36,8 @@ block mainContent
       if video.tags.length > 0
         #tags
           span Tags:
-          ul
             each tag in video.tags
-              li
+              .tag
                 a(href='/tagged/' + tag, rel='tag')= tag
 
       #subnav

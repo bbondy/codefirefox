@@ -4,8 +4,7 @@ block mainContent
   .card-container
     h1 All tags
     #tags
-      ul
-        each tag in tags
-          li
-            a(href='/tagged/' + tag.name, rel='tag')= tag.name
-            span= ' x ' + tag.count
+      each tag in tags
+        div.tag
+          a(href='/tagged/' + tag.name, rel='tag')= tag.name
+          span= ' x ' + tag.count
