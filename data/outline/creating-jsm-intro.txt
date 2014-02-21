@@ -6,20 +6,8 @@ Creating a JavaScript module consists of 2 parts:
 
 ---
 
-A JavaScript module is just like any other JavaScript file, except that it has a special array called EXPORTED_SYMBOLS.
-This EXPORTED_SYMBOLS array lists one or more JavaScript objects, functions, or variables that you want to export.
-
-When you import a JSM, the items listed in EXPORTED_SYMBOLS will be imported into the current scope.
-You can also specify an object to import into so that you don't pollute the local scope which may contain conflicting symbols.
-
----
-
-A special property of a JavaScript module is that it's cached and shared. 
-So that when you load it a second time it doesn't get a second copy, it's shared.
-
-
 Why would you want to create a JavaScript module?
-You may want to compartmentalize part of your code into a logical unit, you may want to share state between different scopes,
+You may want to compartmentallize part of your code into a logical unit, you may want to share state between different scopes,
 you may want to share the code amongst multiple front ends.
 
 ---
@@ -45,6 +33,14 @@ var myObj2 = { x: "hello" };
 
 ---
 
+A JavaScript module is just like any other JavaScript file, except that it has a special array called EXPORTED_SYMBOLS.
+This EXPORTED_SYMBOLS array lists one or more JavaScript objects, functions, or variables that you want to export.
+
+When you import a JSM, the items listed in EXPORTED_SYMBOLS will be imported into the current scope.
+You can also specify an object to import into so that you don't pollute the local scope which may contain conflicting symbols.
+
+---
+
 You need to have a way for other parts of the code to know about your JavaScript module, to do this oyu should register it.
 To register it simply add to a moz.build file where you want your code ot live.
 
@@ -57,12 +53,12 @@ To include the extra jsm file.
 
 To register it you need to add an entry to the chrome.manifest file:
 resource aliasname path/to/modules/
-Components.utils.import("resource://modules/mymodule.jsm");
+Components.utils.import("resource:///modules/mymodule.jsm");
 
 ---
 
 Now to test this out we'll open scratchpad, and make sure we're inside the chrome elevated context:
-> Components.utils.import("resource://modules/mymodule.jsm", obj);
+> Components.utils.import("resource:///modules/mymodule.jsm", obj);
 > obj.add(3,4);
 
 Hitting display shows 7.
@@ -71,14 +67,19 @@ As mentioned, you can import into an existing scope as well.
 
 When you're done you can use 
 > var obj1 = { };
-> Components.utils.import("resource://modules/mymodule.jsm", obj1);
+> Components.utils.import("resource:///modules/mymodule.jsm", obj1);
 > obj1.x = 100;
 > obj1.myObj // is an object
 > obj1.myObj2 // is undefined
+> obj1.myObj.x // hello
+> obj1.myObj.x = "goodbye"
+
+A special property of a JavaScript module is that it's cached and shared. 
+So that when you load it a second time it doesn't get a second copy, it's shared.
 
 But recall that the module is shared, even across scopes.
 So if you import a second time:
 > var obj2 = {};
 > Components.utils.import("resource://modules/mymodule.jsm", obj2);
-> obj1.x
-And hit display, it'll show 3.
+> obj2.myObj.x = "goodbye"
+> obj1.myObj.x // goodbye
