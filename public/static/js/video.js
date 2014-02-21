@@ -20,7 +20,6 @@ function onYouTubePlayerAPIReady() {
 }
 
 function initPlayer(player) {
-  player.setPlaybackQuality('hd1080');
   player.playVideo();
   player.addEventListener("onStateChange", "onPlayerStateChange");
 }
