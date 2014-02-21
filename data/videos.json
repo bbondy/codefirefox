@@ -848,11 +848,12 @@
         ]
       },
       {
-        "title": "Writing JavaScript modules",
+        "title": "Creating a JavaScript module (JSM)",
+        "datePosted": "February 21, 2014 9:00 AM",
         "type": "video",
         "description": "",
         "slug": "creating-javascript-modules",
-        "youtubeid": "",
+        "youtubeid": "XqZ14OByVdY",
         "tags": ["JavaScript"],
         "links": [
           {
