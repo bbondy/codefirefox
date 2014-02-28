@@ -1,0 +1,12 @@
+Based on the mission itself, there's a lot of good intrinsic reasons to contribute to Mozilla, as described in the last video.
+
+But in this video I wanted to focus a bit more on taking full advantage of the contributions you will make to Mozilla.
+
+- Add a link to your bugzilla profile to your resume
+- Add a link to the actual source code that you made to your website
+- Add a link to your pushlog hg.mozilla.org/mozilla-central/pushloghtml?user=bbondy@mozilla.com
+- If you don't have a lot of work experience on your resume, Add Mozilla contributor to your resume
+  It's not deceptive in any way if you clearly indicate that you are a contributor.
+- Fork the project mozilla/gecko-dev on github, so that your github profile includes your contributions.
+- Try to get added to a mozilla repository so Mozilla shows up on github on your profile
+- Create a Mozillians profile
