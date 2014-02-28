@@ -4,11 +4,12 @@
     "slug": "motivation",
     "videos": [
       {
-        "title": "What Mozilla is all about",
+        "title": "Introduction to Mozilla and Code Firefox",
+        "datePosted": "February 28, 2013 7:00 AM",
         "type": "video",
         "description": "",
         "slug": "what-is-mozilla",
-        "youtubeid": "",
+        "youtubeid": "dv24V0qjZPQ",
         "tags": [],
         "links": [
           {
@@ -18,11 +19,12 @@
         ]
       },
       {
-        "title": "Marketing yourself as a contributor",
+        "title": "Marketing your contributions",
+        "datePosted": "February 28, 2013 8:20 AM",
         "type": "video",
         "description": "",
         "slug": "marketing-yourself",
-        "youtubeid": "",
+        "youtubeid": "_gjj2KHcFkg",
         "tags": [],
         "links": []
       },

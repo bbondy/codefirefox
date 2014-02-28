@@ -1,47 +1,39 @@
-Mozilla is mission oriented.
-Mozilla exists to make the internet better, and not to maximize profit.
+Mozilla is a non profit company, which means it's mission oriented.
+Mozilla exists to make the Internet better, and not to maximize profit.
 
+To Mozilla, a better Internet includes:
+1) Keeping it open, and not owned by any single company.
 
 We don't want any one vendor, including us, to have control over the internet.
-
 How can we make sure no one will control the internet?
+- Make sure that there's a good specification so other people can come along and implement them
 - Make sure the technology is not encombered by patents so people are allowed to implement it
-- Make sure that there's a good specification so other people can come along and implement it
-- We use open source code
-We don't gain a competitive edge by doing this, it takes longer to get things standardized,
-but it's the right thing to do.
+- Make sure that we are open by default at Mozilla.
+  Most mailing lists, meetings, notes, bugs, and source code, is completely open.
 
+A better Internet also includes:
+2) Innovating on the Internet
+Some of that innovation will come from us, some of it will come from competitors in the browser market. 
+In either case, Mozilla considers innovation on the Internet a win, as long as it is open as previously discussed.
 
-The organization chart is independent from people's influence.
+A better Internet also includes:
+3) Creating opportunity on the Internet, and this can include commercial involvement, 
+Mozilla is a not for profit company, but it fully understands that for profit companies benefit the Internet.
+
+  - A better internet includes respecting your privacy
+  - A better internet incldues keeping it teachable.
+
+Why is a great place to contribute to, because:
+At our core, we encourage things to be teachable, open, and hackable.
+Mozilla is community oriented, which means whether you're an employee, or a first time contributor you are treated the same in every way.
+
+We don't gain a competitive edge by doing things aligned with our mission, it sometimes takes longer to get things standardized for
+example, but it's the right thing to do.
+
+The organization chart is independent from people's influence, in fact contributors have just as much decision making power as employees.
 No one person is a super power, everyone has a voice, as long as they can logically reason.
 We don't normally do things because a manager or someone told us we have to.
-
-The code at Mozilla, at least for Firefox and platform, is divideded into modules.
-And each module has an owner, and peers.
-People are made a module owner or peer, because they are believed to be capable of making
-good decisions about that module.
-This module system is completely unrelated to the org chart.
-A peer, and an owner can be an employee, a contributor, or even someone from a different company.
-The module ownership system isn't about bestowing privleges upon people, it's about documenting how things already works.
-
-
-
 
 Mozilla attracts great people (employees and contributors) because those people believe
 that the best thing they can do with their time, and the best way they can have an impact
 in thier life, is to help Mozilla.
-
-Things are open by default at Mozilla.
-Most mailing lists, meetings, notes, bugs, and source code, is completely open for participation.
-If there is a private message, a common response is: Why isn't this public?
-
-But there are good reasons to keep some things private, for example:
-- There could be a partner, or OEM, that is not open
-- There may be a security, or privacy threat that should remain private until the fix is released.
-- There may be a negotiation about a deal or standard
-- HR issues
-
-This openess is why Mozilla is a great choice to contribute to Mozilla.
-
-
-
