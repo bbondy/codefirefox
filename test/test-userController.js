@@ -57,7 +57,7 @@ describe('userController', function() {
   });
 
   it('Setting user info should update that user info', function(done) {
-    var user_ = { displayName : 'hello', website: 'http://www.brianbondy.com' };
+    var user_ = { displayName : 'hello', website: 'http://www.brianbondy.com', bugzilla: 'netzen@gmail.com' };
     userController.set(username, user_, function(err) {
       assert(!err);
       userController.get(username, function(err, user) {
@@ -70,6 +70,7 @@ describe('userController', function() {
         assert(new Date(user.info.rawDateJoined) < new Date(user.info.rawDateLastLogin));
         assert(!user.info.displayName.localeCompare(user_.displayName), user.displayName + ' not the same as: ' + user.info.displayName);
         assert(!user.info.website.localeCompare(user_.website));
+        assert(!user.info.bugzilla.localeCompare(user_.bugzilla));
         done();
       });
     });
@@ -84,6 +85,7 @@ describe('userController', function() {
       assert(user.info.dateJoined);
       assert(user.info.dateLastLogin);
       assert(user.info.website);
+      assert(user.info.bugzilla);
       assert(user.info.displayName);
       assert(new Date(user.info.rawDateJoined) <= new Date(user.info.rawDateLastLogin));
       done();
@@ -91,7 +93,7 @@ describe('userController', function() {
   });
 
   it('Overwrriting user info should update that user info', function(done) {
-    var user_ = { displayName : 'hello2', website: 'http://brianbondy.com/#2' };
+    var user_ = { displayName : 'hello2', website: 'http://brianbondy.com/#2', bugzilla: 'bbondy@gmail.com' };
     userController.set(username, user_, function(err) {
       assert(!err);
       userController.get(username, function(err, user) {
@@ -104,6 +106,7 @@ describe('userController', function() {
         assert(new Date(user.info.rawDateJoined) < new Date(user.info.rawDateLastLogin));
         assert(!user.info.displayName.localeCompare(user_.displayName), user.displayName + ' not the same as: ' + user.info.displayName);
         assert(!user.info.website.localeCompare(user_.website));
+        assert(!user.info.bugzilla.localeCompare(user_.bugzilla));
         done();
       });
     });

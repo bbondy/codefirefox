@@ -132,6 +132,8 @@ exports.set = function(username, user, callback) {
         info.displayName = user.displayName;
       if (!_.isUndefined(user.website))
         info.website = user.website;
+      if (!_.isUndefined(user.bugzilla))
+        info.bugzilla = user.bugzilla;
       redisController.set(loginInfoKey, info, function(err) {
         if (err) {
           callback(err);

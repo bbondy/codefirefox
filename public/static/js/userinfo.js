@@ -54,7 +54,8 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
     handleSubmit: function() {
       var displayName = this.refs.displayName.getDOMNode().value.trim();
       var website = this.refs.website.getDOMNode().value.trim();
-      this.props.onUserInfoSubmit({ displayName: displayName, website: website });
+      var bugzilla = this.refs.bugzilla.getDOMNode().value.trim();
+      this.props.onUserInfoSubmit({ displayName: displayName, website: website, bugzilla: bugzilla });
 
       // Return false to cancel default page submit action
       return false;
@@ -62,14 +63,20 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
     getInitialState: function() {
       // TODO: hmmm this.props.userInfo doesn't exist yet...????
       // Instead I added a hack below in render
-      return {displayName: this.props.userInfo.displayName, website: this.props.userInfo.website };
+      return {displayName: this.props.userInfo.displayName, website: this.props.userInfo.website, bugzilla: this.props.userInfo.bugzilla };
     },
     handleDisplayNameChange: function(event) {
       this.setState({ displayName: event.target.value });
       this.handleSubmit();
     },
     handleWebsiteChange: function(event) {
+      console.log('website');
       this.setState({ website: event.target.value });
+      this.handleSubmit();
+    },
+    handleBugzillaChange: function(event) {
+      console.log('bugzilla');
+      this.setState({ bugzilla: event.target.value });
       this.handleSubmit();
     },
     render: function() {
@@ -78,10 +85,13 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
         this.state.displayName = this.props.userInfo.displayName;
       if (!this.state.website)
         this.state.website = this.props.userInfo.website;
+      if (!this.state.bugzilla)
+        this.state.bugzilla = this.props.userInfo.bugzilla;
 
       return (
         <div id='profile-container'>
           <GravatarIcon emailHash={emailHash} size='200' url='http://gravatar.com'/>
+          <div id='user-info-fields'>
           <form className='userInfoForm' onSubmit={this.handleSubmit}>
             <label htmlFor='email'>Email</label>
             <input type='text' placeholder='Email' ref='email' id='email' readOnly value={email} />
@@ -89,7 +99,11 @@ define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
             <input type='text' placeholder='Display name shown for posting comments' ref='displayName' id='displayName' value={this.state.displayName } onChange={this.handleDisplayNameChange} />
             <label htmlFor='website'>Website</label>
             <input type='url' placeholder='Website linked when posting comments' ref='website' id='website' value={this.state.website } onChange={this.handleWebsiteChange} />
+            <label htmlFor='bugzilla'>Bugzilla Email</label>
+            <input type='text' placeholder='Bugzilla email' ref='bugzilla' id='bugzilla' value={this.state.bugzilla} onChange={this.handleBugzillaChange} />
           </form>
+          </div>
+          <div className='clear'/>
         </div>
       );
     }
