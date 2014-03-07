@@ -13,79 +13,84 @@ html(lang="en")
     link(rel='stylesheet', type='text/css', href='/static/css/main.css')
     link(rel='stylesheet', type='text/css', href='/static/css/persona-buttons.css')
     link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
+    link(href='//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css', rel='stylesheet')
 
     script(src='/static/js/require.js' data-main='/static/js/app')
     block extraHead
 
   body(id= bodyID)
-    script.
-      var email="#{session.email}";
-      var isAdmin = #{session.isAdmin};
+    #page-container
+      script.
+        var email="#{session.email}";
+        var isAdmin = #{session.isAdmin};
 
-    .wrapper
-      #header
-        a(href='/')
-          img#logo(src='/static/img/logo.png')
-        a(href='https://twitter.com/codefirefox', target='_blank')
-          img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
-        #navbar
-          ul
-            li
-              a#navbar-lessons(href='/') Lessons
-            li
-              a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
-            if session.email
+      .wrapper
+        #header
+          a(href='/')
+            img#logo(src='/static/img/logo.png')
+            //a(href='https://twitter.com/codefirefox', target='_blank')
+            //img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
+
+          a#tabzilla(href='/en-US/', id='tabzilla') mozilla
+          #navbar
+            ul
               li
-                a#navbar-profile(href='/profile') Profile
-            li
-              a#navbar-tags(href='/tags') Tags
-            li
-              a#navbar-about(href='/about') About
+                a#navbar-lessons(href='/') Lessons
+              li
+                a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
+              if session.email
+                li
+                  a#navbar-profile(href='/profile') Profile
+              li
+                a#navbar-tags(href='/tags') Tags
+              li
+                a#navbar-about(href='/about') About
 
-        span.persona-buttons
+          span.persona-buttons
+            if session.email
+              a#logout(class='persona-button', href='#')
+                span Logout
+            else
+              a#login(class='persona-button', href='#')
+                span Login
+
+          block header
+
+        #page
+          h1#mainTitle= mainTitle
+          #mainContent
+            block mainContent
+        .push
+
+      #footer
+        ul.navigation
+          li
+            a(href='/') Lessons
+          li
+            a(href='/cheatsheet') Cheatsheet
           if session.email
-            a#logout(class='persona-button', href='#')
-              span Logout
-          else
-            a#login(class='persona-button', href='#')
-              span Login
-
-        block header
-
-      #page
-        h1#mainTitle= mainTitle
-        #mainContent
-          block mainContent
-      .push
-
-    #footer
-      ul.navigation
-        li
-          a(href='/') Lessons
-        li
-          a(href='/cheatsheet') Cheatsheet
-        if session.email
+            li
+              a(href='/profile') Profile
           li
-            a(href='/profile') Profile
-        li
-          a(href='/tags') Tags
-        li
-          a(href='/about') About
-        if session.isAdmin && session.email
+            a(href='/tags') Tags
           li
-            a(href='/admin') Admin
-      ul.social
-        li
-          a(href='https://twitter.com/codefirefox')
-            i(class='fa fa-twitter fa-2x')
-        li
-          a(href='/rss')
-            i(class='fa fa-rss fa-2x')
-        li
-          a(href='http://github.com/bbondy/codefirefox')
-            i(class='fa fa-github fa-2x')
-        li
-          a(href='http://www.youtube.com/user/bbondy/videos')
-            i(class='fa fa-youtube-square fa-2x')
+            a(href='/about') About
+          if session.isAdmin && session.email
+            li
+              a(href='/admin') Admin
+        ul.social
+          li
+            a(href='https://twitter.com/codefirefox')
+              i(class='fa fa-twitter fa-2x')
+          li
+            a(href='/rss')
+              i(class='fa fa-rss fa-2x')
+          li
+            a(href='http://github.com/bbondy/codefirefox')
+              i(class='fa fa-github fa-2x')
+          li
+            a(href='http://www.youtube.com/user/bbondy/videos')
+              i(class='fa fa-youtube-square fa-2x')
 
-    block extraScripts
+      block extraScripts
+      script(src='//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js')
