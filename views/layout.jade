@@ -45,6 +45,10 @@ html(lang="en")
                 a#navbar-tags(href='/tags') Tags
               li
                 a#navbar-about(href='/about') About
+              li
+                a#follow-on-twitter(href='https://twitter.com/codefirefox')
+                  //@codefirefox
+                  i(class='fa fa-twitter')
 
           span.persona-buttons
             if session.email
@@ -53,6 +57,8 @@ html(lang="en")
             else
               a#login(class='persona-button', href='#')
                 span Login
+
+
 
           block header
 
