@@ -1,31 +1,43 @@
 require.config({
-  baseUrl: '/static/js',
+  baseUrl: '/static/js/build/',
+   shim: {
+    'backbone': {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
+    },
+    'underscore': {
+      exports: '_'
+    },
+    'jquery': {
+      exports: '$'
+    }
+  },
   paths: {
     'jquery': 'http://code.jquery.com/jquery-1.11.0.min',
-    'underscore': '/static/js/underscore-min',
-    'acorn': '/static/js/acorn',
-    'codecheck': '/static/js/codecheck',
-    'analytics': '/static/js/analytics',
+    'underscore': 'underscore-min',
+    'acorn': 'acorn',
+    'codecheck': 'codecheck',
+    'analytics': 'analytics',
     'persona': 'https://login.persona.org/include',
-    'react': 'http://fb.me/react-0.8.0',
-    'JSXTransformer': 'JSXTransformer',
+    'react': 'react',
+    //'react': 'http://fb.me/react-0.8.0',
     'showdown': 'http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min',
 
-    'video': '/static/js/video',
-    'gravatar': '/static/js/gravatar',
-    'comment': '/static/js/comment',
+    'video': 'video',
+    'gravatar': 'gravatar',
+    'comment': 'comment',
 
-    'ace': '/static/js/ace/ace.js',
-    'exercise': '/static/js/video',
+    'ace': 'ace/ace.js',
+    'exercise': 'video',
 
     'backbone': 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
 
-    'models': '/static/js/models',
+    'models': 'models',
     'tabzilla': 'http://mozorg.cdn.mozilla.net/tabzilla/tabzilla'
   }
 });
 
-require(['analytics', 'jquery', 'underscore', 'persona', 'tabzilla'], function() {
+require(['analytics', 'jquery', 'underscore', 'persona', 'tabzilla'], function(analytics, $) {
   $(document.links).filter(function() {
       return this.hostname != window.location.hostname;
   }).attr('target', '_blank');

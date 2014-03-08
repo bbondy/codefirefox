@@ -1,4 +1,4 @@
-define(['jquery', '/static/js/ace/ace.js', 'jsx!comment', 'acorn', 'codecheck'], function(jQuery, ace_, comment, acorn, CodeCheck) {
+define(['jquery', '/static/js/ace/ace.js', 'comment', 'acorn', 'codecheck'], function(jQuery, ace_, comment, acorn, CodeCheck) {
   var gLastSubmittedText;
   var gAssertions;
   var gWasSatisfied = false;
