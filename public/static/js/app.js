@@ -20,11 +20,12 @@ require.config({
 
     'backbone': 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
 
-    'models': '/static/js/models'
+    'models': '/static/js/models',
+    'tabzilla': 'http://mozorg.cdn.mozilla.net/tabzilla/tabzilla'
   }
 });
 
-require(['analytics', 'jquery', 'underscore', 'persona'], function(jquery) {
+require(['analytics', 'jquery', 'underscore', 'persona', 'tabzilla'], function() {
   $(document.links).filter(function() {
       return this.hostname != window.location.hostname;
   }).attr('target', '_blank');
