@@ -36,3 +36,6 @@ main.css
 
 #Project config file with secrets in it
 data/config.json
+
+#Built files
+public/static/js/build

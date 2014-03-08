@@ -1,4 +1,4 @@
-define(['jsx!comment'], function() {
+define(['comment'], function() {
 
 if (!useAmara) {
   var tag = document.createElement('script');

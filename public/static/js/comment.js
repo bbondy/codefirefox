@@ -4,7 +4,7 @@
 
  "use strict";
 
-require(['models', 'react', 'showdown', 'jsx!gravatar'], function(models, React, Showdown, GravatarIcon) {
+require(['models', 'react', 'showdown', 'gravatar'], function(models, React, Showdown, GravatarIcon) {
 
 
   var CommentModel = models.CommentModel;

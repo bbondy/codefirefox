@@ -4,7 +4,7 @@
 
  "use strict";
 
-define(['react', 'jsx!gravatar'], function(React, GravatarIcon) {
+define(['jquery', 'react', 'gravatar'], function($, React, GravatarIcon) {
 
   var UserInfoBox = React.createClass({
     getInitialState: function() {
