@@ -87,4 +87,5 @@ Checklist for posting new videos
 - Pull in on codefirefox.com
 - Double check live video is live
 - Post link on @codefirefox twitter
+- Add link for translations to Mozilla team Amara site: http://www.amara.org/en/teams/add/video/mozilla/
 
