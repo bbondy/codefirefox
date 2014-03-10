@@ -82,7 +82,7 @@ exports.admin = function(req, res) {
   var results = { };
   userController.getAllPromise().then(function(users) {
     results.users = users;
-    return adminController.getStatsPromise();
+    return adminController.getStatsPromise(users);
   }).done(function(stats) {
     var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
     res.render('admin', {
