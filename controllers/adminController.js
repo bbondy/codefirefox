@@ -24,10 +24,27 @@ exports.getStats = function(users, callback) {
     return prevValue + user.slugsCompleted.length;
   }, 0);
 
+  var bugzillaAccountCount = users.reduce(function(prevValue, user) {
+    return prevValue + (user.info.bugzilla ? 1 : 0);
+  }, 0);
+
+  var displayNameCount = users.reduce(function(prevValue, user) {
+    return prevValue + (user.info.displayName ? 1 : 0);
+  }, 0);
+
+  var websiteCount = users.reduce(function(prevValue, user) {
+    return prevValue + (user.info.website ? 1 : 0);
+  }, 0);
+
+  console.log('bugzilla count: ' + bugzillaAccountCount);
+
   var stats = {
                 slugsCompletedCount: slugsCompletedCount,
                 userCount: users.length,
-                completedPerUser: slugsCompletedCount / users.length
+                completedPerUser: slugsCompletedCount / users.length,
+                bugzillaAccountCount: bugzillaAccountCount,
+                displayNameCount: displayNameCount,
+                websiteCount: websiteCount
               };
   callback(null, stats);
 };
