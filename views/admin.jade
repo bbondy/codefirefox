@@ -18,9 +18,11 @@ block mainContent
     .card-container
       h1 User Statistics
       p=  'User count: ' + stats.userCount
+      p=  'Lessons Completed: ' + stats.slugsCompletedCount
+      p=  'Completed per user: ' + stats.completedPerUser.toFixed(2)
 
     .card-container
       h1 Administer users
       ul
         each user in users
-          li= user.username
+          li= user.username + ': ' + user.slugsCompleted.length + ' completed'
