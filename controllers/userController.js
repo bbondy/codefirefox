@@ -31,6 +31,15 @@ exports.get = function(username, callback) {
     user.info.rawDateLastLogin = new Date(user.info.dateLastLogin);
     user.info.dateJoined = helpers.formatTimeSpan(user.info.rawDateJoined, new Date());
     user.info.dateLastLogin = helpers.formatTimeSpan(user.info.rawDateLastLogin, new Date());
+    user.toString = function() {
+      var str = '';
+      if (user.info.displayName)
+        str += user.info.displayName + '; ';
+      if (user.info.bugzilla)
+        str += user.info.bugzilla + ' (Bugzilla); ';
+      str += user.username;
+      return str;
+    };
     callback(null, user);
   }, function onFailure(err) {
     callback(err);

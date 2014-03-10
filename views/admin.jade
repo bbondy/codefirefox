@@ -31,4 +31,10 @@ block mainContent
       h1 Administer users
       ul
         each user in users
-          li= user.username + ': ' + user.slugsCompleted.length + ' completed'
+          li
+            if user.info.website
+              a(href=user.info.website)= user.toString()
+              span= ': ' + user.slugsCompleted.length + ' completed'
+            else
+              span= user.toString() + ': ' + user.slugsCompleted.length + ' completed'
+

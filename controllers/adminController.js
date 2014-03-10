@@ -36,8 +36,6 @@ exports.getStats = function(users, callback) {
     return prevValue + (user.info.website ? 1 : 0);
   }, 0);
 
-  console.log('bugzilla count: ' + bugzillaAccountCount);
-
   var stats = {
                 slugsCompletedCount: slugsCompletedCount,
                 userCount: users.length,
