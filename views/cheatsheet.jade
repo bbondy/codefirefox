@@ -57,7 +57,7 @@ block mainContent
   .card-container
     h1 Crashes
     ul
-      li about:crashes gives you links to your crashes
+      li about:crashes gives you links to your crashes, a(href='https://support.mozilla.org/kb/Mozilla%20Crash%20Reporter#w_viewing-reports-outside-of-firefox') Click Here for more info
       li: a(href='https://crash-stats.mozilla.com/products/Firefox') Online crash reports and stats
 
   .card-container
@@ -570,7 +570,7 @@ block mainContent
   .card-container
     h1 Personal files on people.mozilla.com
     ul
-      li: :markdown
+      li: :markdownabou
         Add to your C:\Users\bbondy\.ssh\config file:  
         > Host people.mozilla.com  
         > User bbondy  
@@ -597,4 +597,3 @@ block mainContent
       li Copy to: &lt;installDir&gt;\Plugins
       li Environment variable MOZ_DEBUG_CHILD_PROCESS=1 can be used to delay 30 seconds when loading plugin-container before the plugin is loaded.
       li: a(href='https://developer.mozilla.org/En/Plugins') Plugin development
-
