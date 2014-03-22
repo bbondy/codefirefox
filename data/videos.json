@@ -10,7 +10,7 @@
         "description": "",
         "slug": "what-is-mozilla",
         "youtubeid": "dv24V0qjZPQ",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "The Mozilla manifesto",
@@ -25,7 +25,7 @@
         "description": "",
         "slug": "marketing-yourself",
         "youtubeid": "_gjj2KHcFkg",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": []
       },
       {
@@ -34,7 +34,7 @@
         "type": "exercise",
         "description": "Exercises are a great way to practice what you've learnt. \nThis exercise is just to get you started with the framework.",
         "exerciseType": "js",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [],
         "slug": "intro-exercise",
         "assertions": [
@@ -87,7 +87,7 @@
         "description": "",
         "slug": "windows-build-env",
         "youtubeid": "SJzYZGnXE5A",
-        "tags": ["setup", "build"],
+        "tags": ["Firefox", "setup", "build"],
         "links": [
           {
             "title": "Windows build prerequisites on MDN",
@@ -101,7 +101,7 @@
         "description": "",
         "slug": "osx-build-env",
         "youtubeid": "",
-        "tags": ["setup", "build"],
+        "tags": ["Firefox", "setup", "build"],
         "links": [
           {
             "title": "Mac OS X build prerequisites on MDN",
@@ -116,7 +116,7 @@
         "description": "",
         "slug": "linux-build-env",
         "youtubeid": "GzYZVL82ZFw",
-        "tags": ["setup", "build"],
+        "tags": ["Firefox", "setup", "build"],
         "links": [
           {
             "title": "Linux build prerequisites on MDN",
@@ -131,7 +131,7 @@
         "description": "",
         "slug": "firefox-channels",
         "youtubeid": "1ayzz81hyIE",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "Firefox Nightly builds",
@@ -150,7 +150,7 @@
         "description": "",
         "slug": "get-source-code",
         "youtubeid": "j0McmMfBIo0",
-        "tags": ["setup", "hg"],
+        "tags": ["Firefox", "setup", "hg"],
         "links": [
           {
             "title": "Getting Mozilla source code using mercurial on MDN",
@@ -169,7 +169,7 @@
         "description": "",
         "slug": "irc",
         "youtubeid": "TJIFBJy-nQ4",
-        "tags": ["help"],
+        "tags": ["Firefox", "help"],
         "links": [
           {
             "title": "Mozilla Wiki on IRC",
@@ -184,7 +184,7 @@
         "description": "",
         "slug": "mozillians",
         "youtubeid": "Z4NXImG8AWc",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "Mozillians: Mozilla community directory",
@@ -206,7 +206,7 @@
         "description": "",
         "slug": "mach-intro",
         "youtubeid": "7a5aeiSLhi8",
-        "tags": ["setup", "build"],
+        "tags": ["Firefox", "setup", "build"],
         "links": []
       },
       {
@@ -216,7 +216,7 @@
         "description": "",
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
-        "tags": ["build"],
+        "tags": ["Firefox", "build"],
         "links": [
           {
             "title": "Simple Firefox build on MDN",
@@ -231,7 +231,7 @@
         "description": "",
         "slug": "incremental-builds",
         "youtubeid": "1ES3mTrAJ1c",
-        "tags": ["build"],
+        "tags": ["Firefox", "build"],
         "links": []
       },
       {
@@ -241,7 +241,7 @@
         "description": "",
         "slug": "mozconfig-intro",
         "youtubeid": "wg7Gyyis4Gk",
-        "tags": ["build"],
+        "tags": ["Firefox", "build"],
         "links": [
           {
             "title": "Configuring build options on MDN",
@@ -256,7 +256,7 @@
         "description": "",
         "slug": "multiple-mozconfig",
         "youtubeid": "9Do9R2v5ZEI",
-        "tags": ["build"],
+        "tags": ["Firefox", "build"],
         "links": [
           {
             "title": "Configuring build options on MDN",
@@ -269,7 +269,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["build"],
+        "tags": ["Firefox", "build"],
         "links": [
           {
             "title": "Configuring build options on MDN",
@@ -292,7 +292,7 @@
         "description": "",
         "slug": "create-bugzilla-account",
         "youtubeid": "bEeF4-_0_xg",
-        "tags": ["setup"],
+        "tags": ["Firefox", "setup"],
         "links": [
           {
             "title": "Bugzilla",
@@ -307,7 +307,7 @@
         "description": "",
         "slug": "finding-bug",
         "youtubeid": "4k_q8daxRU8",
-        "tags": ["setup"],
+        "tags": ["Firefox", "setup"],
         "links": [
           {
             "title": "What can I do for Mozilla",
@@ -330,7 +330,7 @@
         "description": "",
         "slug": "posting-bug",
         "youtubeid": "W25iNhT8DNU",
-        "tags": ["setup"],
+        "tags": ["Firefox", "setup"],
         "links": []
       },
       {
@@ -340,7 +340,7 @@
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "l5lzqxXmwwo",
-        "tags": ["setup"],
+        "tags": ["Firefox", "setup"],
         "links": [
           {
             "title": "How to apply for upgraded permissions",
@@ -353,7 +353,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["setup"],
+        "tags": ["Firefox", "setup"],
         "links": [],
         "slug": "validating-assigned-bugzilla"
       }
@@ -371,7 +371,7 @@
         "description": "",
         "slug": "source-structure",
         "youtubeid": "7kuXZzsJJqY",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "Source code directories overview on MDN",
@@ -387,7 +387,7 @@
         "description": "",
         "slug": "mercurial-setup",
         "youtubeid": "yhkOSgVGHTY",
-        "tags": ["setup", "hg"],
+        "tags": ["Firefox", "setup", "hg"],
         "links": []
       },
       {
@@ -397,7 +397,7 @@
         "description": "",
         "slug": "patch-creation",
         "youtubeid": "cLQlsRKJiS4",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Creating a patch on MDN",
@@ -412,7 +412,7 @@
         "description": "",
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Creating a patch on MDN",
@@ -425,7 +425,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Creating a patch on MDN",
@@ -448,7 +448,7 @@
         "description": "",
         "slug": "first-review",
         "youtubeid": "f_c9RotA0Vs",
-        "tags": ["review"],
+        "tags": ["Firefox", "review"],
         "links": []
       },
       {
@@ -458,7 +458,7 @@
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "twxHD0cG-9o",
-        "tags": ["review"],
+        "tags": ["Firefox", "review"],
         "links": []
       }
     ]
@@ -475,7 +475,7 @@
         "description": "",
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -490,7 +490,7 @@
         "description": "",
         "slug": "patch-queues-multi-patches",
         "youtubeid": "9g7ePBFfS7A",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -505,7 +505,7 @@
         "description": "",
         "slug": "remote-changes",
         "youtubeid": "qBKQw5U1qvk",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": []
       },
       {
@@ -515,7 +515,7 @@
         "description": "",
         "slug": "rebasing-patch",
         "youtubeid": "67woYDn5DqY",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": []
       },
       {
@@ -525,7 +525,7 @@
         "description": "",
         "slug": "import-patch",
         "youtubeid": "VNueS0ACxvc",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -539,7 +539,7 @@
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": []
       },
       {
@@ -547,7 +547,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -570,7 +570,7 @@
         "description": "",
         "slug": "patch-file-splitting",
         "youtubeid": "PYbY-ltqexs",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -585,7 +585,7 @@
         "description": "",
         "slug": "move-fold-patch",
         "youtubeid": "zgxyA6QLMWI",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": [
           {
             "title": "Mercurial Queues on MDN",
@@ -599,7 +599,7 @@
         "description": "",
         "slug": "patch-file-hacking",
         "youtubeid": "",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": []
       },
       {
@@ -609,7 +609,7 @@
         "description": "",
         "slug": "patch-queue-internals",
         "youtubeid": "tsoV_GMML_c",
-        "tags": ["hg"],
+        "tags": ["Firefox", "hg"],
         "links": []
       }
     ]
@@ -626,7 +626,7 @@
         "description": "",
         "slug": "dxr-referencing-code",
         "youtubeid": "V3walfiWFPw",
-        "tags": ["help"],
+        "tags": ["Firefox", "help"],
         "links": [
           {
             "title": "DXR",
@@ -641,7 +641,7 @@
         "description": "",
         "slug": "dxr-to-code-feature",
         "youtubeid": "PneGyGMzKpM",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "DXR",
@@ -663,7 +663,7 @@
         "description": "",
         "slug": "scratchpad",
         "youtubeid": "xqij3l84N2Y",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "Scratchpad on MDN",
@@ -678,7 +678,7 @@
         "description": "",
         "slug": "dom-inspector",
         "youtubeid": "PfnP3M759os",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "DOM Inspector on MDN",
@@ -692,7 +692,7 @@
         "description": "",
         "slug": "browser-console",
         "youtubeid": "",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "Debugging JavaScript on MDN",
@@ -707,7 +707,7 @@
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "Debugging JavaScript on MDN",
@@ -721,7 +721,7 @@
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "Profiling with the built-in profiler on MDN",
@@ -744,7 +744,7 @@
         "description": "",
         "slug": "using-jsm-intro",
         "youtubeid": "p3JOY7VK9C4",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "JavaScript code modules on MDN",
@@ -758,7 +758,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "JavaScript code modules on MDN",
@@ -800,7 +800,7 @@
         "description": "",
         "slug": "using-xpcom-intro",
         "youtubeid": "6FcJQYsidHU",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "XPCOM on MDN",
@@ -814,7 +814,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "XPCOM on MDN",
@@ -856,7 +856,7 @@
         "description": "",
         "slug": "creating-javascript-modules",
         "youtubeid": "XqZ14OByVdY",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "JavaScript code modules on MDN",
@@ -869,7 +869,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "JavaScript code modules on MDN",
@@ -884,7 +884,7 @@
         "description": "",
         "slug": "javascript-xpcom",
         "youtubeid": "",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "XPCOM on MDN",
@@ -897,7 +897,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": ["JavaScript"],
+        "tags": ["Firefox", "JavaScript"],
         "links": [
           {
             "title": "XPCOM on MDN",
@@ -919,7 +919,7 @@
         "description": "",
         "slug": "xul-intro",
         "youtubeid": "",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "XUL on MDN",
@@ -933,7 +933,7 @@
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "XBL on MDN",
@@ -946,7 +946,7 @@
         "type": "exercise",
         "description": "",
         "exerciseType": "js",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": [
           {
             "title": "XUL on MDN",
@@ -968,7 +968,7 @@
         "description": "",
         "slug": "xpcom",
         "youtubeid": "",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": [
           {
             "title": "XPCOM on MDN",
@@ -990,7 +990,7 @@
         "description": "",
         "slug": "automated-tests-intro",
         "youtubeid": "EmuRWW4kNyg",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "Running automated tests on MDN",
@@ -1005,7 +1005,7 @@
         "description": "",
         "slug": "try-buildbot-tbpl",
         "youtubeid": "iPrm48npsUg",
-        "tags": ["testing", "build"],
+        "tags": ["Firefox", "testing", "build"],
         "links": []
       },
       {
@@ -1015,7 +1015,7 @@
         "description": "",
         "slug": "trychooser-syntax",
         "youtubeid": "qjUZcEb3eNU",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "TryChooser syntax builder",
@@ -1030,7 +1030,7 @@
         "description": "",
         "slug": "running-buildbot-tests-locally",
         "youtubeid": "XxCfLnP7ArQ",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": []
       },
       {
@@ -1040,7 +1040,7 @@
         "description": "",
         "slug": "intro-to-xpcshell",
         "youtubeid": "WYYcDOlstCM",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "XPCShell on MDN",
@@ -1059,7 +1059,7 @@
         "description": "",
         "slug": "creating-xpcshell-tests",
         "youtubeid": "hn_3t-HERY4",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "Writing xpcshell-based unit tests on MDN",
@@ -1073,7 +1073,7 @@
         "description": "",
         "slug": "creating-mochitests",
         "youtubeid": "",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": []
       },
       {
@@ -1083,7 +1083,7 @@
         "description": "",
         "slug": "intro-to-reftests",
         "youtubeid": "dyatH0h-Bo0",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "Creating reftest-based unit tests on MDN",
@@ -1098,7 +1098,7 @@
         "description": "",
         "slug": "creating-reftests",
         "youtubeid": "4Nj9VwWPwfM",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": [
           {
             "title": "Creating reftest-based unit tests on MDN",
@@ -1112,7 +1112,7 @@
         "description": "",
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": []
       }
     ]
@@ -1129,7 +1129,7 @@
         "description": "",
         "slug": "modules-owners-peers",
         "youtubeid": "sHUiUJeKM80",
-        "tags": ["review", "ownership"],
+        "tags": ["Firefox", "review", "ownership"],
         "links": [
           {
             "title": "Mozilla modules and module owners",
@@ -1148,7 +1148,7 @@
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "iFtVSkE-AkU",
-        "tags": ["review", "ownership"],
+        "tags": ["Firefox", "review", "ownership"],
         "links": [
           {
             "title": "Mozilla modules and module owners",
@@ -1167,7 +1167,7 @@
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "1sO27a_DkY8",
-        "tags": ["review", "ownership"],
+        "tags": ["Firefox", "review", "ownership"],
         "links": [
           {
             "title": "Reviewer Checklist on MDN",
@@ -1189,7 +1189,7 @@
         "description": "",
         "slug": "hg-annotate",
         "youtubeid": "v8CbpAdGP3c",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": []
       },
       {
@@ -1199,7 +1199,7 @@
         "description": "",
         "slug": "mozregression",
         "youtubeid": "ABrenCFgP3Q",
-        "tags": ["testing"],
+        "tags": ["Firefox", "testing"],
         "links": []
       }
     ]
@@ -1216,7 +1216,7 @@
         "description": "",
         "slug": "debug-local-builds-win",
         "youtubeid": "S6ohAwQnmrE",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": []
       },
       {
@@ -1225,7 +1225,7 @@
         "description": "",
         "slug": "debugger-windows",
         "youtubeid": "",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": []
       },
       {
@@ -1234,7 +1234,7 @@
         "description": "",
         "slug": "advanced-debugging",
         "youtubeid": "",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": []
       },
       {
@@ -1243,7 +1243,7 @@
         "description": "",
         "slug": "debug-local-builds-osx",
         "youtubeid": "",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": []
       },
       {
@@ -1252,7 +1252,7 @@
         "description": "",
         "slug": "debug-local-builds-linux",
         "youtubeid": "",
-        "tags": ["C++"],
+        "tags": ["Firefox", "C++"],
         "links": []
       }
     ]
@@ -1268,7 +1268,7 @@
         "description": "",
         "slug": "commit-access-level-1",
         "youtubeid": "",
-        "tags": ["setup", "testing", "hg"],
+        "tags": ["Firefox", "setup", "testing", "hg"],
         "links": [
           {
             "title": "Mozilla commit access policy",
@@ -1282,7 +1282,7 @@
         "description": "",
         "slug": "commit-acccess-level-3",
         "youtubeid": "",
-        "tags": ["setup", "hg"],
+        "tags": ["Firefox", "setup", "hg"],
         "links": [
           {
             "title": "Mozilla commit access policy",
@@ -1303,7 +1303,7 @@
         "description": "",
         "slug": "mozilla-news",
         "youtubeid": "",
-        "tags": [],
+        "tags": ["Firefox"],
         "links": []
       }
     ]
