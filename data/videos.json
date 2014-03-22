@@ -1307,5 +1307,112 @@
         "links": []
       }
     ]
+  },
+
+  {
+    "title": "App basics for Firefox OS",
+    "slug": "firefoxos-app-basics",
+    "videos": [
+      {
+        "title": "Intro and hello",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-intro",
+        "youtubeid": "bp87xaLI0h4",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "What makes a good HTML5 App ",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-good-html5-app",
+        "youtubeid": "fBJmUreevRU",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "The app manifest",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-app-manifest",
+        "youtubeid": "txyux8RZrxY",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "The app manager",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-app-manager",
+        "youtubeid": "wiROpnExj-A",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Testing on real devices",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-real-devices",
+        "youtubeid": "OIUQwqQMVZM",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Publishing to marketplace",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-marketplace-publishing",
+        "youtubeid": "gipaEJTM3TU",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Web APIs",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-web-apis",
+        "youtubeid": "p0DWpWNTd7w",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Web Activities",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-web-activities",
+        "youtubeid": "CQODL9AGKv0",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Push Notifications",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-push-notifications",
+        "youtubeid": "qpgNIsJ2pg4",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Offline functionality",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-offline-functionality",
+        "youtubeid": "",
+        "tags": ["FirefoxOS"],
+        "links": []
+      },
+      {
+        "title": "Where to find more",
+        "type": "video",
+        "description": "",
+        "slug": "firefoxos-find-more",
+        "youtubeid": "",
+        "tags": ["FirefoxOS"],
+        "links": []
+      }
+    ]
   }
+
 ]
