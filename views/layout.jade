@@ -35,16 +35,16 @@ html(lang="en")
           #navbar
             ul
               li
-                a#navbar-lessons(href='/') Lessons
+                a#navbar-lessons(href='/') All
+              li
+                a#navbar-firefox(href='/tagged/Firefox') Firefox
+              li
+                a#navbar-firefox-os(href='/tagged/FirefoxOS') Firefox OS
               li
                 a#navbar-cheatsheet(href='/cheatsheet') Cheatsheet
               if session.email
                 li
                   a#navbar-profile(href='/profile') Profile
-              li
-                a#navbar-tags(href='/tags') Tags
-              li
-                a#navbar-about(href='/about') About
               li
                 a#follow-on-twitter(href='https://twitter.com/codefirefox', title='Follow @codefirefox for new content updates')
                   i(class='fa fa-twitter')

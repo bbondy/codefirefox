@@ -42,6 +42,8 @@ block mainContent
 
       #subnav
         ul
+          li
+            i(class='fa fa-2x fa-user', title='Video created by: ' + video.author)
           li: a(href= video.shareUrl)
             img(src='/static/img/share-this-page.png')
           li: a(href='/')
