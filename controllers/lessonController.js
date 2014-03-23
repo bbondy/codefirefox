@@ -17,11 +17,13 @@ function loadFromDB(callback) {
   redisController.getAllPromise("category").done(function onSuccess(cat) {
     exports.categories  = cat;
     exports.categories.sort(redisController.sortByPriority);
+    exports._categoriesByTag = [];
     callback(null, cat);
   }, function onFailure(err) {
     callback(err);
   });
 };
+
 
 /**
  * Loads in overall lesson stats into exports.stats
@@ -64,4 +66,19 @@ exports.initPromise = Promise.denodeify(exports.init).bind(exports);
  */
 exports.get = function(slug, callback) {
   redisController.get("video:" + slug, callback);
+};
+
+
+exports.getCategoriesByTag = function(tag) {
+    if (!exports._categoriesByTag[tag]) {
+      exports._categoriesByTag[tag] = exports.categories.filter(function(c) {
+        var hasTag = false;
+        c.videos.forEach(function(v) {
+          hasTag = hasTag || v.tags.indexOf(tag) != -1;
+        });
+        return hasTag;
+      });
+    }
+
+    return exports._categoriesByTag[tag];
 };

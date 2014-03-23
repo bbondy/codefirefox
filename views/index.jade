@@ -45,15 +45,9 @@ mixin video_list(category)
               span= video.title
 
 block mainContent
-  if !tagged
-    each category in categories
-      .card-container
-        a(name= category.slug)
-        h1= category.title
-        +video_list(category)
-  else
+  each category in categories
     .card-container
-      h1= 'Tagged: ' + tagged
-      each category in categories
-        +video_list(category)
+      a(name= category.slug)
+      h1= category.title
+      +video_list(category)
 

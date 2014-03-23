@@ -323,17 +323,36 @@ exports.video = function(req, res, next) {
  * Renders the main page which shows a list of videos
  */
 exports.outline = function(req, res) {
+  var bodyID = 'body_index';
+  var categories = lessonController.categories;
+  var pageTitle = 'Lessons';
+
+  if (req.params.tagged) {
+    categories = lessonController.getCategoriesByTag(req.params.tagged);
+    pageTitle = req.params.tagged;
+    pageTitle = pageTitle.substring(0,1).toUpperCase() + pageTitle.substring(1);
+    console.log('page title is: ' + pageTitle);
+  }
+
+  if (req.params.tagged == 'Firefox') {
+    bodyID = 'body_firefox';
+  } else if (req.params.tagged == 'FirefoxOS') {
+    bodyID = 'body_firefox_os';
+  }
+
   var user;
   var loadPage = function () {
     res.render('index', {
-                          pageTitle: 'Lessons',
-                          categories: lessonController.categories, bodyID: 'body_index',
-                          mainTitle: 'Lessons',
+                          pageTitle: pageTitle,
+                          categories: categories,
+                          bodyID: bodyID,
+                          mainTitle: pageTitle,
                           slugsCompleted: user ? user.slugsCompleted : [],
                           tagged: req.params.tagged,
                           stats: lessonController.stats,
                           videosOnly: req.url.substring(0, 7) == '/videos',
                           exercisesOnly: req.url.substring(0, 10) == '/exercises'
+
                         });
   };
 

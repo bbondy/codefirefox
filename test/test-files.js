@@ -44,6 +44,7 @@ describe('files', function() {
 
                // Check that the video items are specified
                assert(v.title);
+               assert(v.author, 'author must be defined');
                assert(v.type === 'video' || v.type === 'exercise');
                assert(!_.isUndefined(v.description));
                assert(_.isArray(v.tags));
