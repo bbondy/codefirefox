@@ -7,6 +7,7 @@
         "title": "Introduction to Mozilla and Code Firefox",
         "datePosted": "February 28, 2013 7:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "what-is-mozilla",
         "youtubeid": "dv24V0qjZPQ",
@@ -22,6 +23,7 @@
         "title": "Marketing your contributions",
         "datePosted": "February 28, 2013 8:20 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "marketing-yourself",
         "youtubeid": "_gjj2KHcFkg",
@@ -32,6 +34,7 @@
         "title": "Introduction to Code Firefox exercises",
         "datePosted": "December 16, 2013 7:20 AM",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "Exercises are a great way to practice what you've learnt. \nThis exercise is just to get you started with the framework.",
         "exerciseType": "js",
         "tags": ["Firefox", "JavaScript"],
@@ -84,6 +87,7 @@
         "title": "Setting up a Windows Firefox build environment",
         "datePosted": "November 12, 2013 10:30 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "windows-build-env",
         "youtubeid": "SJzYZGnXE5A",
@@ -98,6 +102,7 @@
       {
         "title": "Setting up an OS X Firefox build environment",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "osx-build-env",
         "youtubeid": "",
@@ -113,6 +118,7 @@
         "title": "Setting up a Linux Firefox build environment",
         "datePosted": "November 20, 2013 9:58 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "linux-build-env",
         "youtubeid": "GzYZVL82ZFw",
@@ -128,6 +134,7 @@
         "title": "The different types of Firefox channels and repositories",
         "datePosted": "November 11, 2013 1:52 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "firefox-channels",
         "youtubeid": "1ayzz81hyIE",
@@ -147,6 +154,7 @@
         "title": "Getting the Firefox source code",
         "datePosted": "November 11, 2013 11:01 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "get-source-code",
         "youtubeid": "j0McmMfBIo0",
@@ -166,6 +174,7 @@
         "title": "Getting help on IRC",
         "datePosted": "November 20, 2013 4:45 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "irc",
         "youtubeid": "TJIFBJy-nQ4",
@@ -181,6 +190,7 @@
         "title": "Registering yourself as a Mozillian at mozillians.org",
         "datePosted": "December 10, 2013 9:21 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mozillians",
         "youtubeid": "Z4NXImG8AWc",
@@ -203,6 +213,7 @@
         "title": "Introduction to mach and mach setup",
         "datePosted": "November 9, 2013 10:27 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mach-intro",
         "youtubeid": "7a5aeiSLhi8",
@@ -213,6 +224,7 @@
         "title": "Building Desktop Firefox from the source code",
         "datePosted": "November 10, 2013 6:43 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "building-firefox",
         "youtubeid": "uJMuBzBuCBc",
@@ -228,6 +240,7 @@
         "title": "Incremental builds and making changes",
         "datePosted": "November 10, 2013 8:20 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "incremental-builds",
         "youtubeid": "1ES3mTrAJ1c",
@@ -238,6 +251,7 @@
         "title": "Adding options with a .mozconfig file and debug builds",
         "datePosted": "November 16, 2013 9:14 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mozconfig-intro",
         "youtubeid": "wg7Gyyis4Gk",
@@ -253,6 +267,7 @@
         "title": "Using more than one .mozconfig file",
         "datePosted": "November 21, 2013 10:30 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "multiple-mozconfig",
         "youtubeid": "9Do9R2v5ZEI",
@@ -267,6 +282,7 @@
       {
         "title": "Creating a .mozconfig file exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "build"],
@@ -289,6 +305,7 @@
         "title": "Creating a Bugzilla account, account settings, and permissions",
         "datePosted": "November 12, 2013 5:03 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "create-bugzilla-account",
         "youtubeid": "bEeF4-_0_xg",
@@ -304,6 +321,7 @@
         "title": "Finding a first Firefox bug to work on",
         "datePosted": "November 15, 2013 4:18 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "finding-bug",
         "youtubeid": "4k_q8daxRU8",
@@ -327,6 +345,7 @@
         "title": "Posting a well written bug to Bugzilla",
         "datePosted": "November 27, 2013 4:44 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "posting-bug",
         "youtubeid": "W25iNhT8DNU",
@@ -337,6 +356,7 @@
         "title": "Getting assigned to a bug and gaining edit bugs permissions",
         "datePosted": "November 29, 2013 11:43 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "assigned-first-bug",
         "youtubeid": "l5lzqxXmwwo",
@@ -351,6 +371,7 @@
       {
         "title": "Validating you are assigned to a bugzilla bug",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "setup"],
@@ -368,6 +389,7 @@
         "title": "Explanation of the Firefox source tree",
         "datePosted": "November 12, 2013 7:51 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "source-structure",
         "youtubeid": "7kuXZzsJJqY",
@@ -384,6 +406,7 @@
         "title": "Setting up mercurial",
         "datePosted": "November 7, 2013 10:10 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mercurial-setup",
         "youtubeid": "yhkOSgVGHTY",
@@ -394,6 +417,7 @@
         "title": "Creating a patch file",
         "datePosted": "November 7, 2013 9:36 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-creation",
         "youtubeid": "cLQlsRKJiS4",
@@ -409,6 +433,7 @@
         "title": "Making changes to that patch file",
         "datePosted": "November 7, 2013 4:18 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-changes",
         "youtubeid": "VKdpwiX3-3E",
@@ -423,6 +448,7 @@
       {
         "title": "Create a patch file exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "hg"],
@@ -445,6 +471,7 @@
         "title": "Attaching a patch to Bugzilla and getting your first review",
         "datePosted": "November 18, 2013 12:03 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "first-review",
         "youtubeid": "f_c9RotA0Vs",
@@ -455,6 +482,7 @@
         "title": "Review results, integration branches, and landing your patch",
         "datePosted": "December 2, 2013 9:21 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "landing-reviewed",
         "youtubeid": "twxHD0cG-9o",
@@ -472,6 +500,7 @@
         "title": "Introduction to Mercurial Patch Queues",
         "datePosted": "November 8, 2013 9:57 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-queues-intro",
         "youtubeid": "vJMTDhRPsAo",
@@ -487,6 +516,7 @@
         "title": "Working on multiple patches within your patch queue",
         "datePosted": "November 8, 2013 11:19 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-queues-multi-patches",
         "youtubeid": "9g7ePBFfS7A",
@@ -502,6 +532,7 @@
         "title": "Pulling down remote changes to your cloned repository",
         "datePosted": "November 17, 2013 1:03 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "remote-changes",
         "youtubeid": "qBKQw5U1qvk",
@@ -512,6 +543,7 @@
         "title": "Manually rebasing a patch that has conflicts",
         "datePosted": "November 19, 2013 11:20 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "rebasing-patch",
         "youtubeid": "67woYDn5DqY",
@@ -522,6 +554,7 @@
         "title": "Importing a patch from Bugzilla and removing old patches",
         "datePosted": "November 19, 2013 9:31 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "import-patch",
         "youtubeid": "VNueS0ACxvc",
@@ -536,6 +569,7 @@
       {
         "title": "Workflow when developing with patches",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "development-workflow",
         "youtubeid": "",
@@ -545,6 +579,7 @@
       {
         "title": "Patch queue exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "hg"],
@@ -567,6 +602,7 @@
         "title": "Splitting up a patch file with hg and excluding files",
         "datePosted": "November 23, 2013 5:57 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-file-splitting",
         "youtubeid": "PYbY-ltqexs",
@@ -582,6 +618,7 @@
         "title": "Moving and folding patches in your patch queue",
         "datePosted": "December 1, 2013 9:18 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "move-fold-patch",
         "youtubeid": "zgxyA6QLMWI",
@@ -596,6 +633,7 @@
       {
         "title": "Hacking on a patch file manually",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-file-hacking",
         "youtubeid": "",
@@ -606,6 +644,7 @@
         "title": "Hacking on your patch queue internals",
         "datePosted": "December 4, 2013 10:41 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "patch-queue-internals",
         "youtubeid": "tsoV_GMML_c",
@@ -623,6 +662,7 @@
         "title": "Searching and referencing Firefox code",
         "datePosted": "November 24, 2013 8:34 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "dxr-referencing-code",
         "youtubeid": "V3walfiWFPw",
@@ -638,6 +678,7 @@
         "title": "Coding a feature from start to finish with the help of DXR",
         "datePosted": "December 5, 2013 12:39 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "dxr-to-code-feature",
         "youtubeid": "PneGyGMzKpM",
@@ -660,6 +701,7 @@
         "title": "Introduction to the Firefox Scratchpad",
         "datePosted": "November 13, 2013 10:59 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "scratchpad",
         "youtubeid": "xqij3l84N2Y",
@@ -675,6 +717,7 @@
         "title": "Introduction to the DOM Inspector",
         "datePosted": "November 14, 2013 10:30 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "dom-inspector",
         "youtubeid": "PfnP3M759os",
@@ -689,6 +732,7 @@
       {
         "title": "Mastering the Console for front end development",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "browser-console",
         "youtubeid": "",
@@ -704,6 +748,7 @@
         "title": "Debugging front end Firefox code with the built-in debugger",
         "datePosted": "November 22, 2013 6:57 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "browser-debugger",
         "youtubeid": "lKpVRKV4Dh0",
@@ -718,6 +763,7 @@
       {
         "title": "Profiling",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "profiling",
         "youtubeid": "",
@@ -741,6 +787,7 @@
         "title": "Introduction to JavaScript modules (JSM)",
         "datePosted": "December 11, 2013 11:37 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "using-jsm-intro",
         "youtubeid": "p3JOY7VK9C4",
@@ -756,6 +803,7 @@
         "title": "Using a JavaScript module (JSM) exercise",
         "datePosted": "December 20, 2013 5:30 PM",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "JavaScript"],
@@ -797,6 +845,7 @@
         "title": "Introduction to XPCOM and using your first XPCOM component",
         "datePosted": "December 9, 2013 11:26 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "using-xpcom-intro",
         "youtubeid": "6FcJQYsidHU",
@@ -812,6 +861,7 @@
         "title": "Using an XPCOM object exercise",
         "datePosted": "December 22, 2013 3:12 PM",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "JavaScript"],
@@ -853,6 +903,7 @@
         "title": "Creating a JavaScript module (JSM)",
         "datePosted": "February 21, 2014 9:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "creating-javascript-modules",
         "youtubeid": "XqZ14OByVdY",
@@ -867,6 +918,7 @@
       {
         "title": "Writing a JavaScript module exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "JavaScript"],
@@ -881,6 +933,7 @@
       {
         "title": "Writing JavaScript XPCOM objects",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "javascript-xpcom",
         "youtubeid": "",
@@ -895,6 +948,7 @@
       {
         "title": "Writing a JavaScript XPCOM object exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox", "JavaScript"],
@@ -916,6 +970,7 @@
       {
         "title": "Introduction to XUL",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "xul-intro",
         "youtubeid": "",
@@ -930,6 +985,7 @@
       {
         "title": "Introduction to XBL",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "xbl-intro",
         "youtubeid": "",
@@ -944,6 +1000,7 @@
       {
         "title": "Creating a simple XUL window exercise",
         "type": "exercise",
+        "author": "Brian R. Bondy",
         "description": "",
         "exerciseType": "js",
         "tags": ["Firefox"],
@@ -965,6 +1022,7 @@
       {
         "title": "Creating C++ XPCOM components",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "xpcom",
         "youtubeid": "",
@@ -987,6 +1045,7 @@
         "title": "Introduction to the automated tests that run on each push",
         "datePosted": "November 25, 2013 10:33 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "automated-tests-intro",
         "youtubeid": "EmuRWW4kNyg",
@@ -1002,6 +1061,7 @@
         "title": "Try server, Buildbot, and TBPL",
         "datePosted": "November 26, 2013 10:50 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "try-buildbot-tbpl",
         "youtubeid": "iPrm48npsUg",
@@ -1012,6 +1072,7 @@
         "title": "TryChooser syntax and pushing to try",
         "datePosted": "November 28, 2013 1:59 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "trychooser-syntax",
         "youtubeid": "qjUZcEb3eNU",
@@ -1027,6 +1088,7 @@
         "title": "Running buildbot tests locally",
         "datePosted": "January 28, 2014 7:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "running-buildbot-tests-locally",
         "youtubeid": "XxCfLnP7ArQ",
@@ -1037,6 +1099,7 @@
         "title": "Introduction to the XPCShell and XPCShell tests",
         "datePosted": "January 14, 2014 9:42 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "intro-to-xpcshell",
         "youtubeid": "WYYcDOlstCM",
@@ -1056,6 +1119,7 @@
         "title": "Basics of creating an XPCShell test",
         "datePosted": "January 16, 2014 10:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "creating-xpcshell-tests",
         "youtubeid": "hn_3t-HERY4",
@@ -1070,6 +1134,7 @@
       {
         "title": "Creating a basic mochitest",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "creating-mochitests",
         "youtubeid": "",
@@ -1080,6 +1145,7 @@
         "title": "Introduction to reftests",
         "datePosted": "January 21, 2014 11:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "intro-to-reftests",
         "youtubeid": "dyatH0h-Bo0",
@@ -1095,6 +1161,7 @@
         "title": "Basics of creating a reftest",
         "datePosted": "January 23, 2013 7:40 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "creating-reftests",
         "youtubeid": "4Nj9VwWPwfM",
@@ -1109,6 +1176,7 @@
       {
         "title": "Creating a basic browser chrome test",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "creating-browser-chrome-tests",
         "youtubeid": "",
@@ -1126,6 +1194,7 @@
         "title": "Modules, owners, and peers",
         "datePosted": "February 14, 2014 9:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "modules-owners-peers",
         "youtubeid": "sHUiUJeKM80",
@@ -1145,6 +1214,7 @@
         "title": "Becoming a reviewer",
         "datePosted": "February 14, 2014 10:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "becoming-reviewer",
         "youtubeid": "iFtVSkE-AkU",
@@ -1164,6 +1234,7 @@
         "title": "Reviewing a patch",
         "datePosted": "January 28, 2014 9:00 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "reviewing-patch",
         "youtubeid": "1sO27a_DkY8",
@@ -1186,6 +1257,7 @@
         "title": "Finding out why code is the way it is, using hg annotate",
         "datePosted": "November 27, 2013 11:32 AM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "hg-annotate",
         "youtubeid": "v8CbpAdGP3c",
@@ -1196,6 +1268,7 @@
         "title": "Finding regression ranges with mozregression",
         "datePosted": "November 30, 2013 10:17 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mozregression",
         "youtubeid": "ABrenCFgP3Q",
@@ -1213,6 +1286,7 @@
         "title": "Debugging your local build with Visual Studio",
         "datePosted": "December 8, 2013 11:30 PM",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "debug-local-builds-win",
         "youtubeid": "S6ohAwQnmrE",
@@ -1222,6 +1296,7 @@
       {
         "title": "Introduction to different debugger windows in Visual Studio",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "debugger-windows",
         "youtubeid": "",
@@ -1231,6 +1306,7 @@
       {
         "title": "More advanced debugging tricks with Visual Studio",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "advanced-debugging",
         "youtubeid": "",
@@ -1240,6 +1316,7 @@
       {
         "title": "Debugging your local build in OS X with Xcode",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "debug-local-builds-osx",
         "youtubeid": "",
@@ -1249,6 +1326,7 @@
       {
         "title": "Debugging your local builds in Linux with gdb and ddd",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "debug-local-builds-linux",
         "youtubeid": "",
@@ -1265,6 +1343,7 @@
       {
         "title": "Getting commit access level 1",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "commit-access-level-1",
         "youtubeid": "",
@@ -1279,6 +1358,7 @@
       {
         "title": "Getting commit access level 3",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "commit-acccess-level-3",
         "youtubeid": "",
@@ -1300,6 +1380,7 @@
       {
         "title": "Staying up to date on Mozilla happenings",
         "type": "video",
+        "author": "Brian R. Bondy",
         "description": "",
         "slug": "mozilla-news",
         "youtubeid": "",
@@ -1315,104 +1396,225 @@
     "videos": [
       {
         "title": "Intro and hello",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-intro",
         "youtubeid": "bp87xaLI0h4",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "What makes a good HTML5 App ",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-good-html5-app",
         "youtubeid": "fBJmUreevRU",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "The app manifest",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-app-manifest",
         "youtubeid": "txyux8RZrxY",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "The app manager",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-app-manager",
         "youtubeid": "wiROpnExj-A",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Testing on real devices",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-real-devices",
         "youtubeid": "OIUQwqQMVZM",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Publishing to marketplace",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-marketplace-publishing",
         "youtubeid": "gipaEJTM3TU",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Web APIs",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-web-apis",
         "youtubeid": "p0DWpWNTd7w",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Web Activities",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-web-activities",
         "youtubeid": "CQODL9AGKv0",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Push Notifications",
+        "datePosted": "March 22, 2014 9:00 PM",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-push-notifications",
         "youtubeid": "qpgNIsJ2pg4",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Offline functionality",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-offline-functionality",
         "youtubeid": "",
         "tags": ["FirefoxOS"],
-        "links": []
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
       },
       {
         "title": "Where to find more",
         "type": "video",
+        "author": "Jan Jongboom, Jan Jongboom, Sergi Mansilla, and Chris Heilmann",
         "description": "",
         "slug": "firefoxos-find-more",
         "youtubeid": "",
         "tags": ["FirefoxOS"],
+        "links": [
+          {
+            "title": "App Basics for Firefox OS wiki page",
+            "url": "https://developer.mozilla.org/en-US/Firefox_OS/Screencast_series:_App_Basics_for_Firefox_OS"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title": "Automation and testing",
+    "slug": "firefoxos-automation",
+    "videos": [
+      {
+        "title": "Pushing to Gaia (on github) ends up running code in TBPL",
+        "type": "video",
+        "author": "Clint Talbert",
+        "description": "",
+        "slug": "firefoxos-gaia-github",
+        "youtubeid": "",
+        "tags": ["FirefoxOS", "automation"],
+        "links": []
+      },
+      {
+        "title": "TBPL tests and how to read them specific to Firefox OS",
+        "type": "video",
+        "author": "Clint Talbert",
+        "description": "",
+        "slug": "firefoxos-tbpl-fxos",
+        "youtubeid": "",
+        "tags": ["FirefoxOS", "automation"],
+        "links": []
+      },
+      {
+        "title": "How to use gaia-try to see results",
+        "type": "video",
+        "author": "Clint Talbert",
+        "description": "",
+        "slug": "firefoxos-gaia-try",
+        "youtubeid": "",
+        "tags": ["FirefoxOS", "automation"],
+        "links": []
+      },
+      {
+        "title": "Understanding intermittent test failures",
+        "type": "video",
+        "author": "Clint Talbert",
+        "description": "",
+        "slug": "firefoxos-understanding-intermittent",
+        "youtubeid": "",
+        "tags": ["FirefoxOS", "automation"],
         "links": []
       }
     ]
   }
-
 ]
