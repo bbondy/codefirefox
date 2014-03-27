@@ -465,6 +465,7 @@ block mainContent
         To push the applied hg queue patches to the try server:  
         > hg qrefresh --message "try: -b do -p all -u all -t all"  
         > hg push -f try
+      li See the section on: SSH config for try or inbound on hg.mozilla.org 
 
   .card-container
     h1 How to push a changeset from your MQ
@@ -574,8 +575,11 @@ block mainContent
       li: :markdown
         Add to your C:\Users\bbondy\.ssh\config file:  
         > Host people.mozilla.com  
-        > User bbondy  
+        > User netzen@gmail.com  
         > IdentityFile C:\Users\bbondy\.ssh\bbondy.pub
+      li: :markdown
+        The IdentityFile entry should only be needed on Windows. If you're on anything else it'll automatically find the key, use:
+        > ssh-add path-to-key.ppk
       li Your must already have L1 commit access, i.e. your public key is already on the server.
       li: :markdown
         You can upload files to a URL like: http://people.mozilla.com/~bbondy  
@@ -585,6 +589,22 @@ block mainContent
         > psftp bbondy@people.mozilla.com  
         > Enter your private key password  
         > put filename.ext
+
+  .card-container
+    h1 SSH config for try or inbound on hg.mozilla.org 
+    ul
+      li: :markdown
+        Add to your C:\Users\bbondy\.ssh\config file:  
+        > Host hg.mozilla.org  
+        > User netzen@gmail.com  
+        > IdentityFile C:\Users\bbondy\.ssh\bbondy.pub
+      li: :markdown
+        The IdentityFile entry should only be needed on Windows. If you're on anything else it'll automatically find the key, use:
+        > ssh-add path-to-key.ppk
+      li Your must already have L1 commit access for pushing to try, or commit access level 3 for pushing to an integration branch. i.e. your public key is already on the server.
+      li: :markdown
+        To test access to ssh make sure the ssh command gives an output of "No interactive shells allowed here!".  Use Putty for Windows:
+        > ssh hg.mozilla.org
 
   .card-container
     h1 Project Branches
