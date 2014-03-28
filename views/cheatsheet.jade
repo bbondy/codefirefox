@@ -466,6 +466,10 @@ block mainContent
         > hg qrefresh --message "try: -b do -p all -u all -t all"  
         > hg push -f try
       li See the section on: SSH config for try or inbound on hg.mozilla.org 
+      li: :markdown
+        Sometimes after pushing you can't qpop because it says: "abort: popping would remove an immutable revision". Use:
+        > hg phase -f -d qtip  
+        > hg qpop -a
 
   .card-container
     h1 How to push a changeset from your MQ
