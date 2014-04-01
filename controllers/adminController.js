@@ -36,13 +36,22 @@ exports.getStats = function(users, callback) {
     return prevValue + (user.info.website ? 1 : 0);
   }, 0);
 
+
+  var maxJoinDate = users.reduce(function(prevValue, user) {
+    if (!prevValue)
+      return user.info.rawDateJoined;
+
+    return (prevValue > user.info.rawDateJoined) ? prevValue : user.info.rawDateJoined;
+  }, null);
+
   var stats = {
                 slugsCompletedCount: slugsCompletedCount,
                 userCount: users.length,
                 completedPerUser: slugsCompletedCount / users.length,
                 bugzillaAccountCount: bugzillaAccountCount,
                 displayNameCount: displayNameCount,
-                websiteCount: websiteCount
+                websiteCount: websiteCount,
+                maxJoinDate: maxJoinDate
               };
   callback(null, stats);
 };
