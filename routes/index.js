@@ -85,13 +85,15 @@ exports.admin = function(req, res) {
     return adminController.getStatsPromise(users);
   }).done(function(stats) {
     var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
+    var daysSinceLastJoined = helpers.formatTimeSpan(stats.maxJoinDate, new Date());
     res.render('admin', {
                           pageTitle: 'Administration',
                           bodyID: 'body_admin',
                           mainTitle: 'Administration',
                           serverRunningSince: serverRunningSince,
                           stats: stats,
-                          users: results.users
+                          users: results.users,
+                          daysSinceLastJoined: daysSinceLastJoined
                         });
   }, function onFailure(err) {
     respondNotFound(res);
@@ -331,7 +333,6 @@ exports.outline = function(req, res) {
     categories = lessonController.getCategoriesByTag(req.params.tagged);
     pageTitle = req.params.tagged;
     pageTitle = pageTitle.substring(0,1).toUpperCase() + pageTitle.substring(1);
-    console.log('page title is: ' + pageTitle);
   }
 
   if (req.params.tagged == 'Firefox') {
