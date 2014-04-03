@@ -1,5 +1,7 @@
 var Promise = require('promise'),
   userController = require('./userController.js'),
+  lessonController = require('./lessonController.js'),
+  async = require('async'),
   redisController = require('./redisController.js'),
   _ = require('underscore');
 
@@ -16,27 +18,60 @@ exports.initPromise = Promise.denodeify(exports.init).bind(exports);
  * Obtains up to date stats
  */
 exports.getStats = function(users, callback) {
+
+  // Get stats about the number of completed lessons
+  var slugCountMap = {};
   var slugsCompletedCount = users.reduce(function(prevValue, user) {
     if (!user)
       return 0;
     if (!user.slugsCompleted)
       return 0;
+
+    user.slugsCompleted.forEach(function(slug) {
+      if (slugCountMap[slug])
+        slugCountMap[slug]++;
+      else
+        slugCountMap[slug] = 1;
+    });
     return prevValue + user.slugsCompleted.length;
   }, 0);
 
+  // Get the slugs comlpeted by video into an array sorted by # watched
+  var slugsCompletedSorted = [];
+  for (var slug in slugCountMap) {
+    slugsCompletedSorted.push({ slug: slug, count: slugCountMap[slug]});
+  }
+  slugsCompletedSorted.sort(function(a, b) {
+    return b.count - a.count;
+  });
+
+  async.map(slugsCompletedSorted, function(slugCompleted, mapCallback) {
+     lessonController.get(slugCompleted.slug, mapCallback);
+  }, function(err, results) {
+    console.log('err: ' + err);
+    console.log('results: ' + results);
+    console.log('typeof err: ' + typeof err);
+    console.log('typeof results: ' + typeof results);
+    console.log('slugsCompletedSorted len: ' + slugsCompletedSorted.length);
+    for (var i = 0; i < slugsCompletedSorted.length; i++) {
+      console.log(results[i].title);
+      slugsCompletedSorted[i].title = results[i].title;
+      slugsCompletedSorted[i].type = results[i].type;
+    }
+
+  });
+
+
+  // Get other user related stats
   var bugzillaAccountCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.bugzilla ? 1 : 0);
   }, 0);
-
   var displayNameCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.displayName ? 1 : 0);
   }, 0);
-
   var websiteCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.website ? 1 : 0);
   }, 0);
-
-
   var maxJoinDate = users.reduce(function(prevValue, user) {
     if (!prevValue)
       return user.info.rawDateJoined;
@@ -51,7 +86,8 @@ exports.getStats = function(users, callback) {
                 bugzillaAccountCount: bugzillaAccountCount,
                 displayNameCount: displayNameCount,
                 websiteCount: websiteCount,
-                maxJoinDate: maxJoinDate
+                maxJoinDate: maxJoinDate,
+                slugsCompletedSorted: slugsCompletedSorted,
               };
   callback(null, stats);
 };
