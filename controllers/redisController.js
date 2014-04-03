@@ -59,7 +59,7 @@ exports.get = function(slug, callback) {
   exports.redisClient.get(slug, function(err, reply) {
     if (!reply) {
       if (callback) {
-        callback('no key found', null);
+        callback('no key found for slug: ' + slug, null);
       }
       return;
     }

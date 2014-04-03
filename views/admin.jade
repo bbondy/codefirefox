@@ -17,6 +17,8 @@ block mainContent
 
     .card-container
       h1 User Statistics
+      p These statistics are only tracked for logged on users
+
       p=  'User count: ' + stats.userCount
       p=  'Lessons Completed: ' + stats.slugsCompletedCount
       p=  'Completed per user: ' + stats.completedPerUser.toFixed(2)
@@ -25,11 +27,10 @@ block mainContent
       p=  'Websites filled: ' + stats.websiteCount
       p=  'Days since last joined: ' + daysSinceLastJoined
 
-      br
-      strong These statistics are only tracked for logged in users.
-
     .card-container
-      h1 Administer users
+      h1 Lessons completed by user
+
+      p These statistics are only tracked for logged on users
       ul
         each user in users
           li
@@ -39,3 +40,15 @@ block mainContent
             else
               span= user.toString() + ': ' + user.slugsCompleted.length + ' completed'
 
+    .card-container
+      h1 Lessons completed by lesson
+
+      p These statistics are only tracked for logged on users
+      ul
+        each lesson in stats.slugsCompletedSorted
+          li
+            if lesson.type == 'video'
+              a(href='/video/' + lesson.slug)= lesson.title
+            else
+              a(href='/exercise/' + lesson.slug)= lesson.title
+            span= ': ' +  lesson.count + ' completed'
