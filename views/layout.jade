@@ -19,6 +19,11 @@ html(lang="en")
     block extraHead
 
   body(id= bodyID)
+    #notify-bar
+      i(class='fa fa-info-circle')
+      span Login for advanced functionality like tracking watched videos!
+      a#boxclose.boxclose
+
     #page-container
       script.
         var email="#{session.email}";

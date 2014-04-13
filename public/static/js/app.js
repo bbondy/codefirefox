@@ -92,6 +92,10 @@ require(['analytics', 'jquery', 'underscore', 'persona', 'tabzilla'], function(a
     location.reload();
   });
 
+  $('#boxclose').click(function(){
+    $('#notify-bar').slideUp();
+  });
+
   $(function() {
     // By default, express-persona adds the users email address to req.session.email when their email is validated.
     navigator.id.watch({
