@@ -33,8 +33,6 @@ html(lang="en")
         #header
           a(href='/')
             img#logo(src='/static/img/logo.png')
-            //a(href='https://twitter.com/codefirefox', target='_blank')
-            //img#follow-on-twitter(src='/static/img/follow-on-twitter.png')
 
           a#tabzilla(href='/en-US/', id='tabzilla') mozilla
           #navbar
@@ -50,9 +48,6 @@ html(lang="en")
               if session.email
                 li
                   a#navbar-profile(href='/profile') Profile
-              li
-                a#follow-on-twitter(href='https://twitter.com/codefirefox', title='Follow @codefirefox for new content updates')
-                  i(class='fa fa-twitter')
 
           span.persona-buttons
             if session.email
