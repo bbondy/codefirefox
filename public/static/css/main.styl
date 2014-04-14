@@ -28,6 +28,8 @@ html, body
 #page-container
   background url("/static/img/bg.png") no-repeat top right
   border-top 2px solid #fff
+  box-sizing: border-box;
+  min-height: 100%;
 
 #page
   min-height 100%
@@ -60,6 +62,9 @@ img
 a
   text-decoration none !important
   color #7ca1cf
+
+.fa-twitter
+  color #55ACEE
 
 #follow-on-twitter
   color #7ca1cf !important
@@ -292,6 +297,13 @@ ul.videos li.exercise span.completed
   color #fff
   background-color #363f48
   height 60px
+  display: block
+  width 100%
+  position fixed
+  bottom 0
+  border-top 2px solid #eee
+  opacity 0.8
+
 
 #footer a
   color #fff
