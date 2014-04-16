@@ -1,21 +1,20 @@
 "use strict";
 
 exports.formatTimeSpan = function(firstDate, secondDate, includeExcessiveDetail, hideSeconds) {
-  var SECOND = 1000;
-  var MINUTE = 60 * SECOND;;
-  var HOUR = 60 * MINUTE;
-  var DAY = 24 * HOUR;
+  const SECOND = 1000,
+    MINUTE = 60 * SECOND,
+    HOUR = 60 * MINUTE,
+    DAY = 24 * HOUR;
 
   // Calculate the time diffs
-  var diffTime = secondDate.getTime() - firstDate.getTime();
-  var diffDays = (diffTime / DAY) | 0;
-  var diffHours = (diffTime % DAY/ HOUR) | 0;
-  var diffMinutes = (diffTime % DAY % HOUR/ MINUTE) | 0;
-  var diffSeconds = (diffTime % DAY % HOUR % MINUTE / SECOND) | 0;
-
-  // Reduce the time diffs and their suffixes to a string
-  var suffixes = ['day', 'hour', 'minute', 'second']
-  var timeDiffs = [diffDays, diffHours, diffMinutes, diffSeconds];
+  let diffTime = secondDate.getTime() - firstDate.getTime(),
+    diffDays = (diffTime / DAY) | 0,
+    diffHours = (diffTime % DAY/ HOUR) | 0,
+    diffMinutes = (diffTime % DAY % HOUR/ MINUTE) | 0,
+    diffSeconds = (diffTime % DAY % HOUR % MINUTE / SECOND) | 0,
+    // Reduce the time diffs and their suffixes to a string
+    suffixes = ['day', 'hour', 'minute', 'second'],
+    timeDiffs = [diffDays, diffHours, diffMinutes, diffSeconds];
   
   if (!includeExcessiveDetail) {
     // If we have days or hours, don't show seconds
@@ -30,11 +29,9 @@ exports.formatTimeSpan = function(firstDate, secondDate, includeExcessiveDetail,
     }
   }
 
-  var i = 0;
-  var str = timeDiffs.reduce(function (e1, e2) {
-    var str = e1;
-    
-    var suffix = suffixes[i++];
+  let str = timeDiffs.reduce(function (e1, e2, i) {
+    let str = e1,
+      suffix = suffixes[i];
     // If the other element is non 0, then include it in the span string
     if (e2 !== 0) {
       if (str)

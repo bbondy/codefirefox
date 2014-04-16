@@ -4,7 +4,7 @@
  *  Basic low level db helper functions
 */
 
-var fs = require('fs'),
+let fs = require('fs'),
   redis = require('redis'),
   async = require('async'),
   _ = require('underscore'),
@@ -64,7 +64,7 @@ exports.get = function(slug, callback) {
       return;
     }
 
-    var obj = JSON.parse(reply.toString());
+    let obj = JSON.parse(reply.toString());
     callback(null, obj);
   });
 };
@@ -88,7 +88,7 @@ exports.count = function(key, callback) {
  * Obtains all subkeys for the passed in key and calls the callback when done
  */
 exports.getAll = function(parentKey, callback) {
-  var computedKey = (parentKey ? parentKey + ':' : '') + '*';
+  let computedKey = (parentKey ? parentKey + ':' : '') + '*';
   exports.redisClient.keys(computedKey, function(err, replies) {
     if (!replies) {
       callback(err);
@@ -124,7 +124,7 @@ exports.delUserStats = function(email, callback) {
 };
 
 exports.initVideoData = function(filePath, c) {
-  var readData = function() {
+  let readData = function() {
     fs.readFile(filePath, 'utf8', function (err,data) {
       if (err) {
         console.error('DB error: ' + err);
@@ -136,7 +136,7 @@ exports.initVideoData = function(filePath, c) {
     });
   };
 
-  var delVideos = function(err) {
+  let delVideos = function(err) {
     exports.redisClient.keys('video:*', function(err, replies) {
       async.each(replies, function(key, callback) {
         exports.redisClient.del(key);
@@ -145,7 +145,7 @@ exports.initVideoData = function(filePath, c) {
     });
   };
 
-  var delCategories = function(err) {
+  let delCategories = function(err) {
     exports.redisClient.keys('category:*', function(err, replies) {
       async.each(replies, function(key, callback) {
         exports.redisClient.del(key);
@@ -154,8 +154,8 @@ exports.initVideoData = function(filePath, c) {
     });
   };
 
-  var populateDB = function(err) {
-    var availableVideos = 0,
+  let populateDB = function(err) {
+    let availableVideos = 0,
       unavailableVideos = 0,
       // Priority is dictated by the ordering in the JSON file
       categoryPriority = 0,
@@ -195,8 +195,8 @@ exports.initVideoData = function(filePath, c) {
       unavailable: unavailableVideos
     });
 
-    var allTagsSortable = [];
-    for (var tag in allTags) {
+    let allTagsSortable = [];
+    for (let tag in allTags) {
       allTagsSortable.push(allTags[tag]);
     }
     allTagsSortable.sort(exports.sortTagsByName);
@@ -204,7 +204,7 @@ exports.initVideoData = function(filePath, c) {
     c();
   };
 
-  var newCategories;
+  let newCategories;
   readData();
 };
 
@@ -224,7 +224,7 @@ exports.getListElements = function(key, callback) {
       callback(err);
       return;
     }
-    var list = replies.map(function(result) {
+    let list = replies.map(function(result) {
       return JSON.parse(result.toString());
     });
     callback(null, list);

@@ -1,4 +1,6 @@
-var RSS = require('rss'),
+"use strict";
+
+let RSS = require('rss'),
   _ = require('underscore'),
   Promise = require('promise');
 
@@ -37,7 +39,7 @@ exports.getFeedXML = function(baseURL) {
   if (exports._rss)
     return exports._rss;
 
-  var feed = new RSS({
+  let feed = new RSS({
     title: 'Code Firefox',
     description: 'Videos and Exercises for Code Firefox',
     feed_url: baseURL + '/rss',

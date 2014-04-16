@@ -1,4 +1,6 @@
-var nodemailer = require('nodemailer'),
+"use strict";
+
+let nodemailer = require('nodemailer'),
   configController = require('../controllers/configController');
 
 /**
@@ -12,7 +14,7 @@ var nodemailer = require('nodemailer'),
  */
 exports.sendMail = function(to, subject, html, callback) {
 
-  var smtpTransport = nodemailer.createTransport("SMTP",{
+  let smtpTransport = nodemailer.createTransport("SMTP",{
       service: configController.config.emailService,
       auth: {
           user: configController.config.smtpUser,
@@ -20,8 +22,8 @@ exports.sendMail = function(to, subject, html, callback) {
       }
   });
 
-  var text = html.replace(/(<([^>]+)>)/ig,"");
-  var mailOptions = {
+  let text = html.replace(/(<([^>]+)>)/ig,"");
+  let mailOptions = {
       from: configController.config.emailFrom,
       to: to,
       subject: subject,

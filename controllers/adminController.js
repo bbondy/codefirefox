@@ -1,4 +1,6 @@
-var Promise = require('promise'),
+"use strict";
+
+let Promise = require('promise'),
   userController = require('./userController.js'),
   lessonController = require('./lessonController.js'),
   async = require('async'),
@@ -20,8 +22,8 @@ exports.initPromise = Promise.denodeify(exports.init).bind(exports);
 exports.getStats = function(users, callback) {
 
   // Get stats about the number of completed lessons
-  var slugCountMap = {};
-  var slugsCompletedCount = users.reduce(function(prevValue, user) {
+  let slugCountMap = {};
+  let slugsCompletedCount = users.reduce(function(prevValue, user) {
     if (!user)
       return 0;
     if (!user.slugsCompleted)
@@ -37,8 +39,8 @@ exports.getStats = function(users, callback) {
   }, 0);
 
   // Get the slugs comlpeted by video into an array sorted by # watched
-  var slugsCompletedSorted = [];
-  for (var slug in slugCountMap) {
+  let slugsCompletedSorted = [];
+  for (let slug in slugCountMap) {
     slugsCompletedSorted.push({ slug: slug, count: slugCountMap[slug]});
   }
   slugsCompletedSorted.sort(function(a, b) {
@@ -53,7 +55,7 @@ exports.getStats = function(users, callback) {
     console.log('typeof err: ' + typeof err);
     console.log('typeof results: ' + typeof results);
     console.log('slugsCompletedSorted len: ' + slugsCompletedSorted.length);
-    for (var i = 0; i < slugsCompletedSorted.length; i++) {
+    for (let i = 0; i < slugsCompletedSorted.length; i++) {
       console.log(results[i].title);
       slugsCompletedSorted[i].title = results[i].title;
       slugsCompletedSorted[i].type = results[i].type;
@@ -63,23 +65,23 @@ exports.getStats = function(users, callback) {
 
 
   // Get other user related stats
-  var bugzillaAccountCount = users.reduce(function(prevValue, user) {
+  let bugzillaAccountCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.bugzilla ? 1 : 0);
   }, 0);
-  var displayNameCount = users.reduce(function(prevValue, user) {
+  let displayNameCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.displayName ? 1 : 0);
   }, 0);
-  var websiteCount = users.reduce(function(prevValue, user) {
+  let websiteCount = users.reduce(function(prevValue, user) {
     return prevValue + (user.info.website ? 1 : 0);
   }, 0);
-  var maxJoinDate = users.reduce(function(prevValue, user) {
+  let maxJoinDate = users.reduce(function(prevValue, user) {
     if (!prevValue)
       return user.info.rawDateJoined;
 
     return (prevValue > user.info.rawDateJoined) ? prevValue : user.info.rawDateJoined;
   }, null);
 
-  var stats = {
+  let stats = {
                 slugsCompletedCount: slugsCompletedCount,
                 userCount: users.length,
                 completedPerUser: slugsCompletedCount / users.length,

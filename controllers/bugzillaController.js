@@ -1,6 +1,6 @@
 "use strict";
 
-var Promise = require('promise'),
+let Promise = require('promise'),
   _ = require('underscore'),
   http = require("http"),
   https = require("https");
@@ -13,7 +13,7 @@ var Promise = require('promise'),
  */
 function getBugzillaJSON(path, callback)
 {
-  var options = {
+  let options = {
     host: 'bugzilla.mozilla.org',
     port: 443,
     path: path,
@@ -23,8 +23,8 @@ function getBugzillaJSON(path, callback)
     }
   };
 
-  var req = https.request(options, function(res) {
-    var output = '';
+  let req = https.request(options, function(res) {
+    let output = '';
     res.setEncoding('utf8');
 
     res.on('data', function (chunk) {
@@ -32,7 +32,7 @@ function getBugzillaJSON(path, callback)
     });
 
     res.on('end', function() {
-      var obj = JSON.parse(output);
+      let obj = JSON.parse(output);
       if (res.statusCode != 200) {
         callback(res.statusCode);
       } else {
@@ -56,7 +56,7 @@ function getBugzillaJSON(path, callback)
 exports.getFixedCount = function(username, callback) {
   getBugzillaJSON('/rest/bug?assigned_to=' + encodeURIComponent(username) +
                  '&include_fields=resolution', function(err, result) {
-    var count = result.bugs.reduce(function(prev, current) {
+    let count = result.bugs.reduce(function(prev, current) {
       return prev + (current.resolution == "FIXED" ? 1 : 0);
     }, 0);
     callback(err, count);
