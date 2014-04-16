@@ -1,6 +1,6 @@
 "use strict";
 
-var assert = require("assert"),
+let assert = require("assert"),
   Promise = require("promise"),
   _ = require("underscore"),
   lessonController = require("../controllers/lessonController.js");
@@ -32,7 +32,7 @@ describe('lessonController', function() {
 
   it('First video in first category should match what-is-mozilla slug', function(done) {
     lessonController.get('what-is-mozilla', function(err, video) {
-      var other = lessonController.categories[0].videos[0];
+      let other = lessonController.categories[0].videos[0];
       assert.equal(other.title, video.title);
       assert.equal(other.slug, video.slug);
       assert.equal(other.type, video.type);

@@ -1,11 +1,10 @@
 "use strict";
 
-var assert = require("assert"),
+let assert = require("assert"),
   Promise = require("promise"),
-  _ = require("underscore");
-
-// Promise wrapped helpers
-var readFile = Promise.denodeify(require('fs').readFile);
+  _ = require("underscore"),
+  // Promise wrapped helpers
+  readFile = Promise.denodeify(require('fs').readFile);
 
 describe('files', function() {
   describe('#config.json()', function() {
@@ -13,7 +12,7 @@ describe('files', function() {
 
        readFile(__dirname + '/../data/config.json', 'utf8')
          .then(function(data) {
-           var config = JSON.parse(data);
+           let config = JSON.parse(data);
            assert.ok(config.admins);
            assert.ok(config.host);
            assert.ok(config.port);
@@ -28,10 +27,10 @@ describe('files', function() {
   describe('#videos.json()', function() {
     it('videos.json file should be valid', function(done) {
        // Helps track duplicate entries
-       var existsHelper = { };
+       let existsHelper = { };
        readFile(__dirname + '/../data/videos.json', 'utf8')
          .then(function(data) {
-           var categories = JSON.parse(data);
+           let categories = JSON.parse(data);
            _.each(categories, function(c) {
                // Check that the category items are specified
                assert.ok(c.title);

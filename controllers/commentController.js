@@ -1,14 +1,13 @@
 "use strict";
 
+const KEY_PREFIX = 'comments:lesson:';
 
-var redisController = require('../controllers/redisController.js'),
+let redisController = require('../controllers/redisController.js'),
   userController = require('../controllers/userController.js'),
   helpers = require('../helpers'),
   async = require('async'),
   crypto = require('crypto'),
   Promise = require('promise');
-
-var KEY_PREFIX = 'comments:lesson:';
 
 /**
  * Adds the additional comment fields which are generated
@@ -17,14 +16,14 @@ var KEY_PREFIX = 'comments:lesson:';
 function addExtraCommentFields(comment, callback) {
   userController.get(comment.email, function(err, user) {
     // If there was an error just use undefined properties for displayname and website
-    var userInfo = user ? user.info : {};
+    let userInfo = user ? user.info : {};
     comment.displayName = userInfo.displayName;
     if (!comment.displayName) {
       comment.displayName = comment.email.substring(0, comment.email.indexOf('@'));
     }
     if (userInfo.website)
       comment.website = userInfo.website;
-    var md5sum = crypto.createHash('md5');
+    let md5sum = crypto.createHash('md5');
     md5sum.update(comment.email.toLowerCase());
     comment.emailHash = md5sum.digest('hex');
     comment.daysAgoPosted = helpers.formatTimeSpan(new Date(comment.datePosted), new Date(), false, true);
@@ -48,7 +47,7 @@ exports.addComment = function(lessonSlug, comment, callback) {
     return;
   }
 
-  var now = new Date();
+  let now = new Date();
   comment.datePosted = now.toISOString();
 
   redisController.increment('comment_id', function(err, count) {
@@ -101,12 +100,12 @@ exports.getComments = function(lessonSlug, includeEmails, callback) {
 exports.getCommentsPromise = Promise.denodeify(exports.getComments).bind(exports);
 
 exports.delComment = function(lessonSlug, commentID, callback) {
-  var key = KEY_PREFIX + lessonSlug;
+  let key = KEY_PREFIX + lessonSlug;
   exports.getComments(lessonSlug, true, function(err, comments) {
     if (err) {
       callback(err);
     }
-    var foundObj;
+    let foundObj;
     comments.forEach(function(comment) {
       if (comment.id == commentID) {
         foundObj = comment;

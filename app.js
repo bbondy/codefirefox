@@ -1,6 +1,9 @@
 'use strict';
 
-var express = require('express'),
+const HOUR = 3600000,
+  DAY = 24 * HOUR;
+
+let express = require('express'),
   async = require('async'),
   routes = require('./routes'),
   stylus = require('stylus'),
@@ -9,15 +12,12 @@ var express = require('express'),
   RedisStore = require('connect-redis')(express),
   userController = require('./controllers/userController.js'),
   configController = require('./controllers/configController.js'),
-  appController = require('./controllers/appController.js');
-
-var HOUR = 3600000;
-var DAY = 24 * HOUR;
-var serverRunningSince = new Date();
-var app = express();
+  appController = require('./controllers/appController.js'),
+  serverRunningSince = new Date(),
+  app = express();
 
 appController.initPromise().done(function() {
-  var config = configController.config;
+  let config = configController.config;
   configController.print();
 
   app.set('views', __dirname + '/views');
@@ -64,7 +64,7 @@ appController.initPromise().done(function() {
         next();
      });
 
-  var serverURL = 'http://' + config.host +
+  let serverURL = 'http://' + config.host +
     (config.port == 80 ? '' : (':' + config.port));
   console.log('server callback URL for Persona: ' + serverURL);
   require('express-persona')(app, {
@@ -82,7 +82,7 @@ appController.initPromise().done(function() {
         req.session.isTrusted =  req.session.isAdmin;
 
         console.log('User logged in: ' + req.session.email);
-         var ip = req.connection.remoteAddress;
+         let ip = req.connection.remoteAddress;
          if (ip == '127.0.0.1' &&
              config.host == 'codefirefox.com') {
            ip = req.get('HTTP_X_FORWARDED_FOR');

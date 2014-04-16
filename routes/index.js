@@ -1,6 +1,6 @@
 "use strict";
 
-var querystring = require("querystring"),
+let querystring = require("querystring"),
   acorn = require('acorn'),
   prettyjson = require('prettyjson'),
   Promise = require('promise'),
@@ -79,13 +79,13 @@ exports.admin = function(req, res) {
     return;
   }
   
-  var results = { };
+  let results = { };
   userController.getAllPromise().then(function(users) {
     results.users = users;
     return adminController.getStatsPromise(users);
   }).done(function(stats) {
-    var serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
-    var daysSinceLastJoined = helpers.formatTimeSpan(stats.maxJoinDate, new Date());
+    let serverRunningSince = helpers.formatTimeSpan(res.locals.session.serverRunningSince, new Date(), true);
+    let daysSinceLastJoined = helpers.formatTimeSpan(stats.maxJoinDate, new Date());
     res.render('admin', {
                           pageTitle: 'Administration',
                           bodyID: 'body_admin',
@@ -130,7 +130,7 @@ exports.profile = function(req, res, next) {
       return;
     }
 
-    var md5sum = crypto.createHash('md5');
+    let md5sum = crypto.createHash('md5');
     md5sum.update(res.locals.session.email.toLowerCase());
     
     res.render('profile', {
@@ -301,7 +301,7 @@ exports.video = function(req, res, next) {
     return;
   }
 
-  var useAmara = req.cookies.useAmara == '1';
+  let useAmara = req.cookies.useAmara == '1';
   lessonController.get(req.params.video, function(err, video) {
     if (err) {
       respondNotFound(res);
@@ -325,9 +325,9 @@ exports.video = function(req, res, next) {
  * Renders the main page which shows a list of videos
  */
 exports.outline = function(req, res) {
-  var bodyID = 'body_index';
-  var categories = lessonController.categories;
-  var pageTitle = 'Lessons';
+  let bodyID = 'body_index';
+  let categories = lessonController.categories;
+  let pageTitle = 'Lessons';
 
   if (req.params.tagged) {
     categories = lessonController.getCategoriesByTag(req.params.tagged);
@@ -341,8 +341,8 @@ exports.outline = function(req, res) {
     bodyID = 'body_firefox_os';
   }
 
-  var user;
-  var loadPage = function () {
+  let user;
+  let loadPage = function () {
     res.render('index', {
                           pageTitle: pageTitle,
                           categories: categories,
@@ -395,11 +395,11 @@ exports.exercise = function(req, res, next) {
       return;
     }
 
-    var jsonpCallback = req.query.jsonp;
+    let jsonpCallback = req.query.jsonp;
     if (jsonpCallback) {
-      var assertions = JSON.stringify(exercise.assertions);
+      let assertions = JSON.stringify(exercise.assertions);
       assertions = assertions.replace(/'/g, "\\'");
-      var assertions = jsonpCallback + "('" + assertions + "');"
+      assertions = jsonpCallback + "('" + assertions + "');"
         res.writeHead(200, {
             'Content-Type': 'application/javascript',
             'Content-Length': assertions.length
@@ -454,7 +454,7 @@ exports.postComment = function(req, res) {
     } else {
 
       // Construct an email 
-      var body = '<p><strong>New comemnt posted:</strong></p><p>' + req.body.text + '</p>';
+      let body = '<p><strong>New comemnt posted:</strong></p><p>' + req.body.text + '</p>';
       body += '<p><a href="http://codefirefox.com/lesson/' + req.params.slug + '">See post!</a>';
       emailController.sendMailToAdmins('New comment posted on slug ' + req.params.slug , body, function(err) {
         if (err) {
@@ -510,12 +510,12 @@ exports.checkCode = function(req, res) {
   }
 
   lessonController.get(req.params.slug, function(err, exercise) {
-    var checker = new CodeCheck();
+    let checker = new CodeCheck();
     checker.addAssertions(exercise.assertions);
     try {
       checker.parseSample(req.body.code, function(err, ret) {
-        var statusMessage = "okay";
-        var reason = "";
+        let statusMessage = "okay";
+        let reason = "";
         if (err) {
           console.error(err);
           statusMessage = "failure";

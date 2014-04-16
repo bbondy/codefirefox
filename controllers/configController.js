@@ -1,4 +1,6 @@
-var fs =  require('fs'),
+"use strict";
+
+let fs =  require('fs'),
   Promise = require('promise');
 
 exports.init = function(callback) {

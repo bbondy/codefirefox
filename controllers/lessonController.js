@@ -1,6 +1,6 @@
 "use strict";
 
-var redisController = require('../controllers/redisController.js'),
+let redisController = require('../controllers/redisController.js'),
   Promise = require('promise');
 
 /**
@@ -72,7 +72,7 @@ exports.get = function(slug, callback) {
 exports.getCategoriesByTag = function(tag) {
     if (!exports._categoriesByTag[tag]) {
       exports._categoriesByTag[tag] = exports.categories.filter(function(c) {
-        var hasTag = false;
+        let hasTag = false;
         c.videos.forEach(function(v) {
           hasTag = hasTag || v.tags.indexOf(tag) != -1;
         });

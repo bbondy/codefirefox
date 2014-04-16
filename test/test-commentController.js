@@ -1,24 +1,23 @@
 'use strict';
 
-var assert = require('assert'),
+const lessonSlug = 'test',
+  key = 'comments:lesson:' + lessonSlug,
+  username1 = 'bbondy+test@gmail.com',
+  username2 = 'bbondy+test2@gmail.com',
+  comment1 = { email: username1, text: 'Hello!' },
+  comment2 = { email: username2, text: 'Hello L&R!' };
+
+
+let assert = require('assert'),
   Promise = require('promise'),
   _ = require('underscore'),
   redisController = require('../controllers/redisController.js'),
   userController = require('../controllers/userController.js'),
-  commentController = require('../controllers/commentController.js');
-
-var lessonSlug = 'test';
-var key = 'comments:lesson:' + lessonSlug;
-
-var username1 = 'bbondy+test@gmail.com';
-var username2 = 'bbondy+test2@gmail.com';
-var comment1 = { email: username1, text: 'Hello!' };
-var comment2 = { email: username2, text: 'Hello L&R!' };
-
-var user1 = {
-  displayName: 'Brian R. Bondy',
-  website: 'http://www.brianbondy.com'
-};
+  commentController = require('../controllers/commentController.js'),
+  user1 = {
+    displayName: 'Brian R. Bondy',
+    website: 'http://www.brianbondy.com'
+  };
 
 describe('commentController', function() {
 
@@ -89,7 +88,7 @@ describe('commentController', function() {
   });
 
   it('Adding a comment without a text attribute should error', function(done) {
-    var comment = { email: 'a@b.c' };
+    let comment = { email: 'a@b.c' };
     commentController.addComment(lessonSlug, comment, function(err, results) {
       assert(err);
       done();
@@ -97,7 +96,7 @@ describe('commentController', function() {
   });
 
   it('Adding a comment without an email attribute should error', function(done) {
-    var comment = { text: 'Hello!' };
+    let comment = { text: 'Hello!' };
     commentController.addComment(lessonSlug, comment, function(err, results) {
       assert(err);
       done();
@@ -126,7 +125,7 @@ describe('commentController', function() {
       assert(!_.isUndefined(results[0].daysAgoPosted));
       assert(new Date(results[0].datePosted) <= new Date());
 
-      var user2DisplayName = results[1].email.substring(0, results[1].email.indexOf('@'));
+      let user2DisplayName = results[1].email.substring(0, results[1].email.indexOf('@'));
       assert(results[1].id > 0);
       assert(results[0].id < results[1].id);
       assert(!results[1].displayName.localeCompare(user2DisplayName));
@@ -143,7 +142,7 @@ describe('commentController', function() {
     });
   });
 
- var addedID = -1;
+ let addedID = -1;
  it('Getting a comment list without emails should not return emails', function(done) {
     commentController.getComments(lessonSlug, false, function(err, results) {
       assert(!err);
@@ -159,7 +158,7 @@ describe('commentController', function() {
       assert(!_.isUndefined(results[0].daysAgoPosted));
       assert(new Date(results[0].datePosted) <= new Date());
 
-      var user2DisplayName = username2.substring(0, username2.indexOf('@'));
+      let user2DisplayName = username2.substring(0, username2.indexOf('@'));
       assert(results[1].id > 0);
       assert(results[0].id < results[1].id);
       assert(!results[1].displayName.localeCompare(user2DisplayName));
@@ -183,7 +182,7 @@ describe('commentController', function() {
         assert(!err);
         assert.equal(results.length, 1);
 
-        var user2DisplayName = username2.substring(0, username2.indexOf('@'));
+        let user2DisplayName = username2.substring(0, username2.indexOf('@'));
         assert(results[0].id > 0);
         assert(!results[0].displayName.localeCompare(user2DisplayName));
         assert(_.isUndefined(results[0].email));

@@ -1,6 +1,6 @@
 "use strict";
 
-var assert = require("assert"),
+let assert = require("assert"),
   Promise = require("promise"),
   _ = require("underscore"),
   appController = require('../controllers/appController.js'),

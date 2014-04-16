@@ -1,4 +1,6 @@
-var lessonController = require('../controllers/lessonController.js'),
+"use strict";
+
+let lessonController = require('../controllers/lessonController.js'),
   configController = require('../controllers/configController.js'),
   tagsController = require('../controllers/tagsController.js'),
   rssController = require('../controllers/rssController.js'),

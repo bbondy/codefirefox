@@ -1,6 +1,6 @@
 "use strict";
 
-var redisController = require('../controllers/redisController.js'),
+let redisController = require('../controllers/redisController.js'),
  helpers = require('../helpers'),
  async = require('async'),
  Promise = require('promise'),
@@ -16,7 +16,7 @@ var redisController = require('../controllers/redisController.js'),
  * - info: An object with a bunch of different info for the user, such as dateJoined and dateLastLogin
  */
 exports.get = function(username, callback) {
- var user = { };
+ let user = { };
   redisController.getOnePromise('user:' + username + ':info')
   .then(function(info) {
     user.info = info;
@@ -32,7 +32,7 @@ exports.get = function(username, callback) {
     user.info.dateJoined = helpers.formatTimeSpan(user.info.rawDateJoined, new Date());
     user.info.dateLastLogin = helpers.formatTimeSpan(user.info.rawDateLastLogin, new Date());
     user.toString = function() {
-      var str = '';
+      let str = '';
       if (user.info.displayName)
         str += user.info.displayName + '; ';
       if (user.info.bugzilla)
@@ -56,14 +56,14 @@ exports.getAll = function(callback) {
       callback(err);
       return;
     }
-    var usernames = users.map(function(userKey) {
-      var username = userKey.substring(5, userKey.length);
+    let usernames = users.map(function(userKey) {
+      let username = userKey.substring(5, userKey.length);
       return username.substring(0, username.indexOf(':'));
     });
 
     // garbage usernames to remove
     ['null', 'undefined'].forEach(function(garbage) {
-      var index = usernames.indexOf(garbage);
+      let index = usernames.indexOf(garbage);
       if (index != -1) {
         usernames.splice(index, 1);
       }
@@ -101,8 +101,8 @@ exports.delUser = function(username, callback) {
  * Adds one to the user's login count
  */
 exports.reportUserLogin = function(username, ip, callback) {
-  var loginCountKey = 'user:' + username + ':login_count';
-  var loginInfoKey = 'user:' + username + ':info';
+  let loginCountKey = 'user:' + username + ':login_count';
+  let loginInfoKey = 'user:' + username + ':info';
   redisController.increment(loginCountKey, function(err) {
     if (err) {
       callback(err);
@@ -111,7 +111,7 @@ exports.reportUserLogin = function(username, ip, callback) {
 
     redisController.get(loginInfoKey, function(err, info) {
       info = info || { };
-       var now = new Date();
+       let now = new Date();
        info.dateLastLogin = now.toISOString();
        info.lastLoginIP = ip;
        if (!info.dateJoined) {
@@ -130,7 +130,7 @@ exports.reportUserLogin = function(username, ip, callback) {
  * set info on users that are logged in.
  */
 exports.set = function(username, user, callback) {
-    var loginInfoKey = 'user:' + username + ':info';
+    let loginInfoKey = 'user:' + username + ':info';
     redisController.get(loginInfoKey, function(err, info) {
       if (err) {
         callback(err);

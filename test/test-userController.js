@@ -1,12 +1,11 @@
 'use strict';
 
-var assert = require('assert'),
+const username = 'bbondy+test@gmail.com';
+
+let assert = require('assert'),
   Promise = require('promise'),
   _ = require('underscore'),
   userController = require('../controllers/userController.js');
-
-var username = 'bbondy+test@gmail.com';
-
 
 describe('userController', function() {
   it('Deleting a user prereq', function(done) {
@@ -57,7 +56,7 @@ describe('userController', function() {
   });
 
   it('Setting user info should update that user info', function(done) {
-    var user_ = { displayName : 'hello', website: 'http://www.brianbondy.com', bugzilla: 'netzen@gmail.com' };
+    let user_ = { displayName : 'hello', website: 'http://www.brianbondy.com', bugzilla: 'netzen@gmail.com' };
     userController.set(username, user_, function(err) {
       assert(!err);
       userController.get(username, function(err, user) {
@@ -93,7 +92,7 @@ describe('userController', function() {
   });
 
   it('Overwrriting user info should update that user info', function(done) {
-    var user_ = { displayName : 'hello2', website: 'http://brianbondy.com/#2', bugzilla: 'bbondy@gmail.com' };
+    let user_ = { displayName : 'hello2', website: 'http://brianbondy.com/#2', bugzilla: 'bbondy@gmail.com' };
     userController.set(username, user_, function(err) {
       assert(!err);
       userController.get(username, function(err, user) {

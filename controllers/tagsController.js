@@ -1,6 +1,6 @@
 "use strict";
 
-var redisController = require('../controllers/redisController.js'),
+let redisController = require('../controllers/redisController.js'),
   Promise = require('promise');
 
 /**
