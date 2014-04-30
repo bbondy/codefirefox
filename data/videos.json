@@ -73,7 +73,7 @@
             "title": "Make an assignment within 2 nested if statements",
             "slug": "assignment-within-nested-ifs",
             "skip": [{"type" : "IfStatement", "prop": "test"}, {"type": "AssignmentExpression", "prop" : "right"}],
-            "hints": ["A nested if statement looks like if (x) { if (y) { } }", "An assignment looks like this: x = 3;", "Your code should look like this: for (x in y) { break; } "]
+            "hints": ["A nested if statement looks like if (x) { if (y) { } }", "An assignment looks like this: x = 3;", "Your code should look like this:  if (x) { if (y) { z = 3; } } "]
           }
         ]
       }
