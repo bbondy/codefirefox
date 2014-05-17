@@ -4,6 +4,7 @@ const HOUR = 3600000,
   DAY = 24 * HOUR;
 
 let express = require('express'),
+  I18n = require('i18n-2'),
   async = require('async'),
   routes = require('./routes'),
   stylus = require('stylus'),
@@ -19,6 +20,22 @@ let express = require('express'),
 appController.initPromise().done(function() {
   let config = configController.config;
   configController.print();
+
+  app.configure(function() {
+    // Attach the i18n property to the express request object
+    // And attach helper methods for use in templates
+    I18n.expressBind(app, {
+        // setup some locales - other locales default to en silently
+        locales: ['en', 'fr'],
+        // change the cookie name from 'lang' to 'locale'
+        cookieName: 'locale'
+    });
+
+    app.use(function(req, res, next) {
+        req.i18n.setLocaleFromCookie();
+        next();
+    });
+  });
 
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');

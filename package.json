@@ -11,6 +11,7 @@
     "express": "~3.4.7",
     "express-persona": "~0.1.1",
     "http": "0.0.0",
+    "i18n-2": "^0.4.6",
     "jade": "~0.35.0",
     "json": "0.0.14",
     "markdown": "~0.5.0",
@@ -26,7 +27,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha --harmony"
+    "test": "mocha --harmony",
+    "start": "node --harmony app.js"
   },
   "repository": {
     "type": "git",

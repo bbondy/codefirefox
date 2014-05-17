@@ -1,6 +1,8 @@
 "use strict";
 
 let redisController = require('../controllers/redisController.js'),
+  _ = require('underscore'),
+  I18n = require('i18n-2'),
   Promise = require('promise');
 
 /**
@@ -15,6 +17,7 @@ function loadIntoDB(callback) {
  */
 function loadFromDB(callback) {
   redisController.getAllPromise("category").done(function onSuccess(cat) {
+    l18n(cat);
     exports.categories  = cat;
     exports.categories.sort(redisController.sortByPriority);
     exports._categoriesByTag = [];
@@ -23,6 +26,30 @@ function loadFromDB(callback) {
     callback(err);
   });
 };
+
+function l18n(categories) {
+  let i18n = new I18n( {
+    // setup some locales - other locales default to en silently
+    locales: ['en', 'fr'],
+    // change the cookie name from 'lang' to 'locale'
+    cookieName: 'locale'
+  });//TODO find a better place for this
+
+  _.each(categories, function(c) {
+    i18n.__(c.title);
+    i18n.__(c.description);
+    _.each(c.videos, function(v) {
+      i18n.__(v.title);
+      i18n.__(v.description);
+      _.each(v.assertions, function(a) {
+        i18n.__(a.title);
+        _.each(a.hints, function(h) {
+          i18n.__(h);
+        });
+      });
+    });
+  });
+}
 
 
 /**

@@ -2,42 +2,84 @@ extends layout
 
 block mainContent
   .card-container
-    h1 Becoming a Mozillian
-    p Becoming a Mozilla contributor can be intimidating.  There's a lot of information to consume, and that information can be dispersed in a variety of different places.  This site aim to outline the process of becoming a Mozilla contributor, from start to finish, with gentle, short, consumable 2-10 minute videos.  Exercises are also used to solidify learnt concepts.
-
-    :markdown
-      Follow [@CodeFirefox](https://twitter.com/codefirefox) on twitter to get updates for new content.
+    h1= __("Becoming a Mozillian")
+    p= __("Becoming a Mozilla contributor can be intimidating.  There's a lot of information to consume, and that information can be dispersed in a variety of different places.  This site aim to outline the process of becoming a Mozilla contributor, from start to finish, with gentle, short, consumable 2-10 minute videos.  Exercises are also used to solidify learnt concepts.")
 
   .card-container
-    h1 Site Direction
-    p This site first aims to focus on Desktop Firefox videos from the ground up.  I'd love to also do videos on Firefox for Android, Firefox for Windows 8 style UI, and for Firefox OS.
+    h1= __("Site Direction")
+    p= __("This site first aims to focus on Desktop Firefox videos from the ground up.  I'd love to also do videos on Firefox for Android, Firefox for Windows 8 style UI, and for Firefox OS.")
 
   .card-container
-    h1 Video Creation
-    p The content on this site is produced on OS X with ScreenFlow. The videos are recorded in a local VMWare Windows 8 guest OS.  The audio is recorded with a Blue Yeti microphone.
+    h1= __("Video Creation")
+    p= __("The content on this site is produced on OS X with ScreenFlow. The videos are recorded in a local VMWare Windows 8 guest OS.  The audio is recorded with a Blue Yeti microphone.")
 
   .card-container
-    h1 Exercise Framework
-    :markdown
-      The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by [codecheck.js](http://github.com/bbondy/codecheckjs). codecheck.js allows for advanced feedback based on the program structure.
-      
-      Other exercise types other than JavaScript are still in progress.
-      
-      The Ace editor is used for syntax highlighting and basic error detection.
+    h1= __("Exercise Framework")
+    p= __("The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by codecheck.js. codecheck.js allows for advanced feedback based on the program structure.")
+    p= __("Other exercise types other than JavaScript are still in progress.")
+    p= __("The Ace editor is used for syntax highlighting and basic error detection.")
+    p
+      a(href='http://github.com/bbondy/codecheckjs') codecheck.js
+
+  .card-container
+    h1= __("Contributors")
+    p= __("Contributors of this site include:")
+    ul
+      li
+        span= __("Creator of this site and the Firefox Desktop content:")
+        br
+        a(href='http://brianbondy.com') Brian R. Bondy 
+        span (
+        a(href='http://twitter.com/brianbondy') @brianbondy
+        span ) 
+
+      li
+        span= __("Firefox OS App Basics video series:")
+        br
+        span Jan Jongboom 
+        span  (
+        a(href='http://twitter.com/janjongboom') @janjongboom
+        span ), 
+        a(href='http://sergimansilla.com/') Sergi Mansillar
+        span  (
+        a(href='http://twitter.com/sergimansilla') @sergimansilla
+        span ), 
+        a(href='http://christianheilmann.com/') Chris Heilmann 
+        span  (
+        a(href='http://twitter.com/codepo8') @codepo8
+        span )
+
+      li
+        span= __("Design, outline, QA:")
+        br
+        a(href='http://www.kamiljozwiak.com') Kamil Jozwiak 
+        span (
+        a(href='http://twitter.com/KamilJozwiak') @KamilJozwiak
+        span ) 
+
+      li
+        span= __("Design, outline, QA:")
+        br
+        a(href='http://blog.rodms.com/') Rodrigo Silveira 
+        span (
+        a(href='http://twitter.com/rodms10') @rodms10
+        span ) 
+
+      li
+        span= __("Help with English subtitles:")
+        br
+        a(href='http://sam-i-am.com/') Sam Foster 
+        span (
+        a(href='http://twitter.com/samfosteriam') @samfosteriam
+        span ) 
+
+      li
+        a(href='https://github.com/bbondy/codefirefox/graphs/contributors')= __("Other contributors")
+
+    p Mike Hoye (
+      a(href='https://twitter.com/mhoye') @mhoye
+      span ):  
+      span= __("The engineering community manager for Firefox. Please contact him if you have any questions about getting involved.")
+      a(href='mailto:mhoye@mozilla.com') email
     
-  .card-container
-    h1 Contributors
-    :markdown
-      Contributors of this site include: 
-
-      - [Brian R. Bondy](http://brianbondy.com) ([@brianbondy](http://twitter.com/brianbondy)) Creator of this site and the Firefox Desktop content. 
-      - Firefox OS App Basics video series: Jan Jongboom ([@janjongboom](https://twitter.com/janjongboom)), [Sergi Mansilla](http://sergimansilla.com/) ([@sergimansilla](https://twitter.com/sergimansilla)) of Telenor Digital and [Chris Heilmann](http://christianheilmann.com/) ([@codepo8](https://twitter.com/codepo8))
-      - Firefox OS automation video series: [Clint Talbert](http://clinttalbert.com/)
-      - [Kamil Jozwiak](http://www.kamiljozwiak.com) ([@KamilJozwiak](http://twitter.com/KamilJozwiak)) for helping with QA, design, and outline.
-      - [Rodrigo Silveira](http://blog.rodms.com/) ([@rodms10](https://twitter.com/rodms10)) for help translating to pt-BR subtitles.
-      - [Sam Foster](http://sam-i-am.com/) ([@samfosteriam](https://twitter.com/samfosteriam)) for help with English subtitles.
-      - I'd also like to thank [these contributors](https://github.com/bbondy/codefirefox/graphs/contributors).
-
-      Mike Hoye ([@mhoye](https://twitter.com/mhoye)) is the engineering community manager for Firefox. If you have any questions about getting involved, please [email him here](mailto:mhoye@mozilla.com).
-
-      [Brian R. Bondy](http://brianbondy.com) ([@brianbondy](http://twitter.com/brianbondy)) is the Platform Engineer who runs this site.  If you have any questions, please [email him here](mailto:netzen@gmail.com).
+    p= __("Brian R. Bondy is the developer who runs this site. Brian is currently employed at Khan Academy.")
