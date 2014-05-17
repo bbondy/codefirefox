@@ -7,14 +7,14 @@ block mainContent
     if exercise.description.length > 0
       p.exercise-description !{exercise.description.replace(/\n/g, '<br/>')}
 
-    h2 Perform the following tasks in JavaScript:
+    h2= __('Perform the following tasks in JavaScript:')
     ul#whitelist
       each assertion in exercise.assertions
         if !assertion.blacklist
           li(id= assertion.slug)
             i(class='fa fa-times')
             span= ' ' + assertion.title + '.  '
-            span.bad Not yet completed
+            span.bad= __('Not yet completed')
     h2 Without performing these tasks:
     ul#blacklist
       each assertion in exercise.assertions
@@ -22,11 +22,11 @@ block mainContent
           li(id= assertion.slug)
             i(class='fa fa-check')
             span= ' ' + assertion.title + '.  '
-            span.good So far so good.
+            span.good= __('So far so good.')
       li#no-syntax-errors
         i(class='fa fa-check')
-        span Do not have any syntax errors.  
-        span.good So far so good.
+        span= __('Do not have any syntax errors.')
+        span.good= __('So far so good.')
 
     pre#code
     p
