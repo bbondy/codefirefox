@@ -4,46 +4,46 @@ block mainContent
   .card-container
     if (session.isAdmin)
       h1 Actions
-      a(href='/initData') Initialize data 
-      | Reads data from videos.json and puts it into the redis DB.
-      | Also re-initializes all controllers
+      a(href='/initData')= __('Initialize data')
+      span= ' ' + __('Reads data from videos.json and puts it into the redis DB.')
+      span= ' ' + __('Also re-initializes all controllers')
     else
-      h1 You are not authorized to see this page
+      h1= __('You are not authorized to see this page')
 
   if (session.isAdmin)
     .card-container
-      h1 Server Statistics
-      p= 'Last server instance reset: ' + serverRunningSince + ' ago'
+      h1= __('Server Statistics')
+      p= __('Last server instance reset: ') + serverRunningSince + __(' ago')
 
     .card-container
-      h1 User Statistics
-      p These statistics are only tracked for logged on users
+      h1= __('User Statistics')
+      p= __('These statistics are only tracked for logged on users')
 
-      p=  'User count: ' + stats.userCount
-      p=  'Lessons Completed: ' + stats.slugsCompletedCount
-      p=  'Completed per user: ' + stats.completedPerUser.toFixed(2)
-      p=  'Linked Bugzilla accounts: ' + stats.bugzillaAccountCount
-      p=  'Display names filled: ' + stats.displayNameCount
-      p=  'Websites filled: ' + stats.websiteCount
-      p=  'Days since last joined: ' + daysSinceLastJoined
+      p=  __('User count: ') + stats.userCount
+      p=  __('Lessons Completed: ') + stats.slugsCompletedCount
+      p=  __('Completed per user: ') + stats.completedPerUser.toFixed(2)
+      p=  __('Linked Bugzilla accounts: ') + stats.bugzillaAccountCount
+      p=  __('Display names filled: ') + stats.displayNameCount
+      p=  __('Websites filled: ') + stats.websiteCount
+      p=  __('Days since last joined: ') + daysSinceLastJoined
 
     .card-container
-      h1 Lessons completed by user
+      h1= __('Lessons completed by user')
 
-      p These statistics are only tracked for logged on users
+      p= __('These statistics are only tracked for logged on users')
       ul
         each user in users
           li
             if user.info.website
               a(href=user.info.website)= user.toString()
-              span= ': ' + user.slugsCompleted.length + ' completed'
+              span= ': ' + user.slugsCompleted.length + __(' completed')
             else
-              span= user.toString() + ': ' + user.slugsCompleted.length + ' completed'
+              span= user.toString() + ': ' + user.slugsCompleted.length + __(' completed')
 
     .card-container
-      h1 Lessons completed by lesson
+      h1= __('Lessons completed by lesson')
 
-      p These statistics are only tracked for logged on users
+      p= __('These statistics are only tracked for logged on users')
       ul
         each lesson in stats.slugsCompletedSorted
           li
@@ -51,4 +51,4 @@ block mainContent
               a(href='/video/' + lesson.slug)= lesson.title
             else
               a(href='/exercise/' + lesson.slug)= lesson.title
-            span= ': ' +  lesson.count + ' completed'
+            span= ': ' +  lesson.count + __(' completed')
