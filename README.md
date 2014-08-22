@@ -11,10 +11,10 @@ Setting up this project
 3. ```cd codefirefox``` , Move present working directory to ```codefirefox```
 4. Install and setup redis
 5. Run redis-server passing in the command line: redis.conf (listens on port 10226)
-6. Copy data/conf.json.sample to data/conf.json, modify it appropriately
+6. Copy data/config.json.sample to data/config.json, modify it appropriately
 7. Install node.js (Current Version: v0.10.20)
 8. Run: ```npm install``` in the source code directory
-9. Run: ```node app```
+9. Run: ```node --harmony app```
 10. Once the server is running visit ```localhost:22935/initData```
 11. Browser to ```localhost:22935/videos``` to see all of the data or ```localhost:22935/slug``` to see a specific video
 
@@ -28,7 +28,7 @@ Running tests
 
 Tests are run using the Mocha framework. To get tests working just run:
 
-```npm test````
+```npm test```
 
 Setting up redis on Windows
 ===========================
