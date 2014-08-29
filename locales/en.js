@@ -40,7 +40,6 @@
 	"Debugging C++ code": "Debugging C++ code",
 	"Platform development": "Platform development",
 	"Staying up to date on Mozilla happenings": "Staying up to date on Mozilla happenings",
-	"": "",
 	"Finding out why code is the way it is, using hg annotate": "Finding out why code is the way it is, using hg annotate",
 	"Finding regression ranges with mozregression": "Finding regression ranges with mozregression",
 	"Searching and referencing Firefox code": "Searching and referencing Firefox code",
