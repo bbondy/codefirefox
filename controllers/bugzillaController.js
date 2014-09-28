@@ -2,7 +2,6 @@
 
 let Promise = require('promise'),
   _ = require('underscore'),
-  http = require("http"),
   https = require("https");
 
 
