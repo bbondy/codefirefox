@@ -15,8 +15,7 @@ Setting up this project
 7. Install node.js (Current Version: v0.10.20)
 8. Run: ```npm install``` in the source code directory
 9. Run: ```node --harmony app```
-10. Once the server is running visit ```localhost:22935/initData```
-11. Browser to ```localhost:22935/videos``` to see all of the data or ```localhost:22935/slug``` to see a specific video
+11. Browse to ```localhost:22935``` to see all of the data
 
 Exercise module
 ===============
@@ -29,6 +28,11 @@ Running tests
 Tests are run using the Mocha framework. To get tests working just run:
 
 ```npm test```
+
+Reinitializing data
+===================
+
+Once the server is running, you can init data from videos.json by visiting ```localhost:22935/initData```.
 
 Setting up redis on Windows
 ===========================
