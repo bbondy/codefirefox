@@ -10,7 +10,6 @@
     "connect-redis": "~1.4.6",
     "express": "~3.4.7",
     "express-persona": "~0.1.1",
-    "http": "0.0.0",
     "i18n-2": "^0.4.6",
     "jade": "~0.35.0",
     "json": "0.0.14",
