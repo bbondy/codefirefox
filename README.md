@@ -14,7 +14,7 @@ Setting up this project
 6. Copy data/conf.json.sample to data/conf.json, modify it appropriately
 7. Install node.js (Current Version: v0.10.20)
 8. Run: ```npm install``` in the source code directory
-9. Run: ```node app```
+9. Run: ```node --harmony app```
 10. Once the server is running visit ```localhost:22935/initData```
 11. Browser to ```localhost:22935/videos``` to see all of the data or ```localhost:22935/slug``` to see a specific video
 
