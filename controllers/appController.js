@@ -12,9 +12,9 @@ exports.init = function(callback) {
   configController.initPromise().then(function() {
     return redisController.initPromise(configController.config.redisPort);
   }).then(function() {
-    return tagsController.initPromise();
-  }).then(function() {
     return lessonController.initPromise();
+  }).then(function() {
+    return tagsController.initPromise();
   }).then(function() {
     return rssController.initPromise(lessonController.categories);
   }).then(function() {

@@ -7,17 +7,12 @@
 	"Exercise Framework": "Exercise Framework",
 	"Contributors": "Contributors",
 	"This site first aims to focus on Desktop Firefox videos from the ground up.  I'd love to also do videos on Firefox for Android, Firefox for Windows 8 style UI, and for Firefox OS.": "This site first aims to focus on Desktop Firefox videos from the ground up.  I'd love to also do videos on Firefox for Android, Firefox for Windows 8 style UI, and for Firefox OS.",
-	"The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by [codecheck.js](http://github.com/bbondy/codecheckjs). codecheck.js allows for advanced feedback based on the program structure.": "The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by [codecheck.js](http://github.com/bbondy/codecheckjs). codecheck.js allows for advanced feedback based on the program structure.",
 	"Other exercise types other than JavaScript are still in progress.": "Other exercise types other than JavaScript are still in progress.",
 	"The Ace editor is used for syntax highlighting and basic error detection.": "The Ace editor is used for syntax highlighting and basic error detection.",
-	"The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by ": "The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by ",
-	"allows for advanced feedback based on the program structure.": "allows for advanced feedback based on the program structure.",
 	"The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by codecheck.js. codecheck.js allows for advanced feedback based on the program structure.": "The exercise framework is created by parsing the JavaScript source using acorn.js.  This parses the code into an abstract parse tree which is then analyzed against a whitelist and blacklist of goals powered by codecheck.js. codecheck.js allows for advanced feedback based on the program structure.",
 	"Contributors of this site include:": "Contributors of this site include:",
-	"Creator of this site and the Firefox Desktop content.": "Creator of this site and the Firefox Desktop content.",
-	"Firefox OS App Basics video series.": "Firefox OS App Basics video series.",
-	"Creator of this site and the Firefox Desktop content:": "Creator of this site and the Firefox Desktop content:",
 	"Firefox OS App Basics video series:": "Firefox OS App Basics video series:",
+	"Creator of this site and the Firefox Desktop content:": "Creator of this site and the Firefox Desktop content:",
 	"Design, outline, QA:": "Design, outline, QA:",
 	"Help with English subtitles:": "Help with English subtitles:",
 	"Other contributors": "Other contributors",
@@ -45,7 +40,6 @@
 	"Debugging C++ code": "Debugging C++ code",
 	"Platform development": "Platform development",
 	"Staying up to date on Mozilla happenings": "Staying up to date on Mozilla happenings",
-	"": "",
 	"Finding out why code is the way it is, using hg annotate": "Finding out why code is the way it is, using hg annotate",
 	"Finding regression ranges with mozregression": "Finding regression ranges with mozregression",
 	"Searching and referencing Firefox code": "Searching and referencing Firefox code",
@@ -210,7 +204,15 @@
 	"Not yet completed": "Not yet completed",
 	"So far so good.": "So far so good.",
 	"Do not have any syntax errors.": "Do not have any syntax errors.",
+<<<<<<< HEAD
 	"Desktop automation and testing": "Desktop automation and testing",
 	"Installing a Telemetry Experiment ": "Installing a Telemetry Experiment ",
 	"Firefox OS automation and testing": "Firefox OS automation and testing"
 }
+=======
+	"Cheatsheet": "Cheatsheet",
+	"In Development": "In Development",
+	"Videos": "Videos",
+	"You are not authorized to see this page": "You are not authorized to see this page"
+}
+>>>>>>> bf08ee362e6380fada6aa49e7de33b5d44e99012
