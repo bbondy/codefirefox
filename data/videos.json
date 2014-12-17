@@ -1574,7 +1574,7 @@
   },
 
   {
-    "title": "Automation and testing",
+    "title": "Firefox OS automation and testing",
     "slug": "firefoxos-automation",
     "videos": [
       {
@@ -1615,6 +1615,24 @@
         "slug": "firefoxos-understanding-intermittent",
         "youtubeid": "",
         "tags": ["FirefoxOS", "automation"],
+        "links": []
+      }
+    ]
+  },
+
+  {
+    "title": "Desktop automation and testing",
+    "slug": "desktop-automation-testing",
+    "videos": [
+      {
+        "title": "Installing a Telemetry Experiment ",
+        "datePosted": "December 17, 2014 8:00 PM",
+        "type": "video",
+        "author": "Kamil Jozwiak",
+        "description": "",
+        "slug": "install-telmetry-experiment",
+        "youtubeid": "VL7OAiKM6N0",
+        "tags": ["testing", "telemetry", "automation"],
         "links": []
       }
     ]
