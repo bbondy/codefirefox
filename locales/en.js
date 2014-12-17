@@ -209,5 +209,8 @@
 	"Perform the following tasks in JavaScript:": "Perform the following tasks in JavaScript:",
 	"Not yet completed": "Not yet completed",
 	"So far so good.": "So far so good.",
-	"Do not have any syntax errors.": "Do not have any syntax errors."
+	"Do not have any syntax errors.": "Do not have any syntax errors.",
+	"Desktop automation and testing": "Desktop automation and testing",
+	"Installing a Telemetry Experiment ": "Installing a Telemetry Experiment ",
+	"Firefox OS automation and testing": "Firefox OS automation and testing"
 }
