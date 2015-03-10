@@ -204,15 +204,12 @@
 	"Not yet completed": "Aún no completado",
 	"So far so good.": "Hasta ahora, todo bien.",
 	"Do not have any syntax errors.": "No cometas errores de sintaxis.",
-<<<<<<< HEAD
 	"Desktop automation and testing": "Automatización y pruebas de escritorio",
 	"Installing a Telemetry Experiment ": "Instalando un experimento de Telemetría ",
 	"Firefox OS automation and testing": "Automatización y pruebas de Firefox OS"
 }
-=======
 	"Cheatsheet": "Hoja de Trucos",
 	"In Development": "En desarrollo",
 	"Videos": "Videos",
 	"You are not authorized to see this page": "No estás autorizado para ver esta página"
 }
->>>>>>> bf08ee362e6380fada6aa49e7de33b5d44e99012
