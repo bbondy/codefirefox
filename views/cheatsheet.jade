@@ -124,16 +124,23 @@ block mainContent
     ul
       li: :markdown
         Full build of Firefox: (~ 1.5h when run the first time)  
-        > mach build
+        > ./mach build
       li: :markdown
         To clean: (~2min)  
-        > mach clobber
+        > ./mach clobber
       li: :markdown
         Incremental builds (~1min, see below section)
-        > mach build
+        > ./mach build
       li: :markdown
         Redirect output for faster builds
-        > mach build >out.txt 2>&1
+        > ./mach build >out.txt 2>&1
+      li: :markdown
+        Build a zip file, it will appear in objdir/dist/
+        > ./mach package
+      li: :markdown
+        Build windows installer, it will appear in objdir/dist/install/sea
+        > mozmake.exe -C objdir/browser/installer/windows/ uninstaller  
+        > mozmake.exe -C objdir/browser/installer/windows/ installer
 
   .card-container
     h1 Example .mozconfig files  (Gecko 2.0 and up)
