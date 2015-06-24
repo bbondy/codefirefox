@@ -143,7 +143,7 @@ block mainContent
         > mozmake.exe -C objdir/browser/installer/windows/ installer
 
   .card-container
-    h1 Example .mozconfig files  (Gecko 2.0 and up)
+    h1 Example .mozconfig files
     ul
       li: :markdown
         Firefox Debug .mozconfig contents: (Using mozilla-central)  
@@ -154,7 +154,7 @@ block mainContent
         > ac\_add\_options --enable-tests
       li: :markdown
         Firefox Release .mozconfig contents: (Using mozilla-central)  
-        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-debug  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-release
         > ac\_add\_options --enable-application=browser  
         > ac\_add\_options --enable-optimize  
         > ac\_add\_options --enable-debug-symbols
@@ -162,48 +162,36 @@ block mainContent
         xulrunner .mozconfig contents: (Using mozilla-central)  
         > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-xulrunner-debug  
         > ac\_add\_options --enable-application=xulrunner  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize
       li: :markdown
         Thunderbird .mozconfig contents: (Using comm-central)  
         > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-tb-debug  
         > ac\_add\_options --enable-application=mail  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize  
         > \#If you also want Lightning  
         > ac\_add\_options --enable-calendar
       li: :markdown
         SeaMonkey .mozconfig contents: (Using comm-central)  
         > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-seamonkey-debug  
         > ac\_add\_options --enable-application=suite  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize
       li: :markdown
         Sunbird .mozconfig contents: (Using comm-central)  
         > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-sunbird-debug  
-        > ac\_add\_options --enable-application=calendar  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize
+        > ac\_add\_options --enable-application=calendar
       li: :markdown
         Fennec Win32 .mozconfig  
-        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-fennec  
         > ac\_add\_options --enable-application=mobile  
         > \# For improved compile speeds, all optional.  
         > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
         > \#export CCACHE\_HARDLINK=1  
         > \#export MOZ\_DEBUG\_SYMBOLS=1  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize  
         > \# Needed on Win32 to fix problem with Windows Vista SDK  
         > ac\_add\_options --disable-accessibility
       li: :markdown
-        Windows 8 Metro .mozconfig  
-        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir  
-        > mk\_add\_options MOZ\_MAKE\_FLAGS=-j4  
-        > ac\_add\_options --enable-debug  
-        > ac\_add\_options --disable-optimize  
-        > ac\_add\_options --enable-tests  
-        > ac\_add\_options --enable-metro
+        Graphene .mozconfig  
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-graphene  
+        > ac\_add\_options --enable-application=b2g/graphene  
+        > ac\_add\_options --with-branding=b2g/branding/horizon  
+        > ENABLE_MARIONETTE=1
       li: :markdown
         Using multiple mozconfig files  
         > export MOZCONFIG=.mozconfig-alt
