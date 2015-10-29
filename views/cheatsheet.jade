@@ -154,7 +154,7 @@ block mainContent
         > ac\_add\_options --enable-tests
       li: :markdown
         Firefox Release .mozconfig contents: (Using mozilla-central)  
-        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-release
+        > mk\_add\_options MOZ\_OBJDIR=@TOPSRCDIR@/objdir-ff-release 
         > ac\_add\_options --enable-application=browser  
         > ac\_add\_options --enable-optimize  
         > ac\_add\_options --enable-debug-symbols
@@ -274,7 +274,7 @@ block mainContent
         > hg qapplied
       li: :markdown
         List which patches in your MQ patch queue are not yet applied (pushed):  
-        > qunapplied
+        > hg qunapplied
       li: :markdown
         To delete a patch from your MQ patch queue: (Patch must first be unapplied)  
         > hg qdelete
@@ -332,7 +332,7 @@ block mainContent
         > hg push
       li: :markdown
         Clone a repository up until a specific changeset  
-      > hg clone -r revisionid http://hg.mozilla.org/mozilla-central/ repo\_name
+        > hg clone -r revisionid http://hg.mozilla.org/mozilla-central/ repo\_name
       li: :markdown
         Remove a changeset and all of its decendants  
         > hg strip changesetid
